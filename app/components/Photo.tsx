@@ -1,0 +1,44 @@
+import { useEffect, useState } from "react";
+import { slots, type SlotName } from "@/content/photos";
+
+type Props = {
+  slot: SlotName;
+  /** Ocupa todo el contenedor (position absolute) en vez de reservar aspect-ratio. */
+  fill?: boolean;
+  /** Imagen del LCP: carga con prioridad y sin lazy. */
+  priority?: boolean;
+  className?: string;
+  /** Sobrescribe el alt del slot cuando la foto es decorativa ("" la oculta a lectores de pantalla). */
+  alt?: string;
+};
+
+export function Photo({ slot, fill, priority, className = "", alt }: Props) {
+  const s = slots[slot];
+  const [showSlots, setShowSlots] = useState(false);
+
+  // Modo dev ?slots=1: superpone el nombre del slot. Queda fuera del build de producción.
+  useEffect(() => {
+    if (import.meta.env.DEV) setShowSlots(new URLSearchParams(location.search).has("slots"));
+  }, []);
+
+  const style = {
+    "--ar-m": `${s.ratio.mobile[0]} / ${s.ratio.mobile[1]}`,
+    "--ar-d": `${s.ratio.desktop[0]} / ${s.ratio.desktop[1]}`,
+  } as React.CSSProperties;
+
+  return (
+    <div className={`ph ${fill ? "ph-fill" : ""} ${className}`} style={style}>
+      <img
+        src={s.src}
+        alt={alt ?? s.alt}
+        width={s.width}
+        height={s.height}
+        loading={priority ? "eager" : "lazy"}
+        decoding={priority ? "sync" : "async"}
+        {...(priority ? { fetchPriority: "high" as const } : {})}
+        style={{ objectPosition: `${s.focal.x}% ${s.focal.y}%` }}
+      />
+      {showSlots && <span className="ph-tag">{slot}{s.temp ? " (temp)" : ""}</span>}
+    </div>
+  );
+}
