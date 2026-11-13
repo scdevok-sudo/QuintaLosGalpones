@@ -39,6 +39,8 @@ for (const size of sizes) {
       }
       window.scrollTo(0, 0);
     });
+    // Solo para la captura completa: content-visibility oculta lo que no está en el viewport.
+    await page.addStyleTag({ content: ".cv{content-visibility:visible !important}" });
     await page.waitForTimeout(1000); // el iframe del mapa mantiene la red ocupada: no usar networkidle acá
     await page.screenshot({ path: `${out}/${slug}-${size.name}-full.png`, fullPage: true });
     if (size.mobile) {

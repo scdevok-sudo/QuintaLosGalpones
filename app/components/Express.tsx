@@ -119,6 +119,7 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
             </button>
           </div>
 
+          <div key={step} className="step-in">
           {step === "datos" && (
             <form
               className="mt-6 grid gap-5"
@@ -289,6 +290,10 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
 
           {step === "ok" && (
             <div className="mt-6 grid gap-4" role="status">
+              <svg className="tick" viewBox="0 0 52 52" aria-hidden="true">
+                <circle cx="26" cy="26" r="23" />
+                <path d="M15 27 l8 8 l15-17" />
+              </svg>
               <p className="lead">{form.success}</p>
               <button type="button" className="btn btn-primary" onClick={close}>
                 Cerrar
@@ -307,6 +312,7 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
               </button>
             </div>
           )}
+          </div>
         </div>
       </dialog>
     </ExpressContext.Provider>
@@ -318,16 +324,47 @@ export function ExpressButton({
   label,
   origen,
   className = "btn btn-primary",
+  magnetic,
 }: {
   label: string;
   origen: string;
   className?: string;
+  /** Efecto magnético sutil (0,3), solo desktop con puntero fino. */
+  magnetic?: boolean;
 }) {
   const { open } = useExpress();
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!magnetic || !el) return;
+    if (!matchMedia("(hover: hover) and (pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const onMove = (e: PointerEvent) => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const r = el.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        const reach = Math.max(r.width, r.height) * 0.9;
+        const near = Math.hypot(dx, dy) < reach;
+        el.style.transform = near ? `translate3d(${dx * 0.3}px, ${dy * 0.3}px, 0)` : "";
+      });
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      if (raf) cancelAnimationFrame(raf);
+      el.style.transform = "";
+    };
+  }, [magnetic]);
+
   return (
     <a
+      ref={ref}
       href="/contacto/#formulario"
-      className={className}
+      className={`${className} ${magnetic ? "magnetic" : ""}`}
       onClick={(e) => {
         e.preventDefault();
         open(origen);

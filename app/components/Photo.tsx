@@ -12,11 +12,15 @@ type Props = {
   defer?: boolean;
   /** Aplica la máscara de galpón (frontón a dos aguas). */
   mask?: boolean;
+  /** La máscara abre el techo al entrar a pantalla (atado al scroll). */
+  maskLive?: boolean;
+  /** Zoom suave de la foto con hover o foco (solo desktop). */
+  zoom?: boolean;
   /** Sobrescribe el alt del slot cuando la foto es decorativa ("" la oculta a lectores de pantalla). */
   alt?: string;
 };
 
-export function Photo({ slot, fill, priority, className = "", alt, mask, defer }: Props) {
+export function Photo({ slot, fill, priority, className = "", alt, mask, maskLive, zoom, defer }: Props) {
   const s = slots[slot];
   const [showSlots, setShowSlots] = useState(false);
 
@@ -31,7 +35,7 @@ export function Photo({ slot, fill, priority, className = "", alt, mask, defer }
   } as React.CSSProperties;
 
   return (
-    <div className={`ph ${fill ? "ph-fill" : ""} ${mask ? "mask-galpon" : ""} ${className}`} style={style}>
+    <div className={`ph ${fill ? "ph-fill" : ""} ${mask ? "mask-galpon" : ""} ${maskLive ? "mask-live" : ""} ${zoom ? "zoomable" : ""} ${className}`} style={style}>
       {defer ? (
         <noscript>
           <img

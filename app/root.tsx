@@ -4,9 +4,11 @@ import "@fontsource-variable/bricolage-grotesque/opsz.css";
 import "@fontsource-variable/newsreader/wght.css";
 import bricolageLatin from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url";
 import "./app.css";
+import "./motion.css";
 import { Footer } from "~/components/Footer";
 import { Header } from "~/components/Header";
 import { ExpressBar, ExpressProvider } from "~/components/Express";
+import { MotionLayer } from "~/components/MotionLayer";
 import { env } from "@/config/site";
 
 export const links: LinksFunction = () => [
@@ -16,17 +18,22 @@ export const links: LinksFunction = () => [
   { rel: "preload", href: bricolageLatin, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
 ];
 
+const introScript =
+  "try{if(!sessionStorage.getItem('qg-intro')){document.documentElement.setAttribute('data-intro','1');sessionStorage.setItem('qg-intro','1')}}catch(e){}";
+
 const noscriptCss =
   ".site-nav{position:static!important;visibility:visible!important;opacity:1!important;transform:none!important;padding:0 1.25rem 1rem!important}.site-nav .nav-link{font-size:1.1rem;min-height:2.75rem}header button{display:none}";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR">
+    <html lang="es-AR" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#e9e6d2" />
         {env.noindex && <meta name="robots" content="noindex, nofollow" />}
+        {/* Entrada del hero solo en la primera carga de la sesión. Corre antes del primer pintado. */}
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
         <Meta />
         <Links />
         <noscript>
@@ -57,6 +64,7 @@ export default function App() {
       </main>
       <Footer />
       <ExpressBar />
+      <MotionLayer />
     </ExpressProvider>
   );
 }

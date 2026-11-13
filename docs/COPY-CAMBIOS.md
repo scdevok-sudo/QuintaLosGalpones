@@ -38,3 +38,10 @@ Todo texto que no es verbatim del documento de textos. Se completa a medida que 
 | "Contanos tu nombre." y "Dejanos un correo o un WhatsApp para poder responderte." | Validación de la consulta express | Mensajes de error de campos. |
 | Mensaje de WhatsApp completado ("Pensamos en 12/03/2027 para hasta 100 personas") | Consulta express | Mensaje base del documento con lo elegido. Lo que falta queda entre corchetes. |
 | "Consultar por mi fecha" (barra inferior mobile) | Toda la web en mobile | Texto del documento (Casamientos, botón del hero). |
+
+## Agregados con la capa de movimiento (anexo v2.2)
+| Qué | Dónde | Por qué |
+|---|---|---|
+| "Testimonios, deslizá para ver el siguiente", "Elegir testimonio", "Ir al testimonio de [nombre]" | Carrusel de testimonios | Etiquetas accesibles del carrusel y sus puntos. |
+| "Escenas del recorrido" | Riel del recorrido | Etiqueta accesible del grupo de botones. |
+| "Cerrar el panel" | Consulta express | Etiqueta accesible del botón de cierre. |

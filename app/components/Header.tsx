@@ -65,6 +65,13 @@ export function Header() {
           </Link>
         </nav>
       </div>
+      <div className="sunbar" aria-hidden="true">
+        <span className="sunbar-line" />
+        <span className="sunbar-dot">
+          <span className="sunbar-sun" />
+          <span className="sunbar-moon" />
+        </span>
+      </div>
     </header>
   );
 }

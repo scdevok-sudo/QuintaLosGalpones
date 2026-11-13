@@ -38,7 +38,7 @@ for (const size of sizes) {
     await page.screenshot({ path: `${out}/story-${size.name}-${Math.round(p * 100)}.png` });
     const r = await page.evaluate(() => {
       const hora = getComputedStyle(document.querySelector(".story")).getPropertyValue("--hora");
-      const act = document.querySelector('.story-scene[data-active="true"]');
+      const act = document.querySelector('.story-scene[data-state="active"]');
       const panel = act.querySelector(".story-panel");
       const cs = getComputedStyle(panel);
       return { hora, escena: act.getAttribute("aria-label"), fg: cs.color, bg: cs.backgroundColor };

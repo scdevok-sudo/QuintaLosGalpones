@@ -1,11 +1,14 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router";
 import { Button } from "~/components/Button";
+import { CountUp } from "~/components/CountUp";
 import { ExpressButton } from "~/components/Express";
 import { GoogleReviews } from "~/components/GoogleReviews";
 import { MapFacade } from "~/components/MapFacade";
 import { Photo } from "~/components/Photo";
 import { RainToggle } from "~/components/RainToggle";
 import { Story } from "~/components/Story";
+import { Testimonios } from "~/components/Testimonios";
 import { site } from "@/config/site";
 import * as home from "@/content/home";
 import { track } from "@/lib/analytics";
@@ -25,8 +28,14 @@ export default function Home() {
       {/* 1. HERO: sin velo. El texto va fuera de la foto, así el contraste está garantizado. */}
       <section className="hero dia" aria-labelledby="hero-titulo">
         <div className="order-2 px-5 pt-8 pb-12 md:px-10 lg:order-1 lg:px-0 lg:py-16">
-          <h1 id="hero-titulo" className="max-w-[12ch] lg:max-w-none">
-            {hero.h1}
+          <h1 id="hero-titulo" className="hero-title">
+            {hero.h1Lines.map((line, i) => (
+              <span className="line" key={line}>
+                <span className="line-in" style={{ "--i": i } as CSSProperties}>
+                  {line}
+                </span>{" "}
+              </span>
+            ))}
           </h1>
           <p className="lead measure mt-6">{hero.body}</p>
           <div className="mt-8 flex flex-col items-start gap-x-6 gap-y-1 sm:flex-row sm:flex-wrap sm:items-center">
@@ -57,7 +66,17 @@ export default function Home() {
             {lugar.ficha.map((f) => (
               <div key={f.term} className="contents">
                 <dt className="font-display text-[1.125rem] font-bold">{f.term}</dt>
-                <dd className="m-0 -mt-3 mb-2 sm:mt-0 sm:mb-0">{f.def}</dd>
+                <dd className="m-0 -mt-3 mb-2 sm:mt-0 sm:mb-0">
+                  {f.count?.validated && f.def.includes(f.count.text) ? (
+                    <>
+                      {f.def.slice(0, f.def.indexOf(f.count.text))}
+                      <CountUp text={f.count.text} to={f.count.to} />
+                      {f.def.slice(f.def.indexOf(f.count.text) + f.count.text.length)}
+                    </>
+                  ) : (
+                    f.def
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
@@ -67,33 +86,37 @@ export default function Home() {
       {/* 3. UN DÍA EN LOS GALPONES: momento firma */}
       <Story />
 
-      {/* 4. DOS CAMINOS: uno grande y uno más chico, de otra proporción */}
+      {/* 4. DOS CAMINOS: paneles que se expanden con hover o foco (desktop); apilados en mobile */}
       <section className="cv noche pb-16 md:pb-28" aria-label="Tipos de evento">
         <div className="wrap">
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
-            <div className="lg:col-span-7">
-              <Photo slot="home.casamientos" mask />
-            </div>
-            <div className="lg:col-span-5 lg:pb-6">
-              <h2>{casamientos.h2}</h2>
-              <p className="measure mt-5">{casamientos.body}</p>
-              <div className="mt-7">
-                <Button cta={casamientos.cta} />
+          <div className="caminos">
+            <article className="camino camino-a">
+              <Photo slot="home.casamientos" mask maskLive zoom className="vt-casamientos" />
+              <div className="noche-2 flex flex-1 flex-col p-6 md:p-8">
+                <h2>{casamientos.h2}</h2>
+                <p className="measure mt-5">{casamientos.body}</p>
+                <div className="mt-7 flex flex-wrap items-end justify-between gap-5">
+                  <Button cta={casamientos.cta} />
+                  <div className="camino-extra">
+                    <Photo slot="casamientos.interior" className="camino-photo2 w-44 rounded-[4px]" />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </article>
 
-          <div className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-12 lg:items-start lg:gap-12">
-            <div className="order-2 lg:order-1 lg:col-span-5 lg:col-start-2">
-              <h2 className="text-h3">{empresas.h2}</h2>
-              <p className="mt-4">{empresas.body}</p>
-              <div className="mt-6">
-                <Button cta={empresas.cta} variant="line" />
+            <article className="camino camino-b">
+              <Photo slot="home.empresas" zoom className="rounded-[4px]" />
+              <div className="noche-2 flex flex-1 flex-col p-6 md:p-8">
+                <h2 className="text-h3">{empresas.h2}</h2>
+                <p className="mt-4">{empresas.body}</p>
+                <div className="mt-6 flex flex-wrap items-end justify-between gap-5">
+                  <Button cta={empresas.cta} variant="line" />
+                  <div className="camino-extra">
+                    <Photo slot="empresas.espacios" className="camino-photo2 w-44 rounded-[4px]" />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="order-1 lg:order-2 lg:col-span-5 lg:col-start-8">
-              <Photo slot="home.empresas" className="rounded-[4px]" />
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -120,26 +143,8 @@ export default function Home() {
           <h2 id="testimonios-titulo" className="max-w-2xl text-h3">
             {testimonios.h2}
           </h2>
-          <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-8">
-            {testimonios.items.map((t, i) => (
-              <figure
-                key={t.cite}
-                className={`m-0 ${i === 0 ? "lg:col-span-7" : "lg:col-span-4 lg:col-start-9 lg:mt-24"}`}
-              >
-                <blockquote className="m-0">
-                  <p
-                    className={`font-body ${
-                      i === 0 ? "text-[clamp(1.7rem,1.1rem+2.6vw,3.1rem)] leading-[1.15]" : "text-[1.45rem] leading-snug"
-                    }`}
-                  >
-                    “{t.quote}”
-                  </p>
-                </blockquote>
-                <figcaption className="mt-4">
-                  <cite className="font-display font-semibold not-italic">{t.cite}</cite>
-                </figcaption>
-              </figure>
-            ))}
+          <div className="mt-10">
+            <Testimonios items={testimonios.items} />
           </div>
           <GoogleReviews />
         </div>
@@ -174,7 +179,7 @@ export default function Home() {
             <h2 id="visita-titulo">{visita.h2}</h2>
             <p className="measure mt-6">{visita.body}</p>
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
-              <ExpressButton label={visita.cta.label} origen="cierre" />
+              <ExpressButton label={visita.cta.label} origen="cierre" magnetic />
               <Button cta={visita.ctaVisita} variant="line" />
             </div>
             <p className="mt-6">

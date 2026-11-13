@@ -1,0 +1,449 @@
+/*
+ * Capa de movimiento. Dos ideas del lugar: la luz (el día se vuelve noche) y el techo (el galpón).
+ * Reglas: solo transform, opacity, clip-path y filter leve. Todo con la guarda de prefers-reduced-motion.
+ * El contenido es siempre legible sin JS y sin que termine la animación.
+ */
+
+/* A. Hero: una sola entrada orquestada, solo en la primera carga de la sesión (html[data-intro]). */
+.hero-title .line {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.hero-title .line-in {
+  display: block;
+}
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes line-up {
+  from {
+    transform: translateY(108%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes bar-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* La foto se ve desde el primer pintado (no se anima su aparición, para no tocar el LCP): solo se asienta. */
+  html[data-intro] .hero-photos > .ph > img {
+    animation: settle 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  html[data-intro] .hero-title .line-in {
+    animation: line-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i) * 70ms + 120ms);
+  }
+  /* El techo del gable se levanta de plano a pico: la firma del sitio. */
+  html[data-intro] .hero .mask-galpon {
+    animation: roof-lift 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  html[data-intro] .bar-consulta {
+    animation: bar-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.3s both;
+  }
+
+  /* D. Máscara con vida: el techo se abre al entrar a pantalla, atado al scroll. */
+  @supports (animation-timeline: view()) {
+    .mask-live {
+      animation: roof-lift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+
+  /* C. Títulos de sección: el peso de Bricolage va de 300 a 700 una vez, al entrar al viewport. */
+  @supports (animation-timeline: view()) {
+    main h2 {
+      animation: kin linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+  }
+
+  /* Fallback sin animation-timeline: la capa de movimiento marca los elementos con data-in. */
+  html.mfb main h2 {
+    transition: font-weight 0.9s ease;
+  }
+  html.mfb main h2:not([data-in]) {
+    font-weight: 300;
+  }
+  html.mfb .mask-live {
+    transition: --roof-k 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.mfb .mask-live:not([data-in]) {
+    --roof-k: 0;
+  }
+}
+@keyframes kin {
+  from {
+    font-weight: 300;
+  }
+  to {
+    font-weight: 700;
+  }
+}
+
+/* Foto interior con zoom suave al pasar el puntero o enfocar (solo desktop con hover). */
+.ph.zoomable > img {
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ph.zoomable:hover > img,
+  .ph.zoomable:focus-within > img {
+    transform: scale(1.04);
+  }
+}
+
+/* E. Dos caminos: paneles que se expanden (desktop). En mobile, dos bloques apilados sin expansión. */
+.caminos {
+  display: grid;
+  gap: 2.5rem;
+}
+.camino {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.camino-photo2 {
+  display: none;
+}
+@media (min-width: 64rem) {
+  .caminos {
+    grid-template-columns: 1.35fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    transition: grid-template-columns 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .caminos:has(.camino-a:hover),
+  .caminos:has(.camino-a:focus-within) {
+    grid-template-columns: 1.9fr 1fr;
+  }
+  .caminos:has(.camino-b:hover),
+  .caminos:has(.camino-b:focus-within) {
+    grid-template-columns: 1fr 1.9fr;
+  }
+  .camino-photo2 {
+    display: block;
+  }
+}
+@media (min-width: 64rem) and (hover: hover) and (pointer: fine) {
+  /* La segunda foto y el CTA se revelan con el hover o el foco. El foco también los muestra. */
+  .camino-extra {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.4s ease 0.1s,
+      transform 0.4s ease 0.1s;
+  }
+  .camino:hover .camino-extra,
+  .camino:focus-within .camino-extra {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* F. Noche con luz que sigue al cursor. Con puntero táctil queda un brillo fijo. */
+section.noche:not(.no-glow),
+section.noche-2,
+footer.noche {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
+section.noche:not(.no-glow)::before,
+section.noche-2::before,
+footer.noche::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  width: 680px;
+  height: 680px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgb(255 179 71 / 0.13), transparent 62%);
+  transform: translate3d(var(--gx, calc(100vw - 480px)), var(--gy, -200px), 0);
+}
+@media (prefers-reduced-motion: no-preference) {
+  section.noche:not(.no-glow)::before,
+  section.noche-2::before,
+  footer.noche::before {
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+/* J. Testimonios: carrusel con scroll-snap, arrastrable, con puntos. */
+.car-track {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0 0 0.5rem;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+}
+.car-track::-webkit-scrollbar {
+  display: none;
+}
+.car-track.is-drag {
+  scroll-snap-type: none;
+  cursor: grabbing;
+  user-select: none;
+}
+.car-item {
+  flex: 0 0 min(88%, 44rem);
+  scroll-snap-align: start;
+}
+.car-dots {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+.car-dot {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.car-dot > span {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-tarde);
+}
+.car-dot[aria-current="true"] > span {
+  background: var(--color-lamparita);
+  border-color: var(--color-lamparita);
+}
+
+/* K. Mapa: el pin cae al entrar a pantalla. */
+.pin {
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+  width: 2.25rem;
+  height: 2.9rem;
+  color: var(--color-lamparita);
+}
+@keyframes pin-drop {
+  0% {
+    transform: translateY(-72px);
+    opacity: 0;
+  }
+  65% {
+    transform: translateY(5px);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .pin {
+      animation: pin-drop linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 70%;
+    }
+  }
+  html.mfb .pin {
+    transition:
+      transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.4s ease;
+  }
+  html.mfb .pin:not([data-in]) {
+    transform: translateY(-72px);
+    opacity: 0;
+  }
+}
+
+/* L. Barra de progreso solar en el header: una línea de tarde a noche con un punto sol que se vuelve luna.
+   Decorativa (aria-hidden). Solo transform y opacity, atada al scroll de toda la página. */
+.sunbar {
+  display: none;
+}
+@keyframes sun-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes sun-travel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100cqw - 14px));
+  }
+}
+@keyframes sun-out {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes moon-in {
+  0%,
+  55% {
+    opacity: 0;
+  }
+  75%,
+  100% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .sunbar {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 3px;
+      container-type: inline-size;
+      pointer-events: none;
+    }
+    .sunbar-line {
+      position: absolute;
+      inset: 0;
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--color-lamparita), #e0864a 45%, #25414d 78%, var(--color-noche));
+      animation: sun-line linear both;
+      animation-timeline: scroll(root);
+    }
+    .sunbar-dot {
+      position: absolute;
+      left: 0;
+      top: -6px;
+      width: 14px;
+      height: 14px;
+      animation: sun-travel linear both;
+      animation-timeline: scroll(root);
+    }
+    .sunbar-sun,
+    .sunbar-moon {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+    }
+    .sunbar-sun {
+      background: var(--color-lamparita);
+      animation: sun-out linear both;
+      animation-timeline: scroll(root);
+    }
+    .sunbar-moon {
+      background: var(--color-noche);
+      opacity: 0;
+      animation: moon-in linear both;
+      animation-timeline: scroll(root);
+    }
+    .sunbar-moon::after {
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      right: -8%;
+      top: -8%;
+      border-radius: 50%;
+      background: var(--color-tarde);
+    }
+  }
+}
+
+/* I. Consulta express: microinteracciones. */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes snap {
+  from {
+    transform: scale(0.97);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.tick {
+  width: 3.25rem;
+  height: 3.25rem;
+}
+.tick circle,
+.tick path {
+  fill: none;
+  stroke: var(--color-tinta);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tick circle {
+  stroke-dasharray: 150;
+  stroke-dashoffset: 0;
+}
+.tick path {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .step-in {
+    animation: step-in 0.22s ease both;
+  }
+  .choice:has(input:checked) {
+    animation: snap 0.12s ease-out;
+  }
+  .tick circle {
+    stroke-dashoffset: 150;
+    animation: draw 0.5s ease forwards;
+  }
+  .tick path {
+    stroke-dashoffset: 40;
+    animation: draw 0.4s ease 0.35s forwards;
+  }
+  .magnetic {
+    transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+/* H. Elemento compartido entre páginas: la foto de la tarjeta se vuelve el hero de la página destino. */
+.vt-casamientos {
+  view-transition-name: foto-casamientos;
+}

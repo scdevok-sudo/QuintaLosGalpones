@@ -239,10 +239,26 @@
     pointer-events: none;
   }
 
-  /* Máscara de galpón: frontón a dos aguas. Máximo 3 usos (hero, espacio cubierto, lluvia). */
+  /* Máscara de galpón: frontón a dos aguas. Máximo 3 por página y nunca dos en la misma pantalla.
+     --roof-k (0 a 1) permite "levantar" el techo: de plano a pico. */
   .mask-galpon {
-    --roof: clamp(32px, 7vw, 88px);
+    --roof-max: clamp(32px, 7vw, 88px);
+    --roof: calc(var(--roof-max) * var(--roof-k));
     clip-path: polygon(0 var(--roof), 50% 0, 100% var(--roof), 100% 100%, 0 100%);
+  }
+}
+
+@property --roof-k {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+@keyframes roof-lift {
+  from {
+    --roof-k: 0;
+  }
+  to {
+    --roof-k: 1;
   }
 }
 
@@ -373,8 +389,8 @@
 }
 
 /* Recorrido "Un día en Los Galpones".
-   Base (sin JS, reduced-motion, impresión): 4 bloques apilados. El escenario sticky solo existe
-   cuando hay JS y no hay reduced-motion. */
+   Base (sin JS, reduced-motion, impresión): 4 bloques apilados, cada uno con su foto y su superficie.
+   El escenario sticky solo existe cuando hay JS y no hay reduced-motion. */
 .story-scene {
   display: grid;
 }
@@ -392,17 +408,109 @@
   background: var(--color-noche);
   color: var(--color-tarde);
 }
+.story-band,
 .story-glow,
 .story-tint-gold,
-.story-tint-night,
-.story-rail {
+.story-tint-night {
   display: none;
+}
+
+.story-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 10px;
+  background: var(--color-tarde);
+  color: var(--color-tinta);
+  width: fit-content;
+  max-width: 100%;
+}
+[data-theme="noche"] .story-chip {
+  background: var(--color-noche);
+  color: var(--color-tarde);
+}
+.story-clock {
+  padding: 0 0.75rem;
+  min-height: 2.75rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+  gap: 0;
+}
+.clock-hh {
+  display: block;
+  height: 1.3em;
+  overflow: hidden;
+}
+.clock-strip {
+  display: block;
+  transform: translateY(calc(var(--hh, 0) * -1.3em));
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.clock-strip > span {
+  display: block;
+  height: 1.3em;
+  line-height: 1.3em;
+}
+.story-rail-btn {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0 0.6rem;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 14;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.story-rail-btn[aria-current="true"] {
+  background: var(--color-tinta);
+  color: var(--color-tarde);
+}
+[data-theme="noche"] .story-rail-btn[aria-current="true"] {
+  background: var(--color-lamparita);
+  color: var(--color-noche);
+}
+
+@keyframes curtain {
+  from {
+    clip-path: polygon(0 calc(100% + var(--roof)), 50% 100%, 100% calc(100% + var(--roof)), 100% 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 50% calc(var(--roof) * -1), 100% 0, 100% 100%, 0 100%);
+  }
+}
+@keyframes flick {
+  0% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 0.35;
+  }
+  55% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
   .story {
     height: 320vh;
     position: relative;
+    --roof: clamp(32px, 7vw, 88px);
   }
   .story-stage {
     position: sticky;
@@ -410,19 +518,115 @@
     height: calc(100svh - var(--header-h));
     overflow: hidden;
     background: var(--color-noche);
+    display: flex;
+    flex-direction: column;
+  }
+  /* Banda de cielo: tarde, atardecer y noche se mezclan con --hora. Solo cambia la opacidad de capas. */
+  .story-band {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    flex: none;
+    isolation: isolate;
+    padding: 0.6rem 1.25rem 0.7rem;
+    background: var(--color-noche);
+  }
+  .story-sky {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .story-sky > span {
+    position: absolute;
+    inset: 0;
+  }
+  .sky-dia {
+    background: linear-gradient(#c9dde3, var(--color-tarde));
+    opacity: max(0, calc(1 - var(--hora, 0) * 2.6));
+  }
+  .sky-atardecer {
+    background: linear-gradient(#ee9c47, #f6cf94);
+    opacity: max(0, calc(1 - max(var(--hora, 0) - 0.42, 0.42 - var(--hora, 0)) * 3.2));
+  }
+  .sky-noche {
+    background: linear-gradient(#0d1411, #1f3742);
+    opacity: min(1, max(0, calc((var(--hora, 0) - 0.3) * 2.4)));
+  }
+  .story-band-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+  .story-garland {
+    position: relative;
+    flex: 1;
+    height: 2.75rem;
+    min-width: 0;
+    color: rgb(35 27 19 / 0.6);
+  }
+  .story-garland svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .story-garland path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+  .bulb {
+    position: absolute;
+    left: calc(var(--t) * 100%);
+    top: calc((10 + 160 * var(--t) * (1 - var(--t))) * 1%);
+    width: 11px;
+    height: 11px;
+    margin: -5px 0 0 -5px;
+    border-radius: 50%;
+    background: #5f6b5a;
+  }
+  .bulb::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--color-lamparita);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .bulb.on::after {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px rgb(255 179 71 / 0.9));
+    animation: flick 0.5s steps(1) 1;
+  }
+  .story-scenes {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: clip;
   }
   .story-scene {
     position: absolute;
     inset: 0;
     display: block;
     opacity: 0;
-    transition: opacity 0.7s ease;
     pointer-events: none;
   }
-  .story-scene[data-active="true"] {
+  .story-scene[data-state="prev"] {
+    opacity: 1;
+    z-index: 1;
+  }
+  .story-scene[data-state="active"] {
     opacity: 1;
     pointer-events: auto;
     z-index: 2;
+  }
+  /* Cortina de galpón: el pico del gable barre la escena nueva de abajo hacia arriba. */
+  .story-scene[data-state="active"][data-run="1"] {
+    animation: curtain 0.95s cubic-bezier(0.65, 0, 0.35, 1) both;
   }
   .story-scene .story-photo {
     position: absolute;
@@ -443,13 +647,8 @@
   }
   .story-tint-gold,
   .story-tint-night,
-  .story-glow,
-  .story-rail {
-    display: block;
-  }
-  .story-tint-gold,
-  .story-tint-night,
   .story-glow {
+    display: block;
     position: absolute;
     inset: 0;
     pointer-events: none;
@@ -473,16 +672,18 @@
       radial-gradient(circle at 80% 8%, rgb(255 179 71 / 0.4), transparent 10%);
     opacity: max(0, calc((var(--hora, 0) - 0.55) * 2.4));
   }
-  .story-rail {
-    position: absolute;
-    top: 0.75rem;
-    left: 1.25rem;
-    right: 1.25rem;
-    z-index: 5;
-  }
   @media (min-width: 64rem) {
     .story {
       height: 400vh;
+    }
+    .story-band {
+      flex-direction: row;
+      align-items: center;
+      gap: 1.5rem;
+      padding-inline: max(2.5rem, calc((100% - 80rem) / 2 + 2.5rem));
+    }
+    .story-band-row {
+      flex: 1;
     }
     .story-panel {
       left: max(2.5rem, calc((100% - 80rem) / 2 + 2.5rem));
@@ -490,49 +691,15 @@
       bottom: 3rem;
       width: 30rem;
       padding: 2rem 2rem 2.25rem;
-      bottom: 3rem;
     }
-    .story-rail {
-      left: auto;
-      right: max(2.5rem, calc((100% - 80rem) / 2 + 2.5rem));
+    /* Parallax de 2 capas (solo desktop): la foto se mueve lento y las luces de primer plano más rápido. */
+    .story-photo .ph {
+      transform: translate3d(0, calc((var(--hora, 0) - 0.5) * -5%), 0) scale(1.12);
+    }
+    .story-glow {
+      transform: translate3d(0, calc((var(--hora, 0) - 0.5) * -16%), 0);
     }
   }
-}
-.story-rail-inner {
-  display: flex;
-  gap: 0.25rem;
-  padding: 0.25rem;
-  border-radius: 10px;
-  background: var(--color-tarde);
-  color: var(--color-tinta);
-  width: fit-content;
-  max-width: 100%;
-}
-.story-rail-inner[data-theme="noche"] {
-  background: var(--color-noche);
-  color: var(--color-tarde);
-}
-.story-rail-btn {
-  min-height: 2.75rem;
-  min-width: 2.75rem;
-  padding: 0 0.6rem;
-  border: 0;
-  border-radius: 7px;
-  background: transparent;
-  color: inherit;
-  font-family: var(--font-display);
-  font-variation-settings: "opsz" 14;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-}
-.story-rail-btn[aria-current="true"] {
-  background: var(--color-tinta);
-  color: var(--color-tarde);
-}
-.story-rail-inner[data-theme="noche"] .story-rail-btn[aria-current="true"] {
-  background: var(--color-lamparita);
-  color: var(--color-noche);
 }
 
 @media print {
@@ -616,29 +783,56 @@ dialog.consulta {
   max-height: 92svh;
   border-radius: 14px 14px 0 0;
   overflow-y: auto;
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease,
+    overlay 0.22s allow-discrete,
+    display 0.22s allow-discrete;
+}
+dialog.consulta[open] {
+  opacity: 1;
+  transform: none;
+}
+@starting-style {
+  dialog.consulta[open] {
+    opacity: 0;
+    transform: translateY(28px);
+  }
 }
 dialog.consulta::backdrop {
+  background: rgb(21 29 24 / 0);
+  backdrop-filter: blur(0); /* tells-ok */
+  transition:
+    background 0.22s ease,
+    backdrop-filter 0.22s ease, /* tells-ok */
+    overlay 0.22s allow-discrete,
+    display 0.22s allow-discrete;
+}
+dialog.consulta[open]::backdrop {
   background: rgb(21 29 24 / 0.7);
+  backdrop-filter: blur(4px); /* tells-ok */
+}
+@starting-style {
+  dialog.consulta[open]::backdrop {
+    background: rgb(21 29 24 / 0);
+    backdrop-filter: blur(0); /* tells-ok */
+  }
 }
 @media (min-width: 48rem) {
   dialog.consulta {
     margin: auto;
     width: min(34rem, calc(100% - 2rem));
     border-radius: 14px;
+    transform: scale(0.96);
   }
-}
-@media (prefers-reduced-motion: no-preference) {
   dialog.consulta[open] {
-    animation: sheet 0.25s ease both;
+    transform: none;
   }
-  @keyframes sheet {
-    from {
-      opacity: 0;
-      transform: translateY(24px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
+  @starting-style {
+    dialog.consulta[open] {
+      transform: scale(0.96);
     }
   }
 }
