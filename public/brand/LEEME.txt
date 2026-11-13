@@ -1,0 +1,20 @@
+LOGO QUINTA LOS GALPONES (reconstruccion vectorial)
+
+Archivos
+- logo-quinta-los-galpones.svg  Logo completo, color "currentColor". Usar INLINE (como componente/SVG en el HTML) para
+                                cambiar el color con CSS. Dentro de una etiqueta <img> el color NO se hereda.
+- logo-blanco.svg / .png        Logo completo en blanco (sobre fotos y fondos oscuros). PNG transparente de 1600 px.
+- logo-oscuro.svg / .png        Logo completo en #231B13 (sobre fondos claros). PNG transparente de 1600 px.
+- isotipo-arbol.svg             Solo el arbol, currentColor.
+- isotipo-blanco / -oscuro      Solo el arbol, SVG y PNG de 800 px (favicon, avatar, header mobile).
+- vista-previa-logo.png         Como se ve sobre fondo oscuro y claro.
+
+Reglas de uso
+- No redibujar, no estirar, no cambiar proporciones ni tipografia. Mantener el aire alrededor (al menos la altura de la "E" de EVENTOS).
+- Altura minima recomendada del logo completo en pantalla: 36 px. Por debajo de eso, usar el isotipo.
+
+Origen
+- Reconstruido a partir de una captura de baja resolucion del header de quintalosgalpones.com (arbol de 84 px de ancho).
+- El arbol esta trazado a partir de esa imagen (bordes suavizados, detalle fino aproximado).
+- El texto esta compuesto con Open Sans Regular, ajustado al tamano y espaciado de la captura. No es el archivo original.
+- Para impresion o formatos grandes, pedir al cliente el logo original en vectorial (AI, SVG o PDF) y reemplazar estos archivos.

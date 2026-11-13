@@ -22,6 +22,8 @@ export type Slot = {
   /** Para fotos de personas o eventos reales: autorización de quienes aparecen. */
   approved?: boolean;
   eventType?: "casamientos" | "empresa" | "clima";
+  /** La foto provisoria no muestra lo que el slot necesita (ej. armado cubierto con lluvia real). */
+  pending?: boolean;
 };
 
 type Raw = {
@@ -34,10 +36,11 @@ type Raw = {
   mobile?: [number, number];
   eventType?: Slot["eventType"];
   approved?: boolean;
+  pending?: boolean;
 };
 
 const make = (r: Raw): Slot => ({
-  src: `/photos-temp/${r.file}.jpg`,
+  src: `/photos-temp/${r.file}.webp`,
   alt: r.alt,
   focal: { x: r.focal?.[0] ?? 50, y: r.focal?.[1] ?? 50 },
   ratio: { desktop: r.desktop ?? [3, 2], mobile: r.mobile ?? [4, 5] },
@@ -46,6 +49,7 @@ const make = (r: Raw): Slot => ({
   temp: true,
   approved: r.approved ?? false,
   eventType: r.eventType,
+  pending: r.pending,
 });
 
 // Catálogo de provisorias (sitio actual). p01..p14.
@@ -67,11 +71,25 @@ const P = {
 } satisfies Record<string, Omit<Raw, "focal">>;
 
 export const slots = {
+  // Hero (v2): foto principal con máscara de galpón y foto secundaria, plano más cerrado.
+  "hero.principal": make({ ...P.p09, focal: [42, 52], desktop: [5, 4], mobile: [4, 3] }),
+  "hero.secundaria": make({ ...P.p10, focal: [50, 40], desktop: [4, 3], mobile: [4, 3] }),
+
+  // Recorrido "Un día en Los Galpones" (v2)
+  "story.llegada": make({ ...P.p01, focal: [55, 55], desktop: [16, 9], mobile: [4, 3] }),
+  "story.ceremonia": make({ ...P.p03, focal: [50, 50], desktop: [16, 9], mobile: [4, 3], eventType: "casamientos" }),
+  "story.fiesta": make({ ...P.p13, focal: [50, 45], desktop: [16, 9], mobile: [4, 3] }),
+  "story.noche": make({ ...P.p12, focal: [50, 55], desktop: [16, 9], mobile: [4, 3] }),
+
+  // "¿Y si llueve?": sol y armado cubierto. No hay foto real de armado cubierto con lluvia.
+  "lluvia.sol": make({ ...P.p06, focal: [50, 55], desktop: [4, 3], mobile: [4, 3] }),
+  "lluvia.cubierto": make({ ...P.p13, focal: [50, 50], desktop: [4, 3], mobile: [4, 3], pending: true }),
+
   // Inicio
   "home.hero": make({ ...P.p01, focal: [55, 60], desktop: [21, 9], mobile: [4, 5] }),
   "home.espacios": make({ ...P.p06, focal: [50, 55], desktop: [3, 2], mobile: [4, 3] }),
-  "home.casamientos": make({ ...P.p03, focal: [50, 55], desktop: [4, 5], mobile: [4, 5], eventType: "casamientos" }),
-  "home.empresas": make({ ...P.p05, focal: [45, 60], desktop: [4, 5], mobile: [4, 5] }),
+  "home.casamientos": make({ ...P.p03, focal: [50, 55], desktop: [5, 4], mobile: [4, 3], eventType: "casamientos" }),
+  "home.empresas": make({ ...P.p05, focal: [45, 62], desktop: [16, 10], mobile: [3, 2] }),
   "home.lluvia": make({ ...P.p13, focal: [50, 45], desktop: [3, 2], mobile: [4, 3] }),
   "home.visita": make({ ...P.p02, focal: [50, 55], desktop: [3, 2], mobile: [4, 3] }),
 

@@ -10,11 +10,13 @@
     "typecheck": "react-router typegen && tsc --noEmit",
     "check:content": "node scripts/check-content.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "check:launch": "node scripts/check-launch.mjs"
+    "check:launch": "node scripts/check-launch.mjs",
+    "check:tells": "node scripts/check-tells.mjs",
+    "check": "npm run check:content && npm run check:tells"
   },
   "dependencies": {
-    "@fontsource-variable/dm-sans": "^5.3.0",
-    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
     "@react-router/node": "^7.18.5",
     "@react-router/serve": "^7.18.5",
     "isbot": "^5",

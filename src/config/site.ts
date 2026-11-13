@@ -9,6 +9,8 @@ export const env = {
   noindex: (import.meta.env.VITE_NOINDEX as string | undefined) !== "false",
   formEndpoint: (import.meta.env.VITE_FORM_ENDPOINT as string | undefined) ?? "",
   gaId: (import.meta.env.VITE_GA_ID as string | undefined) ?? "",
+  /** Preview: muestra piezas que esperan foto real (ej. interruptor de lluvia) con la provisoria. */
+  previewPending: (import.meta.env.VITE_PREVIEW_PENDING as string | undefined) === "true",
 };
 
 export const site = {

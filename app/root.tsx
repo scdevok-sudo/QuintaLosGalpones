@@ -1,21 +1,19 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import type { LinksFunction } from "react-router";
-import "@fontsource-variable/fraunces";
-import "@fontsource-variable/dm-sans";
-import frauncesLatin from "@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2?url";
-import dmSansLatin from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
+import "@fontsource-variable/bricolage-grotesque/opsz.css";
+import "@fontsource-variable/newsreader/wght.css";
+import bricolageLatin from "@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url";
 import "./app.css";
 import { Footer } from "~/components/Footer";
 import { Header } from "~/components/Header";
-import { WhatsAppFab } from "~/components/WhatsAppFab";
+import { ExpressBar, ExpressProvider } from "~/components/Express";
 import { env } from "@/config/site";
 
 export const links: LinksFunction = () => [
   { rel: "icon", href: "/logo-circle.png", type: "image/png" },
   { rel: "apple-touch-icon", href: "/logo-circle.png" },
-  // La fuente de títulos (Fraunces) es la del LCP en texto: se precarga.
-  { rel: "preload", href: frauncesLatin, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
-  { rel: "preload", href: dmSansLatin, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+  // Se precarga solo la fuente del H1 (Bricolage Grotesque); el cuerpo usa swap.
+  { rel: "preload", href: bricolageLatin, as: "font", type: "font/woff2", crossOrigin: "anonymous" },
 ];
 
 const noscriptCss =
@@ -27,7 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content="#f7f2e9" />
+        <meta name="theme-color" content="#e9e6d2" />
         {env.noindex && <meta name="robots" content="noindex, nofollow" />}
         <Meta />
         <Links />
@@ -38,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-forest focus:px-4 focus:py-3 focus:text-cream"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded focus:bg-tinta focus:px-4 focus:py-3 focus:text-tarde"
         >
           Saltar al contenido
         </a>
@@ -52,13 +50,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <>
+    <ExpressProvider>
       <Header />
       <main id="contenido">
         <Outlet />
       </main>
       <Footer />
-      <WhatsAppFab />
-    </>
+      <ExpressBar />
+    </ExpressProvider>
   );
 }

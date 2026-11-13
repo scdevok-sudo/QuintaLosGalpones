@@ -5,7 +5,7 @@ import { whatsappLink } from "@/lib/whatsapp";
 
 type Props = {
   cta: Cta;
-  variant?: "primary" | "ghost" | "light";
+  variant?: "primary" | "line";
   className?: string;
 };
 
