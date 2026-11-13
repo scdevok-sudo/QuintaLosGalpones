@@ -10,6 +10,8 @@ export const meta: Meta = {
 
 export const hero = {
   h1: "Casamientos y eventos en una quinta de Benavídez",
+  /** El mismo H1 partido en líneas para la entrada línea por línea. Unidas dan exactamente `h1`. */
+  h1Lines: ["Casamientos", "y eventos en", "una quinta", "de Benavídez"],
   body: "En Los Galpones, el parque, la arboleda y el espacio cubierto permiten imaginar una ceremonia al aire libre, una fiesta alrededor de la mesa o una jornada de equipo fuera de la oficina. Estamos en Benavídez, a 500 metros de Panamericana.",
   /** Abre la consulta express; sin JS enlaza a /contacto/#formulario. */
   cta: { label: "Vení a conocer la quinta", to: "/contacto/#formulario" } satisfies Cta,
@@ -23,15 +25,25 @@ export const lugar = {
   cta: { label: "Conocé los espacios", to: "/espacios/" } satisfies Cta,
   /** Ficha de datos de decisión rápida. Solo datos que ya están en el copy. */
   ficha: [
-    { term: "Parque", def: "6.000 m² al aire libre y arboleda." },
-    { term: "Espacio cubierto", def: "320 m², con posibilidad de ampliar a 520 m². Ventilación y calefacción." },
+    // `count`: número que cuenta de 0 al valor al entrar a pantalla. Solo datos validados del copy.
+    // La ampliación a 520 m² es "posibilidad" y no se anima.
+    { term: "Parque", def: "6.000 m² al aire libre y arboleda.", count: { text: "6.000", to: 6000, validated: true } },
+    {
+      term: "Espacio cubierto",
+      def: "320 m², con posibilidad de ampliar a 520 m². Ventilación y calefacción.",
+      count: { text: "320", to: 320, validated: true },
+    },
     { term: "Ceremonia", def: "Contamos con un espacio para ceremonias." },
     {
       term: "Servicios",
       def: "Hay opciones de servicio integral, catering exclusivo, mobiliario y equipamiento propio de sonido e iluminación.",
     },
     { term: "Estacionamiento", def: "Dentro del predio." },
-    { term: "Llegada", def: "A 500 metros de Panamericana, con acceso por calle asfaltada." },
+    {
+      term: "Llegada",
+      def: "A 500 metros de Panamericana, con acceso por calle asfaltada.",
+      count: { text: "500", to: 500, validated: true },
+    },
   ],
 };
 

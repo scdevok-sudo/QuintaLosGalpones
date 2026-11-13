@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="noche border-t border-tarde/15">
       <div className="wrap grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
-          <Logo tone="blanco" height={44} />
+          <Logo tone="blanco" height={44} lazy />
           <p className="mt-2 max-w-xs">{footer.line}</p>
         </div>
         <div>

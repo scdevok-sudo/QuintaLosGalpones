@@ -24,6 +24,7 @@ for (const size of sizes) {
   const page = await ctx.newPage();
   await page.goto(base + "/", { waitUntil: "load" });
   await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(2500); // el JS se hidrata recién después del LCP
   const info = await page.evaluate(() => {
     const s = document.querySelector(".story");
     const stage = s.firstElementChild;

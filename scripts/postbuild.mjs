@@ -42,6 +42,29 @@ const routes = [];
 })(dist);
 rmSync(join(dist, "__spa-fallback.html"), { force: true });
 
+// Diferir el JS: el script de módulo en línea de React Router descarga y evalúa todo apenas carga la
+// página y compite con el primer pintado (la foto del hero es el LCP). Lo reemplazamos por un cargador
+// que lo inyecta cuando la página terminó de cargar y el navegador está ocioso, o antes si la persona
+// interactúa. Espera al LCP real (la foto del hero) para no competir con él. El HTML ya es legible sin JS. Se sacan también los modulepreload.
+for (const file of routes) {
+  let html = readFileSync(file, "utf8");
+  html = html.replace(/<link rel="modulepreload"[^>]*>/g, "");
+  html = html.replace(/<script type="module" async="">([\s\S]*?)<\/script>/, (_m, code) => {
+    const loader =
+      "(function(){var code=" + JSON.stringify(code) + ";var done=0;" +
+      "function go(){if(done)return;done=1;" +
+      "['pointerdown','keydown','touchstart','scroll','wheel'].forEach(function(e){removeEventListener(e,go)});" +
+      "var s=document.createElement('script');s.type='module';s.textContent=code;document.body.appendChild(s)}" +
+      "['pointerdown','keydown','touchstart','scroll','wheel'].forEach(function(e){addEventListener(e,go,{passive:true})});" +
+      "var lcp=0;try{new PerformanceObserver(function(l){if(l.getEntries().length)lcp=1}).observe({type:'largest-contentful-paint',buffered:true})}catch(e){lcp=1}" +
+      "var t0=Date.now();" +
+      "function idle(){if(!lcp&&Date.now()-t0<4000){setTimeout(idle,100);return}(window.requestIdleCallback||function(f){setTimeout(f,200)})(go,{timeout:3000})}" +
+      "if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})})();";
+    return "<script>" + loader + "</script>";
+  });
+  writeFileSync(file, html);
+}
+
 const env = loadEnv();
 const site = (env.VITE_SITE_URL || "https://quintalosgalpones.com").replace(/\/$/, "");
 const noindex = env.VITE_NOINDEX !== "false";

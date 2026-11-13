@@ -27,6 +27,7 @@ for (const [name, vp, mobile] of [["1280", { width: 1280, height: 800 }, false],
   const ctx = await browser.newContext({ viewport: vp, isMobile: mobile, hasTouch: mobile, deviceScaleFactor: mobile ? 2 : 1 });
   const page = await ctx.newPage();
   await page.goto(base + "/");
+  await page.waitForTimeout(2500); // el JS se hidrata recién después del LCP
   await page.getByRole("link", { name: "Vení a conocer la quinta" }).click();
   await page.waitForSelector("dialog[open]");
   await page.screenshot({ path: `${out}/express-${name}-1.png` });

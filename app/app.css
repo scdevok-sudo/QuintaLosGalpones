@@ -721,3 +721,9 @@ dialog.consulta::backdrop {
     animation-duration: 0.25s;
   }
 }
+
+/* Secciones bajo el primer pliegue: el navegador no las pinta hasta que se acercan. */
+.cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}

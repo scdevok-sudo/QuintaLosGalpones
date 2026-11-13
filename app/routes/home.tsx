@@ -44,7 +44,7 @@ export default function Home() {
       </section>
 
       {/* 2. FICHA DEL LUGAR: datos de decisión rápida */}
-      <section className="dia pt-4 pb-16 md:py-24" aria-labelledby="lugar-titulo">
+      <section className="cv dia pt-4 pb-16 md:py-24" aria-labelledby="lugar-titulo">
         <div className="wrap grid gap-10 lg:grid-cols-[5fr_6fr] lg:gap-20">
           <div>
             <h2 id="lugar-titulo">{lugar.h2}</h2>
@@ -68,7 +68,7 @@ export default function Home() {
       <Story />
 
       {/* 4. DOS CAMINOS: uno grande y uno más chico, de otra proporción */}
-      <section className="noche pb-16 md:pb-28" aria-label="Tipos de evento">
+      <section className="cv noche pb-16 md:pb-28" aria-label="Tipos de evento">
         <div className="wrap">
           <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-12">
             <div className="lg:col-span-7">
@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* 5. ¿Y SI LLUEVE? con interruptor Sol / Lluvia */}
-      <section className="noche-2 py-16 md:py-24" aria-labelledby="lluvia-titulo">
+      <section className="cv noche-2 py-16 md:py-24" aria-labelledby="lluvia-titulo">
         <div className="wrap grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
           <div className="lg:col-span-5">
             <h2 id="lluvia-titulo">{lluvia.h2}</h2>
@@ -115,7 +115,7 @@ export default function Home() {
       </section>
 
       {/* 6. TESTIMONIOS + reseñas de Google */}
-      <section className="noche py-16 md:py-28" aria-labelledby="testimonios-titulo">
+      <section className="cv noche py-16 md:py-28" aria-labelledby="testimonios-titulo">
         <div className="wrap">
           <h2 id="testimonios-titulo" className="max-w-2xl text-h3">
             {testimonios.h2}
@@ -146,7 +146,7 @@ export default function Home() {
       </section>
 
       {/* 7. CÓMO SEGUIMOS: secuencia real de 3 pasos */}
-      <section className="noche-2 py-16 md:py-24" aria-labelledby="seguimos-titulo">
+      <section className="cv noche-2 py-16 md:py-24" aria-labelledby="seguimos-titulo">
         <div className="wrap">
           <h2 id="seguimos-titulo" className="text-h3">
             {seguimos.h2}
@@ -168,7 +168,7 @@ export default function Home() {
       </section>
 
       {/* 8. CONSULTA EXPRESS + CÓMO LLEGAR + MAPA */}
-      <section className="noche py-16 md:py-28" aria-labelledby="visita-titulo">
+      <section className="cv noche py-16 md:py-28" aria-labelledby="visita-titulo">
         <div className="wrap grid gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-6">
             <h2 id="visita-titulo">{visita.h2}</h2>

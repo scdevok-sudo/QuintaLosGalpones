@@ -11,9 +11,11 @@ type Props = {
   /** Altura en px del logo completo en pantallas anchas. Mínimo recomendado: 36. */
   height?: number;
   className?: string;
+  /** Carga diferida (logo fuera del primer pliegue, ej. el pie). */
+  lazy?: boolean;
 };
 
-export function Logo({ tone, height = 36, className = "" }: Props) {
+export function Logo({ tone, height = 36, className = "", lazy }: Props) {
   const w = Math.round((318.5 / 67) * height);
   return (
     <picture className={`inline-flex items-center ${className}`}>
@@ -22,6 +24,7 @@ export function Logo({ tone, height = 36, className = "" }: Props) {
       <img
         src={`/brand/logo-${tone}.svg`}
         alt=""
+        loading={lazy ? "lazy" : undefined}
         width={w}
         height={height}
         style={{ height, width: "auto" }}

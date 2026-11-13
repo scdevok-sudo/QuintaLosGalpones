@@ -48,7 +48,7 @@ export function Story() {
     };
   }, []);
 
-  // Las fotos de las escenas 2 a 4 se piden recién cuando la sección está cerca.
+  // Las fotos de las 4 escenas se piden recién cuando la sección está cerca.
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
@@ -98,7 +98,7 @@ export function Story() {
               aria-label={s.nombre}
             >
               <div className="story-photo">
-                <Photo slot={s.slot} defer={i > 0 && !near} />
+                <Photo slot={s.slot} defer={!near} />
                 {/* Luz: viven dentro de la foto, así nunca tiñen el panel de texto. */}
                 <div className="story-tint-gold" aria-hidden="true" />
                 <div className="story-tint-night" aria-hidden="true" />
