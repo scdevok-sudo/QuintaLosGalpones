@@ -216,9 +216,11 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
                       ))}
                     </div>
                   </fieldset>
-                  <button type="submit" className="btn btn-primary">
-                    Seguir
-                  </button>
+                  <div className="consulta-sticky">
+                    <button type="submit" className="btn btn-primary w-full">
+                      Seguir
+                    </button>
+                  </div>
                 </form>
               )}
 
@@ -251,7 +253,7 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
               )}
 
               {step === "contacto" && (
-                <form className="grid gap-4" onSubmit={onSubmitContacto} noValidate>
+                <form className="consulta-contacto" onSubmit={onSubmitContacto} noValidate>
                   <div className="field">
                     <label htmlFor="express-nombre" className="field-label">
                       Nombre
@@ -270,6 +272,7 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
                       </p>
                     )}
                   </div>
+                  <div className="consulta-2col">
                   <div className="field">
                     <label htmlFor="express-correo" className="field-label">
                       Correo
@@ -303,6 +306,7 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
                       </p>
                     )}
                   </div>
+                  </div>
                   <div className="field">
                     <label htmlFor="express-invitados" className="field-label">
                       Cantidad de invitados
@@ -316,12 +320,14 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
                     </select>
                   </div>
                   <input type="text" name="sitio_web" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-                  <button type="submit" className="btn btn-primary" disabled={sending}>
-                    {sending ? "Enviando" : form.submit}
-                  </button>
-                  <button type="button" className="link justify-self-start" onClick={() => setStep("salida")}>
-                    Volver
-                  </button>
+                  <div className="consulta-sticky">
+                    <button type="button" className="link" onClick={() => setStep("salida")}>
+                      Volver
+                    </button>
+                    <button type="submit" className="btn btn-primary flex-1" disabled={sending}>
+                      {sending ? "Enviando" : form.submit}
+                    </button>
+                  </div>
                 </form>
               )}
 
