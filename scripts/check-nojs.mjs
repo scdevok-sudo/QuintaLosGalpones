@@ -11,7 +11,7 @@ const p = await ctx.newPage();
 await p.goto(base + "/");
 
 // 1. Los botones de consulta apuntan al panel
-for (const [name, sel] of [["hero", "section.hero button[data-express]"], ["hero, secundario", "section.hero button.link[data-express]"], ["visita, consulta", "#visita button[data-express]"], ["barra inferior", ".bar-consulta button[data-express]"]]) {
+for (const [name, sel] of [["hero", "section.hero button[data-express]"], ["hero, secundario", "section.hero button.link[data-express]"], ["visita, consulta", "#visita button[data-express]"], ["barra inferior", ".bar-consulta button[data-express]"], ["cierre nocturno", "section[aria-label='Consultar por mi fecha'] button[data-express]"]]) {
   const t = await p.locator(sel).first().getAttribute("popovertarget");
   ok(t === "consulta", `CTA ${name}: popovertarget=${t}`);
 }
@@ -19,7 +19,7 @@ for (const [name, sel] of [["hero", "section.hero button[data-express]"], ["hero
 for (const [name, sel, re] of [
   ["visita, WhatsApp", "#visita a.btn", /^https:\/\/wa\.me\/\d+\?text=/],
   ["menú, coordinar visita", "header a.site-nav-action", /^https:\/\/wa\.me\/\d+\?text=/],
-  ["cierre, cómo llegar", "section[aria-label='Cómo llegar'] a.btn", /google\.com\/maps\/dir/],
+  ["cierre, cómo llegar", "section[aria-label='Cómo llegar'] a.link", /google\.com\/maps\/dir/],
 ]) {
   const href = await p.locator(sel).first().getAttribute("href");
   ok(Boolean(href) && re.test(href), `CTA ${name}: href=${(href || "").slice(0, 60)}`);

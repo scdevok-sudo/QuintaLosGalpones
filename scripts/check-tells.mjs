@@ -26,10 +26,19 @@ const rules = [
   { name: "consulta modal (v2.3: panel no modal)", re: /showModal\(|dialog\.consulta::backdrop|::backdrop/ },
   { name: "máscara fuera del hero", re: /<Photo\b(?![^>]*slot="hero\.)[^>]*\bmask\b/ },
   { name: "cursor de arrastre", re: /cursor:\s*grab/ },
+  // --- Oficio de interacción (v2.3). Se miran sobre el código, sin comentarios. ---
+  { code: true, name: "transition: all (listar las propiedades)", re: /transition(-property)?\s*:\s*all\b|\btransition-all\b/ },
+  { code: true, name: "entrada desde scale(0) (usar 0,95 con opacity)", re: /scale\(\s*0(\.0+)?\s*[,)]|\bscale-0\b|[^-]scale\s*:\s*0\s*[;}]/ },
+  { code: true, name: "ease-in en UI", re: /(^|[^\w-])ease-in(?![\w-])/ },
+  { code: true, name: "texto con gradiente", re: /background-clip\s*:\s*text|text-fill-color|\bbg-clip-text\b/ },
+  { code: true, name: "sombra como halo sin offset", re: /(?:box-shadow\s*:|drop-shadow\()\s*(?:inset\s+)?0(?:px)?\s+0(?:px)?\s+\d|shadow-\[0_0_/ },
+  { code: true, name: "tracking menor a -0.04em", re: /letter-spacing\s*:\s*-0?\.(0[5-9]|[1-9])|--text-[\w]+--letter-spacing\s*:\s*-0?\.(0[5-9]|[1-9])|tracking-\[-0?\.(0[5-9]|[1-9])/ },
+  { code: true, name: "caption bajo una imagen (los créditos van en el footer)", re: /\bcaption\s*:|<figcaption\b/, onlyIfPhoto: true },
 ];
 
 const files = [];
-for (const root of ["src", "app"]) {
+const ROOTS = (process.env.TELLS_ROOTS || "src,app").split(",");
+for (const root of ROOTS) {
   (function walk(d) {
     for (const n of readdirSync(d)) {
       const f = join(d, n);
@@ -45,11 +54,25 @@ const fail = (f, line, name, text) => {
   bad++;
 };
 
+// Quita comentarios conservando los saltos de línea (los números de línea no cambian).
+const blank = (m) => m.replace(/[^\n]/g, " ");
+const stripComments = (text) =>
+  text.replace(/\/\*[\s\S]*?\*\//g, blank).replace(/(^|[\s;{}])\/\/[^\n]*/g, (m, p1) => p1 + blank(m.slice(p1.length)));
+
 for (const f of files) {
   const text = readFileSync(f, "utf8");
+  const code = stripComments(text).split(/\r?\n/);
+  // Las citas de testimonios usan <figcaption> para el autor: solo es caption si el archivo tiene una imagen y no una cita.
+  const hasPhoto = /<Photo\b|<img\b/.test(text);
+  const hasQuote = /<blockquote\b/.test(text);
   text.split(/\r?\n/).forEach((line, i) => {
     if (line.includes("tells-ok")) return;
-    for (const r of rules) if (r.re.test(line)) fail(f, i + 1, r.name, line);
+    for (const r of rules) {
+      if (r.code) {
+        if (r.onlyIfPhoto && (!hasPhoto || hasQuote) && /<figcaption/.test(code[i])) continue;
+        if (r.re.test(code[i])) fail(f, i + 1, r.name, line);
+      } else if (r.re.test(line)) fail(f, i + 1, r.name, line);
+    }
   });
 }
 
@@ -119,6 +142,10 @@ for (const f of files.filter((x) => x.endsWith(".css"))) {
       if (!isAtRule && /animation-timeline/.test(body) && /transition\s*:[^;]*(width|height|top|left|box-shadow)/.test(body)) {
         fail(f, lineOf(ctx.start), "transition de layout con animation-timeline", ctx.head);
       }
+      // v2.3: :hover solo dentro de @media (hover: hover) and (pointer: fine).
+      if (!isAtRule && /:hover\b/.test(ctx.head) && !stack.some((x) => /hover:\s*hover/.test(x.head))) {
+        fail(f, lineOf(ctx.start), "hover fuera de @media (hover: hover)", ctx.head);
+      }
       // v2.3: el hover mueve como mucho 2 px y escala como mucho 1,02.
       if (!isAtRule && /:(hover|focus-within)\b/.test(ctx.head)) {
         for (const m of body.matchAll(/scale\(\s*([\d.]+)/g)) {
@@ -148,15 +175,22 @@ for (const f of files.filter((x) => /\.tsx?$/.test(x))) {
 }
 
 // (f) Tematizado exigido (v2.3): selección, caret, scrollbar y foco definidos en app.css.
-{
+if (!process.env.TELLS_ROOTS) {
   const css = readFileSync("app/app.css", "utf8");
   for (const [name, re] of [["::selection", /::selection/], ["caret-color", /caret-color/], ["scrollbar-color", /scrollbar-color/], [":focus-visible", /:focus-visible/]]) {
     if (!re.test(css)) fail("app/app.css", 1, "falta tematizar " + name, "");
   }
+  // Límites tipográficos (v2.3): display máximo 6rem, títulos balanceados, medida de 65 a 75 caracteres.
+  const disp = css.match(/--text-display:\s*clamp\(([^)]*)\)/);
+  const rems = disp ? [...disp[1].matchAll(/([\d.]+)rem/g)].map((m) => parseFloat(m[1])) : [];
+  if (!disp || Math.max(...rems) > 6) fail("app/app.css", 1, "display mayor a 6rem", disp ? disp[0] : "sin --text-display");
+  if (!/text-wrap:\s*balance/.test(css)) fail("app/app.css", 1, "títulos sin text-wrap: balance", "");
+  const med = css.match(/\.measure\s*\{[^}]*max-width:\s*(\d+)ch/);
+  if (!med || +med[1] < 65 || +med[1] > 75) fail("app/app.css", 1, "medida de cuerpo fuera de 65 a 75 caracteres", med ? med[0] : ".measure sin max-width en ch");
 }
 
 // (g) La consulta abre sin hidratar: ExpressButton usa popovertarget y el panel es un popover prerenderizado.
-{
+if (!process.env.TELLS_ROOTS) {
   const ex = readFileSync("app/components/Express.tsx", "utf8");
   const btn = ex.slice(ex.indexOf("export function ExpressButton"));
   if (!/popoverTarget="consulta"/.test(btn)) fail("app/components/Express.tsx", 1, "ExpressButton sin popovertarget", "el panel no abriría sin JS");

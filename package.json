@@ -12,9 +12,10 @@
     "check:links": "node scripts/check-links.mjs",
     "check:launch": "node scripts/check-launch.mjs",
     "check:tells": "node scripts/check-tells.mjs",
+    "test:tells": "node scripts/test-tells.mjs",
     "check:nojs": "node scripts/check-nojs.mjs",
     "measure:tap": "node scripts/measure-tap.mjs",
-    "check": "npm run check:content && npm run check:tells"
+    "check": "npm run check:content && npm run check:tells && npm run test:tells"
   },
   "dependencies": {
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
