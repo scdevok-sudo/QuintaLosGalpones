@@ -10,6 +10,8 @@ type Props = {
   className?: string;
   /** Difiere la carga: no pide la imagen hasta que se pase `defer={false}`. Sin JS queda en <noscript>. */
   defer?: boolean;
+  /** La foto espera a la hidratación (después del LCP) para no competir con la foto principal. */
+  later?: boolean;
   /** Máscara de galpón (frontón a dos aguas). Solo en el hero (anexo v2.3). */
   mask?: boolean;
   /** Zoom de 1,02 con hover o foco (solo desktop). */
@@ -18,9 +20,13 @@ type Props = {
   alt?: string;
 };
 
-export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, defer }: Props) {
+export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, defer, later }: Props) {
   const s = slots[slot];
   const [showSlots, setShowSlots] = useState(false);
+  // `later`: la foto no se pide hasta que hidrata la página, que el cargador diferido arranca después del LCP.
+  // Así nada compite con la foto del LCP. Sin JS queda en <noscript>.
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
 
   // Modo dev ?slots=1: superpone el nombre del slot. Queda fuera del build de producción.
   useEffect(() => {
@@ -34,7 +40,7 @@ export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, d
 
   return (
     <div className={`ph ${fill ? "ph-fill" : ""} ${mask ? "mask-galpon" : ""} ${zoom ? "zoomable" : ""} ${className}`} style={style}>
-      {defer ? (
+      {(defer ?? (later && !ready)) ? (
         <noscript>
           <img
             src={s.src}
@@ -52,7 +58,7 @@ export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, d
           height={s.height}
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
-          {...(priority ? { fetchPriority: "high" as const } : {})}
+          {...(priority ? { fetchPriority: "high" as const, srcSet: `${s.src} ${s.width}w`, sizes: "100vw" } : {})}
           style={{ objectPosition: `${s.focal.x}% ${s.focal.y}%` }}
         />
       )}

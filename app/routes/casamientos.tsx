@@ -2,7 +2,10 @@ import { Button } from "~/components/Button";
 import { Cierre } from "~/components/Cierre";
 import { Photo } from "~/components/Photo";
 import * as c from "@/content/casamientos";
+import { preloadHero } from "@/lib/lcp";
 import { localBusinessLd, pageMeta } from "@/lib/seo";
+
+export const links = preloadHero("casamientos.hero");
 
 export function meta() {
   return pageMeta(c.meta, [localBusinessLd()]);
@@ -40,7 +43,7 @@ export default function Casamientos() {
             <p className="measure mt-6">{ceremonia.body}</p>
           </div>
           <div className="lg:col-span-7">
-            <Photo slot="casamientos.ceremonia" zoom />
+            <Photo later slot="casamientos.ceremonia" zoom />
           </div>
         </div>
       </section>
@@ -49,7 +52,7 @@ export default function Casamientos() {
       <section className="cv dia pb-16 md:pb-24" aria-labelledby="parque-titulo">
         <div className="wrap grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-16">
           <div className="lg:col-span-5">
-            <Photo slot="casamientos.parque" zoom />
+            <Photo later slot="casamientos.parque" zoom />
           </div>
           <div className="lg:col-span-6 lg:col-start-7 lg:pt-10">
             <h2 id="parque-titulo">{parque.h2}</h2>
@@ -68,7 +71,7 @@ export default function Casamientos() {
             <p className="measure mt-6">{servicios.body}</p>
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
-            <Photo slot="casamientos.servicios" zoom />
+            <Photo later slot="casamientos.servicios" zoom />
           </div>
         </div>
       </section>
@@ -84,7 +87,7 @@ export default function Casamientos() {
             </div>
           </div>
           <div className="lg:col-span-7">
-            <Photo slot="casamientos.lluvia" />
+            <Photo later slot="casamientos.lluvia" />
           </div>
         </div>
       </section>

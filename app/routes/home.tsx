@@ -10,7 +10,10 @@ import { Story } from "~/components/Story";
 import { site } from "@/config/site";
 import * as home from "@/content/home";
 import { track } from "@/lib/analytics";
+import { preloadHero } from "@/lib/lcp";
 import { localBusinessLd, pageMeta } from "@/lib/seo";
+
+export const links = preloadHero("hero.principal");
 
 export function meta() {
   return pageMeta(home.meta, [localBusinessLd()]);
