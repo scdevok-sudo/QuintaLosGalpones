@@ -45,9 +45,13 @@ Todo texto que no es verbatim del documento de textos. Se completa a medida que 
 | "Escenas del recorrido" | Riel del recorrido | Etiqueta accesible del grupo de botones. |
 | "Cerrar el panel" | Consulta express | Etiqueta accesible del botón de cierre. |
 
-## Agregados con el recorte (anexo v2.3)
+## Agregados con el recorte y el panel de consulta (anexo v2.3)
 | Qué | Dónde | Por qué |
 |---|---|---|
-| "Coordiná una visita" (título) y "Quintino Bocayuva 655, Benavídez. A 500 metros de Panamericana, con acceso por calle asfaltada y estacionamiento dentro del predio." | Inicio, bloque de visita de la segunda pantalla | Título nuestro. El texto une frases del documento (dirección, Llegada y Estacionamiento). Botón "Coordinar una visita" y enlace "Cómo llegar" ya existían. |
+| "Escribinos por WhatsApp y te respondemos por ahí." y "Escribir por WhatsApp" | Panel de consulta, sin JS o antes de hidratar | Texto de la versión sin JS. El mensaje de WhatsApp es el genérico del documento. |
+| "Fecha, si ya la tenés", "Empresa" (antes "Evento de empresa") | Panel de consulta, paso 1 | Paso 1 con solo fecha y tipo de evento. Vacío en la fecha reemplaza a "Todavía no tengo fecha". |
+| "Cantidad de invitados" con los rangos de antes | Panel de consulta, paso de contacto | Pasó del paso 1 al formulario de contacto. Los rangos siguen pendientes de confirmar con el cliente. |
+| Se reutiliza "Vení a verlo con tu evento en mente" y su texto, con "Coordinar una visita" y "Consultar por mi fecha" | Inicio, bloque de visita de la segunda pantalla | Es el bloque que estaba en el cierre. |
+| "Cómo llegar" y la dirección en una línea | Inicio, cierre con el mapa | Cierre reducido a mapa, dirección y un único botón. |
 
-Se sacó el carrusel de testimonios, así que dejan de existir sus etiquetas accesibles.
+Se sacó el carrusel de testimonios, así que dejan de existir sus etiquetas accesibles. La sección de testimonios no se muestra con menos de 3 aprobados.

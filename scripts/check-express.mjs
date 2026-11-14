@@ -28,12 +28,12 @@ for (const [name, vp, mobile] of [["1280", { width: 1280, height: 800 }, false],
   const page = await ctx.newPage();
   await page.goto(base + "/");
   await page.waitForTimeout(2500); // el JS se hidrata recién después del LCP
-  await page.getByRole("link", { name: "Vení a conocer la quinta" }).click();
-  await page.waitForSelector("dialog[open]");
+  await page.getByRole("button", { name: "Vení a conocer la quinta" }).click();
+  await page.waitForSelector("#consulta:popover-open");
+  await page.waitForTimeout(300);
   await page.screenshot({ path: `${out}/express-${name}-1.png` });
-  await page.getByLabel("Evento de empresa").check();
-  await page.getByLabel("Todavía no tengo fecha").check();
-  await page.getByLabel("De 100 a 200").check();
+  await page.getByLabel("Empresa").check();
+  await page.waitForTimeout(400);
   await page.getByRole("button", { name: "Seguir" }).click();
   const wa = await page.getByRole("link", { name: "Seguir por WhatsApp" }).getAttribute("href");
   console.log(name, "WhatsApp:", decodeURIComponent(wa.split("text=")[1]));
@@ -42,7 +42,7 @@ for (const [name, vp, mobile] of [["1280", { width: 1280, height: 800 }, false],
   await page.getByRole("button", { name: "Enviar consulta" }).click();
   console.log(name, "errores:", await page.locator(".field-error").allTextContents());
   await page.keyboard.press("Escape");
-  console.log(name, "cierra con Esc:", !(await page.locator("dialog[open]").count()));
+  console.log(name, "cierra con Esc:", !(await page.locator("#consulta:popover-open").count()));
   await ctx.close();
 }
 await browser.close();

@@ -155,11 +155,17 @@ for (const f of files.filter((x) => /\.tsx?$/.test(x))) {
   }
 }
 
-// (g) Los CTA principales son enlaces reales (funcionan sin JS): ExpressButton renderiza <a href>.
+// (g) La consulta abre sin hidratar: ExpressButton usa popovertarget y el panel es un popover prerenderizado.
 {
   const ex = readFileSync("app/components/Express.tsx", "utf8");
   const btn = ex.slice(ex.indexOf("export function ExpressButton"));
-  if (!/<a\s[^>]*href="\/contacto\/#formulario"/.test(btn)) fail("app/components/Express.tsx", 1, "ExpressButton no es un enlace real", "<a href> a /contacto/#formulario");
+  if (!/popoverTarget="consulta"/.test(btn)) fail("app/components/Express.tsx", 1, "ExpressButton sin popovertarget", "el panel no abriría sin JS");
+  if (!/popover="auto"/.test(ex)) fail("app/components/Express.tsx", 1, "el panel de consulta no es un popover", "popover=\"auto\"");
+  if (!/whatsappLink\("generico"\)/.test(ex)) fail("app/components/Express.tsx", 1, "falta el WhatsApp genérico sin JS", "");
+  for (const f of ["app/routes/home.tsx", "app/components/Button.tsx"]) {
+    const t = readFileSync(f, "utf8");
+    if (/<(Link|a)\s[^>]*(to|href)=["'{]*\/contacto\//.test(t)) fail(f, 1, "CTA a /contacto/ mientras no exista (contactoReady)", "");
+  }
 }
 
 if (bad) {

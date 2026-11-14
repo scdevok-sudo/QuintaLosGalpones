@@ -49,8 +49,8 @@ rmSync(join(dist, "__spa-fallback.html"), { force: true });
 //     pointerdown, touchstart o focus sobre un CTA: ese toque ya pagó la descarga cuando llega el clic.
 //  2. Carga el resto (manifest, rutas, hidratación) en requestIdleCallback con tope de 2 s, después de `load` y
 //     de que el navegador reportó el LCP (la foto del hero), así la hidratación no compite con el LCP.
-//  3. Los CTA son enlaces reales y funcionan sin JS. Si el clic llega antes de hidratar, el cargador lo
-//     retiene, termina de cargar y abre el panel de consulta; si en 6 s no hidrató, sigue el enlace. Mientras tanto el CTA queda con aria-busy.
+//  3. Los CTA de consulta son botones `popovertarget`: el panel está en el HTML y abre sin JS ni hidratación
+//     (sin JS muestra el botón de WhatsApp). El clic en un CTA adelanta la carga para tener pronto los pasos.
 for (const file of routes) {
   let html = readFileSync(file, "utf8");
   const preload = [...html.matchAll(/<link rel="modulepreload" href="([^"]+)"/g)].map((m) => m[1]);
@@ -62,14 +62,12 @@ for (const file of routes) {
       "(function(){var code=" + JSON.stringify(code) + ",router=" + JSON.stringify(router) + ",done=0,pre=0,w=window;" +
       "function go(){if(done)return;done=1;var s=document.createElement('script');s.type='module';s.textContent=code;document.body.appendChild(s)}" +
       "function warm(){if(pre)return;pre=1;router.forEach(function(h){var l=document.createElement('link');l.rel='modulepreload';l.href=h;document.head.appendChild(l)})}" +
-      "function cta(e){var t=e.target;return t&&t.closest?t.closest('a.btn,a[data-express]'):null}" +
+      "function cta(e){var t=e.target;return t&&t.closest?t.closest('[data-express],a.btn'):null}" +
       "function hot(e){if(!w.__qgReady&&cta(e))warm()}" +
       "addEventListener('pointerdown',hot,{passive:true,capture:true});" +
       "addEventListener('touchstart',hot,{passive:true,capture:true});" +
       "addEventListener('focusin',hot,true);" +
-      "addEventListener('click',function(e){var a=cta(e);if(!a||w.__qgReady)return;warm();" +
-      "var o=a.getAttribute('data-express');if(!o)return;e.preventDefault();w.__qgOpen=o;a.setAttribute('aria-busy','true');go();" +
-      "setTimeout(function(){if(!w.__qgReady)location.href=a.href},6000)},true);" +
+      "addEventListener('click',function(e){if(!w.__qgReady&&cta(e)){warm();go()}},true);" +
       "var lcp=0,t0=0;try{new PerformanceObserver(function(l){if(l.getEntries().length)lcp=1}).observe({type:'largest-contentful-paint',buffered:true})}catch(e){lcp=1}" +
       "function idle(){if(!t0)t0=Date.now();if(!lcp&&Date.now()-t0<2000){setTimeout(idle,100);return}(w.requestIdleCallback||function(f){setTimeout(f,200)})(go,{timeout:2000})}" +
       "if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})})();";

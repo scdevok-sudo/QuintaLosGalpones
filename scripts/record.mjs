@@ -1,6 +1,6 @@
 // Graba el movimiento de Inicio: un video .webm por escenario (Playwright) y fotogramas sueltos para revisarlos.
 // Uso: npm run preview (otra terminal) y `node scripts/record.mjs [escenario ...]`.
-// Escenarios: hero, recorrido, caminos, consulta, visita, transicion, reducido.
+// Escenarios: hero, recorrido, caminos, consulta, sinjs, cierre, visita, transicion, reducido.
 import { mkdirSync, readdirSync, renameSync } from "node:fs";
 import { chromium } from "playwright";
 
@@ -13,7 +13,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const browser = await chromium.launch();
 
-async function scenario(name, vp, { mobile = false, reduced = false } = {}, fn) {
+async function scenario(name, vp, { mobile = false, reduced = false, noJs = false } = {}, fn) {
   const dir = `${out}/_${name}`;
   mkdirSync(dir, { recursive: true });
   const ctx = await browser.newContext({
@@ -21,6 +21,7 @@ async function scenario(name, vp, { mobile = false, reduced = false } = {}, fn) 
     deviceScaleFactor: 1,
     isMobile: mobile,
     hasTouch: mobile,
+    javaScriptEnabled: !noJs,
     reducedMotion: reduced ? "reduce" : "no-preference",
     recordVideo: { dir, size: vp },
   });
@@ -119,7 +120,7 @@ if (want("consulta"))
     await scenario(tag, vp, { mobile }, async (page, shot) => {
       await page.goto(base + "/", { waitUntil: "load" });
       await sleep(2600);
-      await page.getByRole("link", { name: "Vení a conocer la quinta" }).click();
+      await page.getByRole("button", { name: "Vení a conocer la quinta" }).click();
       await sleep(60);
       await shot("abre-60ms");
       await sleep(500);
@@ -131,8 +132,7 @@ if (want("consulta"))
       await shot("scroll-con-panel");
       await page.mouse.wheel(0, -700);
       await sleep(500);
-      await page.getByLabel("Evento de empresa").check();
-      await page.getByLabel("De 100 a 200").check();
+      await page.getByLabel("Empresa").check();
       await sleep(200);
       await page.getByRole("button", { name: "Seguir" }).click();
       await sleep(80);
@@ -156,6 +156,34 @@ if (want("visita"))
     await sleep(700);
     await shot("segunda-pantalla");
   });
+
+// D3. Sin JS: el panel abre con popovertarget y ofrece WhatsApp genérico
+if (want("sinjs"))
+  await scenario("sinjs-mobile", M, { mobile: true, noJs: true }, async (page, shot) => {
+    await page.goto(base + "/", { waitUntil: "load" });
+    await sleep(600);
+    await shot("antes");
+    await page.getByRole("button", { name: "Vení a conocer la quinta" }).tap();
+    await sleep(60);
+    await shot("abre-60ms");
+    await sleep(500);
+    await shot("panel");
+    await page.getByRole("button", { name: "Cerrar el panel" }).tap();
+    await sleep(400);
+    await shot("cerrado");
+  });
+
+// D4. Cierre: mapa, dirección en una línea y un único botón
+if (want("cierre"))
+  for (const [tag, vp, mobile] of [["cierre-desktop", D, false], ["cierre-mobile", M, true]]) {
+    await scenario(tag, vp, { mobile }, async (page, shot) => {
+      await page.goto(base + "/", { waitUntil: "load" });
+      await sleep(2600);
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await sleep(1500);
+      await shot("final");
+    });
+  }
 
 // E. Transición entre páginas (la única otra ruta hoy es el 404)
 if (want("transicion"))
@@ -183,7 +211,7 @@ if (want("reducido")) {
     await page.evaluate(() => document.querySelector(".caminos").scrollIntoView({ block: "center" }));
     await sleep(500);
     await shot("caminos");
-    await page.getByRole("link", { name: "Vení a conocer la quinta" }).first().scrollIntoViewIfNeeded();
+    await page.getByRole("button", { name: "Vení a conocer la quinta" }).first().scrollIntoViewIfNeeded();
   });
   await scenario("reducido-mobile", M, { mobile: true, reduced: true }, async (page, shot) => {
     await page.goto(base + "/", { waitUntil: "load" });
@@ -192,9 +220,9 @@ if (want("reducido")) {
     await page.evaluate(() => document.querySelector(".story").scrollIntoView());
     await sleep(500);
     await shot("recorrido");
-    await page.getByRole("link", { name: "Vení a conocer la quinta" }).scrollIntoViewIfNeeded();
+    await page.getByRole("button", { name: "Vení a conocer la quinta" }).scrollIntoViewIfNeeded();
     await page.evaluate(() => window.scrollTo(0, 0));
-    await page.getByRole("link", { name: "Vení a conocer la quinta" }).click();
+    await page.getByRole("button", { name: "Vení a conocer la quinta" }).click();
     await sleep(300);
     await shot("consulta");
   });

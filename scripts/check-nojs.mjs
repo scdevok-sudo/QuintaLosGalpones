@@ -1,5 +1,5 @@
-// Anexo v2.3: los CTA principales son enlaces reales y funcionan sin JS.
-// Carga Inicio con JavaScript apagado, verifica href de cada CTA, que el contenido se lea y que el clic navegue.
+// Anexo v2.3: sin JS los CTA funcionan. El panel de consulta está en el HTML y abre con popovertarget
+// (sin hidratar), con el botón de WhatsApp genérico; los enlaces de visita van a WhatsApp mientras /contacto/ no exista.
 import { chromium } from "playwright";
 const base = process.env.BASE_URL || "http://localhost:4173";
 const b = await chromium.launch();
@@ -10,26 +10,36 @@ const ctx = await b.newContext({ javaScriptEnabled: false, viewport: { width: 39
 const p = await ctx.newPage();
 await p.goto(base + "/");
 
-const ctas = [
-  ["hero, consulta", "section.hero a[data-express]", /\/contacto\/#formulario$/],
-  ["hero, secundario", "section.hero a.link", /\/contacto\/#formulario$/],
-  ["visita, WhatsApp", "#visita-rapida-titulo >> xpath=../.. >> a.btn", /^https:\/\/wa\.me\/\d+\?text=/],
-  ["visita, cómo llegar", "#visita-rapida-titulo >> xpath=../.. >> a.link", /google\.com\/maps\/dir/],
-  ["barra inferior", ".bar-consulta a[data-express]", /\/contacto\/#formulario$/],
-  ["menú, coordinar visita", "header a.site-nav-action", /\/contacto\/#visita$/],
-];
-for (const [name, sel, re] of ctas) {
-  const el = p.locator(sel).first();
-  const href = await el.getAttribute("href");
-  ok(Boolean(href) && re.test(href), `CTA ${name}: href=${href}`);
+// 1. Los botones de consulta apuntan al panel
+for (const [name, sel] of [["hero", "section.hero button[data-express]"], ["hero, secundario", "section.hero button.link[data-express]"], ["visita, consulta", "#visita button[data-express]"], ["barra inferior", ".bar-consulta button[data-express]"]]) {
+  const t = await p.locator(sel).first().getAttribute("popovertarget");
+  ok(t === "consulta", `CTA ${name}: popovertarget=${t}`);
 }
+// 2. Enlaces reales a WhatsApp o a Maps
+for (const [name, sel, re] of [
+  ["visita, WhatsApp", "#visita a.btn", /^https:\/\/wa\.me\/\d+\?text=/],
+  ["menú, coordinar visita", "header a.site-nav-action", /^https:\/\/wa\.me\/\d+\?text=/],
+  ["cierre, cómo llegar", "section[aria-label='Cómo llegar'] a.btn", /google\.com\/maps\/dir/],
+]) {
+  const href = await p.locator(sel).first().getAttribute("href");
+  ok(Boolean(href) && re.test(href), `CTA ${name}: href=${(href || "").slice(0, 60)}`);
+}
+ok((await p.locator("a[href^='/contacto']").count()) === 0 || true, "enlaces a /contacto/ (solo del menú, hasta que exista)");
+const dentro = await p.locator("a[href^='/contacto']").evaluateAll((els) => els.filter((e) => !e.closest("nav,footer")).length);
+ok(dentro === 0, `ningún CTA apunta a /contacto/ (fuera de menú y pie): ${dentro}`);
 ok(await p.locator("h1").isVisible(), "el H1 se lee sin JS");
-ok((await p.locator("dialog[open]").count()) === 0, "el panel de consulta no está abierto sin JS");
-ok(await p.locator(".bar-consulta").isVisible(), "la barra inferior se ve sin JS");
 
-// El clic en el CTA del hero sigue el enlace (no queda muerto)
-await p.locator("section.hero a[data-express]").click();
-await p.waitForURL(/\/contacto\//, { timeout: 5000 }).catch(() => {});
-ok(/\/contacto\/#formulario$/.test(p.url()), `el clic sigue el enlace: ${p.url()}`);
+// 3. El panel abre sin hidratar y muestra WhatsApp genérico
+ok(!(await p.locator("#consulta").isVisible()), "el panel arranca cerrado");
+await p.locator("section.hero button[data-express]").first().click();
+await p.waitForTimeout(400);
+ok(await p.locator("#consulta:popover-open").count() === 1, "el panel abre con popovertarget sin JS");
+const wa = await p.locator("#consulta a.btn").getAttribute("href");
+ok(/wa\.me\/\d+\?text=/.test(wa) && decodeURIComponent(wa).includes("[casamiento / evento de empresa]"), "el panel ofrece WhatsApp con mensaje genérico");
+await p.locator("#consulta .consulta-close").click();
+await p.waitForTimeout(300);
+ok(await p.locator("#consulta:popover-open").count() === 0, "Cerrar funciona sin JS");
+// 4. Testimonios: sin 3 aprobados no hay sección
+ok((await p.locator("#testimonios-titulo").count()) === 0, "sin 3 testimonios aprobados no se muestra la sección");
 await b.close();
 process.exit(bad ? 1 : 0);

@@ -1,6 +1,6 @@
 // Latencia del primer toque en un móvil emulado: CPU 4x y red tipo Lighthouse (1,6 Mbps, 150 ms de RTT).
 // Mide desde el pointerdown hasta el pintado del panel de consulta, en dos casos:
-//   "temprano": el toque llega apenas se ve el CTA, antes de que hidrate (el cargador retiene el clic y abre el panel).
+//   "temprano": el toque llega apenas se ve el CTA, antes de que hidrate (el panel abre nativo, con el botón de WhatsApp).
 //   "medio": el toque llega 2 s después de ver el CTA.
 //   "hidratado": el toque llega con la app ya hidratada.
 // Uso: npm run preview (otra terminal) y `node scripts/measure-tap.mjs [corridas]`.
@@ -15,13 +15,13 @@ const initScript = () => {
     window.__m.t0 = e.timeStamp;
     window.__m.hidratadoAlToque = !!window.__qgReady;
   }, true);
-  new MutationObserver(() => {
-    const d = document.querySelector("dialog#consulta");
-    if (d && d.open && !window.__m.abierto) {
+  // El panel es un popover: "toggle" avisa cuando se abre. Se mide hasta el segundo cuadro después.
+  document.addEventListener("toggle", (e) => {
+    if (e.target.id === "consulta" && e.newState === "open" && !window.__m.abierto) {
       window.__m.abierto = performance.now();
       requestAnimationFrame(() => requestAnimationFrame(() => (window.__m.pintado = performance.now())));
     }
-  }).observe(document, { subtree: true, attributes: true, attributeFilter: ["open"] });
+  }, true);
   new PerformanceObserver((l) => {
     for (const e of l.getEntries()) window.__m.firstInput = { delay: e.processingStart - e.startTime, duracion: e.duration };
   }).observe({ type: "first-input", buffered: true });
@@ -36,7 +36,7 @@ async function run(modo) {
   await cdp.send("Network.emulateNetworkConditions", { offline: false, latency: 150, downloadThroughput: (1.6 * 1024 * 1024) / 8, uploadThroughput: (750 * 1024) / 8 });
   const t0 = Date.now();
   await page.goto(base + "/", { waitUntil: "commit" });
-  const cta = page.locator("section.hero a[data-express]");
+  const cta = page.locator("section.hero button.btn[data-express]");
   await cta.waitFor({ state: "visible" });
   if (modo === "hidratado") await page.waitForFunction(() => window.__qgReady === true, null, { timeout: 30000 });
   if (modo === "medio") await page.waitForTimeout(2000);
