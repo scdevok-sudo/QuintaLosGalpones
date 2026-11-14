@@ -1,5 +1,5 @@
 import { type CSSProperties, useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
+import { Button } from "~/components/Button";
 import { Photo } from "~/components/Photo";
 import { heading, scenes } from "@/content/story";
 
@@ -183,9 +183,7 @@ export function Story() {
                     <h3>{s.nombre}</h3>
                     <p className="mt-3">{s.texto}</p>
                     <p className="mt-4">
-                      <Link className="link" to={s.cta.to ?? "/"} viewTransition>
-                        {s.cta.label}
-                      </Link>
+                      <Button cta={s.cta} variant="link" />
                     </p>
                   </div>
                 </div>

@@ -1,9 +1,8 @@
 import type { CSSProperties } from "react";
-import { Link } from "react-router";
 import { Button } from "~/components/Button";
 import { ExpressButton } from "~/components/Express";
 import { GoogleReviews } from "~/components/GoogleReviews";
-import { MapFacade } from "~/components/MapFacade";
+import { MapEmbed } from "~/components/MapEmbed";
 import { Photo } from "~/components/Photo";
 import { RainToggle } from "~/components/RainToggle";
 import { Story } from "~/components/Story";
@@ -19,7 +18,13 @@ export function meta() {
 const mapQuery = encodeURIComponent(`${site.street}, ${site.locality}, Buenos Aires, Argentina`);
 
 export default function Home() {
-  const { hero, lugar, visitaRapida, casamientos, empresas, lluvia, testimonios, seguimos, visita } = home;
+  const { hero, lugar, casamientos, empresas, lluvia, testimonios, seguimos, visita } = home;
+  // Solo se muestran testimonios con autorización. Con menos de 3 aprobados la sección no existe.
+  const aprobados = testimonios.items.filter((t) => t.approved);
+  const showTestimonios = aprobados.length >= 3;
+  // Las superficies de noche alternan después de los caminos, también si una sección falta.
+  let n = 0;
+  const noche = () => (n++ % 2 === 0 ? "noche-2" : "noche");
 
   return (
     <>
@@ -38,9 +43,7 @@ export default function Home() {
           <p className="lead measure mt-6">{hero.body}</p>
           <div className="mt-8 flex flex-col items-start gap-x-6 gap-y-1 sm:flex-row sm:flex-wrap sm:items-center">
             <ExpressButton label={hero.cta.label} origen="hero" className="btn btn-primary w-full sm:w-auto sm:whitespace-nowrap" />
-            <Link className="link" to={hero.secondary.to} viewTransition>
-              {hero.secondary.label}
-            </Link>
+            <ExpressButton label={hero.secondary.label} origen="hero-2" className="link" />
           </div>
           <p className="mt-8 max-w-md">{hero.datos}</p>
         </div>
@@ -51,25 +54,19 @@ export default function Home() {
       </section>
 
       {/* 2. FICHA DEL LUGAR: datos de decisión rápida */}
-      <section className="cv dia pt-4 pb-16 md:py-24" aria-labelledby="lugar-titulo">
-        {/* Visita: segunda pantalla, con dirección y dos salidas que funcionan sin JS. */}
-        <div className="wrap mb-14 md:mb-20">
+      <section className="cv dia pt-4 pb-16 md:pt-8 md:pb-24" aria-labelledby="lugar-titulo">
+        {/* Visita: bloque completo en la segunda pantalla. La consulta abre el panel; la visita va por WhatsApp. */}
+        <div className="wrap mb-14 md:mb-20" id="visita">
           <div className="visita-rapida">
             <div>
-              <h3 id="visita-rapida-titulo">{visitaRapida.h2}</h3>
-              <p className="measure mt-3">{visitaRapida.body}</p>
+              <h2 id="visita-titulo" className="text-h3">
+                {visita.h2}
+              </h2>
+              <p className="measure mt-3">{visita.body}</p>
             </div>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
-              <Button cta={visitaRapida.cta} />
-              <a
-                className="link"
-                href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track("click_como_llegar", { origen: "inicio-visita" })}
-              >
-                Cómo llegar
-              </a>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Button cta={visita.ctaVisita} />
+              <ExpressButton label={visita.cta.label} origen="visita" className="btn btn-line" />
             </div>
           </div>
         </div>
@@ -125,7 +122,7 @@ export default function Home() {
       </section>
 
       {/* 5. ¿Y SI LLUEVE? con interruptor Sol / Lluvia */}
-      <section className="cv noche-2 py-16 md:py-24" aria-labelledby="lluvia-titulo">
+      <section className={`cv ${noche()} py-16 md:py-24`} aria-labelledby="lluvia-titulo">
         <div className="wrap grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-14">
           <div className="lg:col-span-5">
             <h2 id="lluvia-titulo">{lluvia.h2}</h2>
@@ -140,32 +137,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. TESTIMONIOS + reseñas de Google */}
-      <section className="cv noche py-16 md:py-28" aria-labelledby="testimonios-titulo">
-        <div className="wrap">
-          <h2 id="testimonios-titulo" className="max-w-2xl text-h3">
-            {testimonios.h2}
-          </h2>
-          <ul className="testimonios mt-10" style={{ "--n": Math.min(3, testimonios.items.length) } as CSSProperties}>
-            {testimonios.items.map((t) => (
-              <li key={t.cite}>
-                <figure className="m-0">
-                  <blockquote className="m-0">
-                    <p className="font-body text-[clamp(1.35rem,1.05rem+1.1vw,1.75rem)] leading-[1.25]">“{t.quote}”</p>
-                  </blockquote>
-                  <figcaption className="mt-4">
-                    <cite className="font-display font-semibold not-italic">{t.cite}</cite>
-                  </figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-          <GoogleReviews />
-        </div>
-      </section>
+      {/* 6. TESTIMONIOS: solo aprobados y solo si hay 3 o más */}
+      {showTestimonios && (
+        <section className={`cv ${noche()} py-16 md:py-28`} aria-labelledby="testimonios-titulo">
+          <div className="wrap">
+            <h2 id="testimonios-titulo" className="max-w-2xl text-h3">
+              {testimonios.h2}
+            </h2>
+            <ul className="testimonios mt-10" style={{ "--n": 3 } as CSSProperties}>
+              {aprobados.slice(0, 3).map((t) => (
+                <li key={t.cite}>
+                  <figure className="m-0">
+                    <blockquote className="m-0">
+                      <p className="font-body text-[clamp(1.35rem,1.05rem+1.1vw,1.75rem)] leading-[1.25]">“{t.quote}”</p>
+                    </blockquote>
+                    <figcaption className="mt-4">
+                      <cite className="font-display font-semibold not-italic">{t.cite}</cite>
+                    </figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+            <GoogleReviews />
+          </div>
+        </section>
+      )}
 
       {/* 7. CÓMO SEGUIMOS: secuencia real de 3 pasos */}
-      <section className="cv noche-2 py-16 md:py-24" aria-labelledby="seguimos-titulo">
+      <section className={`cv ${noche()} py-16 md:py-24`} aria-labelledby="seguimos-titulo">
         <div className="wrap">
           <h2 id="seguimos-titulo" className="text-h3">
             {seguimos.h2}
@@ -186,30 +185,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. CONSULTA EXPRESS + CÓMO LLEGAR + MAPA */}
-      <section className="cv noche py-16 md:py-28" aria-labelledby="visita-titulo">
-        <div className="wrap grid gap-10 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-6">
-            <h2 id="visita-titulo">{visita.h2}</h2>
-            <p className="measure mt-6">{visita.body}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
-              <ExpressButton label={visita.cta.label} origen="cierre" />
-              <Button cta={visita.ctaVisita} variant="line" />
-            </div>
-            <p className="mt-6">
-              <a
-                className="link"
-                href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track("click_como_llegar", { origen: "inicio" })}
-              >
-                Cómo llegar
-              </a>
+      {/* 8. CIERRE: mapa, dirección en una línea y un único botón */}
+      <section className={`cv ${noche()} py-16 md:py-24`} aria-label="Cómo llegar">
+        <div className="wrap">
+          <MapEmbed />
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+            <p className="font-display text-h3">
+              {site.street}, {site.locality}
             </p>
-          </div>
-          <div className="lg:col-span-6">
-            <MapFacade />
+            <a
+              className="btn btn-primary"
+              href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track("click_como_llegar", { origen: "inicio" })}
+            >
+              Cómo llegar
+            </a>
           </div>
         </div>
       </section>

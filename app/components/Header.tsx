@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
+import { Button } from "~/components/Button";
 import { Logo } from "~/components/Logo";
 import { nav, navAction } from "@/content/common";
-import { track } from "@/lib/analytics";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -55,14 +55,7 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <Link
-            to={navAction.to}
-            viewTransition
-            className="btn btn-primary site-nav-action"
-            onClick={() => track("click_coordinar_visita", { origen: "menu" })}
-          >
-            {navAction.label}
-          </Link>
+          <Button cta={navAction} className="site-nav-action" />
         </nav>
       </div>
     </header>

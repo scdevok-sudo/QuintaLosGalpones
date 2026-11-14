@@ -129,7 +129,7 @@
   }
   /* Superficies con scroll propio (menú mobile, panel de consulta). */
   .site-nav,
-  dialog.consulta {
+  .consulta {
     scrollbar-color: var(--color-madera) var(--color-tarde);
     scrollbar-width: thin;
   }
@@ -814,9 +814,10 @@ html {
   }
 }
 
-/* El panel es un <dialog> abierto con show(): no modal. Sin velo, sin bloqueo de scroll, la página sigue viva.
+/* El panel es un popover nativo (popover="auto"): está en el HTML, lo abre `popovertarget` sin JS, es no modal
+   (la página sigue viva, sin velo ni bloqueo de scroll) y cierra con Esc o con un clic afuera.
    Mobile: pegado arriba de la barra. Desktop (sin barra): flota abajo a la derecha. */
-dialog.consulta {
+.consulta {
   position: fixed;
   z-index: 35;
   inset: auto 0 calc(var(--bar-h) + var(--kb, 0px)) 0;
@@ -824,7 +825,8 @@ dialog.consulta {
   padding: 0;
   width: 100%;
   max-width: none;
-  max-height: min(78svh, calc(100svh - var(--header-h) - var(--bar-h) - var(--kb, 0px) - 0.5rem));
+  /* Pasos cortos (fecha y tipo, salida): como máximo un tercio de la pantalla. */
+  max-height: 33svh;
   overflow-y: auto;
   overscroll-behavior: contain;
   border: 2px solid var(--color-tinta);
@@ -836,37 +838,109 @@ dialog.consulta {
   opacity: 0;
   transform: translateY(12px);
   transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    display 0.2s allow-discrete;
+    opacity 0.15s ease,
+    transform 0.15s ease,
+    overlay 0.15s allow-discrete,
+    display 0.15s allow-discrete;
 }
-dialog.consulta[open] {
+.consulta:popover-open {
   opacity: 1;
   transform: none;
 }
 @starting-style {
-  dialog.consulta[open] {
+  .consulta:popover-open {
     opacity: 0;
     transform: translateY(12px);
   }
 }
-#express-titulo:focus {
+/* Pasos largos (contacto, resultado): más alto, porque hay teclado y campos. */
+.consulta[data-step="contacto"],
+.consulta[data-step="ok"],
+.consulta[data-step="error"] {
+  max-height: min(72svh, calc(100svh - var(--header-h) - var(--bar-h) - var(--kb, 0px) - 0.5rem));
+}
+.consulta-in {
+  padding: 0.75rem 1rem 1rem;
+}
+.consulta-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+.consulta-title {
+  font-size: 1.125rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.consulta-title:focus {
   outline: none;
 }
+.consulta-close {
+  min-height: 2.75rem;
+  padding: 0.35rem 0.85rem;
+}
+.consulta-datos {
+  display: grid;
+  gap: 0.6rem;
+}
+.consulta-datos .field {
+  gap: 0.2rem;
+}
+.consulta-datos .input,
+.consulta-datos .btn {
+  min-height: 2.75rem;
+}
+.choice-sm {
+  min-height: 2.75rem;
+  padding: 0.3rem 0.5rem;
+  gap: 0.4rem;
+  font-size: 1rem;
+}
+/* Selector segmentado: el relleno marca la opción elegida; el radio queda invisible pero accesible. */
+.choice-sm {
+  position: relative;
+  justify-content: center;
+}
+.choice-sm input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.choice-sm:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
 @media (min-width: 48rem) {
-  dialog.consulta {
+  .consulta {
     inset: auto 1.5rem calc(1.5rem + var(--kb, 0px)) auto;
     width: min(27rem, calc(100% - 3rem));
     max-height: calc(100svh - var(--header-h) - 3rem);
     border-width: 2px;
     border-radius: 14px;
   }
+  .consulta-in {
+    padding: 1.25rem 1.5rem 1.5rem;
+  }
+  .consulta-title {
+    font-size: 1.35rem;
+  }
 }
 
-/* Toque antes de hidratar: el CTA queda "tomado" mientras termina de cargar el panel. */
-a[data-express][aria-busy="true"] {
-  opacity: 0.7;
-  cursor: progress;
+/* Botón que se ve como enlace (por ejemplo, "Contanos qué evento querés organizar"). */
+button.link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 /* Testimonios: grilla fija, sin carrusel. */

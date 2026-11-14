@@ -22,7 +22,7 @@ const introScript =
   "try{if(!sessionStorage.getItem('qg-intro')){document.documentElement.setAttribute('data-intro','1');sessionStorage.setItem('qg-intro','1')}}catch(e){}";
 
 const noscriptCss =
-  ".site-nav{position:static!important;visibility:visible!important;opacity:1!important;transform:none!important;padding:0 1.25rem 1rem!important}.site-nav .nav-link{font-size:1.1rem;min-height:2.75rem}header button{display:none}";
+  ".site-nav{position:static!important;visibility:visible!important;opacity:1!important;transform:none!important;padding:0 1.25rem 1rem!important}.site-nav .nav-link{font-size:1.1rem;min-height:2.75rem}header{position:static!important}header .wrap{height:auto!important;flex-wrap:wrap;padding-block:.5rem}header button.btn-line{display:none}.site-nav{flex-basis:100%}";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (

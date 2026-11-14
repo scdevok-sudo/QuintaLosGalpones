@@ -37,13 +37,6 @@ export const lugar = {
   ],
 };
 
-/** Bloque de visita de la segunda pantalla (anexo v2.3). Frases del copy: dirección, acceso y estacionamiento. */
-export const visitaRapida = {
-  h2: "Coordiná una visita",
-  body: "Quintino Bocayuva 655, Benavídez. A 500 metros de Panamericana, con acceso por calle asfaltada y estacionamiento dentro del predio.",
-  cta: { label: "Coordinar una visita", whatsapp: "visita" } satisfies Cta,
-};
-
 export const casamientos = {
   h2: "Casamientos",
   body: "Si querés celebrar en contacto con la naturaleza, Los Galpones ofrece un espacio para la ceremonia, parque y un ambiente cubierto para la fiesta. Contanos cómo imaginás el día y te explicamos las opciones de servicio, el armado posible y la alternativa prevista si llueve.",

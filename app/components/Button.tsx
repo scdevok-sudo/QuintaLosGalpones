@@ -1,17 +1,19 @@
 import { Link } from "react-router";
+import { ExpressButton } from "~/components/Express";
+import { contactoReady } from "@/config/site";
 import type { Cta } from "@/content/types";
 import { track } from "@/lib/analytics";
 import { whatsappLink } from "@/lib/whatsapp";
 
 type Props = {
   cta: Cta;
-  variant?: "primary" | "line";
+  variant?: "primary" | "line" | "link";
   className?: string;
 };
 
 /** Botón del documento. Los destinos están definidos en el brief (sección 3.2). */
 export function Button({ cta, variant = "primary", className = "" }: Props) {
-  const cls = `btn btn-${variant} ${className}`;
+  const cls = variant === "link" ? `link ${className}` : `btn btn-${variant} ${className}`;
 
   if (cta.whatsapp) {
     const ctx = cta.whatsapp;
@@ -32,6 +34,23 @@ export function Button({ cta, variant = "primary", className = "" }: Props) {
   }
 
   const to = cta.to;
+  // Hasta que exista /contacto/: el formulario es el panel de consulta y la visita va por WhatsApp.
+  if (!contactoReady && to.startsWith("/contacto/")) {
+    if (to.includes("#visita")) {
+      return (
+        <a
+          className={cls}
+          href={whatsappLink("visita")}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("click_coordinar_visita", { origen: "whatsapp" })}
+        >
+          {cta.label}
+        </a>
+      );
+    }
+    return <ExpressButton label={cta.label} origen="boton" className={cls} />;
+  }
   if (to.startsWith("#")) {
     return (
       <a className={cls} href={to}>
