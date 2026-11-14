@@ -23,21 +23,22 @@ function loadEnv() {
 rmSync(dist, { recursive: true, force: true });
 cpSync(src, dist, { recursive: true });
 
-// Si alguna ruta salió como `casamientos.html`, la movemos a `casamientos/index.html`.
+// URLs SIN barra final. React Router deja cada ruta como `casamientos/index.html`; la aplanamos a
+// `casamientos.html`. Así no hay una carpeta `casamientos/` que el servidor quiera redirigir a
+// `casamientos/` (DirectorySlash): la regla de rewrite del README sirve `/casamientos` desde `casamientos.html`.
+// Solo la portada queda como `index.html`.
 const routes = [];
 (function walk(dir) {
   for (const name of readdirSync(dir)) {
     const full = join(dir, name);
-    if (statSync(full).isDirectory()) walk(full);
-    else if (name.endsWith(".html")) {
-      if (name === "index.html") routes.push(full);
-      else if (name !== "__spa-fallback.html") {
-        const target = join(dir, name.replace(/\.html$/, ""), "index.html");
-        mkdirSync(join(dir, name.replace(/\.html$/, "")), { recursive: true });
-        renameSync(full, target);
-        routes.push(target);
-      }
-    }
+    if (statSync(full).isDirectory()) {
+      walk(full);
+      if (full !== dist && readdirSync(full).length === 0) rmSync(full, { recursive: true });
+    } else if (name === "index.html" && dir !== dist) {
+      const flat = full.replace(/[\\/]index\.html$/, "") + ".html";
+      renameSync(full, flat);
+      routes.push(flat);
+    } else if (name === "index.html") routes.push(full);
   }
 })(dist);
 rmSync(join(dist, "__spa-fallback.html"), { force: true });
@@ -85,9 +86,10 @@ const env = loadEnv();
 const site = (env.VITE_SITE_URL || "https://quintalosgalpones.com").replace(/\/$/, "");
 const noindex = env.VITE_NOINDEX !== "false";
 
+// Forma canónica sin barra final: "/" para la portada y "/casamientos" para el resto.
 const urls = routes
-  .map((f) => f.slice(dist.length).split("\\").join("/").replace(/index\.html$/, ""))
-  .filter((u) => u !== "/404/")
+  .map((f) => f.slice(dist.length).split("\\").join("/").replace(/\/?index\.html$/, "").replace(/\.html$/, "") || "/")
+  .filter((u) => u !== "/404")
   .sort();
 
 if (noindex) {
@@ -98,8 +100,6 @@ if (noindex) {
   const body = urls.map((u) => `  <url><loc>${site}${u}</loc></url>`).join("\n");
   writeFileSync(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`);
 }
-
-if (existsSync(join(dist, "404", "index.html"))) writeFileSync(join(dist, "404.html"), readFileSync(join(dist, "404", "index.html")));
 
 console.log(`dist/ listo: ${urls.length} rutas (${noindex ? "noindex" : "indexable"})`);
 for (const u of urls) console.log("  " + u);

@@ -24,7 +24,7 @@ export const scenes: Scene[] = [
     slot: "story.llegada",
     texto:
       "Estamos en Benavídez, a 500 metros de Panamericana. Hay acceso por calle asfaltada y estacionamiento dentro del predio.",
-    cta: { label: "Conocé los espacios", to: "/espacios/" },
+    cta: { label: "Conocé los espacios", to: "/espacios" },
   },
   {
     id: "ceremonia",
@@ -33,7 +33,7 @@ export const scenes: Scene[] = [
     slot: "story.ceremonia",
     texto:
       "Contamos con un espacio para ceremonias. Al recorrerlo vas a poder conversar sobre el armado, la circulación de invitados y cómo se enlaza con la recepción y la fiesta.",
-    cta: { label: "Quiero organizar mi casamiento", to: "/casamientos/" },
+    cta: { label: "Quiero organizar mi casamiento", to: "/casamientos" },
   },
   {
     id: "fiesta",
@@ -42,7 +42,7 @@ export const scenes: Scene[] = [
     slot: "story.fiesta",
     texto:
       "El parque aporta verde y aire; el interior permite dar continuidad a la celebración. Son 320 m² cubiertos, ampliables a 520 m².",
-    cta: { label: "Conocé los espacios", to: "/espacios/" },
+    cta: { label: "Conocé los espacios", to: "/espacios" },
   },
   {
     id: "noche",
@@ -50,6 +50,6 @@ export const scenes: Scene[] = [
     tema: "noche",
     slot: "story.noche",
     texto: "Los Galpones dispone de mobiliario, sonido e iluminación propios.",
-    cta: { label: "Coordinar una visita", to: "/contacto/#visita" },
+    cta: { label: "Coordinar una visita", to: "/contacto#visita" },
   },
 ];

@@ -1,7 +1,7 @@
 import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
-  path: "/casamientos/",
+  path: "/casamientos",
   title: "Casamientos en Benavídez | Quinta Los Galpones",
   description:
     "Ceremonia, parque, espacio cubierto y propuestas para tu casamiento en Benavídez. Consultá por el armado, los servicios y el plan de lluvia.",

@@ -1,7 +1,7 @@
 import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
-  path: "/eventos-empresariales/",
+  path: "/eventos-empresariales",
   title: "Eventos de empresa en Benavídez | Quinta Los Galpones",
   description:
     "Organizá una celebración o encuentro de equipo en una quinta de Benavídez con parque, espacio cubierto y estacionamiento. Pedí una propuesta.",
@@ -34,6 +34,6 @@ export const sections = {
     id: "propuesta",
     h2: "Contanos lo esencial",
     body: "Empresa, persona de contacto, fecha o rango de fechas, cantidad estimada de asistentes, objetivo del encuentro y horario. Si ya tenés una agenda o proveedores involucrados, sumalos a la consulta.",
-    cta: { label: "Pedir una propuesta para mi empresa", to: "/contacto/?tipo=empresa#formulario" } satisfies Cta,
+    cta: { label: "Pedir una propuesta para mi empresa", to: "/contacto?tipo=empresa#formulario" } satisfies Cta,
   },
 };

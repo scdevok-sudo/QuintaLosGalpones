@@ -206,7 +206,7 @@ if (want("transicion"))
 if (want("casamientos"))
   for (const [tag, vp, mobile] of [["casamientos-desktop", D, false], ["casamientos-mobile", M, true]]) {
     await scenario(tag, vp, { mobile }, async (page, shot) => {
-      await page.goto(base + "/casamientos/", { waitUntil: "load" });
+      await page.goto(base + "/casamientos", { waitUntil: "load" });
       await sleep(2600);
       await shot("hero");
       const total = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);

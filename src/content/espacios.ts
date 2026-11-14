@@ -1,7 +1,7 @@
 import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
-  path: "/espacios/",
+  path: "/espacios",
   title: "Parque y espacios para eventos en Benavídez | Los Galpones",
   description:
     "Recorré el parque de 6.000 m², el espacio cubierto y el sector para ceremonias de Quinta Los Galpones. Conocé las opciones de armado.",
@@ -29,6 +29,6 @@ export const sections = {
   llegada: {
     h2: "Llegada y servicios",
     body: "Estamos a 500 metros de Panamericana, con acceso por calle asfaltada y estacionamiento dentro del predio. Los Galpones dispone de mobiliario, sonido e iluminación propios. El detalle de uso e inclusión de cada servicio se presenta en la propuesta.",
-    cta: { label: "Agendar una visita", to: "/contacto/#visita" } satisfies Cta,
+    cta: { label: "Agendar una visita", to: "/contacto#visita" } satisfies Cta,
   },
 };

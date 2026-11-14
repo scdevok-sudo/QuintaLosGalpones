@@ -35,7 +35,7 @@ export function Button({ cta, variant = "primary", className = "" }: Props) {
 
   const to = cta.to;
   // Hasta que exista /contacto/: el formulario es el panel de consulta y la visita va por WhatsApp.
-  if (!contactoReady && to.startsWith("/contacto/")) {
+  if (!contactoReady && to.startsWith("/contacto")) {
     if (to.includes("#visita")) {
       return (
         <a

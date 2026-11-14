@@ -1,7 +1,7 @@
 import type { Meta } from "./types";
 
 export const meta: Meta = {
-  path: "/preguntas-frecuentes/",
+  path: "/preguntas-frecuentes",
   title: "Preguntas frecuentes sobre Quinta Los Galpones",
   description:
     "Dónde queda, qué espacios tiene, cómo funciona el plan de lluvia y cómo pedir una propuesta para tu casamiento o evento de empresa.",

@@ -1,7 +1,7 @@
 import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
-  path: "/eventos-reales/",
+  path: "/eventos-reales",
   title: "Eventos reales en Quinta Los Galpones | Fotos y experiencias",
   description:
     "Mirá casamientos y encuentros realizados en Los Galpones. Recorré el parque, las ceremonias y los distintos armados del espacio cubierto.",
@@ -47,4 +47,4 @@ export const categories: RealesCategory[] = [
   },
 ];
 
-export const cta: Cta = { label: "Consultar por un evento como este", to: "/contacto/#formulario" };
+export const cta: Cta = { label: "Consultar por un evento como este", to: "/contacto#formulario" };

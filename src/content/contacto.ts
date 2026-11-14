@@ -1,7 +1,7 @@
 import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
-  path: "/contacto/",
+  path: "/contacto",
   title: "Contacto y visitas | Quinta Los Galpones",
   description:
     "Contanos qué evento querés organizar en Benavídez. Enviá tu fecha y cantidad de invitados o coordiná una visita a Quinta Los Galpones.",

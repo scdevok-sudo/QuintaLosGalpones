@@ -2,16 +2,16 @@ import type { Meta } from "./types";
 
 export const nav = [
   { label: "Inicio", to: "/" },
-  { label: "Casamientos", to: "/casamientos/" },
-  { label: "Eventos de empresa", to: "/eventos-empresariales/" },
-  { label: "Espacios", to: "/espacios/" },
-  { label: "Eventos reales", to: "/eventos-reales/", hidden: false },
-  { label: "Preguntas frecuentes", to: "/preguntas-frecuentes/" },
-  { label: "Contacto", to: "/contacto/" },
+  { label: "Casamientos", to: "/casamientos" },
+  { label: "Eventos de empresa", to: "/eventos-empresariales" },
+  { label: "Espacios", to: "/espacios" },
+  { label: "Eventos reales", to: "/eventos-reales", hidden: false },
+  { label: "Preguntas frecuentes", to: "/preguntas-frecuentes" },
+  { label: "Contacto", to: "/contacto" },
 ] as const;
 
 /** Acción destacada del menú: va a #visita y, en Contacto, también ofrece WhatsApp de visita. */
-export const navAction = { label: "Coordinar una visita", to: "/contacto/#visita" } as const;
+export const navAction = { label: "Coordinar una visita", to: "/contacto#visita" } as const;
 
 export const footer = {
   name: "Quinta Los Galpones",
@@ -23,7 +23,7 @@ export const footer = {
 };
 
 export const notFoundMeta: Meta = {
-  path: "/404/",
+  path: "/404",
   title: "Página no encontrada | Quinta Los Galpones",
   description: "No encontramos esta página. Volvé al inicio o recorré las secciones principales de Quinta Los Galpones.",
 };

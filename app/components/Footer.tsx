@@ -41,12 +41,12 @@ export function Footer() {
             </a>
           </li>
           <li>
-            <Link className="link" to="/contacto/" viewTransition>
+            <Link className="link" to="/contacto" viewTransition>
               {footer.contactLabel}
             </Link>
           </li>
           <li>
-            <Link className="link" to="/politica-de-privacidad/" viewTransition>
+            <Link className="link" to="/politica-de-privacidad" viewTransition>
               {footer.privacyLabel}
             </Link>
           </li>

@@ -1,0 +1,14 @@
+# Quinta Los Galpones: URLs sin barra final (forma canónica). Funciona en Apache y en OpenLiteSpeed
+# (con "Auto Load from .htaccess" activo). Si preferís el vhost de OpenLiteSpeed, ver README.md.
+RewriteEngine On
+
+# 1) /ruta/ -> 301 -> /ruta. La portada "/" no se toca.
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# 2) /ruta se sirve desde el archivo prerenderizado ruta.html (no hay carpetas por página).
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+)$ /$1.html [L]
+
+ErrorDocument 404 /404.html
