@@ -3,8 +3,8 @@ import { useLocation } from "react-router";
 
 /**
  * Capa de movimiento de cliente (sin render):
- * 1. Fallback para navegadores sin animation-timeline: marca con data-in los títulos, las máscaras
- *    y el pin del mapa cuando entran al viewport (una sola vez).
+ * 1. Fallback para navegadores sin animation-timeline: marca con data-in los títulos
+ *    cuando entran al viewport (una sola vez).
  * 2. Luz cálida que sigue al cursor sobre las superficies "noche" (solo puntero fino, con rAF).
  * Todo se desactiva con prefers-reduced-motion. En táctil queda el brillo fijo del CSS.
  */
@@ -31,7 +31,7 @@ export function MotionLayer() {
         },
         { threshold: 0.25 },
       );
-      document.querySelectorAll("main h2, .mask-live, .pin").forEach((el) => io?.observe(el));
+      document.querySelectorAll("main h2").forEach((el) => io?.observe(el));
     }
 
     let cleanupGlow = () => {};

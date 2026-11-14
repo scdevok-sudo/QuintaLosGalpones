@@ -18,9 +18,6 @@ export function MapFacade() {
         />
       ) : (
         <div className="noche-2 relative flex h-full flex-col items-start justify-end gap-3 p-5">
-          <svg className="pin" viewBox="0 0 36 46" aria-hidden="true" fill="currentColor">
-            <path d="M18 0C8.6 0 1 7.4 1 16.6 1 29.6 18 46 18 46s17-16.4 17-29.4C35 7.4 27.4 0 18 0Zm0 23a6.5 6.5 0 1 1 0-13 6.5 6.5 0 0 1 0 13Z" />
-          </svg>
           <p className="font-display text-h3">{site.street}</p>
           <p>
             {site.locality}, {site.region}

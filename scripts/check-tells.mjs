@@ -1,4 +1,4 @@
-// Falla si en el código aparecen marcas de página generada (BRIEF-V2 sección 4 y anexo v2.2 sección 5).
+// Falla si en el código aparecen marcas de página generada (BRIEF-V2 sección 4, anexo v2.2 sección 5 y recorte de v2.3).
 // Revisa src/ y app/ (tsx, ts, css). Una línea con "tells-ok" queda exenta (ej. backdrop-filter del ::backdrop del diálogo).
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
@@ -15,6 +15,17 @@ const rules = [
   { name: "negro tintado de reemplazo", re: /#0b0b0b|#111(?![0-9a-f])/i },
   { name: "reveal genérico fade+subir", re: /\.reveal\b|translateY\(16px\)/ },
   { name: "librerías prohibidas", re: /from "(gsap|lenis|three)/ },
+  // --- Recorte v2.3: lo que se sacó no vuelve ---
+  { name: "carrusel (v2.3: grilla fija)", re: /scroll-snap-type|car-track|car-dot|\b(embla|swiper|keen-slider)\b/ },
+  { name: "contador animado (v2.3)", re: /CountUp|count-up|countUp/ },
+  { name: "botón magnético (v2.3)", re: /\bmagnetic\b|\bmagnet\b/ },
+  { name: "barra solar (v2.3)", re: /sunbar|sun-line|sun-travel|animation-timeline:\s*scroll\(/ },
+  { name: "pin del mapa (v2.3)", re: /\.pin\b|pin-drop|className="pin"/ },
+  { name: "máscara con vida (v2.3: la máscara es solo del hero)", re: /mask-live|maskLive/ },
+  { name: "paneles expandibles de caminos (v2.3)", re: /camino-extra|camino-photo2|camino-[ab]\b|:has\(\.camino/ },
+  { name: "consulta modal (v2.3: panel no modal)", re: /showModal\(|dialog\.consulta::backdrop|::backdrop/ },
+  { name: "máscara fuera del hero", re: /<Photo\b(?![^>]*slot="hero\.)[^>]*\bmask\b/ },
+  { name: "cursor de arrastre", re: /cursor:\s*grab/ },
 ];
 
 const files = [];
@@ -108,6 +119,17 @@ for (const f of files.filter((x) => x.endsWith(".css"))) {
       if (!isAtRule && /animation-timeline/.test(body) && /transition\s*:[^;]*(width|height|top|left|box-shadow)/.test(body)) {
         fail(f, lineOf(ctx.start), "transition de layout con animation-timeline", ctx.head);
       }
+      // v2.3: el hover mueve como mucho 2 px y escala como mucho 1,02.
+      if (!isAtRule && /:(hover|focus-within)\b/.test(ctx.head)) {
+        for (const m of body.matchAll(/scale\(\s*([\d.]+)/g)) {
+          if (parseFloat(m[1]) > 1.02) fail(f, lineOf(ctx.start), "hover con zoom mayor a 1,02", ctx.head + " scale(" + m[1] + ")");
+        }
+        for (const m of body.matchAll(/translate[XY3d]*\(\s*(-?[\d.]+)px(?:\s*,\s*(-?[\d.]+)px)?/g)) {
+          if (Math.max(Math.abs(parseFloat(m[1])), Math.abs(parseFloat(m[2] || "0"))) > 2) {
+            fail(f, lineOf(ctx.start), "hover que mueve más de 2 px", ctx.head + " " + m[0]);
+          }
+        }
+      }
       buf = "";
     } else {
       buf += c;
@@ -123,6 +145,21 @@ for (const f of files.filter((x) => /\.tsx?$/.test(x))) {
   for (const m of text.matchAll(/^\s*import\s[^;]*from\s+["'](motion|motion\/react|framer-motion|gsap|gsap\/[\w]+)["']/gm)) {
     if (!inLazy) fail(f, text.slice(0, m.index).split("\n").length, "librería de motion en el bundle inicial", m[0]);
   }
+}
+
+// (f) Tematizado exigido (v2.3): selección, caret, scrollbar y foco definidos en app.css.
+{
+  const css = readFileSync("app/app.css", "utf8");
+  for (const [name, re] of [["::selection", /::selection/], ["caret-color", /caret-color/], ["scrollbar-color", /scrollbar-color/], [":focus-visible", /:focus-visible/]]) {
+    if (!re.test(css)) fail("app/app.css", 1, "falta tematizar " + name, "");
+  }
+}
+
+// (g) Los CTA principales son enlaces reales (funcionan sin JS): ExpressButton renderiza <a href>.
+{
+  const ex = readFileSync("app/components/Express.tsx", "utf8");
+  const btn = ex.slice(ex.indexOf("export function ExpressButton"));
+  if (!/<a\s[^>]*href="\/contacto\/#formulario"/.test(btn)) fail("app/components/Express.tsx", 1, "ExpressButton no es un enlace real", "<a href> a /contacto/#formulario");
 }
 
 if (bad) {

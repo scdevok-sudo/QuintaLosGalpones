@@ -1,6 +1,6 @@
 // Graba el movimiento de Inicio: un video .webm por escenario (Playwright) y fotogramas sueltos para revisarlos.
 // Uso: npm run preview (otra terminal) y `node scripts/record.mjs [escenario ...]`.
-// Escenarios: hero, recorrido, caminos, consulta, transicion, reducido.
+// Escenarios: hero, recorrido, caminos, consulta, visita, transicion, reducido.
 import { mkdirSync, readdirSync, renameSync } from "node:fs";
 import { chromium } from "playwright";
 
@@ -91,7 +91,7 @@ if (want("recorrido"))
     });
   }
 
-// C. Dos caminos (solo desktop)
+// C. Dos caminos (solo desktop): dos cards, hover de 2 px y zoom 1,02, CTA siempre visibles
 if (want("caminos"))
   await scenario("caminos-desktop", D, {}, async (page, shot) => {
     await page.goto(base + "/", { waitUntil: "load" });
@@ -99,21 +99,21 @@ if (want("caminos"))
     await page.evaluate(() => document.querySelector(".caminos").scrollIntoView({ block: "center" }));
     await sleep(700);
     await shot("reposo");
-    await page.hover(".camino-b");
-    await sleep(900);
+    await page.hover(".camino >> nth=1");
+    await sleep(700);
     await shot("hover-empresas");
-    await page.hover(".camino-a");
-    await sleep(900);
+    await page.hover(".camino >> nth=0");
+    await sleep(700);
     await shot("hover-casamientos");
     await page.mouse.move(5, 5);
-    await sleep(800);
+    await sleep(600);
     await page.keyboard.press("Tab");
-    await page.focus(".camino-b a");
-    await sleep(900);
+    await page.focus(".camino >> nth=1 >> a.btn");
+    await sleep(700);
     await shot("foco-empresas");
   });
 
-// D. Consulta express
+// D. Consulta express: panel no modal. Se abre, se hace scroll de la página con el panel abierto, se completa y se cierra.
 if (want("consulta"))
   for (const [tag, vp, mobile] of [["consulta-desktop", D, false], ["consulta-mobile", M, true]]) {
     await scenario(tag, vp, { mobile }, async (page, shot) => {
@@ -124,6 +124,13 @@ if (want("consulta"))
       await shot("abre-60ms");
       await sleep(500);
       await shot("paso1");
+      // La página sigue viva: scroll con el panel abierto
+      await page.mouse.move(vp.width / 2, 70); // sobre el header: el scroll es de la página, no del panel
+      await page.mouse.wheel(0, 700);
+      await sleep(700);
+      await shot("scroll-con-panel");
+      await page.mouse.wheel(0, -700);
+      await sleep(500);
       await page.getByLabel("Evento de empresa").check();
       await page.getByLabel("De 100 a 200").check();
       await sleep(200);
@@ -133,12 +140,22 @@ if (want("consulta"))
       await sleep(400);
       await page.getByRole("button", { name: "Prefiero que me escriban" }).click();
       await sleep(400);
-      await page.getByRole("button", { name: "Cerrar el panel" }).click();
+      await page.keyboard.press("Escape");
       await sleep(100);
       await shot("cierra-100ms");
       await sleep(500);
     });
   }
+
+// D2. Visita en la segunda pantalla
+if (want("visita"))
+  await scenario("visita-desktop", D, {}, async (page, shot) => {
+    await page.goto(base + "/", { waitUntil: "load" });
+    await sleep(2600);
+    await page.evaluate(() => window.scrollTo(0, 780));
+    await sleep(700);
+    await shot("segunda-pantalla");
+  });
 
 // E. Transición entre páginas (la única otra ruta hoy es el 404)
 if (want("transicion"))

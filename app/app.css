@@ -39,7 +39,11 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     background: var(--color-tarde);
+    color-scheme: light;
+    /* Barra de scroll del sitio: madera sobre pasto seco. */
+    scrollbar-color: var(--color-madera) var(--color-tarde);
     --header-h: 4rem;
+    --focus: var(--color-tinta);
   }
   @media (min-width: 75rem) {
     html {
@@ -89,18 +93,45 @@
   [id] {
     scroll-margin-top: calc(var(--header-h) + 1rem);
   }
+  /* Foco: anillo de 3 px, separado 3 px del borde. Día = tinta. Noche = lamparita (variable --focus). */
   :focus-visible {
-    outline: 3px solid var(--color-tinta);
+    outline: 3px solid var(--focus);
     outline-offset: 3px;
     border-radius: 4px;
   }
-  .noche :focus-visible,
-  .noche-2 :focus-visible {
-    outline-color: var(--color-lamparita);
+  .dia {
+    --focus: var(--color-tinta);
   }
+  .noche,
+  .noche-2,
+  .story-panel.is-noche {
+    --focus: var(--color-lamparita);
+  }
+  /* Selección: invertida respecto de la superficie. Día = tinta sobre tarde. Noche = lamparita. */
   ::selection {
+    background: var(--color-tinta);
+    color: var(--color-tarde);
+  }
+  .noche ::selection,
+  .noche-2 ::selection,
+  .story-panel.is-noche ::selection {
     background: var(--color-lamparita);
     color: var(--color-noche);
+  }
+  img::selection {
+    background: color-mix(in srgb, var(--color-lamparita) 40%, transparent);
+  }
+  /* Cursor de texto: madera, que se lee sobre el blanco de los campos. */
+  input,
+  textarea,
+  select {
+    caret-color: var(--color-madera);
+  }
+  /* Superficies con scroll propio (menú mobile, panel de consulta). */
+  .site-nav,
+  dialog.consulta {
+    scrollbar-color: var(--color-madera) var(--color-tarde);
+    scrollbar-width: thin;
   }
 }
 
@@ -746,7 +777,18 @@
   inset: 0;
 }
 
-/* Barra inferior mobile y panel de consulta */
+/* Barra inferior mobile y panel de consulta (no modal, anclado a la barra) */
+html {
+  --bar-h: 0px;
+}
+@media (max-width: 47.99rem) {
+  html {
+    --bar-h: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+  }
+  html[data-kbd] {
+    --bar-h: 0px;
+  }
+}
 .bar-consulta {
   position: fixed;
   left: 0;
@@ -772,24 +814,31 @@
   }
 }
 
+/* El panel es un <dialog> abierto con show(): no modal. Sin velo, sin bloqueo de scroll, la página sigue viva.
+   Mobile: pegado arriba de la barra. Desktop (sin barra): flota abajo a la derecha. */
 dialog.consulta {
+  position: fixed;
+  z-index: 35;
+  inset: auto 0 calc(var(--bar-h) + var(--kb, 0px)) 0;
+  margin: 0;
   padding: 0;
-  border: 0;
+  width: 100%;
+  max-width: none;
+  max-height: min(78svh, calc(100svh - var(--header-h) - var(--bar-h) - var(--kb, 0px) - 0.5rem));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 2px solid var(--color-tinta);
+  border-bottom-width: 0;
+  border-radius: 14px 14px 0 0;
   background: var(--color-tarde);
   color: var(--color-tinta);
-  max-width: none;
-  width: 100%;
-  margin: auto 0 0;
-  max-height: 92svh;
-  border-radius: 14px 14px 0 0;
-  overflow-y: auto;
+  box-shadow: 0 -8px 28px rgb(21 29 24 / 0.22);
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(12px);
   transition:
-    opacity 0.22s ease,
-    transform 0.22s ease,
-    overlay 0.22s allow-discrete,
-    display 0.22s allow-discrete;
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    display 0.2s allow-discrete;
 }
 dialog.consulta[open] {
   opacity: 1;
@@ -798,42 +847,59 @@ dialog.consulta[open] {
 @starting-style {
   dialog.consulta[open] {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(12px);
   }
 }
-dialog.consulta::backdrop {
-  background: rgb(21 29 24 / 0);
-  backdrop-filter: blur(0); /* tells-ok */
-  transition:
-    background 0.22s ease,
-    backdrop-filter 0.22s ease, /* tells-ok */
-    overlay 0.22s allow-discrete,
-    display 0.22s allow-discrete;
-}
-dialog.consulta[open]::backdrop {
-  background: rgb(21 29 24 / 0.7);
-  backdrop-filter: blur(4px); /* tells-ok */
-}
-@starting-style {
-  dialog.consulta[open]::backdrop {
-    background: rgb(21 29 24 / 0);
-    backdrop-filter: blur(0); /* tells-ok */
-  }
+#express-titulo:focus {
+  outline: none;
 }
 @media (min-width: 48rem) {
   dialog.consulta {
-    margin: auto;
-    width: min(34rem, calc(100% - 2rem));
+    inset: auto 1.5rem calc(1.5rem + var(--kb, 0px)) auto;
+    width: min(27rem, calc(100% - 3rem));
+    max-height: calc(100svh - var(--header-h) - 3rem);
+    border-width: 2px;
     border-radius: 14px;
-    transform: scale(0.96);
   }
-  dialog.consulta[open] {
-    transform: none;
+}
+
+/* Toque antes de hidratar: el CTA queda "tomado" mientras termina de cargar el panel. */
+a[data-express][aria-busy="true"] {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+/* Testimonios: grilla fija, sin carrusel. */
+.testimonios {
+  display: grid;
+  gap: 2rem;
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+.testimonios > li {
+  padding-top: 1.25rem;
+  border-top: 2px solid color-mix(in srgb, var(--color-tarde) 28%, transparent);
+}
+@media (min-width: 48rem) {
+  .testimonios {
+    grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr));
+    gap: 2.5rem;
   }
-  @starting-style {
-    dialog.consulta[open] {
-      transform: scale(0.96);
-    }
+}
+
+/* Visita en la segunda pantalla: dirección y dos salidas. */
+.visita-rapida {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--color-tinta);
+}
+@media (min-width: 64rem) {
+  .visita-rapida {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: 4rem;
   }
 }
 .field {

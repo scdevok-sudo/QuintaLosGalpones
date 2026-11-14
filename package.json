@@ -12,6 +12,8 @@
     "check:links": "node scripts/check-links.mjs",
     "check:launch": "node scripts/check-launch.mjs",
     "check:tells": "node scripts/check-tells.mjs",
+    "check:nojs": "node scripts/check-nojs.mjs",
+    "measure:tap": "node scripts/measure-tap.mjs",
     "check": "npm run check:content && npm run check:tells"
   },
   "dependencies": {

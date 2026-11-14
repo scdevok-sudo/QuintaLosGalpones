@@ -4,8 +4,16 @@ import { form } from "@/content/contacto";
 import { track } from "@/lib/analytics";
 import { type ExpressChoice, whatsappExpressLink } from "@/lib/whatsapp";
 
-type Ctx = { open: (origen: string) => void; isOpen: boolean };
-const ExpressContext = createContext<Ctx>({ open: () => {}, isOpen: false });
+type Ctx = { open: (origen: string) => void; isOpen: boolean; kbd: boolean };
+const ExpressContext = createContext<Ctx>({ open: () => {}, isOpen: false, kbd: false });
+
+declare global {
+  interface Window {
+    /** El cargador diferido (scripts/postbuild.mjs) guarda acá el origen del toque que llegó antes de hidratar. */
+    __qgOpen?: string;
+    __qgReady?: boolean;
+  }
+}
 export const useExpress = () => useContext(ExpressContext);
 
 type Step = "datos" | "salida" | "contacto" | "ok" | "error";
@@ -23,12 +31,15 @@ const RANGOS = [
 ] as const;
 
 /**
- * Consulta express: panel inferior en mobile, modal en desktop (<dialog> nativo).
- * Paso 1 sin datos personales. Paso 2: WhatsApp con el mensaje completado o que te escriban.
+ * Consulta express: panel NO modal anclado a la barra inferior (mobile) o flotando abajo a la derecha
+ * (desktop). Es un <dialog> abierto con show(): no bloquea el scroll ni el resto de la página, no hay
+ * velo ni trampa de foco. Esc lo cierra. Paso 1 sin datos personales. Paso 2: WhatsApp o que te escriban.
  */
 export function ExpressProvider({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDialogElement>(null);
   const [isOpen, setOpen] = useState(false);
+  const [kbd, setKbd] = useState(false);
+  const opener = useRef<HTMLElement | null>(null);
   const [step, setStep] = useState<Step>("datos");
   const [choice, setChoice] = useState<ExpressChoice>({ tipo: "casamiento", fecha: "", invitados: "" });
   const [sinFecha, setSinFecha] = useState(false);
@@ -36,26 +47,71 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
   const [errors, setErrors] = useState<{ nombre?: string; contacto?: string }>({});
   const openedAt = useRef(0);
 
+  const focusPanel = () => ref.current?.querySelector<HTMLElement>("#express-titulo")?.focus({ preventScroll: true });
+
   const open = useCallback((origen: string) => {
     const d = ref.current;
-    if (!d || d.open) return;
+    if (!d) return;
+    if (d.open) {
+      focusPanel();
+      return;
+    }
+    opener.current = document.activeElement as HTMLElement | null;
     setStep("datos");
     setErrors({});
-    d.showModal();
+    d.show();
     openedAt.current = Date.now();
     setOpen(true);
+    focusPanel();
     track("express_abierto", { origen });
   }, []);
 
-  const close = () => ref.current?.close();
-
-  useEffect(() => {
+  const close = useCallback(() => {
     const d = ref.current;
-    if (!d) return;
-    const onClose = () => setOpen(false);
-    d.addEventListener("close", onClose);
-    return () => d.removeEventListener("close", onClose);
+    if (!d?.open) return;
+    const hadFocus = d.contains(document.activeElement);
+    d.close();
+    setOpen(false);
+    if (hadFocus) opener.current?.focus({ preventScroll: true });
   }, []);
+
+  // Esc cierra el panel desde cualquier lado de la página (no es modal, así que no hay un foco encerrado).
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isOpen, close]);
+
+  // Teclado en pantalla: la altura que tapa se publica en --kb para que barra y panel suban con él.
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const onResize = () => {
+      const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+      const on = kb > 120;
+      document.documentElement.style.setProperty("--kb", on ? `${Math.round(kb)}px` : "0px");
+      document.documentElement.toggleAttribute("data-kbd", on);
+      setKbd(on);
+    };
+    vv.addEventListener("resize", onResize);
+    vv.addEventListener("scroll", onResize);
+    return () => {
+      vv.removeEventListener("resize", onResize);
+      vv.removeEventListener("scroll", onResize);
+    };
+  }, []);
+
+  // Hidratación lista. Si la persona ya había tocado un CTA antes (lo captura el cargador), se abre ahora.
+  useEffect(() => {
+    window.__qgReady = true;
+    document.querySelectorAll("[data-express][aria-busy]").forEach((el) => el.removeAttribute("aria-busy"));
+    const pending = window.__qgOpen;
+    if (pending) {
+      window.__qgOpen = undefined;
+      open(pending);
+    }
+  }, [open]);
 
   const today = new Date().toISOString().slice(0, 10);
 
@@ -99,19 +155,17 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ExpressContext.Provider value={{ open, isOpen }}>
+    <ExpressContext.Provider value={{ open, isOpen, kbd }}>
       {children}
       <dialog
         ref={ref}
+        id="consulta"
         className="consulta"
         aria-labelledby="express-titulo"
-        onClick={(e) => {
-          if (e.target === e.currentTarget) close();
-        }}
       >
-        <div className="p-5 md:p-8">
+        <div className="p-5 md:p-6">
           <div className="flex items-start justify-between gap-4">
-            <h2 id="express-titulo" className="text-h3">
+            <h2 id="express-titulo" className="text-h3" tabIndex={-1}>
               {form.title}
             </h2>
             <button type="button" className="btn btn-line !min-h-11 !px-3" onClick={close} aria-label="Cerrar el panel">
@@ -319,52 +373,17 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Botón que abre la consulta express. Sin JS funciona como enlace a /contacto/#formulario. */
-export function ExpressButton({
-  label,
-  origen,
-  className = "btn btn-primary",
-  magnetic,
-}: {
-  label: string;
-  origen: string;
-  className?: string;
-  /** Efecto magnético sutil (0,3), solo desktop con puntero fino. */
-  magnetic?: boolean;
-}) {
+/**
+ * Botón que abre la consulta express. Es un enlace real a /contacto/#formulario: sin JS (o antes de que
+ * hidrate) navega ahí. Con JS abre el panel. `data-express` lo reconoce el cargador diferido.
+ */
+export function ExpressButton({ label, origen, className = "btn btn-primary" }: { label: string; origen: string; className?: string }) {
   const { open } = useExpress();
-  const ref = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!magnetic || !el) return;
-    if (!matchMedia("(hover: hover) and (pointer: fine)").matches || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
-    const onMove = (e: PointerEvent) => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const r = el.getBoundingClientRect();
-        const dx = e.clientX - (r.left + r.width / 2);
-        const dy = e.clientY - (r.top + r.height / 2);
-        const reach = Math.max(r.width, r.height) * 0.9;
-        const near = Math.hypot(dx, dy) < reach;
-        el.style.transform = near ? `translate3d(${dx * 0.3}px, ${dy * 0.3}px, 0)` : "";
-      });
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      if (raf) cancelAnimationFrame(raf);
-      el.style.transform = "";
-    };
-  }, [magnetic]);
-
   return (
     <a
-      ref={ref}
       href="/contacto/#formulario"
-      className={`${className} ${magnetic ? "magnetic" : ""}`}
+      data-express={origen}
+      className={className}
       onClick={(e) => {
         e.preventDefault();
         open(origen);
@@ -375,21 +394,11 @@ export function ExpressButton({
   );
 }
 
-/** Barra fija inferior (solo mobile). Se oculta con el panel abierto o con el teclado abierto. */
+/** Barra fija inferior (solo mobile). El panel de consulta se ancla encima. Se oculta con el teclado abierto. */
 export function ExpressBar() {
-  const { isOpen } = useExpress();
-  const [kbd, setKbd] = useState(false);
-
-  useEffect(() => {
-    const vv = window.visualViewport;
-    if (!vv) return;
-    const onResize = () => setKbd(vv.height < window.innerHeight * 0.75);
-    vv.addEventListener("resize", onResize);
-    return () => vv.removeEventListener("resize", onResize);
-  }, []);
-
+  const { kbd } = useExpress();
   return (
-    <div className="bar-consulta noche" data-hidden={isOpen || kbd}>
+    <div className="bar-consulta noche" data-hidden={kbd}>
       <ExpressButton label="Consultar por mi fecha" origen="barra" className="btn btn-primary w-full" />
     </div>
   );

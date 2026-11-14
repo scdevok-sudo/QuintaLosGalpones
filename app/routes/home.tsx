@@ -1,14 +1,12 @@
 import type { CSSProperties } from "react";
 import { Link } from "react-router";
 import { Button } from "~/components/Button";
-import { CountUp } from "~/components/CountUp";
 import { ExpressButton } from "~/components/Express";
 import { GoogleReviews } from "~/components/GoogleReviews";
 import { MapFacade } from "~/components/MapFacade";
 import { Photo } from "~/components/Photo";
 import { RainToggle } from "~/components/RainToggle";
 import { Story } from "~/components/Story";
-import { Testimonios } from "~/components/Testimonios";
 import { site } from "@/config/site";
 import * as home from "@/content/home";
 import { track } from "@/lib/analytics";
@@ -21,7 +19,7 @@ export function meta() {
 const mapQuery = encodeURIComponent(`${site.street}, ${site.locality}, Buenos Aires, Argentina`);
 
 export default function Home() {
-  const { hero, lugar, casamientos, empresas, lluvia, testimonios, seguimos, visita } = home;
+  const { hero, lugar, visitaRapida, casamientos, empresas, lluvia, testimonios, seguimos, visita } = home;
 
   return (
     <>
@@ -54,6 +52,27 @@ export default function Home() {
 
       {/* 2. FICHA DEL LUGAR: datos de decisión rápida */}
       <section className="cv dia pt-4 pb-16 md:py-24" aria-labelledby="lugar-titulo">
+        {/* Visita: segunda pantalla, con dirección y dos salidas que funcionan sin JS. */}
+        <div className="wrap mb-14 md:mb-20">
+          <div className="visita-rapida">
+            <div>
+              <h3 id="visita-rapida-titulo">{visitaRapida.h2}</h3>
+              <p className="measure mt-3">{visitaRapida.body}</p>
+            </div>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+              <Button cta={visitaRapida.cta} />
+              <a
+                className="link"
+                href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("click_como_llegar", { origen: "inicio-visita" })}
+              >
+                Cómo llegar
+              </a>
+            </div>
+          </div>
+        </div>
         <div className="wrap grid gap-10 lg:grid-cols-[5fr_6fr] lg:gap-20">
           <div>
             <h2 id="lugar-titulo">{lugar.h2}</h2>
@@ -66,17 +85,7 @@ export default function Home() {
             {lugar.ficha.map((f) => (
               <div key={f.term} className="contents">
                 <dt className="font-display text-[1.125rem] font-bold">{f.term}</dt>
-                <dd className="m-0 -mt-3 mb-2 sm:mt-0 sm:mb-0">
-                  {f.count?.validated && f.def.includes(f.count.text) ? (
-                    <>
-                      {f.def.slice(0, f.def.indexOf(f.count.text))}
-                      <CountUp text={f.count.text} to={f.count.to} />
-                      {f.def.slice(f.def.indexOf(f.count.text) + f.count.text.length)}
-                    </>
-                  ) : (
-                    f.def
-                  )}
-                </dd>
+                <dd className="m-0 -mt-3 mb-2 sm:mt-0 sm:mb-0">{f.def}</dd>
               </div>
             ))}
           </dl>
@@ -86,34 +95,28 @@ export default function Home() {
       {/* 3. UN DÍA EN LOS GALPONES: momento firma */}
       <Story />
 
-      {/* 4. DOS CAMINOS: paneles que se expanden con hover o foco (desktop); apilados en mobile */}
+      {/* 4. DOS CAMINOS: dos cards parejas. Hover de 2 px y zoom 1,02 en la foto; los CTA siempre visibles. */}
       <section className="cv noche pb-16 md:pb-28" aria-label="Tipos de evento">
         <div className="wrap">
           <div className="caminos">
-            <article className="camino camino-a">
-              <Photo slot="home.casamientos" mask maskLive zoom className="vt-casamientos" />
+            <article className="camino">
+              <Photo slot="home.casamientos" zoom className="vt-casamientos" />
               <div className="noche-2 flex flex-1 flex-col p-6 md:p-8">
-                <h2>{casamientos.h2}</h2>
-                <p className="measure mt-5">{casamientos.body}</p>
-                <div className="mt-7 flex flex-wrap items-end justify-between gap-5">
+                <h2 className="text-h3">{casamientos.h2}</h2>
+                <p className="measure mt-4">{casamientos.body}</p>
+                <div className="mt-auto pt-7">
                   <Button cta={casamientos.cta} />
-                  <div className="camino-extra">
-                    <Photo slot="casamientos.interior" className="camino-photo2 w-44 rounded-[4px]" />
-                  </div>
                 </div>
               </div>
             </article>
 
-            <article className="camino camino-b">
-              <Photo slot="home.empresas" zoom className="rounded-[4px]" />
+            <article className="camino">
+              <Photo slot="home.empresas" zoom />
               <div className="noche-2 flex flex-1 flex-col p-6 md:p-8">
                 <h2 className="text-h3">{empresas.h2}</h2>
-                <p className="mt-4">{empresas.body}</p>
-                <div className="mt-6 flex flex-wrap items-end justify-between gap-5">
-                  <Button cta={empresas.cta} variant="line" />
-                  <div className="camino-extra">
-                    <Photo slot="empresas.espacios" className="camino-photo2 w-44 rounded-[4px]" />
-                  </div>
+                <p className="measure mt-4">{empresas.body}</p>
+                <div className="mt-auto pt-7">
+                  <Button cta={empresas.cta} />
                 </div>
               </div>
             </article>
@@ -143,9 +146,20 @@ export default function Home() {
           <h2 id="testimonios-titulo" className="max-w-2xl text-h3">
             {testimonios.h2}
           </h2>
-          <div className="mt-10">
-            <Testimonios items={testimonios.items} />
-          </div>
+          <ul className="testimonios mt-10" style={{ "--n": Math.min(3, testimonios.items.length) } as CSSProperties}>
+            {testimonios.items.map((t) => (
+              <li key={t.cite}>
+                <figure className="m-0">
+                  <blockquote className="m-0">
+                    <p className="font-body text-[clamp(1.35rem,1.05rem+1.1vw,1.75rem)] leading-[1.25]">“{t.quote}”</p>
+                  </blockquote>
+                  <figcaption className="mt-4">
+                    <cite className="font-display font-semibold not-italic">{t.cite}</cite>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
           <GoogleReviews />
         </div>
       </section>
@@ -179,7 +193,7 @@ export default function Home() {
             <h2 id="visita-titulo">{visita.h2}</h2>
             <p className="measure mt-6">{visita.body}</p>
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2">
-              <ExpressButton label={visita.cta.label} origen="cierre" magnetic />
+              <ExpressButton label={visita.cta.label} origen="cierre" />
               <Button cta={visita.ctaVisita} variant="line" />
             </div>
             <p className="mt-6">

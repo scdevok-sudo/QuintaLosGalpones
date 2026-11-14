@@ -42,26 +42,44 @@ const routes = [];
 })(dist);
 rmSync(join(dist, "__spa-fallback.html"), { force: true });
 
-// Diferir el JS: el script de módulo en línea de React Router descarga y evalúa todo apenas carga la
-// página y compite con el primer pintado (la foto del hero es el LCP). Lo reemplazamos por un cargador
-// que lo inyecta cuando la página terminó de cargar y el navegador está ocioso, o antes si la persona
-// interactúa. Espera al LCP real (la foto del hero) para no competir con él. El HTML ya es legible sin JS. Se sacan también los modulepreload.
+// Diferir el JS (anexo v2.3). El script de módulo en línea de React Router descarga y evalúa todo apenas
+// carga la página y compite con el primer pintado (la foto del hero es el LCP). Lo reemplazamos por un
+// cargador mínimo:
+//  1. Precarga el módulo de React Router (entry.client + el chunk de React que comparte) con
+//     pointerdown, touchstart o focus sobre un CTA: ese toque ya pagó la descarga cuando llega el clic.
+//  2. Carga el resto (manifest, rutas, hidratación) en requestIdleCallback con tope de 2 s, después de `load` y
+//     de que el navegador reportó el LCP (la foto del hero), así la hidratación no compite con el LCP.
+//  3. Los CTA son enlaces reales y funcionan sin JS. Si el clic llega antes de hidratar, el cargador lo
+//     retiene, termina de cargar y abre el panel de consulta; si en 6 s no hidrató, sigue el enlace. Mientras tanto el CTA queda con aria-busy.
 for (const file of routes) {
   let html = readFileSync(file, "utf8");
+  const preload = [...html.matchAll(/<link rel="modulepreload" href="([^"]+)"/g)].map((m) => m[1]);
+  const router = preload.filter((h) => /\/(entry\.client|jsx-runtime)-/.test(h));
   html = html.replace(/<link rel="modulepreload"[^>]*>/g, "");
+  let loaderTag = "";
   html = html.replace(/<script type="module" async="">([\s\S]*?)<\/script>/, (_m, code) => {
     const loader =
-      "(function(){var code=" + JSON.stringify(code) + ";var done=0;" +
-      "function go(){if(done)return;done=1;" +
-      "['pointerdown','keydown','touchstart','scroll','wheel'].forEach(function(e){removeEventListener(e,go)});" +
-      "var s=document.createElement('script');s.type='module';s.textContent=code;document.body.appendChild(s)}" +
-      "['pointerdown','keydown','touchstart','scroll','wheel'].forEach(function(e){addEventListener(e,go,{passive:true})});" +
-      "var lcp=0;try{new PerformanceObserver(function(l){if(l.getEntries().length)lcp=1}).observe({type:'largest-contentful-paint',buffered:true})}catch(e){lcp=1}" +
-      "var t0=Date.now();" +
-      "function idle(){if(!lcp&&Date.now()-t0<4000){setTimeout(idle,100);return}(window.requestIdleCallback||function(f){setTimeout(f,200)})(go,{timeout:3000})}" +
+      "(function(){var code=" + JSON.stringify(code) + ",router=" + JSON.stringify(router) + ",done=0,pre=0,w=window;" +
+      "function go(){if(done)return;done=1;var s=document.createElement('script');s.type='module';s.textContent=code;document.body.appendChild(s)}" +
+      "function warm(){if(pre)return;pre=1;router.forEach(function(h){var l=document.createElement('link');l.rel='modulepreload';l.href=h;document.head.appendChild(l)})}" +
+      "function cta(e){var t=e.target;return t&&t.closest?t.closest('a.btn,a[data-express]'):null}" +
+      "function hot(e){if(!w.__qgReady&&cta(e))warm()}" +
+      "addEventListener('pointerdown',hot,{passive:true,capture:true});" +
+      "addEventListener('touchstart',hot,{passive:true,capture:true});" +
+      "addEventListener('focusin',hot,true);" +
+      "addEventListener('click',function(e){var a=cta(e);if(!a||w.__qgReady)return;warm();" +
+      "var o=a.getAttribute('data-express');if(!o)return;e.preventDefault();w.__qgOpen=o;a.setAttribute('aria-busy','true');go();" +
+      "setTimeout(function(){if(!w.__qgReady)location.href=a.href},6000)},true);" +
+      "var lcp=0,t0=0;try{new PerformanceObserver(function(l){if(l.getEntries().length)lcp=1}).observe({type:'largest-contentful-paint',buffered:true})}catch(e){lcp=1}" +
+      "function idle(){if(!t0)t0=Date.now();if(!lcp&&Date.now()-t0<2000){setTimeout(idle,100);return}(w.requestIdleCallback||function(f){setTimeout(f,200)})(go,{timeout:2000})}" +
       "if(document.readyState==='complete')idle();else addEventListener('load',idle,{once:true})})();";
-    return "<script>" + loader + "</script>";
+    loaderTag = "<script>" + loader + "</script>";
+    // Queda un <script> vacío en el mismo lugar: React espera un <script> ahí al hidratar (sin él, error 418).
+    return "<script></script>";
   });
+  // El cargador va al principio del <head>: así ya escucha los toques aunque el CTA se vea antes de que
+  // termine de llegar el resto del HTML.
+  if (loaderTag) html = html.replace(/<head[^>]*>/, (m) => m + loaderTag);
   writeFileSync(file, html);
 }
 

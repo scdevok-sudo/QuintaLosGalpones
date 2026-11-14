@@ -42,6 +42,12 @@ Todo texto que no es verbatim del documento de textos. Se completa a medida que 
 ## Agregados con la capa de movimiento (anexo v2.2)
 | Qué | Dónde | Por qué |
 |---|---|---|
-| "Testimonios, deslizá para ver el siguiente", "Elegir testimonio", "Ir al testimonio de [nombre]" | Carrusel de testimonios | Etiquetas accesibles del carrusel y sus puntos. |
 | "Escenas del recorrido" | Riel del recorrido | Etiqueta accesible del grupo de botones. |
 | "Cerrar el panel" | Consulta express | Etiqueta accesible del botón de cierre. |
+
+## Agregados con el recorte (anexo v2.3)
+| Qué | Dónde | Por qué |
+|---|---|---|
+| "Coordiná una visita" (título) y "Quintino Bocayuva 655, Benavídez. A 500 metros de Panamericana, con acceso por calle asfaltada y estacionamiento dentro del predio." | Inicio, bloque de visita de la segunda pantalla | Título nuestro. El texto une frases del documento (dirección, Llegada y Estacionamiento). Botón "Coordinar una visita" y enlace "Cómo llegar" ya existían. |
+
+Se sacó el carrusel de testimonios, así que dejan de existir sus etiquetas accesibles.

@@ -29,7 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <html lang="es-AR" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
         <meta name="theme-color" content="#e9e6d2" />
         {env.noindex && <meta name="robots" content="noindex, nofollow" />}
         {/* Entrada del hero solo en la primera carga de la sesión. Corre antes del primer pintado. */}
