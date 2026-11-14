@@ -17,14 +17,12 @@ export function RainToggle() {
   return (
     <div>
       <div className="rain-stack" aria-live="polite">
-        <figure className="rain-layer m-0" data-hidden={mode !== "sol"} aria-hidden={mode !== "sol"}>
+        <div className="rain-layer" data-hidden={mode !== "sol"} aria-hidden={mode !== "sol"}>
           <Photo slot="lluvia.sol" />
-          <figcaption className="mt-3">{toggle.sol.caption}</figcaption>
-        </figure>
-        <figure className="rain-layer m-0" data-hidden={mode !== "lluvia"} aria-hidden={mode !== "lluvia"}>
+        </div>
+        <div className="rain-layer" data-hidden={mode !== "lluvia"} aria-hidden={mode !== "lluvia"}>
           <Photo slot="lluvia.cubierto" />
-          <figcaption className="mt-3">{toggle.lluvia.caption}</figcaption>
-        </figure>
+        </div>
       </div>
       <div className="mt-5 flex flex-wrap items-center gap-3">
         <span className="font-display font-semibold" id="rain-label">

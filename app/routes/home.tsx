@@ -2,7 +2,8 @@ import type { CSSProperties } from "react";
 import { Button } from "~/components/Button";
 import { ExpressButton } from "~/components/Express";
 import { GoogleReviews } from "~/components/GoogleReviews";
-import { MapEmbed } from "~/components/MapEmbed";
+import { Cierre } from "~/components/Cierre";
+import { MapFacade } from "~/components/MapFacade";
 import { Photo } from "~/components/Photo";
 import { RainToggle } from "~/components/RainToggle";
 import { Story } from "~/components/Story";
@@ -185,16 +186,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. CIERRE: mapa, dirección en una línea y un único botón */}
+      {/* 8. CÓMO LLEGAR: fachada del mapa (carga el iframe al clic) y enlace aparte a Maps */}
       <section className={`cv ${noche()} py-16 md:py-24`} aria-label="Cómo llegar">
         <div className="wrap">
-          <MapEmbed />
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
-            <p className="font-display text-h3">
-              {site.street}, {site.locality}
-            </p>
+          <MapFacade />
+          <p className="mt-4">
             <a
-              className="btn btn-primary"
+              className="link"
               href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -202,9 +200,12 @@ export default function Home() {
             >
               Cómo llegar
             </a>
-          </div>
+          </p>
         </div>
       </section>
+
+      {/* 9. CIERRE NOCTURNO: guirnalda que se prende una vez y el CTA debajo */}
+      <Cierre label={visita.cta.label} surface={noche()} />
     </>
   );
 }

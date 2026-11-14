@@ -56,8 +56,8 @@ export const lluvia = {
   /** Interruptor Sol / Lluvia: etiquetas y pies de foto (texto nuestro, ver COPY-CAMBIOS.md). */
   toggle: {
     label: "Ver el lugar con",
-    sol: { name: "Sol", caption: "El parque a pleno sol." },
-    lluvia: { name: "Lluvia", caption: "El armado cubierto." },
+    sol: { name: "Sol" },
+    lluvia: { name: "Lluvia" },
   },
 };
 
