@@ -1,5 +1,6 @@
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "~/components/Button";
+import { BULBS, Garland } from "~/components/Garland";
 import { Photo } from "~/components/Photo";
 import { heading, scenes } from "@/content/story";
 
@@ -11,7 +12,6 @@ import { heading, scenes } from "@/content/story";
  * color del texto sobre un fondo que cambia).
  */
 const HORAS = ["15", "16", "17", "18", "19", "20", "21", "22", "23", "00", "01", "02"];
-const BULBS = 10;
 const BULB_START = 0.5; // las lamparitas empiezan a prenderse a mitad del recorrido
 const BULB_STEP = 0.045;
 
@@ -132,18 +132,7 @@ export function Story() {
                 </span>
                 <span>:00</span>
               </div>
-              <div className="story-garland" aria-hidden="true">
-                <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                  <path d="M0 4 Q50 36 100 4" />
-                </svg>
-                {Array.from({ length: BULBS }, (_, i) => (
-                  <span
-                    key={i}
-                    className={`bulb ${i < lit ? "on" : ""}`}
-                    style={{ "--t": (i + 0.5) / BULBS } as CSSProperties}
-                  />
-                ))}
-              </div>
+              <Garland lit={lit} className="story-garland" />
             </div>
             <div className="story-rail" role="group" aria-label="Escenas del recorrido">
               <div className="story-chip">

@@ -42,18 +42,18 @@
 @media (prefers-reduced-motion: no-preference) {
   /* La foto se ve desde el primer pintado (no se anima su aparición, para no tocar el LCP): solo se asienta. */
   html[data-intro] .hero-photos > .ph > img {
-    animation: settle 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation: settle 1.6s var(--ease-out) both;
   }
   html[data-intro] .hero-title .line-in {
-    animation: line-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: line-up 0.9s var(--ease-out) both;
     animation-delay: calc(var(--i) * 70ms + 120ms);
   }
   /* El techo del gable se levanta de plano a pico: la firma del sitio. */
   html[data-intro] .hero .mask-galpon {
-    animation: roof-lift 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: roof-lift 0.9s var(--ease-out) both;
   }
   html[data-intro] .bar-consulta {
-    animation: bar-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.3s both;
+    animation: bar-in 0.6s var(--ease-out) 1.3s both;
   }
 
   /* C. Títulos de sección: el peso de Bricolage va de 300 a 700 una vez, al entrar al viewport. */
@@ -67,7 +67,7 @@
 
   /* Fallback sin animation-timeline: la capa de movimiento marca los elementos con data-in. */
   html.mfb main h2 {
-    transition: font-weight 0.9s ease;
+    transition: font-weight 0.9s var(--ease-out);
   }
   html.mfb main h2:not([data-in]) {
     font-weight: 300;
@@ -84,7 +84,7 @@
 
 /* Foto con zoom de 1,02 al pasar el puntero o enfocar (solo desktop con hover). */
 .ph.zoomable > img {
-  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 300ms var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .ph.zoomable:hover > img,
@@ -116,7 +116,7 @@
 }
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
   .camino {
-    transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition: transform 200ms var(--ease-out);
   }
   .camino:hover {
     transform: translateY(-2px);
@@ -150,27 +150,19 @@ footer.noche::before {
   section.noche:not(.no-glow)::before,
   section.noche-2::before,
   footer.noche::before {
-    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition: transform 300ms var(--ease-out);
   }
 }
 
 /* I. Consulta express: microinteracciones. */
-@keyframes step-in {
-  from {
-    opacity: 0;
-    transform: translateX(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* Cambio de paso en la consulta: fundido corto con transition y @starting-style (sin movimiento). */
+.step-in {
+  opacity: 1;
+  transition: opacity 150ms var(--ease-out);
 }
-@keyframes snap {
-  from {
-    transform: scale(0.97);
-  }
-  to {
-    transform: none;
+@starting-style {
+  .step-in {
+    opacity: 0;
   }
 }
 @keyframes draw {
@@ -199,19 +191,13 @@ footer.noche::before {
   stroke-dashoffset: 0;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .step-in {
-    animation: step-in 0.22s ease both;
-  }
-  .choice:has(input:checked) {
-    animation: snap 0.12s ease-out;
-  }
   .tick circle {
     stroke-dashoffset: 150;
-    animation: draw 0.5s ease forwards;
+    animation: draw 0.5s var(--ease-out) forwards;
   }
   .tick path {
     stroke-dashoffset: 40;
-    animation: draw 0.4s ease 0.35s forwards;
+    animation: draw 0.4s var(--ease-out) 0.35s forwards;
   }
 }
 

@@ -75,10 +75,26 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
         el?.querySelector<HTMLElement>("#express-titulo")?.focus({ preventScroll: true });
       }
     };
+    // Acciones por teclado (Enter, Espacio, Esc): el panel abre y cierra sin animar.
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const onKey = (e: KeyboardEvent) => {
+      const t0 = e.target as Element | null;
+      if (e.key === "Escape" || ((e.key === "Enter" || e.key === " ") && t0?.closest?.("[data-express]"))) {
+        el?.setAttribute("data-instant", "");
+        clearTimeout(t);
+        t = setTimeout(() => el?.removeAttribute("data-instant"), 400);
+      }
+    };
+    const onPointer = () => el?.removeAttribute("data-instant");
+    document.addEventListener("keydown", onKey, true);
+    document.addEventListener("pointerdown", onPointer, true);
     document.addEventListener("click", onClick, true);
     el?.addEventListener("toggle", onToggle);
     return () => {
       document.removeEventListener("click", onClick, true);
+      document.removeEventListener("keydown", onKey, true);
+      document.removeEventListener("pointerdown", onPointer, true);
+      clearTimeout(t);
       el?.removeEventListener("toggle", onToggle);
     };
   }, []);

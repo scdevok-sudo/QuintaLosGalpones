@@ -44,6 +44,10 @@
     scrollbar-color: var(--color-madera) var(--color-tarde);
     --header-h: 4rem;
     --focus: var(--color-tinta);
+    /* Curvas (anexo v2.3). Nunca ease-in en UI. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
   }
   @media (min-width: 75rem) {
     html {
@@ -162,7 +166,7 @@
     }
   }
   .measure {
-    max-width: 62ch;
+    max-width: 68ch;
   }
   .lead {
     font-size: var(--text-lead);
@@ -192,26 +196,15 @@
     background: var(--color-tinta);
     color: var(--color-tarde);
   }
-  .btn-primary:hover {
-    background: #3a2d20;
-  }
   .noche .btn-primary,
   .noche-2 .btn-primary,
   .story-panel.is-noche .btn-primary {
     background: var(--color-lamparita);
     color: var(--color-noche);
   }
-  .noche .btn-primary:hover,
-  .noche-2 .btn-primary:hover,
-  .story-panel.is-noche .btn-primary:hover {
-    background: #ffc169;
-  }
   .btn-line {
     border-color: currentColor;
     color: inherit;
-  }
-  .btn-line:hover {
-    background: color-mix(in srgb, currentColor 10%, transparent);
   }
   .link {
     display: inline-flex;
@@ -230,8 +223,41 @@
   .story-panel.is-noche .link {
     text-decoration-color: var(--color-lamparita);
   }
-  .link:hover {
-    text-decoration-thickness: 4px;
+  /* Hover solo con puntero fino. Press en todo lo clickeable: scale(0,97), 160 ms. */
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      background: #3a2d20;
+    }
+    .noche .btn-primary:hover,
+    .noche-2 .btn-primary:hover,
+    .story-panel.is-noche .btn-primary:hover {
+      background: #ffc169;
+    }
+    .btn-line:hover {
+      background: color-mix(in srgb, currentColor 10%, transparent);
+    }
+    .link:hover {
+      text-decoration-thickness: 4px;
+    }
+  }
+  .btn,
+  .link,
+  .nav-link,
+  .story-rail-btn,
+  .seg button,
+  .choice {
+    transition:
+      transform 160ms var(--ease-out),
+      background-color 160ms var(--ease-out),
+      color 160ms var(--ease-out);
+  }
+  .btn:active,
+  .link:active,
+  .nav-link:active,
+  .story-rail-btn:active,
+  .seg button:active,
+  .choice:active {
+    transform: scale(0.97);
   }
 
   /* Fotos: el espacio se reserva con aspect-ratio (CLS cercano a 0) */
@@ -308,13 +334,15 @@
   visibility: hidden;
   opacity: 0;
   transition:
-    opacity 0.2s ease,
-    visibility 0s linear 0.2s;
+    opacity 200ms var(--ease-drawer),
+    visibility 0s linear 200ms;
 }
 .site-nav[data-open="true"] {
   visibility: visible;
   opacity: 1;
-  transition-delay: 0s;
+  transition:
+    opacity 200ms var(--ease-drawer),
+    visibility 0s;
 }
 .site-nav-list {
   list-style: none;
@@ -371,10 +399,12 @@
     letter-spacing: 0;
     font-variation-settings: "opsz" 14;
   }
-  .nav-link:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--color-madera);
-    text-underline-offset: 0.3em;
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--color-madera);
+      text-underline-offset: 0.3em;
+    }
   }
   .site-nav-action {
     width: auto;
@@ -478,7 +508,7 @@
 .clock-strip {
   display: block;
   transform: translateY(calc(var(--hh, 0) * -1.3em));
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 300ms var(--ease-out);
 }
 .clock-strip > span {
   display: block;
@@ -591,47 +621,9 @@
     min-width: 0;
   }
   .story-garland {
-    position: relative;
     flex: 1;
-    height: 2.75rem;
     min-width: 0;
     color: rgb(35 27 19 / 0.6);
-  }
-  .story-garland svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-  .story-garland path {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.5;
-    vector-effect: non-scaling-stroke;
-  }
-  .bulb {
-    position: absolute;
-    left: calc(var(--t) * 100%);
-    top: calc((10 + 160 * var(--t) * (1 - var(--t))) * 1%);
-    width: 11px;
-    height: 11px;
-    margin: -5px 0 0 -5px;
-    border-radius: 50%;
-    background: #5f6b5a;
-  }
-  .bulb::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: var(--color-lamparita);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .bulb.on::after {
-    opacity: 1;
-    filter: drop-shadow(0 0 5px rgb(255 179 71 / 0.9));
-    animation: flick 0.5s steps(1) 1;
   }
   .story-scenes {
     position: relative;
@@ -657,7 +649,7 @@
   }
   /* Cortina de galpón: el pico del gable barre la escena nueva de abajo hacia arriba. */
   .story-scene[data-state="active"][data-run="1"] {
-    animation: curtain 0.95s cubic-bezier(0.65, 0, 0.35, 1) both;
+    animation: curtain 0.95s var(--ease-in-out) both;
   }
   .story-scene .story-photo {
     position: absolute;
@@ -769,7 +761,7 @@
   position: relative;
 }
 .rain-layer {
-  transition: opacity 0.35s ease;
+  transition: opacity 250ms var(--ease-out);
 }
 .rain-layer[data-hidden="true"] {
   opacity: 0;
@@ -835,23 +827,34 @@ html {
   background: var(--color-tarde);
   color: var(--color-tinta);
   box-shadow: 0 -8px 28px rgb(21 29 24 / 0.22);
+  /* Entra con scale(0,95) y opacity desde el borde de anclaje; sale más rápido de lo que entra. */
   opacity: 0;
-  transform: translateY(12px);
+  transform: scale(0.95);
+  transform-origin: bottom center;
   transition:
-    opacity 0.15s ease,
-    transform 0.15s ease,
-    overlay 0.15s allow-discrete,
-    display 0.15s allow-discrete;
+    opacity 100ms var(--ease-out),
+    transform 100ms var(--ease-out),
+    overlay 100ms allow-discrete,
+    display 100ms allow-discrete;
 }
 .consulta:popover-open {
   opacity: 1;
   transform: none;
+  transition:
+    opacity 200ms var(--ease-drawer),
+    transform 200ms var(--ease-drawer),
+    overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
 }
 @starting-style {
   .consulta:popover-open {
     opacity: 0;
-    transform: translateY(12px);
+    transform: scale(0.95);
   }
+}
+/* Acciones por teclado (abrir con Enter o Espacio, cerrar con Esc): sin animación. */
+.consulta[data-instant] {
+  transition: none;
 }
 /* Pasos largos (contacto, resultado): más alto, porque hay teclado y campos. */
 .consulta[data-step="contacto"],
@@ -919,6 +922,7 @@ html {
 @media (min-width: 48rem) {
   .consulta {
     inset: auto 1.5rem calc(1.5rem + var(--kb, 0px)) auto;
+    transform-origin: bottom right;
     width: min(27rem, calc(100% - 3rem));
     max-height: calc(100svh - var(--header-h) - 3rem);
     border-width: 2px;
@@ -1033,6 +1037,71 @@ button.link {
   overflow: hidden;
 }
 
+/* Guirnalda de lamparitas: la usan el recorrido y el cierre nocturno. Cada foco se prende con la clase .on. */
+.garland {
+  position: relative;
+  height: 2.75rem;
+}
+.garland svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.garland path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.bulb {
+  position: absolute;
+  left: calc(var(--t) * 100%);
+  top: calc((10 + 160 * var(--t) * (1 - var(--t))) * 1%);
+  width: 11px;
+  height: 11px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: #5f6b5a;
+}
+/* Foco y resplandor: el resplandor es un degradé radial (no una sombra). */
+.bulb::before,
+.bulb::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 250ms var(--ease-out);
+}
+.bulb::after {
+  inset: 0;
+  background: var(--color-lamparita);
+}
+.bulb::before {
+  inset: -9px;
+  background: radial-gradient(circle, rgb(255 179 71 / 0.55), transparent 70%);
+}
+.bulb.on::before,
+.bulb.on::after {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .story .bulb.on::after {
+    animation: flick 0.5s steps(1) 1;
+  }
+}
+
+/* Cierre nocturno: la guirnalda se prende una sola vez al entrar en pantalla y el botón queda debajo. */
+.cierre-guirnalda {
+  color: rgb(233 230 210 / 0.5);
+  max-width: 44rem;
+  margin-inline: auto;
+}
+.cierre-guirnalda .bulb {
+  background: #3f4a43;
+}
+
+/* Reduced motion: se mantienen los fades y los colores; se saca el movimiento y la posición. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1041,7 +1110,13 @@ button.link {
   *::before,
   *::after {
     animation: none !important;
-    transition: none !important;
+    transition-property: opacity, color, background-color, border-color, text-decoration-color, overlay, display !important;
+  }
+  *:active {
+    transform: none !important;
+  }
+  .consulta {
+    transform: none !important;
   }
   ::view-transition-group(*),
   ::view-transition-old(*),
