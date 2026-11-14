@@ -1,6 +1,6 @@
 // Graba el movimiento de Inicio: un video .webm por escenario (Playwright) y fotogramas sueltos para revisarlos.
 // Uso: npm run preview (otra terminal) y `node scripts/record.mjs [escenario ...]`.
-// Escenarios: hero, recorrido, caminos, consulta, sinjs, cierre, visita, transicion, reducido.
+// Escenarios: hero, recorrido, caminos, consulta, sinjs, cierre, visita, casamientos, interaccion, transicion, reducido.
 import { mkdirSync, readdirSync, renameSync } from "node:fs";
 import { chromium } from "playwright";
 
@@ -185,18 +185,68 @@ if (want("cierre"))
     });
   }
 
-// E. Transición entre páginas (la única otra ruta hoy es el 404)
+// E. Transición Inicio a Casamientos: la foto de la card se vuelve el hero de la página
 if (want("transicion"))
   await scenario("transicion-desktop", D, {}, async (page, shot) => {
     await page.goto(base + "/", { waitUntil: "load" });
     await sleep(2600);
-    await page.getByRole("link", { name: "Contacto" }).first().click();
-    await sleep(60);
-    await shot("t60");
-    await sleep(120);
-    await shot("t180");
+    await page.evaluate(() => document.querySelector(".caminos").scrollIntoView({ block: "center" }));
+    await sleep(500);
+    await shot("origen");
+    await page.locator(".camino a", { hasText: "Quiero organizar mi casamiento" }).click();
+    await sleep(80);
+    await shot("t80");
+    await sleep(160);
+    await shot("t240");
     await sleep(900);
     await shot("destino");
+  });
+
+// G. Casamientos completa, desktop y mobile, con scroll continuo
+if (want("casamientos"))
+  for (const [tag, vp, mobile] of [["casamientos-desktop", D, false], ["casamientos-mobile", M, true]]) {
+    await scenario(tag, vp, { mobile }, async (page, shot) => {
+      await page.goto(base + "/casamientos/", { waitUntil: "load" });
+      await sleep(2600);
+      await shot("hero");
+      const total = await page.evaluate(() => document.documentElement.scrollHeight - innerHeight);
+      let k = 0;
+      for (let y = 0; y <= total; y += Math.round(vp.height * 0.45)) {
+        await page.evaluate((v) => window.scrollTo(0, v), y);
+        await sleep(450);
+        if (k % 2 === 0) await shot(`s${String(k).padStart(2, "0")}`);
+        k++;
+      }
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await sleep(1600);
+      await shot("cierre");
+    });
+  }
+
+// H. Oficio de interacción: press, hover con puntero fino y foco de teclado en Inicio
+if (want("interaccion"))
+  await scenario("interaccion-desktop", D, {}, async (page, shot) => {
+    await page.goto(base + "/", { waitUntil: "load" });
+    await sleep(2600);
+    const btn = page.getByRole("button", { name: "Vení a conocer la quinta" });
+    await btn.hover();
+    await sleep(300);
+    await shot("hover");
+    const box = await btn.boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await page.mouse.down();
+    await sleep(200);
+    await shot("press");
+    await page.mouse.up();
+    await sleep(500);
+    await shot("abre");
+    await page.keyboard.press("Escape");
+    await sleep(100);
+    await shot("esc-sin-animar");
+    await page.keyboard.press("Tab");
+    await page.keyboard.press("Tab");
+    await sleep(200);
+    await shot("foco");
   });
 
 // F. Con prefers-reduced-motion: reduce (estado final estático)

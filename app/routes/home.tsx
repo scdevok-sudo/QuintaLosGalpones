@@ -205,7 +205,9 @@ export default function Home() {
       </section>
 
       {/* 9. CIERRE NOCTURNO: guirnalda que se prende una vez y el CTA debajo */}
-      <Cierre label={visita.cta.label} surface={noche()} />
+      <Cierre surface={noche()} ariaLabel="Consultar por mi fecha">
+        <ExpressButton label={visita.cta.label} origen="cierre" />
+      </Cierre>
     </>
   );
 }

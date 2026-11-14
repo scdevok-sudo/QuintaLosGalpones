@@ -20,6 +20,12 @@ if (!/VITE_FORM_ENDPOINT=\S+/.test(env)) pend.push("Falta endpoint del formulari
 if (/VITE_NOINDEX=true/.test(env)) pend.push("VITE_NOINDEX=true: poner false al publicar.");
 if (/pending: true/.test(photos)) pend.push("Falta foto real del armado cubierto con lluvia (slot lluvia.cubierto): el interruptor Sol/Lluvia no se muestra hasta tenerla.");
 if (/VITE_PREVIEW_PENDING=true/.test(env)) pend.push("VITE_PREVIEW_PENDING=true: quitarlo al publicar.");
+try {
+  const html = read("dist/index.html");
+  const noscript = [...html.matchAll(/<noscript>([\s\S]*?)<\/noscript>/g)].map((m) => m[1]).join("");
+  const srcs = new Set([...(html + noscript).matchAll(/<img[^>]*\ssrc="([^"]+)"/g)].map((m) => m[1]));
+  if (srcs.size < 12) pend.push(`Inicio usa ${srcs.size} fotos distintas; la meta es de 12 a 20 reales sin repetir (depende de la Fase 2).`);
+} catch {}
 pend.push("Logo reconstruido a partir de una captura de baja resolución: pedir vectorial original al cliente.");
 pend.push("Política de privacidad en borrador sin validación legal.");
 console.log("Pendientes para lanzar:\n" + pend.map((p) => "  - " + p).join("\n"));
