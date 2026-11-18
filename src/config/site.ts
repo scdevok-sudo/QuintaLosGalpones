@@ -17,7 +17,7 @@ export const env = {
  * La página /contacto/ todavía no existe. Mientras sea false, los CTA que apuntan a ella usan la consulta
  * express (#consulta) o WhatsApp, que funcionan sin JS. Pasar a true cuando se publique Contacto.
  */
-export const contactoReady = false;
+export const contactoReady = true;
 
 export const site = {
   name: "Quinta Los Galpones",
