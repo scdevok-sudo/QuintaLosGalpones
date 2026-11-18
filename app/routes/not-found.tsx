@@ -8,8 +8,9 @@ export function meta() {
 
 export default function NotFound() {
   return (
-    <section className="wrap py-20 md:py-28">
-      <h1>No encontramos esta página</h1>
+    <section className="dia py-20 md:py-28" aria-labelledby="nf-titulo">
+      <div className="wrap">
+      <h1 id="nf-titulo">No encontramos esta página</h1>
       <p className="lead measure mt-6">
         Puede que el enlace haya cambiado. Mientras tanto, podés ir a cualquiera de las secciones principales.
       </p>
@@ -22,6 +23,7 @@ export default function NotFound() {
           </li>
         ))}
       </ul>
+      </div>
     </section>
   );
 }
