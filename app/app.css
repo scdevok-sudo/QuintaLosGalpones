@@ -1074,6 +1074,10 @@ button.link {
   cursor: pointer;
   font-size: 1.0625rem;
 }
+.choice:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
 .choice:has(input:checked) {
   background: var(--color-tinta);
   color: var(--color-tarde);
@@ -1311,3 +1315,7 @@ textarea.input {
 .lightbox-arrow { width: 0.7rem; height: 0.7rem; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
 .lightbox-arrow-prev { transform: rotate(-135deg); }
 @media (hover: hover) and (pointer: fine) { .lightbox-btn:hover { background: var(--color-madera); } }
+
+/* Reserva de altura del formulario de Contacto mientras se monta (evita saltos de layout) */
+.cf-reserva { min-height: 46rem; }
+@media (min-width: 40rem) { .cf-reserva { min-height: 40rem; } }

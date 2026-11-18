@@ -52,8 +52,8 @@ export default function Contacto() {
         </div>
       </section>
 
-      {/* 3. FORMULARIO: a la izquierda qué pasa después, a la derecha los campos */}
-      <section id="formulario" className="cv dia py-16 md:py-28" aria-labelledby="formulario-titulo">
+      {/* 3. FORMULARIO (sin content-visibility: con ella el layout del formulario sumaba ~800 ms de TBT en Lighthouse móvil) a la izquierda qué pasa después, a la derecha los campos */}
+      <section id="formulario" className="dia py-16 md:py-28" aria-labelledby="formulario-titulo">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <h2 id="formulario-titulo" className="text-h3">

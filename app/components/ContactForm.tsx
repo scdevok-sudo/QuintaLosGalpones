@@ -9,7 +9,7 @@ import { whatsappLink } from "@/lib/whatsapp";
  * WhatsApp (los dos botones de la cabecera y el aviso de acá). `?tipo=empresa` preselecciona el tipo de evento.
  * Opciones, rangos y campos por tipo viven en src/config/consulta.ts.
  */
-export function ContactForm() {
+function ContactFormInner() {
   const [tipo, setTipo] = useState<Tipo>("casamiento");
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [errors, setErrors] = useState<{ nombre?: string; contacto?: string }>({});
@@ -214,6 +214,41 @@ export function ContactForm() {
           </div>
         )}
       </form>
+    </>
+  );
+}
+
+/**
+ * El formulario se monta cuando el navegador está ocioso (o enseguida si se llega por #formulario o se toca la zona):
+ * el layout de todos sus controles en la carga inicial sumaba cientos de ms de bloqueo en móvil. Sin JS el formulario
+ * no se podía usar de todos modos: queda el aviso con WhatsApp. El contenedor reserva la altura para no mover la página.
+ */
+export function ContactForm() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (location.hash === "#formulario") {
+      setReady(true);
+      return;
+    }
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(() => setReady(true), { timeout: 3000 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(() => setReady(true), 1500);
+    return () => clearTimeout(id);
+  }, []);
+  if (ready) return <ContactFormInner />;
+  return (
+    <>
+      <noscript>
+        <p>
+          {campos.noJs}{" "}
+          <a className="link" href={whatsappLink("generico")} target="_blank" rel="noopener noreferrer">
+            Escribir por WhatsApp
+          </a>
+        </p>
+      </noscript>
+      <div className="cf-reserva" aria-busy="true" onPointerEnter={() => setReady(true)} onFocusCapture={() => setReady(true)} />
     </>
   );
 }

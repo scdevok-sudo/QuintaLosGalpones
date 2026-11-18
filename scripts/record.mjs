@@ -278,4 +278,24 @@ if (want("reducido")) {
   });
 }
 
+// I. Eventos reales: filtro y lightbox (abre, flecha, Esc), con movimiento y con reduced-motion
+if (want("lightbox")) {
+  for (const [tag, vp, mobile, reduced] of [["desktop", D, false, false], ["mobile", M, true, false], ["reducido-desktop", D, false, true], ["reducido-mobile", M, true, true]]) {
+    await scenario("lightbox-" + tag, vp, { mobile, reduced }, async (page, shot) => {
+      await page.goto(base + "/eventos-reales", { waitUntil: "load" });
+      await sleep(2600);
+      await shot("galeria");
+      await page.locator(".reales-foto").first().click();
+      await sleep(500);
+      await shot("abierto");
+      await page.keyboard.press("ArrowRight");
+      await sleep(300);
+      await shot("siguiente");
+      await page.keyboard.press("Escape");
+      await sleep(300);
+      await shot("cerrado");
+    });
+  }
+}
+
 await browser.close();

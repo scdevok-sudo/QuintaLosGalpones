@@ -16,3 +16,6 @@ docs/checkpoint3/
 imagenes/
 docs/fotos/contactos/
 .photos-work/
+
+# Grabaciones de QA (pesadas, se regeneran con npm run record)
+docs/qa/videos/

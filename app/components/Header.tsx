@@ -29,7 +29,7 @@ export function Header() {
         <Link
           to="/"
           viewTransition
-          className="relative z-[2] flex shrink-0 items-center no-underline"
+          className="relative z-[2] flex min-h-11 shrink-0 items-center no-underline"
           aria-label="Quinta Los Galpones, ir al inicio"
         >
           <Logo tone="oscuro" height={40} />
