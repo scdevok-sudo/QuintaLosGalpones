@@ -11,3 +11,8 @@ drive-fotos/
 .playwright*
 shots/
 docs/checkpoint3/
+
+# Fotos: originales y material con rostros no se commitean
+imagenes/
+docs/fotos/contactos/
+.photos-work/

@@ -4,8 +4,30 @@ import { readFileSync } from "node:fs";
 const read = (f) => readFileSync(f, "utf8");
 const pend = [];
 const photos = read("src/content/photos.ts");
-const nPhotos = [...photos.matchAll(/make\(/g)].length - 1;
-pend.push(`Fotos provisorias (temp): ${nPhotos} slots usan imágenes del sitio actual (Fase 2).`);
+const slotMap = JSON.parse(read("src/data/photos.slots.json"));
+const manifest = JSON.parse(read("src/data/photos.manifest.json"));
+const allSlots = [...photos.matchAll(/^\s+"?([\w.]+)"?: use\(/gm)].map((m) => m[1]);
+const legacy = allSlots.filter((n) => !slotMap[n]);
+if (legacy.length) pend.push(`Fotos provisorias del sitio actual (temp): ${legacy.length} slots todavía no tienen foto nueva (${legacy.join(", ")}).`);
+// Fotos procesadas en uso: las bloqueadas hacen fallar; las provisorias son advertencias para el cliente.
+const fail = [];
+const inUse = new Map();
+for (const [slot, c] of Object.entries(slotMap)) inUse.set(c.foto, [...(inUse.get(c.foto) ?? []), slot]);
+const motivos = {
+  procedencia: "Procedencia sin confirmar (sin EXIF o con acabado de imagen retocada)",
+  rostros: "Rostros sin permiso confirmado",
+  resolucion: "Resolución baja (menos de 2000 px de lado largo): pedir el original",
+};
+const porMotivo = { procedencia: [], rostros: [], resolucion: [] };
+for (const [id, slots] of inUse) {
+  const m = manifest.find((x) => x.id === id && x.seccion !== "og");
+  if (!m) {
+    fail.push(`${id} (${slots.join(", ")}) no está en el manifiesto: correr npm run photos:build.`);
+    continue;
+  }
+  if (m.estado === "bloqueada") fail.push(`${id} está bloqueada y se usa en ${slots.join(", ")}.`);
+  for (const p of m.pendientes ?? []) porMotivo[p].push(`${id} (${slots.join(", ")})`);
+}
 if (/approved: false/.test(read("src/content/home.ts"))) pend.push("Testimonios sin autorización de nombre e imagen (approved: false).");
 if (!/reviews: Review\[\] = \[[^\]]*\w/.test(read("src/content/reviews.ts"))) pend.push("Sin reseñas de Google cargadas.");
 const site = read("src/config/site.ts");
@@ -29,3 +51,12 @@ try {
 pend.push("Logo reconstruido a partir de una captura de baja resolución: pedir vectorial original al cliente.");
 pend.push("Política de privacidad en borrador sin validación legal.");
 console.log("Pendientes para lanzar:\n" + pend.map((p) => "  - " + p).join("\n"));
+const pc = Object.entries(porMotivo).filter(([, v]) => v.length);
+if (pc.length) {
+  console.log("\nPendiente de confirmación del cliente (advertencias, no bloquean):");
+  for (const [k, v] of pc) console.log(`  - ${motivos[k]}: ${v.join("; ")}`);
+}
+if (fail.length) {
+  console.log("\nERRORES (fotos bloqueadas en uso):\n" + fail.map((p) => "  - " + p).join("\n"));
+  process.exitCode = 1;
+}

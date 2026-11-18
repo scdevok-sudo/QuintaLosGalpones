@@ -1,0 +1,1469 @@
+{
+ "_nota": "Fuente de verdad de photos:build. Para reemplazar un original: copiarlo con el MISMO nombre de archivo en la carpeta fuente y correr npm run photos:build.",
+ "fuente": "imagenes/Para Diego-1-001/Para Diego",
+ "salida": "public/photos",
+ "og": {
+  "foto": "F035",
+  "seccion": "og",
+  "sujeto": "parque-guirnaldas",
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  }
+ },
+ "slots": {
+  "hero.principal": {
+   "foto": "F043",
+   "desktop": [
+    5,
+    4
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "hero.secundaria": {
+   "foto": "F041",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "story.llegada": {
+   "foto": "F033",
+   "desktop": [
+    3,
+    2
+   ],
+   "mobile": [
+    4,
+    5
+   ]
+  },
+  "story.ceremonia": {
+   "foto": "F046",
+   "desktop": [
+    3,
+    2
+   ],
+   "mobile": [
+    4,
+    5
+   ]
+  },
+  "story.fiesta": {
+   "foto": "F049",
+   "desktop": [
+    3,
+    2
+   ],
+   "mobile": [
+    4,
+    5
+   ]
+  },
+  "story.noche": {
+   "foto": "F048",
+   "desktop": [
+    3,
+    2
+   ],
+   "mobile": [
+    4,
+    5
+   ]
+  },
+  "lluvia.sol": {
+   "foto": "F035",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "lluvia.cubierto": {
+   "foto": "F037",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "home.casamientos": {
+   "foto": "F028",
+   "desktop": [
+    5,
+    4
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "home.empresas": {
+   "foto": "F032",
+   "desktop": [
+    16,
+    10
+   ],
+   "mobile": [
+    3,
+    2
+   ]
+  },
+  "casamientos.hero": {
+   "foto": "F057",
+   "desktop": [
+    16,
+    9
+   ],
+   "mobile": [
+    3,
+    2
+   ],
+   "bleed": [
+    21,
+    9
+   ]
+  },
+  "casamientos.parque": {
+   "foto": "F035",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "casamientos.servicios": {
+   "foto": "F047",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "casamientos.lluvia": {
+   "foto": "F045",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "espacios.hero": {
+   "foto": "F027",
+   "desktop": [
+    16,
+    9
+   ],
+   "mobile": [
+    3,
+    2
+   ],
+   "bleed": [
+    21,
+    9
+   ]
+  },
+  "espacios.parque": {
+   "foto": "F032",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "espacios.cubierto": {
+   "foto": "F037",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "espacios.ceremonia": {
+   "foto": "F057",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "espacios.llegada": {
+   "foto": "F026",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "contacto.hero": {
+   "foto": "F035",
+   "desktop": [
+    3,
+    2
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  },
+  "contacto.entrada": {
+   "foto": "F015",
+   "desktop": [
+    4,
+    3
+   ],
+   "mobile": [
+    4,
+    3
+   ]
+  }
+ },
+ "fotos": [
+  {
+   "id": "F001",
+   "original": "05E8455F-6F87-4DAC-BFD6-2751F2F03D16.png",
+   "procesar": true,
+   "seccion": "espacios-cubierto",
+   "sujeto": "galpon-armado",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.5
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Interior del galpón con mesas largas servidas, velas y un arreglo de pampa, abierto al parque",
+   "nota": "Misma toma que F056 pero pulida: posible versión retocada con IA"
+  },
+  {
+   "id": "F002",
+   "original": "16bc0bfd-4f38-43cd-83b2-5c89dd4f5c13.jpg",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Duplicado de F055",
+   "nota": "Descartada en el análisis: Duplicado de F055"
+  },
+  {
+   "id": "F003",
+   "original": "37ad736c-c58c-49cb-bc3a-8ebf80e8bddf.jpg",
+   "procesar": true,
+   "seccion": "recorrido-2",
+   "sujeto": "parque-palmera",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.45
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Parque al atardecer con una palmera, guirnaldas de luces y gente a lo lejos",
+   "nota": "Sin EXIF, nombre UUID"
+  },
+  {
+   "id": "F004",
+   "original": "3805E638-23E3-4615-B7A2-5DC18F2CFDD8.png",
+   "procesar": true,
+   "seccion": "casamientos-galeria",
+   "sujeto": "mesa-larga-velas",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Mesa larga con velas y flores blancas vista de cerca, de noche",
+   "nota": "Sin EXIF, nombre UUID"
+  },
+  {
+   "id": "F005",
+   "original": "38620F37-8205-4437-885D-EA696FFB5A85.png",
+   "procesar": true,
+   "seccion": "espacios-parque",
+   "sujeto": "livings-arbol",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Livings con almohadones blancos y velas bajo un árbol cubierto de luces, de noche",
+   "nota": "Sin EXIF, nombre UUID; par de F012"
+  },
+  {
+   "id": "F006",
+   "original": "5119907c-8e3c-4253-aecd-567acd5776fc.jpg",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Igual a F018 (hash 0), peor resolución",
+   "nota": "Descartada en el análisis: Igual a F018 (hash 0), peor resolución"
+  },
+  {
+   "id": "F007",
+   "original": "53FD6658-A400-45D5-8C25-F2C5476A0207.png",
+   "procesar": true,
+   "seccion": "casamientos-hero",
+   "sujeto": "pareja-cesped",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.45,
+    "y": 0.55
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": true,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Pareja de novios abrazada en el césped, con guirnaldas de luces entre los árboles",
+   "nota": "Sin EXIF, UUID; casi idéntica a F013; posible generada. No usar sin confirmar Verificar que no haya menores."
+  },
+  {
+   "id": "F008",
+   "original": "7677FBD4-AEF2-4520-A4D3-933AA46763F1.png",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Misma escena que F002/F055",
+   "nota": "Descartada en el análisis: Misma escena que F002/F055"
+  },
+  {
+   "id": "F009",
+   "original": "7A3CB813-2F05-41D2-A79E-9A3182065C5E.png",
+   "procesar": true,
+   "seccion": "espacios-cubierto",
+   "sujeto": "galpon-bolas-espejo",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.55
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Techo del galpón con bolas espejadas y luces, y mesas redondas servidas abajo",
+   "nota": "Sin EXIF, UUID; baja resolución"
+  },
+  {
+   "id": "F010",
+   "original": "97890C8B-3CB8-473A-B8ED-F78086E04564.png",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Rostros, baja resolución",
+   "nota": "Descartada en el análisis: Rostros, baja resolución"
+  },
+  {
+   "id": "F011",
+   "original": "99DE625B-AD76-44C8-A244-82AFE9CE4BC8.png",
+   "procesar": true,
+   "seccion": "espacios-cubierto",
+   "sujeto": "galpon-nave",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Nave del galpón con dos hileras de mesas largas servidas bajo el techo de madera con luces",
+   "nota": "Sin EXIF, UUID"
+  },
+  {
+   "id": "F012",
+   "original": "CE4E8F14-41D1-446A-A45B-94919031E098.png",
+   "procesar": false,
+   "personas": "ninguna",
+   "motivo": "Casi duplicada de F005",
+   "nota": "Descartada en el análisis: Casi duplicada de F005"
+  },
+  {
+   "id": "F013",
+   "original": "E4B1F96B-5609-4FFF-85C0-794C1D985935.png",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Casi duplicada de F007",
+   "nota": "Descartada en el análisis: Casi duplicada de F007"
+  },
+  {
+   "id": "F014",
+   "original": "IMG_0024.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Captura con interfaz y nombre de cuenta, música de terceros",
+   "nota": "Descartada en el análisis: Captura con interfaz y nombre de cuenta, música de terceros"
+  },
+  {
+   "id": "F015",
+   "original": "IMG_0540.PNG",
+   "procesar": true,
+   "seccion": "mapa-fachada",
+   "sujeto": "cabana-parque",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.5
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": true,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "contacto.entrada"
+   ],
+   "alt": "Construcción de madera con techo de chapa entre árboles, con invitados y músicos sobre el césped",
+   "nota": "Única vista de la construcción; con gente en primer plano Verificar que no haya menores."
+  },
+  {
+   "id": "F016",
+   "original": "IMG_0578.PNG",
+   "procesar": true,
+   "seccion": "recorrido-4",
+   "sujeto": "fogata-invitados",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.5
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": false,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Fogata encendida en el parque de noche, con muchos invitados alrededor y guirnaldas de luces",
+   "nota": "Escena de fogata valiosa; pedir permiso o versión sin rostros Verificar que no haya menores.",
+   "trim": [
+    58,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "F017",
+   "original": "IMG_0585.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Marcos negros, posible menor",
+   "nota": "Descartada en el análisis: Marcos negros, posible menor"
+  },
+  {
+   "id": "F018",
+   "original": "IMG_1759.PNG",
+   "procesar": true,
+   "seccion": "casamientos-galeria",
+   "sujeto": "mesa-larga-invitados",
+   "momento": "tarde",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.72
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": false,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Mesa larga servida bajo un árbol, con invitados sentados y velas encendidas",
+   "nota": "Misma que F006 Verificar que no haya menores."
+  },
+  {
+   "id": "F019",
+   "original": "IMG_1782.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Rostros, ruido",
+   "nota": "Descartada en el análisis: Rostros, ruido"
+  },
+  {
+   "id": "F020",
+   "original": "IMG_4483.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Se ven menores (un bebé en brazos y un niño entre los invitados) y hay una mancha de retoque en el borde derecho",
+   "nota": "Bloqueada: Se ven menores (un bebé en brazos y un niño entre los invitados) y hay una mancha de retoque en el borde derecho"
+  },
+  {
+   "id": "F021",
+   "original": "IMG_5174.JPG",
+   "procesar": true,
+   "seccion": "casamientos-galeria",
+   "sujeto": "barra-larga",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.4,
+    "y": 0.5
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": true,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Barra larga con copas y botellas, con invitados conversando al atardecer en el parque",
+   "nota": "Par de F025 Verificar que no haya menores."
+  },
+  {
+   "id": "F022",
+   "original": "IMG_5256.PNG",
+   "procesar": false,
+   "personas": "sin-rostro",
+   "motivo": "Sobresaturada, baja resolución",
+   "nota": "Descartada en el análisis: Sobresaturada, baja resolución"
+  },
+  {
+   "id": "F023",
+   "original": "IMG_5257.PNG",
+   "procesar": true,
+   "seccion": "recorrido-4",
+   "sujeto": "fogata-siluetas",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.72
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Fogata en el parque al atardecer, con invitados a contraluz y árboles al fondo",
+   "nota": "Color muy forzado",
+   "trim": [
+    0,
+    0,
+    12,
+    0
+   ]
+  },
+  {
+   "id": "F024",
+   "original": "IMG_5920.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Captura de video",
+   "nota": "Descartada en el análisis: Captura de video"
+  },
+  {
+   "id": "F025",
+   "original": "IMG_6599.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Par de F021, rostros",
+   "nota": "Descartada en el análisis: Par de F021, rostros"
+  },
+  {
+   "id": "F026",
+   "original": "IMG_6637.PNG",
+   "procesar": true,
+   "seccion": "espacios-parque",
+   "sujeto": "rincon-cartel",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.5
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "espacios.llegada"
+   ],
+   "alt": "Rincón del parque de noche con livings y almohadones bajo luces colgantes; al fondo, un cartel luminoso",
+   "nota": "Reconocible de esta quinta"
+  },
+  {
+   "id": "F027",
+   "original": "IMG_6675.PNG",
+   "procesar": true,
+   "seccion": "espacios-parque",
+   "sujeto": "banco-flores",
+   "momento": "atardecer",
+   "ratio": [
+    3,
+    2
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.4
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "espacios.hero"
+   ],
+   "alt": "Banco de carpintero con flores blancas y velas, la pileta a un lado y el galpón iluminado al fondo",
+   "nota": "Específica del lugar, sin gente"
+  },
+  {
+   "id": "F028",
+   "original": "IMG_6813.PNG",
+   "procesar": true,
+   "seccion": "cierre-noche",
+   "sujeto": "guirnalda-mesas",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.55
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "home.casamientos"
+   ],
+   "alt": "Mesa larga con arreglos florales bajo cortinas de luces que cuelgan de un árbol, de noche",
+   "nota": "Imagen fuerte de la noche"
+  },
+  {
+   "id": "F029",
+   "original": "IMG_6821.PNG",
+   "procesar": true,
+   "seccion": "espacios-cubierto",
+   "sujeto": "galpon-fiesta",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.55
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": false,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Interior del galpón de noche con el techo de madera cubierto de luces y gente en livings y mesas",
+   "nota": "Ráfaga con F030/F031 Verificar que no haya menores."
+  },
+  {
+   "id": "F030",
+   "original": "IMG_6823.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Luces de color poco coherentes; duplicada de F031",
+   "nota": "Descartada en el análisis: Luces de color poco coherentes; duplicada de F031"
+  },
+  {
+   "id": "F031",
+   "original": "IMG_6824.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Duplicada de F030",
+   "nota": "Descartada en el análisis: Duplicada de F030"
+  },
+  {
+   "id": "F032",
+   "original": "IMG_6831.PNG",
+   "procesar": true,
+   "seccion": "espacios-parque",
+   "sujeto": "mesas-pileta",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.62
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "home.empresas",
+    "espacios.parque"
+   ],
+   "alt": "Mesas altas y una mesa servida sobre el césped, junto a la pileta, con invitados al fondo",
+   "nota": "Parque con montaje"
+  },
+  {
+   "id": "F033",
+   "original": "IMG_7131.PNG",
+   "procesar": true,
+   "seccion": "recorrido-1",
+   "sujeto": "parque-guirnaldas",
+   "momento": "tarde",
+   "ratio": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.62
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "story.llegada"
+   ],
+   "alt": "Parque entre árboles con guirnaldas de luces y un grupo de invitados a lo lejos, al caer la tarde",
+   "nota": "Luz de transición"
+  },
+  {
+   "id": "F034",
+   "original": "IMG_7132.PNG",
+   "procesar": true,
+   "seccion": "cierre-noche",
+   "sujeto": "mesa-cartel",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.55
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Mesa larga con velas y platos, y al fondo una barra con un cartel luminoso y hombres de espaldas",
+   "nota": "Cartel con tipografía irregular: verificar si es real"
+  },
+  {
+   "id": "F035",
+   "original": "IMG_7151.PNG",
+   "procesar": true,
+   "seccion": "casamientos-galeria",
+   "sujeto": "parque-guirnaldas",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.5
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "lluvia.sol",
+    "casamientos.parque",
+    "contacto.hero"
+   ],
+   "alt": "Césped con guirnaldas de luces al atardecer y invitados conversando a lo lejos",
+   "nota": "Sirve para OG y hero",
+   "trim": [
+    12,
+    0,
+    31,
+    0
+   ]
+  },
+  {
+   "id": "F036",
+   "original": "IMG_7155.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Aparece un menor",
+   "nota": "Descartada en el análisis: Aparece un menor"
+  },
+  {
+   "id": "F037",
+   "original": "IMG_7158.PNG",
+   "procesar": true,
+   "seccion": "espacios-cubierto",
+   "sujeto": "galpon-mesa-larga",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "lluvia.cubierto",
+    "espacios.cubierto"
+   ],
+   "alt": "Mesa larga con platos, velas y flores bajo el techo de madera del galpón, con luces cálidas",
+   "nota": "Armado cubierto real"
+  },
+  {
+   "id": "F038",
+   "original": "IMG_7159.PNG",
+   "procesar": true,
+   "seccion": "espacios-cubierto",
+   "sujeto": "galpon-mesa-invitados",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.5
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": false,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Mesa larga con velas y arreglos de flores blancas dentro del galpón, con invitados al fondo",
+   "nota": "Armado cubierto Verificar que no haya menores."
+  },
+  {
+   "id": "F039",
+   "original": "IMG_7188.PNG",
+   "procesar": true,
+   "seccion": "cierre-noche",
+   "sujeto": "arbol-luces-pareja",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.65
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": false,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Mesa bajo un árbol con luces colgantes, con una pareja sentada en primer plano",
+   "nota": "Rostros en primer plano Verificar que no haya menores.",
+   "trim": [
+    0,
+    0,
+    10,
+    0
+   ]
+  },
+  {
+   "id": "F040",
+   "original": "IMG_7208.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Rostros en primer plano",
+   "nota": "Descartada en el análisis: Rostros en primer plano"
+  },
+  {
+   "id": "F041",
+   "original": "IMG_7210.PNG",
+   "procesar": true,
+   "seccion": "casamientos-galeria",
+   "sujeto": "mesa-velas",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   },
+   "personas": "ninguna",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "hero.secundaria"
+   ],
+   "alt": "Detalle de una mesa de madera con copas, platos y velas encendidas",
+   "nota": "Detalle limpio"
+  },
+  {
+   "id": "F042",
+   "original": "IMG_7211.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Rostros",
+   "nota": "Descartada en el análisis: Rostros"
+  },
+  {
+   "id": "F043",
+   "original": "IMG_7216.PNG",
+   "procesar": true,
+   "seccion": "inicio-hero",
+   "sujeto": "parque-guirnaldas",
+   "momento": "atardecer",
+   "ratio": [
+    3,
+    2
+   ],
+   "focal": {
+    "x": 0.55,
+    "y": 0.52
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "hero.principal"
+   ],
+   "alt": "Parque de la quinta al atardecer, con guirnaldas de luces sobre el césped y un cielo despejado",
+   "nota": "Mejor candidata de hero",
+   "trim": [
+    0,
+    0,
+    12,
+    0
+   ]
+  },
+  {
+   "id": "F044",
+   "original": "IMG_7235.PNG",
+   "procesar": true,
+   "seccion": "recorrido-4",
+   "sujeto": "fogata",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.5
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Fogata encendida en el parque de noche, con invitados alrededor y guirnaldas de luces",
+   "nota": "Sólo como alternativa",
+   "trim": [
+    0,
+    16,
+    0,
+    11
+   ]
+  },
+  {
+   "id": "F045",
+   "original": "IMG_7237.PNG",
+   "procesar": true,
+   "seccion": "espacios-cubierto",
+   "sujeto": "galpon-mesa-velas",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "casamientos.lluvia"
+   ],
+   "alt": "Mesa servida con velas y flores en el galpón, con livings y gente al fondo",
+   "nota": "Armado cubierto"
+  },
+  {
+   "id": "F046",
+   "original": "IMG_7280.PNG",
+   "procesar": true,
+   "seccion": "recorrido-2",
+   "sujeto": "palmera-guirnaldas",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.38
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "story.ceremonia"
+   ],
+   "alt": "Palmera alta y guirnaldas de luces encendidas bajo un cielo con nubes",
+   "nota": "Dos personas de espaldas en el borde inferior en la proporción mobile. Recortar para dejar sólo cielo y luces"
+  },
+  {
+   "id": "F047",
+   "original": "IMG_7284.PNG",
+   "procesar": true,
+   "seccion": "casamientos-galeria",
+   "sujeto": "barra-madera",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.55
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "casamientos.servicios"
+   ],
+   "alt": "Barra de madera con copas colgadas y velas, y una hielera con botellas, bajo guirnaldas de luces de noche",
+   "nota": "Servicios",
+   "trim": [
+    4,
+    11,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "F048",
+   "original": "IMG_7592.PNG",
+   "procesar": true,
+   "seccion": "recorrido-4",
+   "sujeto": "mesa-galpon",
+   "momento": "atardecer",
+   "ratio": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.45
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "story.noche"
+   ],
+   "alt": "Mesa larga con centros de flores blancas y velas, con el galpón de madera iluminado al fondo",
+   "nota": "Muestra el frente del galpón"
+  },
+  {
+   "id": "F049",
+   "original": "IMG_8519.PNG",
+   "procesar": true,
+   "seccion": "recorrido-3",
+   "sujeto": "livings-arbol-luces",
+   "momento": "noche",
+   "ratio": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.55
+   },
+   "personas": "rostros-sin-confirmar",
+   "dudas": {
+    "procedencia": false,
+    "rostros": true
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "story.fiesta"
+   ],
+   "alt": "Livings con almohadones blancos y velas bajo un árbol cubierto de luces colgantes, de noche",
+   "nota": "Confirmar rostros Verificar que no haya menores."
+  },
+  {
+   "id": "F050",
+   "original": "IMG_8920.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Captura de video",
+   "nota": "Descartada en el análisis: Captura de video"
+  },
+  {
+   "id": "F051",
+   "original": "IMG_8960.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Procesado en exceso",
+   "nota": "Descartada en el análisis: Procesado en exceso"
+  },
+  {
+   "id": "F052",
+   "original": "IMG_9689.PNG",
+   "procesar": true,
+   "seccion": "cierre-noche",
+   "sujeto": "barra-cartel",
+   "momento": "noche",
+   "ratio": [
+    4,
+    3
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.4
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": true,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [],
+   "alt": "Barra de madera con un cartel luminoso, rodeada de cortinas de luces, con invitados de espaldas",
+   "nota": "Reconocible"
+  },
+  {
+   "id": "F053",
+   "original": "IMG_9754.PNG",
+   "procesar": false,
+   "personas": "sin-rostro",
+   "motivo": "Captura de video",
+   "nota": "Descartada en el análisis: Captura de video"
+  },
+  {
+   "id": "F054",
+   "original": "IMG_9799.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Captura de video",
+   "nota": "Descartada en el análisis: Captura de video"
+  },
+  {
+   "id": "F055",
+   "original": "IMG_9809.PNG",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Duplicada de F002",
+   "nota": "Descartada en el análisis: Duplicada de F002"
+  },
+  {
+   "id": "F056",
+   "original": "IMG_9954.PNG",
+   "procesar": false,
+   "personas": "ninguna",
+   "motivo": "Pedir original; F001 es otra versión",
+   "nota": "Descartada en el análisis: Pedir original; F001 es otra versión"
+  },
+  {
+   "id": "F057",
+   "original": "IMG_9974.HEIC",
+   "procesar": true,
+   "seccion": "casamientos-hero",
+   "sujeto": "pasillo-flores",
+   "momento": "atardecer",
+   "ratio": [
+    3,
+    2
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.58
+   },
+   "personas": "sin-rostro",
+   "dudas": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "confirmado": {
+    "procedencia": false,
+    "rostros": false
+   },
+   "ranuras": [
+    "casamientos.hero",
+    "espacios.ceremonia"
+   ],
+   "alt": "Pasillo de flores blancas sobre el césped, preparado para una ceremonia al aire libre, con los invitados al fondo",
+   "nota": "Único original en alta resolución, sin rostros nítidos"
+  },
+  {
+   "id": "F058",
+   "original": "IMG_9978.HEIC",
+   "procesar": false,
+   "personas": "sin-rostro",
+   "motivo": "Duplicada de F057",
+   "nota": "Descartada en el análisis: Duplicada de F057"
+  },
+  {
+   "id": "F059",
+   "original": "d404fae6-7bc9-4ba8-89d3-693d93cc062f.jpg",
+   "procesar": false,
+   "personas": "rostros-sin-confirmar",
+   "motivo": "Misma escena que F046, peor resolución",
+   "nota": "Descartada en el análisis: Misma escena que F046, peor resolución"
+  }
+ ]
+}

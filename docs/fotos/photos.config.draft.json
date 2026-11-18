@@ -1,0 +1,253 @@
+{
+  "_estado": "BORRADOR. No ejecutar hasta que el cliente confirme autoría y procedencia.",
+  "_nota": "Fuentes de 1320 px de ancho como máximo, salvo F057 (4284 px). Quitar EXIF/GPS en la salida.",
+  "slots": [
+    {
+      "orden": 1,
+      "slot": "home.hero",
+      "id": "F043",
+      "archivo": "IMG_7216.PNG",
+      "recorte": {
+        "desktop": "21:9",
+        "mobile": "4:5"
+      },
+      "alt": "Parque de la quinta al atardecer, con guirnaldas de luces sobre el césped y un cielo despejado",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 2,
+      "slot": "story.tarde",
+      "id": "F057",
+      "archivo": "IMG_9974.HEIC",
+      "recorte": {
+        "desktop": "16:9",
+        "mobile": "4:3"
+      },
+      "alt": "Pasillo de flores blancas sobre el césped, preparado para una ceremonia al aire libre, con los invitados al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 3,
+      "slot": "story.atardecer",
+      "id": "F046",
+      "archivo": "IMG_7280.PNG",
+      "recorte": {
+        "desktop": "16:9",
+        "mobile": "4:3"
+      },
+      "alt": "Palmera alta y guirnaldas de luces encendidas bajo un cielo con nubes",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 4,
+      "slot": "story.noche",
+      "id": "F049",
+      "archivo": "IMG_8519.PNG",
+      "recorte": {
+        "desktop": "16:9",
+        "mobile": "4:3"
+      },
+      "alt": "Livings con almohadones blancos y velas bajo un árbol cubierto de luces colgantes, de noche",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 5,
+      "slot": "story.cierre",
+      "id": "F048",
+      "archivo": "IMG_7592.PNG",
+      "recorte": {
+        "desktop": "16:9",
+        "mobile": "4:3"
+      },
+      "alt": "Mesa larga con centros de flores blancas y velas, con el galpón de madera iluminado al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 6,
+      "slot": "casamientos.hero",
+      "id": "F057",
+      "archivo": "IMG_9974.HEIC",
+      "recorte": {
+        "desktop": "21:9",
+        "mobile": "4:5"
+      },
+      "alt": "Pasillo de flores blancas sobre el césped, preparado para una ceremonia al aire libre, con los invitados al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 7,
+      "slot": "casamientos.galeria.1",
+      "id": "F028",
+      "archivo": "IMG_6813.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:5"
+      },
+      "alt": "Mesa larga con arreglos florales bajo cortinas de luces que cuelgan de un árbol, de noche",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 8,
+      "slot": "casamientos.galeria.2",
+      "id": "F045",
+      "archivo": "IMG_7237.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:5"
+      },
+      "alt": "Mesa servida con velas y flores en el galpón, con livings y gente al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 9,
+      "slot": "casamientos.galeria.3",
+      "id": "F041",
+      "archivo": "IMG_7210.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:5"
+      },
+      "alt": "Detalle de una mesa de madera con copas, platos y velas encendidas",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 10,
+      "slot": "casamientos.galeria.4",
+      "id": "F027",
+      "archivo": "IMG_6675.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:5"
+      },
+      "alt": "Banco de carpintero con flores blancas y velas, la pileta a un lado y el galpón iluminado al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 11,
+      "slot": "espacios.parque",
+      "id": "F032",
+      "archivo": "IMG_6831.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:3"
+      },
+      "alt": "Mesas altas y una mesa servida sobre el césped, junto a la pileta, con invitados al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 12,
+      "slot": "espacios.galpon",
+      "id": "F037",
+      "archivo": "IMG_7158.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:3"
+      },
+      "alt": "Mesa larga con platos, velas y flores bajo el techo de madera del galpón, con luces cálidas",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 13,
+      "slot": "espacios.cubierto",
+      "id": "F045",
+      "archivo": "IMG_7237.PNG",
+      "recorte": {
+        "desktop": "4:3",
+        "mobile": "4:3"
+      },
+      "alt": "Mesa servida con velas y flores en el galpón, con livings y gente al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 14,
+      "slot": "lluvia.sol",
+      "id": "F057",
+      "archivo": "IMG_9974.HEIC",
+      "recorte": {
+        "desktop": "4:3",
+        "mobile": "4:3"
+      },
+      "alt": "Pasillo de flores blancas sobre el césped, preparado para una ceremonia al aire libre, con los invitados al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 15,
+      "slot": "lluvia.cubierto",
+      "id": "F037",
+      "archivo": "IMG_7158.PNG",
+      "recorte": {
+        "desktop": "4:3",
+        "mobile": "4:3"
+      },
+      "alt": "Mesa larga con platos, velas y flores bajo el techo de madera del galpón, con luces cálidas",
+      "approved": false,
+      "pending": true
+    },
+    {
+      "orden": 16,
+      "slot": "contacto.entrada",
+      "id": "F048",
+      "archivo": "IMG_7592.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:3"
+      },
+      "alt": "Mesa larga con centros de flores blancas y velas, con el galpón de madera iluminado al fondo",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 17,
+      "slot": "og",
+      "id": "F035",
+      "archivo": "IMG_7151.PNG",
+      "recorte": {
+        "desktop": "1200x630",
+        "mobile": null
+      },
+      "alt": "Césped con guirnaldas de luces al atardecer y invitados conversando a lo lejos",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 18,
+      "slot": "cierre.noche",
+      "id": "F028",
+      "archivo": "IMG_6813.PNG",
+      "recorte": {
+        "desktop": "21:9",
+        "mobile": "4:5"
+      },
+      "alt": "Mesa larga con arreglos florales bajo cortinas de luces que cuelgan de un árbol, de noche",
+      "approved": false,
+      "pending": false
+    },
+    {
+      "orden": 19,
+      "slot": "home.parque",
+      "id": "F033",
+      "archivo": "IMG_7131.PNG",
+      "recorte": {
+        "desktop": "3:2",
+        "mobile": "4:3"
+      },
+      "alt": "Parque entre árboles con guirnaldas de luces y un grupo de invitados a lo lejos, al caer la tarde",
+      "approved": false,
+      "pending": false
+    }
+  ]
+}
