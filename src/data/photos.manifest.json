@@ -781,9 +781,7 @@
   "original": "IMG_6637.PNG",
   "nombre": "espacios-parque-rincon-cartel-noche-01",
   "seccion": "espacios-parque",
-  "ranuras": [
-   "espacios.llegada"
-  ],
+  "ranuras": [],
   "momento": "noche",
   "focal": {
    "x": 0.5,
@@ -1075,14 +1073,15 @@
   },
   "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAeABgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBBAYF/8QAJhAAAgIBAwMDBQAAAAAAAAAAAQIAAxESITEEQVEFBhMiMmFx4f/EABcBAQEBAQAAAAAAAAAAAAAAAAACAQP/xAAZEQEBAQADAAAAAAAAAAAAAAAAARESITH/2gAMAwEAAhEDEQA/AMhWmQTnIHO80ntlLE6tdDq9RGSCd9vxM3ShLDHnjzOjVY9BLV5XbBK7bznb2Geu2WXdbYWt+RNR0lTkY/XaEo2sp1M+pnPH9hLjML6W9KrPqTWOCI0BrhZpZxls4J7RNdeQSO0sonx1h1PJwRItzwRoaolqy2Sm/fLQjz9qt5hHIf/Z",
   "alt": "Parque entre árboles con guirnaldas de luces y un grupo de invitados a lo lejos, al caer la tarde",
-  "estado": "provisoria-resolucion",
+  "estado": "provisoria-rostros",
   "pendientes": [
+   "rostros",
    "resolucion"
   ],
-  "personas": "sin-rostro",
+  "personas": "rostros-sin-confirmar",
   "calidadAvif": 45,
   "pesoAvif1440": 115584,
-  "nota": "Luz de transición AVIF a calidad 45 para entrar en 120 KB."
+  "nota": "Luz de transición Con el encuadre mobile se reconocen rostros; verificar permisos y menores. AVIF a calidad 45 para entrar en 120 KB."
  },
  {
   "id": "F034",
@@ -1555,7 +1554,7 @@
   "momento": "atardecer",
   "focal": {
    "x": 0.5,
-   "y": 0.38
+   "y": 0.39
   },
   "dimensionesOriginal": {
    "w": 1312,
@@ -1563,11 +1562,11 @@
   },
   "recorte": {
    "ratio": [
-    4,
-    5
+    7,
+    4
    ],
    "w": 1312,
-   "h": 1640
+   "h": 750
   },
   "anchosGenerados": [
    640,
@@ -1576,9 +1575,9 @@
   ],
   "jpeg": {
    "width": 1312,
-   "height": 1640
+   "height": 750
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAeABgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMG/8QAJBAAAgICAgEDBQAAAAAAAAAAAQIDEQAhBBJRBRNxFCIxMkH/xAAXAQADAQAAAAAAAAAAAAAAAAAAAQME/8QAFxEBAQEBAAAAAAAAAAAAAAAAABEBEv/aAAwDAQACEQMRAD8AdCxJE0sslIgsk5aOOOUABwVbat5yZuKH4rx9g6Vs9qIzDi8n09D9EJQZI9Be1b/u/OVqcNOrxSLH1FjwLvDF+Zyoofb9yVU7fqVa8MfWCOVE8xhdex+7VnFgjsxOrHz83leapgZVB3dishGZZp7NkKfz5zLmXKsZWRwDbqF8WcMyPO7IF6kBaqq1himnMf/Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAOABgDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAYDBAX/xAAkEAACAQMDAwUAAAAAAAAAAAABAhEAAwQSIUEFE5EUIjJRsf/EABUBAQEAAAAAAAAAAAAAAAAAAAEA/8QAFxEBAQEBAAAAAAAAAAAAAAAAABITAf/aAAwDAQACEQMRAD8A0LuOj4txNaukQ0tuKrY2d01G9EHXWmwBMCeRP3Sut+49p0DHcc+agFt2JMrtI580aCTlmZdi0Leu6oDfEoZ/KKVE7sH3CJiN6KtemH//2Q==",
   "alt": "Palmera alta y guirnaldas de luces encendidas bajo un cielo con nubes",
   "estado": "provisoria-procedencia",
   "pendientes": [
@@ -1587,8 +1586,8 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 84928,
-  "nota": "Dos personas de espaldas en el borde inferior en la proporción mobile. Recortar para dejar sólo cielo y luces"
+  "pesoAvif1440": 46306,
+  "nota": "Encuadre 7:4 que deja fuera a las personas del borde inferior. Recortar para dejar sólo cielo y luces"
  },
  {
   "id": "F047",
@@ -1770,11 +1769,13 @@
   "original": "IMG_9689.PNG",
   "nombre": "cierre-noche-barra-cartel-noche-01",
   "seccion": "cierre-noche",
-  "ranuras": [],
+  "ranuras": [
+   "espacios.llegada"
+  ],
   "momento": "noche",
   "focal": {
    "x": 0.5,
-   "y": 0.4
+   "y": 0.58
   },
   "dimensionesOriginal": {
    "w": 1320,
@@ -1797,7 +1798,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAEDBAIG/8QAJxAAAgEDAgMJAAAAAAAAAAAAAQIAAxEhEkEEMaETIzJRU2FxgdH/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAH/xAAaEQEBAAIDAAAAAAAAAAAAAAAAAQIRITFB/9oADAMBAAIRAxEAPwDzzYq1AwyoAHSUMO5bUrXIFsbzRTDOWRALnJJ8oPD12Rj2QuADhx+yWcKpjtnALFiRsOfxEkPqb36cojGx0gF0xvIcAK5HqEREz050rTw/UREQP//Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAQADAAAAAAAAAAAAAAAAAAMBAgb/xAAkEAACAgECBQUAAAAAAAAAAAABAgARAxIhBDJBUYEzNEJhcf/EABYBAQEBAAAAAAAAAAAAAAAAAAIEAf/EABcRAQEBAQAAAAAAAAAAAAAAAAEAETH/2gAMAwEAAhEDEQA/AOe1WzfLI332qTY6kalbajREyMyYWUpmfWdmraF4zOUzEZnAU1zHcdpMDViWuoFjXXavESOPKgW2JB6UIiyC7Sf1R+y2L2/EeIiJ5E7QXpERNY3/2Q==",
   "alt": "Barra de madera con un cartel luminoso, rodeada de cortinas de luces, con invitados de espaldas",
   "estado": "provisoria-procedencia",
   "pendientes": [
@@ -1806,7 +1807,7 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 103583,
+  "pesoAvif1440": 93529,
   "nota": "Reconocible"
  },
  {

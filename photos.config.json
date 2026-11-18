@@ -44,6 +44,10 @@
    "mobile": [
     4,
     5
+   ],
+   "focal": [
+    50,
+    28
    ]
   },
   "story.ceremonia": {
@@ -55,6 +59,10 @@
    "mobile": [
     4,
     5
+   ],
+   "focal": [
+    32,
+    100
    ]
   },
   "story.fiesta": {
@@ -66,6 +74,10 @@
    "mobile": [
     4,
     5
+   ],
+   "focal": [
+    50,
+    70
    ]
   },
   "story.noche": {
@@ -77,6 +89,10 @@
    "mobile": [
     4,
     5
+   ],
+   "focal": [
+    50,
+    55
    ]
   },
   "lluvia.sol": {
@@ -220,7 +236,7 @@
    ]
   },
   "espacios.llegada": {
-   "foto": "F026",
+   "foto": "F052",
    "desktop": [
     4,
     3
@@ -732,9 +748,7 @@
     "procedencia": false,
     "rostros": false
    },
-   "ranuras": [
-    "espacios.llegada"
-   ],
+   "ranuras": [],
    "alt": "Rincón del parque de noche con livings y almohadones bajo luces colgantes; al fondo, un cartel luminoso",
    "nota": "Reconocible de esta quinta"
   },
@@ -888,10 +902,10 @@
     "x": 0.5,
     "y": 0.62
    },
-   "personas": "sin-rostro",
+   "personas": "rostros-sin-confirmar",
    "dudas": {
     "procedencia": false,
-    "rostros": false
+    "rostros": true
    },
    "confirmado": {
     "procedencia": false,
@@ -901,7 +915,7 @@
     "story.llegada"
    ],
    "alt": "Parque entre árboles con guirnaldas de luces y un grupo de invitados a lo lejos, al caer la tarde",
-   "nota": "Luz de transición"
+   "nota": "Luz de transición Con el encuadre mobile se reconocen rostros; verificar permisos y menores."
   },
   {
    "id": "F034",
@@ -1224,12 +1238,12 @@
    "sujeto": "palmera-guirnaldas",
    "momento": "atardecer",
    "ratio": [
-    4,
-    5
+    7,
+    4
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.38
+    "y": 0.39
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1244,7 +1258,7 @@
     "story.ceremonia"
    ],
    "alt": "Palmera alta y guirnaldas de luces encendidas bajo un cielo con nubes",
-   "nota": "Dos personas de espaldas en el borde inferior en la proporción mobile. Recortar para dejar sólo cielo y luces"
+   "nota": "Encuadre 7:4 que deja fuera a las personas del borde inferior. Recortar para dejar sólo cielo y luces"
   },
   {
    "id": "F047",
@@ -1371,7 +1385,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.4
+    "y": 0.58
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1382,7 +1396,9 @@
     "procedencia": false,
     "rostros": false
    },
-   "ranuras": [],
+   "ranuras": [
+    "espacios.llegada"
+   ],
    "alt": "Barra de madera con un cartel luminoso, rodeada de cortinas de luces, con invitados de espaldas",
    "nota": "Reconocible"
   },

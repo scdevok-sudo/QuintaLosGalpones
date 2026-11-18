@@ -13,7 +13,7 @@ const WIDTHS = [640, 960, 1440, 2000];
 const HERO_SECTIONS = new Set(["inicio-hero", "casamientos-hero"]);
 const only = process.argv.slice(2).filter((a) => /^F\d{3}$/.test(a));
 
-rmSync(OUT, { recursive: true, force: true });
+if (!only.length) rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 mkdirSync(WORK, { recursive: true });
 
@@ -140,7 +140,14 @@ if (cfg.og && !only.length) {
   console.log(`og ${nombre} ${meta.width}x${meta.height} ${Math.round(jpg.length / 1024)}KB`);
 }
 
-if (!only.length) {
+if (only.length) {
+  // Modo parcial (npm run photos:build -- F046): rehace solo esas fotos y mezcla el manifiesto existente.
+  const old = JSON.parse(readFileSync("src/data/photos.manifest.json", "utf8"));
+  const fresh = new Map(manifest.filter((m) => only.includes(m.id) && m.seccion !== "og").map((m) => [m.id, m]));
+  const merged = old.map((m) => (m.seccion !== "og" && fresh.has(m.id) ? fresh.get(m.id) : m));
+  writeFileSync("src/data/photos.manifest.json", JSON.stringify(merged, null, 1) + "\n");
+  writeFileSync("src/data/photos.slots.json", JSON.stringify(cfg.slots, null, 1) + "\n");
+} else {
   mkdirSync("src/data", { recursive: true });
   writeFileSync("src/data/photos.manifest.json", JSON.stringify(manifest, null, 1) + "\n");
   writeFileSync("src/data/photos.slots.json", JSON.stringify(cfg.slots, null, 1) + "\n");

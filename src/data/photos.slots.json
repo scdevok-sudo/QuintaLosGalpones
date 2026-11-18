@@ -30,6 +30,10 @@
   "mobile": [
    4,
    5
+  ],
+  "focal": [
+   50,
+   28
   ]
  },
  "story.ceremonia": {
@@ -41,6 +45,10 @@
   "mobile": [
    4,
    5
+  ],
+  "focal": [
+   32,
+   100
   ]
  },
  "story.fiesta": {
@@ -52,6 +60,10 @@
   "mobile": [
    4,
    5
+  ],
+  "focal": [
+   50,
+   70
   ]
  },
  "story.noche": {
@@ -63,6 +75,10 @@
   "mobile": [
    4,
    5
+  ],
+  "focal": [
+   50,
+   55
   ]
  },
  "lluvia.sol": {
@@ -206,7 +222,7 @@
   ]
  },
  "espacios.llegada": {
-  "foto": "F026",
+  "foto": "F052",
   "desktop": [
    4,
    3

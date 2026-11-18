@@ -83,7 +83,7 @@ procesan con `npm run photos:build`. El resultado es `public/photos/` (AVIF, Web
 
 | Comando | Qué hace |
 |---|---|
-| `npm run photos:build` | Procesa todas las fotos y regenera `public/photos/`, el manifiesto y `photos.slots.json` (unos 4 minutos) |
+| `npm run photos:build` | Procesa todas las fotos y regenera `public/photos/`, el manifiesto y `photos.slots.json` (unos 4 minutos). Con IDs (`npm run photos:build -- F046`) rehace solo esas fotos y no toca el resto |
 | `npm run photos:verify` | Falla si hay nombres fuera de patrón, metadatos, fotos agrandadas, `alt` o medidas faltantes, fotos fuera de presupuesto o una ranura con foto bloqueada |
 | `npm run check:launch` | Lista lo pendiente. Las fotos `provisoria-*` salen como "Pendiente de confirmación del cliente"; solo falla si una foto `bloqueada` está en uso |
 

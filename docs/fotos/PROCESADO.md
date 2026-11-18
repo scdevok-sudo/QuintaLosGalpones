@@ -5,7 +5,7 @@ Resultado de `npm run photos:build` sobre las fotos de `imagenes/` (no se commit
 ## Resumen
 
 - **1 ok**, **32 provisorias**, **26 bloqueadas** (de 59 fotos; la imagen Open Graph es otro recorte de F035).
-- Pendientes entre las provisorias (una foto puede tener varios): resolución 32, procedencia 14, rostros 9.
+- Pendientes entre las provisorias (una foto puede tener varios): resolución 32, procedencia 14, rostros 10.
 - Ancho máximo de salida: el del recorte; nada se agranda. Las fotos de 1320 px salen en 640, 960 y 1320. F057 (HEIC) sale en 640, 960, 1440 y 2000.
 - Todas las salidas están en sRGB y sin EXIF, GPS ni miniaturas (lo verifica `photos:verify`).
 
@@ -38,14 +38,14 @@ Resultado de `npm run photos:build` sobre las fotos de `imagenes/` (no se commit
 | IMG_5257.PNG | F023 | recorrido-4-fogata-siluetas-atardecer-01 | reserva (sin ranura) | provisoria-procedencia | 106 KB | pendientes: procedencia, resolucion. Color muy forzado |
 | IMG_5920.PNG | F024 | no se procesa | | bloqueada | | Captura de video |
 | IMG_6599.PNG | F025 | no se procesa | | bloqueada | | Par de F021, rostros |
-| IMG_6637.PNG | F026 | espacios-parque-rincon-cartel-noche-01 | espacios.llegada | provisoria-resolucion | 110 KB | pendientes: resolucion. Reconocible de esta quinta AVIF a calidad 45 para entrar en 120 KB. |
+| IMG_6637.PNG | F026 | espacios-parque-rincon-cartel-noche-01 | reserva (sin ranura) | provisoria-resolucion | 110 KB | pendientes: resolucion. Reconocible de esta quinta AVIF a calidad 45 para entrar en 120 KB. |
 | IMG_6675.PNG | F027 | espacios-parque-banco-flores-atardecer-01 | espacios.hero | provisoria-resolucion | 106 KB | pendientes: resolucion. Específica del lugar, sin gente |
 | IMG_6813.PNG | F028 | cierre-noche-guirnalda-mesas-noche-01 | home.casamientos | provisoria-resolucion | 117 KB | pendientes: resolucion. Imagen fuerte de la noche |
 | IMG_6821.PNG | F029 | espacios-cubierto-galpon-fiesta-noche-01 | reserva (sin ranura) | provisoria-rostros | 102 KB | pendientes: rostros, resolucion. Ráfaga con F030/F031 Verificar que no haya menores. |
 | IMG_6823.PNG | F030 | no se procesa | | bloqueada | | Luces de color poco coherentes; duplicada de F031 |
 | IMG_6824.PNG | F031 | no se procesa | | bloqueada | | Duplicada de F030 |
 | IMG_6831.PNG | F032 | espacios-parque-mesas-pileta-atardecer-01 | home.empresas, espacios.parque | provisoria-resolucion | 106 KB | pendientes: resolucion. Parque con montaje |
-| IMG_7131.PNG | F033 | recorrido-1-parque-guirnaldas-tarde-01 | story.llegada | provisoria-resolucion | 113 KB | pendientes: resolucion. Luz de transición AVIF a calidad 45 para entrar en 120 KB. |
+| IMG_7131.PNG | F033 | recorrido-1-parque-guirnaldas-tarde-01 | story.llegada | provisoria-rostros | 113 KB | pendientes: rostros, resolucion. Luz de transición Con el encuadre mobile se reconocen rostros; verificar permisos y menores. AVIF a calidad 45 para entrar en 120 KB. |
 | IMG_7132.PNG | F034 | cierre-noche-mesa-cartel-noche-01 | reserva (sin ranura) | provisoria-procedencia | 71 KB | pendientes: procedencia, resolucion. Cartel con tipografía irregular: verificar si es real |
 | IMG_7151.PNG | F035 | casamientos-galeria-parque-guirnaldas-atardecer-01 | lluvia.sol, casamientos.parque, contacto.hero | provisoria-resolucion | 120 KB | pendientes: resolucion. Sirve para OG y hero |
 | IMG_7155.PNG | F036 | no se procesa | | bloqueada | | Aparece un menor |
@@ -58,13 +58,13 @@ Resultado de `npm run photos:build` sobre las fotos de `imagenes/` (no se commit
 | IMG_7216.PNG | F043 | inicio-hero-parque-guirnaldas-atardecer-01 | hero.principal | provisoria-resolucion | 99 KB | pendientes: resolucion. Mejor candidata de hero |
 | IMG_7235.PNG | F044 | recorrido-4-fogata-noche-01 | reserva (sin ranura) | provisoria-resolucion | 72 KB | pendientes: resolucion. Sólo como alternativa |
 | IMG_7237.PNG | F045 | espacios-cubierto-galpon-mesa-velas-noche-01 | casamientos.lluvia | provisoria-resolucion | 98 KB | pendientes: resolucion. Armado cubierto |
-| IMG_7280.PNG | F046 | recorrido-2-palmera-guirnaldas-atardecer-01 | story.ceremonia | provisoria-procedencia | 83 KB | pendientes: procedencia, resolucion. Dos personas de espaldas en el borde inferior en la proporción mobile. Recortar para dejar sólo cielo y luces |
+| IMG_7280.PNG | F046 | recorrido-2-palmera-guirnaldas-atardecer-01 | story.ceremonia | provisoria-procedencia | 45 KB | pendientes: procedencia, resolucion. Encuadre 7:4 que deja fuera a las personas del borde inferior. Recortar para dejar sólo cielo y luces |
 | IMG_7284.PNG | F047 | casamientos-galeria-barra-madera-noche-01 | casamientos.servicios | provisoria-resolucion | 91 KB | pendientes: resolucion. Servicios |
 | IMG_7592.PNG | F048 | recorrido-4-mesa-galpon-atardecer-01 | story.noche | provisoria-procedencia | 107 KB | pendientes: procedencia, resolucion. Muestra el frente del galpón AVIF a calidad 35 para entrar en 120 KB. |
 | IMG_8519.PNG | F049 | recorrido-3-livings-arbol-luces-noche-01 | story.fiesta | provisoria-rostros | 102 KB | pendientes: rostros, resolucion. Confirmar rostros Verificar que no haya menores. AVIF a calidad 40 para entrar en 120 KB. |
 | IMG_8920.PNG | F050 | no se procesa | | bloqueada | | Captura de video |
 | IMG_8960.PNG | F051 | no se procesa | | bloqueada | | Procesado en exceso |
-| IMG_9689.PNG | F052 | cierre-noche-barra-cartel-noche-01 | reserva (sin ranura) | provisoria-procedencia | 101 KB | pendientes: procedencia, resolucion. Reconocible |
+| IMG_9689.PNG | F052 | cierre-noche-barra-cartel-noche-01 | espacios.llegada | provisoria-procedencia | 91 KB | pendientes: procedencia, resolucion. Reconocible |
 | IMG_9754.PNG | F053 | no se procesa | | bloqueada | | Captura de video |
 | IMG_9799.PNG | F054 | no se procesa | | bloqueada | | Captura de video |
 | IMG_9809.PNG | F055 | no se procesa | | bloqueada | | Duplicada de F002 |
@@ -111,7 +111,7 @@ F020 pasó de «a confirmar» a bloqueada al revisar el recorte: se ve un bebé 
 |---|---|---|---|
 | hero.principal | F043 | provisoria-resolucion | no |
 | hero.secundaria | F041 | provisoria-resolucion | no |
-| story.llegada | F033 | provisoria-resolucion | no |
+| story.llegada | F033 | provisoria-rostros | no |
 | story.ceremonia | F046 | provisoria-procedencia | no |
 | story.fiesta | F049 | provisoria-rostros | no |
 | story.noche | F048 | provisoria-procedencia | no |
@@ -127,7 +127,7 @@ F020 pasó de «a confirmar» a bloqueada al revisar el recorte: se ve un bebé 
 | espacios.parque | F032 | provisoria-resolucion | no |
 | espacios.cubierto | F037 | provisoria-resolucion | no |
 | espacios.ceremonia | F057 | ok | sí |
-| espacios.llegada | F026 | provisoria-resolucion | no |
+| espacios.llegada | F052 | provisoria-procedencia | no |
 | contacto.hero | F035 | provisoria-resolucion | no |
 | contacto.entrada | F015 | provisoria-procedencia | no |
 
@@ -144,13 +144,21 @@ Todas siguen bajo 2,5 s de LCP. La diferencia de performance está dentro de la 
 
 ## Revisión visual
 
-Las hojas `docs/fotos/contactos/recortes-01.jpg` a `recortes-04.jpg` muestran cada ranura recortada en desktop (izquierda) y mobile (derecha), con el encuadre que hace el sitio. No se commitean porque tienen rostros. Se regeneran con el script de la sesión; el resultado para hoy es: no se cortan rostros en primer plano, el horizonte está derecho y los hero de Inicio y Casamientos muestran el parque y el pasillo de flores completos. Salvedad: en `espacios.llegada` (F026) el cartel luminoso queda parcialmente cortado.
+Las hojas `docs/fotos/contactos/recortes-01.jpg` a `recortes-04.jpg` muestran cada ranura recortada en desktop (izquierda) y mobile (derecha), con el encuadre que hace el sitio. No se commitean porque tienen rostros. Además se revisaron a pantalla completa (1280 y 1440 px de ancho, y mobile de 390 px) las cuatro escenas del recorrido, el hero de Espacios y el de Contacto.
+
+Correcciones hechas en esa revisión:
+
+- `espacios.llegada`: F026 tiene el cartel luminoso tapado por una planta en el propio original, así que ninguna reencuadre lo muestra entero. Pasó a F052, donde se lee «LOS GALPONES» completo (queda `provisoria-procedencia`). F026 queda de reserva.
+- Recorrido: se ajustó el punto focal de cada escena para que desktop no corte la escena justo donde cae el panel de texto.
+- `story.llegada` (F033): con el encuadre mobile se reconocen rostros; pasó a `provisoria-rostros`.
+- `story.ceremonia` (F046): se cambió el recorte a 7:4 para dejar fuera a las personas del borde inferior (se veían de cerca). En mobile queda el cielo con la palmera y no se ven las luces; en desktop se ven las guirnaldas abajo.
+- Hero de Espacios (F027) y de Contacto (F035): sin rostros reconocibles ni cortes; no hizo falta cambiar nada.
 
 ## Qué hay que pedirle al cliente (actualizado)
 
 - **Los originales** de todas las fotos, sin captura ni retoque (mínimo 2500 px de lado largo). Es lo que destraba el estado `provisoria-resolucion`, hoy en la mayoría.
 - **Procedencia**: confirmar si F001, F003, F004, F005, F007, F009, F011, F034 y F052 son fotos reales del lugar, y de dónde salen F015, F018, F021, F023, F046 y F048 (sin datos de cámara).
-- **Permisos de las personas** que se ven en F007, F015, F016, F018, F021, F029, F038, F039 y F049, y confirmar que no aparezcan menores.
+- **Permisos de las personas** que se ven en F007, F015, F016, F018, F021, F029, F033, F038, F039 y F049, y confirmar que no aparezcan menores.
 - **Armado cubierto con mesas puestas, con luz natural** (de día o con lluvia) para el interruptor Sol/Lluvia.
 - **Fachada y acceso** de día y sin gente (hoy `contacto.entrada` usa F015, con gente).
 - **Una foto de ceremonia sin menores** para casamientos.ceremonia (F020 quedó bloqueada).
