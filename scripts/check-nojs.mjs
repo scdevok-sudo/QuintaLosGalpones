@@ -17,16 +17,13 @@ for (const [name, sel] of [["hero", "section.hero button[data-express]"], ["hero
 }
 // 2. Enlaces reales a WhatsApp o a Maps
 for (const [name, sel, re] of [
-  ["visita, WhatsApp", "#visita a.btn", /^https:\/\/wa\.me\/\d+\?text=/],
-  ["menú, coordinar visita", "header a.site-nav-action", /^https:\/\/wa\.me\/\d+\?text=/],
+  ["visita, Contacto", "#visita a.btn", /^\/contacto#visita$/],
+  ["menú, coordinar visita", "header a.site-nav-action", /^\/contacto#visita$/],
   ["cierre, cómo llegar", "section[aria-label='Cómo llegar'] a.link", /google\.com\/maps\/dir/],
 ]) {
   const href = await p.locator(sel).first().getAttribute("href");
   ok(Boolean(href) && re.test(href), `CTA ${name}: href=${(href || "").slice(0, 60)}`);
 }
-ok((await p.locator("a[href^='/contacto']").count()) === 0 || true, "enlaces a /contacto/ (solo del menú, hasta que exista)");
-const dentro = await p.locator("a[href^='/contacto']").evaluateAll((els) => els.filter((e) => !e.closest("nav,footer")).length);
-ok(dentro === 0, `ningún CTA apunta a /contacto/ (fuera de menú y pie): ${dentro}`);
 ok(await p.locator("h1").isVisible(), "el H1 se lee sin JS");
 
 // 3. El panel abre sin hidratar y muestra WhatsApp genérico
@@ -41,5 +38,14 @@ await p.waitForTimeout(300);
 ok(await p.locator("#consulta:popover-open").count() === 0, "Cerrar funciona sin JS");
 // 4. Testimonios: sin 3 aprobados no hay sección
 ok((await p.locator("#testimonios-titulo").count()) === 0, "sin 3 testimonios aprobados no se muestra la sección");
+
+// 5. Contacto sin JS: dos botones de WhatsApp reales y aviso del formulario
+await p.goto(base + "/contacto");
+for (const [name, sel] of [["Contacto, WhatsApp", "section.dia a.btn-primary"], ["Contacto, visita", "section.dia a.btn-line"], ["Contacto, bloque de visita", "#visita a.btn"]]) {
+  const href = await p.locator(sel).first().getAttribute("href");
+  ok(/^https:\/\/wa\.me\/\d+\?text=/.test(href || ""), `${name}: ${(href || "").slice(0, 40)}`);
+}
+ok(await p.locator("#formulario").count() === 1 && await p.locator("#visita").count() === 1, "Contacto tiene #formulario y #visita");
+ok((await p.locator("#formulario").innerText()).includes("WhatsApp"), "sin JS el formulario ofrece WhatsApp");
 await b.close();
 process.exit(bad ? 1 : 0);

@@ -14,6 +14,7 @@ const casos = [
   ["ease-in (tailwind)", "a.tsx", 'const a = <div className="ease-in" />;', "ease-in"],
   ["hover fuera de la media query", "a.css", ".a:hover { opacity: 0.5; }", "hover fuera de @media"],
   ["tracking menor a -0.04em", "a.css", ".a { letter-spacing: -0.06em; }", "tracking menor"],
+  ["máscara fuera del hero y del cubierto", "a.tsx", 'const a = <Photo slot="espacios.parque" mask />;', "máscara fuera del hero"],
   ["carrusel", "a.css", ".a { scroll-snap-type: x mandatory; }", "carrusel"],
   ["caption bajo una imagen", "a.tsx", 'const a = <figure><Photo slot="x" /><figcaption>Pie</figcaption></figure>;', "caption bajo una imagen"],
   ["caption en el contenido", "a.ts", 'export const x = { caption: "Pie de foto" };', "caption bajo una imagen"],
@@ -28,6 +29,8 @@ const limpios = [
   ["sombra con offset", "a.css", ".a { box-shadow: 0 -8px 28px rgb(0 0 0 / 0.2); }"],
   ["figcaption de una cita (sin foto)", "a.tsx", "const a = <figure><blockquote>x</blockquote><figcaption>Ana</figcaption></figure>;"],
   ["tracking de -0.04em permitido", "a.css", ".a { letter-spacing: -0.04em; }"],
+  ["máscara en el espacio cubierto", "a.tsx", 'const a = <Photo later slot="espacios.cubierto" mask />;'],
+  ["máscara en el hero de Inicio", "a.tsx", 'const a = <Photo slot="hero.principal" mask priority />;'],
   ["ease-in-out permitido", "a.css", ".a { transition: transform 300ms ease-in-out; }"],
 ];
 

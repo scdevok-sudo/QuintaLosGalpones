@@ -24,7 +24,7 @@ const rules = [
   { name: "máscara con vida (v2.3: la máscara es solo del hero)", re: /mask-live|maskLive/ },
   { name: "paneles expandibles de caminos (v2.3)", re: /camino-extra|camino-photo2|camino-[ab]\b|:has\(\.camino/ },
   { name: "consulta modal (v2.3: panel no modal)", re: /showModal\(|dialog\.consulta::backdrop|::backdrop/ },
-  { name: "máscara fuera del hero", re: /<Photo\b(?![^>]*slot="hero\.)[^>]*\bmask\b/ },
+  { name: "máscara fuera del hero", re: /<Photo\b(?![^>]*slot="(?:hero\.|espacios\.cubierto"))[^>]*\bmask\b/ },
   { name: "cursor de arrastre", re: /cursor:\s*grab/ },
   // --- Oficio de interacción (v2.3). Se miran sobre el código, sin comentarios. ---
   { code: true, name: "transition: all (listar las propiedades)", re: /transition(-property)?\s*:\s*all\b|\btransition-all\b/ },
@@ -196,7 +196,8 @@ if (!process.env.TELLS_ROOTS) {
   if (!/popoverTarget="consulta"/.test(btn)) fail("app/components/Express.tsx", 1, "ExpressButton sin popovertarget", "el panel no abriría sin JS");
   if (!/popover="auto"/.test(ex)) fail("app/components/Express.tsx", 1, "el panel de consulta no es un popover", "popover=\"auto\"");
   if (!/whatsappLink\("generico"\)/.test(ex)) fail("app/components/Express.tsx", 1, "falta el WhatsApp genérico sin JS", "");
-  for (const f of ["app/routes/home.tsx", "app/components/Button.tsx"]) {
+  const contactoReady = /contactoReady = true/.test(readFileSync("src/config/site.ts", "utf8"));
+  for (const f of contactoReady ? [] : ["app/routes/home.tsx", "app/components/Button.tsx"]) {
     const t = readFileSync(f, "utf8");
     if (/<(Link|a)\s[^>]*(to|href)=["'{]*\/contacto\//.test(t)) fail(f, 1, "CTA a /contacto/ mientras no exista (contactoReady)", "");
   }
