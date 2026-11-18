@@ -4,6 +4,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
+import { VIEWPORTS, aspectAt, missing, subjectPx, usesMobile, visibleWindow } from "./lib/photos-crop.mjs";
 
 const cfg = JSON.parse(readFileSync("photos.config.json", "utf8"));
 const manifest = JSON.parse(readFileSync("src/data/photos.manifest.json", "utf8"));
@@ -55,6 +56,23 @@ for (const m of manifest) {
     if (kb > budget) err(`${m.id}: AVIF a ${ref} px pesa ${Math.round(kb)} KB (presupuesto ${budget} KB)`);
   }
 }
+// 2b. Variantes mobile (dirección de arte): archivos, sin metadatos, sin agrandar, peso.
+for (const m of manifest) {
+  for (const [slot, v] of Object.entries(m.mobile ?? {})) {
+    for (const w of v.widths) {
+      const f = `${v.nombre}-w${w}.avif`;
+      expected.add(f);
+      if (!existsSync(join(OUT, f))) { err(`${m.id} ${slot}: falta ${f}`); continue; }
+      const meta = await sharp(join(OUT, f)).metadata();
+      if (meta.exif || meta.icc || meta.xmp || meta.iptc) err(`${f}: tiene metadatos`);
+      if (meta.width !== w) err(`${f}: el ancho real (${meta.width}) no coincide con el nombre`);
+      if (w > v.box.width) err(`${f}: mas ancho que su recorte (${v.box.width}): se agrando`);
+    }
+    const ref = Math.max(...v.widths.filter((w) => w <= 960));
+    const kb = statSync(join(OUT, `${v.nombre}-w${ref}.avif`)).size / 1024;
+    if (kb > 120) err(`${m.id} ${slot}: AVIF mobile a ${ref} px pesa ${Math.round(kb)} KB (presupuesto 120 KB)`);
+  }
+}
 for (const f of files) if (!expected.has(f)) warns.push(`Archivo huerfano en ${OUT}: ${f}`);
 
 // 3. Ranuras
@@ -79,6 +97,25 @@ for (const r of refs) {
   else if (m.estado === "bloqueada") err(`Ranura "${r}": usa la foto ${c.foto}, que esta bloqueada`);
 }
 for (const k of Object.keys(slotMap)) if (!defined.has(k)) warns.push(`photos.config.json define la ranura "${k}", que no existe en photos.ts`);
+
+// 4. El sujeto de cada foto entra entero en lo que se ve de cada ranura, en cada breakpoint (misma regla que photos:build).
+for (const [name, slot] of Object.entries(slotMap)) {
+  const m = manifest.find((x) => x.id === slot.foto && x.seccion !== "og");
+  if (!m || m.generada === false) continue;
+  if (!m.subject) { err(`${m.id}: falta subject en el manifiesto (correr photos:build)`); continue; }
+  const { w: W, h: H } = m.dimensionesOriginal;
+  const base = { left: m.recorte.left, top: m.recorte.top, width: m.recorte.w, height: m.recorte.h };
+  for (const vw of VIEWPORTS) {
+    const mob = usesMobile(slot, vw);
+    const mv = mob ? m.mobile?.[name] : null;
+    if (mob && !mv) { err(`Ranura "${name}": tiene recorte mobile y el manifiesto no (correr photos:build)`); continue; }
+    const crop = mob ? mv.box : base;
+    const pos = mob ? [0.5, 0.5] : (slot.focal ?? [50, 50]).map((v) => v / 100);
+    const sub = (mob && slot.mobileSubject) || slot.subject || m.subject;
+    const miss = missing(visibleWindow(crop, aspectAt(slot, vw), pos, vw >= 1024 ? slot.zoom ?? 1 : 1), subjectPx(sub, W, H));
+    if (miss.length) err(`Ranura "${name}" a ${vw} px: el recorte ${mob ? "mobile" : "base"} corta el sujeto (le falta ${miss.join(", ")})`);
+  }
+}
 
 const n = manifest.filter((m) => m.estado !== "bloqueada").length;
 console.log(`photos:verify: ${n} fotos procesadas, ${manifest.length - n} bloqueadas, ${refs.size} ranuras usadas por paginas.`);

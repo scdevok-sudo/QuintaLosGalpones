@@ -43,24 +43,31 @@ export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, d
   if (s.lqip) style.backgroundImage = `url(${s.lqip})`;
   const sz = sizes ?? (priority ? HERO_SIZES : "(min-width: 1024px) 50vw, 100vw");
   const pos = `${s.focal.x}% ${s.focal.y}%`;
+  // Dirección de arte: hasta `maxWidth` px se usa el recorte mobile de la ranura (su encuadre ya va centrado en el sujeto).
+  const mobileSource = s.mobile && <source media={`(max-width: ${s.mobile.maxWidth}px)`} type="image/avif" srcSet={s.mobile.avif} sizes="100vw" />;
 
   return (
     <div
+      data-mv={s.mobile?.maxWidth}
       className={`ph ${s.bleed ? "ph-bleedable" : ""} ${fill ? "ph-fill" : ""} ${mask ? "mask-galpon" : ""} ${zoom ? "zoomable" : ""} ${className}`}
       style={style as React.CSSProperties}
     >
       {(defer ?? (later && !ready)) ? (
         <noscript>
-          <img
-            src={s.src}
-            alt={alt ?? s.alt}
-            width={s.width}
-            height={s.height}
-            style={{ objectPosition: pos, width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          <picture>
+            {mobileSource}
+            <img
+              src={s.src}
+              alt={alt ?? s.alt}
+              width={s.width}
+              height={s.height}
+              style={{ "--pos": pos, width: "100%", height: "100%", objectFit: "cover" } as React.CSSProperties}
+            />
+          </picture>
         </noscript>
       ) : (
         <picture>
+          {mobileSource}
           {s.sources && <source type="image/avif" srcSet={s.sources.avif} sizes={sz} />}
           <img
             src={s.src}
@@ -71,7 +78,7 @@ export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, d
             decoding={priority ? "sync" : "async"}
             {...(priority ? { fetchPriority: "high" as const } : {})}
             {...(!s.sources && priority ? { srcSet: `${s.src} ${s.width}w`, sizes: "100vw" } : {})}
-            style={{ objectPosition: pos }}
+            style={{ "--pos": pos } as React.CSSProperties}
           />
         </picture>
       )}

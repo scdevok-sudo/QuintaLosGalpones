@@ -15,6 +15,7 @@
     "photos:build": "node scripts/photos-build.mjs",
     "og:build": "node scripts/og-build.mjs",
     "photos:verify": "node scripts/photos-verify.mjs",
+    "photos:sheet": "node scripts/photos-sheet.mjs",
     "check:tells": "node scripts/check-tells.mjs",
     "test:tells": "node scripts/test-tells.mjs",
     "check:nojs": "node scripts/check-nojs.mjs",

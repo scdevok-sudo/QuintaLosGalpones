@@ -304,6 +304,18 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: var(--pos, 50% 50%);
+  }
+  /* Recorte mobile propio (dirección de arte): ya viene centrado en el sujeto, no lleva el foco del recorte base. */
+  @media (max-width: 767px) {
+    .ph[data-mv="767"] img {
+      object-position: 50% 50%;
+    }
+  }
+  @media (max-width: 1023px) {
+    .ph[data-mv="1023"] img {
+      object-position: 50% 50%;
+    }
   }
   .ph-tag {
     position: absolute;
@@ -598,7 +610,8 @@
   .story-stage {
     position: sticky;
     top: var(--header-h);
-    height: calc(100svh - var(--header-h));
+    /* En mobile la barra "Consultar por mi fecha" queda fuera del escenario: no tapa ni la foto ni el texto. */
+    height: calc(100svh - var(--header-h) - var(--bar-h, 0px));
     overflow: hidden;
     background: var(--color-noche);
     display: flex;
@@ -743,6 +756,82 @@
     }
     .story-glow {
       transform: translate3d(0, calc((var(--hora, 0) - 0.5) * -16%), 0);
+    }
+  }
+  /* Mobile y tablet: banda de una sola fila (reloj + pestañas), guirnalda superpuesta a la foto, y el texto debajo
+     de la foto en vez de encima: la foto ocupa todo el alto que sobra y el recorte mobile se calcula contra esa caja. */
+  @media (max-width: 63.99rem) {
+    .story-band {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.75rem;
+      z-index: 6;
+    }
+    .story-band-row {
+      display: contents;
+    }
+    .story-band .story-garland {
+      position: absolute;
+      left: 0.75rem;
+      right: 0.75rem;
+      top: 100%;
+      height: 1.5rem;
+      flex: none;
+      pointer-events: none;
+      color: rgb(233 230 210 / 0.8);
+      filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.55));
+    }
+    .story-band .story-garland .bulb:not(.on) {
+      background: rgb(233 230 210 / 0.85);
+    }
+    .story-clock {
+      padding: 0 0.6rem;
+      font-size: 1.05rem;
+      flex: none;
+    }
+    .story-rail {
+      flex: 1;
+      min-width: 0;
+    }
+    .story-rail .story-chip {
+      width: 100%;
+      gap: 0;
+    }
+    .story-rail-btn {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 0 0.3rem;
+      font-size: 0.875rem;
+      white-space: nowrap;
+    }
+    .story-scene {
+      display: flex;
+      flex-direction: column;
+    }
+    .story-scene .story-photo {
+      position: relative;
+      inset: auto;
+      flex: 1;
+      min-height: 0;
+    }
+    .story-panel {
+      position: static;
+      flex: none;
+      padding: 0.9rem 1.25rem 1rem;
+    }
+    .story-panel h3 {
+      font-size: 1.35rem;
+    }
+    .story-panel p {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+    .story-panel p:first-of-type {
+      margin-top: 0.4rem;
+    }
+    .story-panel p:last-of-type {
+      margin-top: 0.1rem;
     }
   }
 }

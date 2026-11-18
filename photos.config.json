@@ -38,62 +38,146 @@
   "story.llegada": {
    "foto": "F033",
    "desktop": [
-    3,
-    2
+    2,
+    1
    ],
-   "mobile": [
-    4,
-    5
-   ],
+   "mobile": {
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.62,
+     "y": 0.7
+    },
+    "maxWidth": 1023
+   },
    "focal": [
     50,
-    28
-   ]
+    50
+   ],
+   "zoom": 1.12,
+   "vistas": {
+    "360": 0.98,
+    "390": 0.83,
+    "412": 0.76,
+    "768": 1.03,
+    "1280": 1.97
+   }
   },
   "story.ceremonia": {
-   "foto": "F046",
+   "foto": "F057",
    "desktop": [
-    3,
-    2
+    2,
+    1
    ],
-   "mobile": [
-    4,
-    5
-   ],
-   "focal": [
-    32,
-    100
-   ]
-  },
-  "story.fiesta": {
-   "foto": "F049",
-   "desktop": [
-    3,
-    2
-   ],
-   "mobile": [
-    4,
-    5
-   ],
+   "mobile": {
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.6
+    },
+    "maxWidth": 1023
+   },
    "focal": [
     50,
     70
-   ]
+   ],
+   "zoom": 1.12,
+   "vistas": {
+    "360": 0.98,
+    "390": 0.83,
+    "412": 0.76,
+    "768": 1.03,
+    "1280": 1.97
+   },
+   "subject": {
+    "x0": 0.06,
+    "y0": 0.46,
+    "x1": 0.94,
+    "y1": 0.74
+   }
+  },
+  "story.fiesta": {
+   "foto": "F029",
+   "desktop": [
+    2,
+    1
+   ],
+   "mobile": {
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.6
+    },
+    "maxWidth": 1023
+   },
+   "focal": [
+    50,
+    50
+   ],
+   "zoom": 1.12,
+   "vistas": {
+    "360": 0.98,
+    "390": 0.83,
+    "412": 0.76,
+    "768": 1.03,
+    "1280": 1.97
+   },
+   "mobileSubject": {
+    "x0": 0.08,
+    "y0": 0.4,
+    "x1": 0.92,
+    "y1": 0.8
+   }
   },
   "story.noche": {
    "foto": "F048",
    "desktop": [
-    3,
-    2
+    2,
+    1
    ],
-   "mobile": [
-    4,
-    5
-   ],
+   "mobile": {
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.55
+    },
+    "maxWidth": 1023
+   },
    "focal": [
     50,
-    55
-   ]
+    50
+   ],
+   "zoom": 1.12,
+   "vistas": {
+    "360": 0.98,
+    "390": 0.83,
+    "412": 0.76,
+    "768": 1.03,
+    "1280": 1.97
+   },
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.45,
+    "x1": 0.9,
+    "y1": 0.7
+   },
+   "mobileSubject": {
+    "x0": 0.2,
+    "y0": 0.35,
+    "x1": 0.9,
+    "y1": 0.75
+   }
   },
   "lluvia.sol": {
    "foto": "F035",
@@ -152,6 +236,10 @@
    "bleed": [
     21,
     9
+   ],
+   "focal": [
+    50,
+    80
    ]
   },
   "casamientos.parque": {
@@ -282,8 +370,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.5
+    "x": 0.63,
+    "y": 0.71
    },
    "personas": "ninguna",
    "dudas": {
@@ -296,7 +384,13 @@
    },
    "ranuras": [],
    "alt": "Interior del galpón con mesas largas servidas, velas y un arreglo de pampa, abierto al parque",
-   "nota": "Misma toma que F056 pero pulida: posible versión retocada con IA"
+   "nota": "Misma toma que F056 pero pulida: posible versión retocada con IA",
+   "subject": {
+    "x0": 0.25,
+    "y0": 0.48,
+    "x1": 1,
+    "y1": 0.93
+   }
   },
   {
    "id": "F002",
@@ -319,7 +413,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.45
+    "y": 0.6
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -332,7 +426,13 @@
    },
    "ranuras": [],
    "alt": "Parque al atardecer con una palmera, guirnaldas de luces y gente a lo lejos",
-   "nota": "Sin EXIF, nombre UUID"
+   "nota": "Sin EXIF, nombre UUID",
+   "subject": {
+    "x0": 0,
+    "y0": 0.48,
+    "x1": 1,
+    "y1": 0.73
+   }
   },
   {
    "id": "F004",
@@ -347,7 +447,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.6
+    "y": 0.73
    },
    "personas": "ninguna",
    "dudas": {
@@ -360,7 +460,13 @@
    },
    "ranuras": [],
    "alt": "Mesa larga con velas y flores blancas vista de cerca, de noche",
-   "nota": "Sin EXIF, nombre UUID"
+   "nota": "Sin EXIF, nombre UUID",
+   "subject": {
+    "x0": 0,
+    "y0": 0.53,
+    "x1": 1,
+    "y1": 0.94
+   }
   },
   {
    "id": "F005",
@@ -375,7 +481,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.6
+    "y": 0.76
    },
    "personas": "ninguna",
    "dudas": {
@@ -388,7 +494,13 @@
    },
    "ranuras": [],
    "alt": "Livings con almohadones blancos y velas bajo un árbol cubierto de luces, de noche",
-   "nota": "Sin EXIF, nombre UUID; par de F012"
+   "nota": "Sin EXIF, nombre UUID; par de F012",
+   "subject": {
+    "x0": 0,
+    "y0": 0.54,
+    "x1": 1,
+    "y1": 0.97
+   }
   },
   {
    "id": "F006",
@@ -410,8 +522,8 @@
     3
    ],
    "focal": {
-    "x": 0.45,
-    "y": 0.55
+    "x": 0.55,
+    "y": 0.64
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -424,7 +536,13 @@
    },
    "ranuras": [],
    "alt": "Pareja de novios abrazada en el césped, con guirnaldas de luces entre los árboles",
-   "nota": "Sin EXIF, UUID; casi idéntica a F013; posible generada. No usar sin confirmar Verificar que no haya menores."
+   "nota": "Sin EXIF, UUID; casi idéntica a F013; posible generada. No usar sin confirmar Verificar que no haya menores.",
+   "subject": {
+    "x0": 0.38,
+    "y0": 0.5,
+    "x1": 0.72,
+    "y1": 0.78
+   }
   },
   {
    "id": "F008",
@@ -446,8 +564,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.55
+    "x": 0.57,
+    "y": 0.16
    },
    "personas": "ninguna",
    "dudas": {
@@ -460,7 +578,13 @@
    },
    "ranuras": [],
    "alt": "Techo del galpón con bolas espejadas y luces, y mesas redondas servidas abajo",
-   "nota": "Sin EXIF, UUID; baja resolución"
+   "nota": "Sin EXIF, UUID; baja resolución",
+   "subject": {
+    "x0": 0.15,
+    "y0": 0,
+    "x1": 1,
+    "y1": 0.32
+   }
   },
   {
    "id": "F010",
@@ -482,8 +606,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.6
+    "x": 0.55,
+    "y": 0.65
    },
    "personas": "ninguna",
    "dudas": {
@@ -496,7 +620,13 @@
    },
    "ranuras": [],
    "alt": "Nave del galpón con dos hileras de mesas largas servidas bajo el techo de madera con luces",
-   "nota": "Sin EXIF, UUID"
+   "nota": "Sin EXIF, UUID",
+   "subject": {
+    "x0": 0.15,
+    "y0": 0.45,
+    "x1": 0.95,
+    "y1": 0.85
+   }
   },
   {
    "id": "F012",
@@ -534,8 +664,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.5
+    "x": 0.57,
+    "y": 0.51
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -550,7 +680,13 @@
     "contacto.entrada"
    ],
    "alt": "Construcción de madera con techo de chapa entre árboles, con invitados y músicos sobre el césped",
-   "nota": "Única vista de la construcción; con gente en primer plano Verificar que no haya menores."
+   "nota": "Única vista de la construcción; con gente en primer plano Verificar que no haya menores.",
+   "subject": {
+    "x0": 0.15,
+    "y0": 0.3,
+    "x1": 1,
+    "y1": 0.72
+   }
   },
   {
    "id": "F016",
@@ -564,8 +700,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.5
+    "x": 0.47,
+    "y": 0.63
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -584,7 +720,13 @@
     0,
     0,
     0
-   ]
+   ],
+   "subject": {
+    "x0": 0.3,
+    "y0": 0.3,
+    "x1": 0.65,
+    "y1": 0.95
+   }
   },
   {
    "id": "F017",
@@ -620,7 +762,13 @@
    },
    "ranuras": [],
    "alt": "Mesa larga servida bajo un árbol, con invitados sentados y velas encendidas",
-   "nota": "Misma que F006 Verificar que no haya menores."
+   "nota": "Misma que F006 Verificar que no haya menores.",
+   "subject": {
+    "x0": 0,
+    "y0": 0.52,
+    "x1": 1,
+    "y1": 0.92
+   }
   },
   {
    "id": "F019",
@@ -650,8 +798,8 @@
     3
    ],
    "focal": {
-    "x": 0.4,
-    "y": 0.5
+    "x": 0.53,
+    "y": 0.65
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -664,7 +812,13 @@
    },
    "ranuras": [],
    "alt": "Barra larga con copas y botellas, con invitados conversando al atardecer en el parque",
-   "nota": "Par de F025 Verificar que no haya menores."
+   "nota": "Par de F025 Verificar que no haya menores.",
+   "subject": {
+    "x0": 0.15,
+    "y0": 0.4,
+    "x1": 0.9,
+    "y1": 0.9
+   }
   },
   {
    "id": "F022",
@@ -687,7 +841,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.72
+    "y": 0.74
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -706,7 +860,13 @@
     0,
     12,
     0
-   ]
+   ],
+   "subject": {
+    "x0": 0,
+    "y0": 0.55,
+    "x1": 1,
+    "y1": 0.93
+   }
   },
   {
    "id": "F024",
@@ -736,8 +896,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.5
+    "x": 0.55,
+    "y": 0.77
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -750,7 +910,13 @@
    },
    "ranuras": [],
    "alt": "Rincón del parque de noche con livings y almohadones bajo luces colgantes; al fondo, un cartel luminoso",
-   "nota": "Reconocible de esta quinta"
+   "nota": "Reconocible de esta quinta",
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.6,
+    "x1": 1,
+    "y1": 0.95
+   }
   },
   {
    "id": "F027",
@@ -764,8 +930,8 @@
     2
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.4
+    "x": 0.57,
+    "y": 0.66
    },
    "personas": "ninguna",
    "dudas": {
@@ -780,7 +946,13 @@
     "espacios.hero"
    ],
    "alt": "Banco de carpintero con flores blancas y velas, la pileta a un lado y el galpón iluminado al fondo",
-   "nota": "Específica del lugar, sin gente"
+   "nota": "Específica del lugar, sin gente",
+   "subject": {
+    "x0": 0.2,
+    "y0": 0.46,
+    "x1": 0.95,
+    "y1": 0.86
+   }
   },
   {
    "id": "F028",
@@ -795,7 +967,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.55
+    "y": 0.74
    },
    "personas": "ninguna",
    "dudas": {
@@ -810,7 +982,13 @@
     "home.casamientos"
    ],
    "alt": "Mesa larga con arreglos florales bajo cortinas de luces que cuelgan de un árbol, de noche",
-   "nota": "Imagen fuerte de la noche"
+   "nota": "Imagen fuerte de la noche",
+   "subject": {
+    "x0": 0.06,
+    "y0": 0.55,
+    "x1": 0.94,
+    "y1": 0.93
+   }
   },
   {
    "id": "F029",
@@ -820,12 +998,12 @@
    "sujeto": "galpon-fiesta",
    "momento": "noche",
    "ratio": [
-    4,
-    3
+    2,
+    1
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.55
+    "y": 0.6
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -838,7 +1016,13 @@
    },
    "ranuras": [],
    "alt": "Interior del galpón de noche con el techo de madera cubierto de luces y gente en livings y mesas",
-   "nota": "Ráfaga con F030/F031 Verificar que no haya menores."
+   "nota": "Ráfaga con F030/F031 Verificar que no haya menores.",
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.44,
+    "x1": 0.9,
+    "y1": 0.72
+   }
   },
   {
    "id": "F030",
@@ -869,7 +1053,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.62
+    "y": 0.67
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -885,7 +1069,13 @@
     "espacios.parque"
    ],
    "alt": "Mesas altas y una mesa servida sobre el césped, junto a la pileta, con invitados al fondo",
-   "nota": "Parque con montaje"
+   "nota": "Parque con montaje",
+   "subject": {
+    "x0": 0,
+    "y0": 0.4,
+    "x1": 1,
+    "y1": 0.93
+   }
   },
   {
    "id": "F033",
@@ -895,12 +1085,12 @@
    "sujeto": "parque-guirnaldas",
    "momento": "tarde",
    "ratio": [
-    4,
-    5
+    2,
+    1
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.62
+    "x": 0.62,
+    "y": 0.7
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -915,7 +1105,13 @@
     "story.llegada"
    ],
    "alt": "Parque entre árboles con guirnaldas de luces y un grupo de invitados a lo lejos, al caer la tarde",
-   "nota": "Luz de transición Con el encuadre mobile se reconocen rostros; verificar permisos y menores."
+   "nota": "Luz de transición Con el encuadre mobile se reconocen rostros; verificar permisos y menores.",
+   "subject": {
+    "x0": 0.3,
+    "y0": 0.6,
+    "x1": 0.92,
+    "y1": 0.8
+   }
   },
   {
    "id": "F034",
@@ -930,7 +1126,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.55
+    "y": 0.53
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -943,7 +1139,13 @@
    },
    "ranuras": [],
    "alt": "Mesa larga con velas y platos, y al fondo una barra con un cartel luminoso y hombres de espaldas",
-   "nota": "Cartel con tipografía irregular: verificar si es real"
+   "nota": "Cartel con tipografía irregular: verificar si es real",
+   "subject": {
+    "x0": 0.05,
+    "y0": 0.38,
+    "x1": 0.95,
+    "y1": 0.68
+   }
   },
   {
    "id": "F035",
@@ -957,8 +1159,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.5
+    "x": 0.45,
+    "y": 0.57
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -981,7 +1183,13 @@
     0,
     31,
     0
-   ]
+   ],
+   "subject": {
+    "x0": 0,
+    "y0": 0.42,
+    "x1": 0.9,
+    "y1": 0.72
+   }
   },
   {
    "id": "F036",
@@ -1004,7 +1212,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.6
+    "y": 0.73
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1020,7 +1228,13 @@
     "espacios.cubierto"
    ],
    "alt": "Mesa larga con platos, velas y flores bajo el techo de madera del galpón, con luces cálidas",
-   "nota": "Armado cubierto real"
+   "nota": "Armado cubierto real",
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.5,
+    "x1": 0.9,
+    "y1": 0.97
+   }
   },
   {
    "id": "F038",
@@ -1035,7 +1249,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.5
+    "y": 0.63
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -1048,7 +1262,13 @@
    },
    "ranuras": [],
    "alt": "Mesa larga con velas y arreglos de flores blancas dentro del galpón, con invitados al fondo",
-   "nota": "Armado cubierto Verificar que no haya menores."
+   "nota": "Armado cubierto Verificar que no haya menores.",
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.3,
+    "x1": 0.9,
+    "y1": 0.95
+   }
   },
   {
    "id": "F039",
@@ -1063,7 +1283,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.65
+    "y": 0.72
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -1082,7 +1302,13 @@
     0,
     10,
     0
-   ]
+   ],
+   "subject": {
+    "x0": 0,
+    "y0": 0.5,
+    "x1": 1,
+    "y1": 0.95
+   }
   },
   {
    "id": "F040",
@@ -1104,8 +1330,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.6
+    "x": 0.45,
+    "y": 0.7
    },
    "personas": "ninguna",
    "dudas": {
@@ -1120,7 +1346,13 @@
     "hero.secundaria"
    ],
    "alt": "Detalle de una mesa de madera con copas, platos y velas encendidas",
-   "nota": "Detalle limpio"
+   "nota": "Detalle limpio",
+   "subject": {
+    "x0": 0,
+    "y0": 0.5,
+    "x1": 0.9,
+    "y1": 0.9
+   }
   },
   {
    "id": "F042",
@@ -1142,8 +1374,8 @@
     2
    ],
    "focal": {
-    "x": 0.55,
-    "y": 0.52
+    "x": 0.5,
+    "y": 0.66
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1164,7 +1396,13 @@
     0,
     12,
     0
-   ]
+   ],
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.5,
+    "x1": 0.9,
+    "y1": 0.82
+   }
   },
   {
    "id": "F044",
@@ -1178,8 +1416,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.5
+    "x": 0.53,
+    "y": 0.65
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1198,7 +1436,13 @@
     16,
     0,
     11
-   ]
+   ],
+   "subject": {
+    "x0": 0.3,
+    "y0": 0.35,
+    "x1": 0.75,
+    "y1": 0.95
+   }
   },
   {
    "id": "F045",
@@ -1212,8 +1456,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.6
+    "x": 0.53,
+    "y": 0.69
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1228,7 +1472,13 @@
     "casamientos.lluvia"
    ],
    "alt": "Mesa servida con velas y flores en el galpón, con livings y gente al fondo",
-   "nota": "Armado cubierto"
+   "nota": "Armado cubierto",
+   "subject": {
+    "x0": 0.05,
+    "y0": 0.45,
+    "x1": 1,
+    "y1": 0.92
+   }
   },
   {
    "id": "F046",
@@ -1238,12 +1488,12 @@
    "sujeto": "palmera-guirnaldas",
    "momento": "atardecer",
    "ratio": [
-    7,
-    4
+    1,
+    1
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.39
+    "y": 0.69
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1258,7 +1508,13 @@
     "story.ceremonia"
    ],
    "alt": "Palmera alta y guirnaldas de luces encendidas bajo un cielo con nubes",
-   "nota": "Encuadre 7:4 que deja fuera a las personas del borde inferior. Recortar para dejar sólo cielo y luces"
+   "nota": "Encuadre 7:4 que deja fuera a las personas del borde inferior. Recortar para dejar sólo cielo y luces",
+   "subject": {
+    "x0": 0,
+    "y0": 0.45,
+    "x1": 1,
+    "y1": 0.92
+   }
   },
   {
    "id": "F047",
@@ -1272,8 +1528,8 @@
     3
    ],
    "focal": {
-    "x": 0.5,
-    "y": 0.55
+    "x": 0.48,
+    "y": 0.57
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1294,7 +1550,13 @@
     11,
     0,
     0
-   ]
+   ],
+   "subject": {
+    "x0": 0,
+    "y0": 0.4,
+    "x1": 0.96,
+    "y1": 0.75
+   }
   },
   {
    "id": "F048",
@@ -1304,12 +1566,12 @@
    "sujeto": "mesa-galpon",
    "momento": "atardecer",
    "ratio": [
-    4,
-    5
+    2,
+    1
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.45
+    "y": 0.58
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1324,7 +1586,13 @@
     "story.noche"
    ],
    "alt": "Mesa larga con centros de flores blancas y velas, con el galpón de madera iluminado al fondo",
-   "nota": "Muestra el frente del galpón"
+   "nota": "Muestra el frente del galpón",
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.45,
+    "x1": 0.9,
+    "y1": 0.7
+   }
   },
   {
    "id": "F049",
@@ -1339,7 +1607,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.55
+    "y": 0.66
    },
    "personas": "rostros-sin-confirmar",
    "dudas": {
@@ -1354,7 +1622,13 @@
     "story.fiesta"
    ],
    "alt": "Livings con almohadones blancos y velas bajo un árbol cubierto de luces colgantes, de noche",
-   "nota": "Confirmar rostros Verificar que no haya menores."
+   "nota": "Confirmar rostros Verificar que no haya menores.",
+   "subject": {
+    "x0": 0,
+    "y0": 0.35,
+    "x1": 1,
+    "y1": 0.97
+   }
   },
   {
    "id": "F050",
@@ -1385,7 +1659,7 @@
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.58
+    "y": 0.64
    },
    "personas": "sin-rostro",
    "dudas": {
@@ -1400,7 +1674,13 @@
     "espacios.llegada"
    ],
    "alt": "Barra de madera con un cartel luminoso, rodeada de cortinas de luces, con invitados de espaldas",
-   "nota": "Reconocible"
+   "nota": "Reconocible",
+   "subject": {
+    "x0": 0,
+    "y0": 0.42,
+    "x1": 1,
+    "y1": 0.85
+   }
   },
   {
    "id": "F053",
@@ -1463,7 +1743,13 @@
     "espacios.ceremonia"
    ],
    "alt": "Pasillo de flores blancas sobre el césped, preparado para una ceremonia al aire libre, con los invitados al fondo",
-   "nota": "Único original en alta resolución, sin rostros nítidos"
+   "nota": "Único original en alta resolución, sin rostros nítidos",
+   "subject": {
+    "x0": 0.06,
+    "y0": 0.45,
+    "x1": 0.94,
+    "y1": 0.8
+   }
   },
   {
    "id": "F058",

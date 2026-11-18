@@ -19,8 +19,9 @@ type ManifestEntry = {
   personas: string;
   anchosGenerados: number[];
   jpeg?: { width: number; height: number };
+  mobile?: Record<string, { nombre: string; widths: number[]; maxWidth: number }>;
 };
-type SlotCfg = { foto: string; desktop: [number, number]; mobile: [number, number]; bleed?: [number, number]; focal?: [number, number] };
+type SlotCfg = { foto: string; desktop: [number, number]; mobile: [number, number]; bleed?: [number, number]; focal?: [number, number]; mobileCrop?: { maxWidth: number } };
 const manifest = manifestJson as unknown as ManifestEntry[];
 const slotMap = slotMapJson as unknown as Record<string, SlotCfg>;
 
@@ -52,6 +53,8 @@ export type Slot = {
   estado?: string;
   /** Proporción a sangre (desktop), lista para originales de 2000 px o más. Se activa con VITE_HERO_BLEED. */
   bleed?: [number, number];
+  /** Dirección de arte: recorte propio para pantallas angostas (photos:build). Hasta `maxWidth` px se usa esta fuente. */
+  mobile?: { avif: string; maxWidth: number };
   /** La foto provisoria no muestra lo que el slot necesita (ej. armado cubierto con lluvia real). */
   pending?: boolean;
 };
@@ -91,6 +94,7 @@ const use = (name: string, legacy: Slot): Slot => {
   const e = c && manifest.find((m) => m.id === c.foto && m.seccion !== "og");
   if (!c || !e || !e.nombre || !e.jpeg || e.estado === "bloqueada") return legacy;
   const base = `/photos/${e.nombre}`;
+  const mv = c.mobileCrop ? e.mobile?.[name] : undefined;
   const set = (ext: string) => e.anchosGenerados.map((w) => `${base}-w${w}.${ext} ${w}w`).join(", ");
   return {
     src: `${base}-w${e.jpeg.width}.jpg`,
@@ -104,6 +108,7 @@ const use = (name: string, legacy: Slot): Slot => {
     eventType: legacy.eventType,
     pending: legacy.pending,
     sources: { avif: set("avif") },
+    mobile: mv ? { avif: mv.widths.map((w) => `/photos/${mv.nombre}-w${w}.avif ${w}w`).join(", "), maxWidth: mv.maxWidth } : undefined,
     lqip: e.lqip ?? undefined,
     estado: e.estado,
     bleed: c.bleed,
