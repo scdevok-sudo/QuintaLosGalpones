@@ -3,6 +3,9 @@
 Sitio estático (React Router en modo SPA con prerenderizado) para casamientos y eventos de empresa en Benavídez.
 El resultado de `npm run build` es la carpeta `dist/`, lista para subir a un hosting estático (OpenLiteSpeed).
 
+Cómo publicar, variables de entorno, redirecciones del WordPress y rollback: `docs/DESPLIEGUE.md`.
+El formulario envía a un Google Apps Script: `apps-script/README.md`.
+
 ## Comandos
 
 | Comando | Qué hace |

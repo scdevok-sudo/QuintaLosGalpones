@@ -55,3 +55,23 @@ Todo texto que no es verbatim del documento de textos. Se completa a medida que 
 | "Cómo llegar" y la dirección en una línea | Inicio, cierre con el mapa | Cierre reducido a mapa, dirección y un único botón. |
 
 Se sacó el carrusel de testimonios, así que dejan de existir sus etiquetas accesibles. La sección de testimonios no se muestra con menos de 3 aprobados.
+
+## Agregados con Espacios, Contacto y las páginas nuevas (cierre de fase 1)
+| Qué | Dónde | Por qué |
+|---|---|---|
+| "El formulario necesita JavaScript. Mientras tanto, escribinos por WhatsApp y te respondemos por ahí." | Contacto, sin JS | Aviso de interfaz. |
+| "Si todavía no la tenés, dejalo vacío." | Contacto, campo de fecha | Microcopy; sale de "Mantener opcionales fecha y cantidad" del documento. |
+| "Nombre", "Correo", "WhatsApp", "Mensaje", "Nombre de la organización", "Tipo de evento", "Cantidad aproximada de personas", "Fecha estimada" | Formulario de Contacto | Etiquetas del documento. |
+| "Ambiente que imaginás" con "A definir", "Al aire libre", "Espacio cubierto", "Los dos" | Formulario de Contacto | Pregunta nuestra para armar la propuesta. No afirma nada del lugar. Pendiente de aprobar. |
+| "Nombres de la pareja", "¿Querés hacer la ceremonia en la quinta?" (Sí, No, A definir), "Objetivo del encuentro" | Formulario de Contacto, por tipo de evento | Salen de la FAQ "¿Cómo pido un presupuesto?". |
+| "A definir" | Planilla y correo, para fecha, invitados, ambiente y mensaje vacíos | Evita celdas vacías. |
+| Correo de aviso ("Nueva consulta: ...") y autorrespuesta ("Recibimos tu consulta", "Hola [nombre], ...", "Si querés agregar algo, respondé este correo.") | `apps-script/Code.gs` | La autorrespuesta usa el texto de confirmación del documento y el resumen de lo cargado. Sin plazo de respuesta. |
+| Texto completo de la política de privacidad | `src/content/privacidad.ts` | **Borrador sin validación legal.** El documento no trae texto. Lleva aviso visible mientras `site.privacyReviewed.validated` sea false. |
+| "Consultar por mi fecha" | Cierre de Preguntas frecuentes y de Eventos reales (el de Reales es "Consultar por un evento como este", del documento) | Reusa el botón del documento. |
+| "Tipo de evento", "Todos", "Ver foto", "Foto anterior", "Foto siguiente", "Cerrar" | Eventos reales, filtro y lightbox | Microcopy de interfaz. |
+| "Historia casamiento-a" y similares (etiqueta accesible) | Eventos reales | Etiqueta interna del grupo de fotos. Se cambia cuando haya datos aprobados de cada evento. |
+| "Cómo se arma tu presupuesto" y su texto ("Depende de la fecha, de la cantidad de invitados y de los servicios que elijas. Al pedir presupuesto vas a recibir el detalle de lo incluido, las opciones disponibles y los adicionales. Así podés comparar propuestas con el mismo alcance.") | Casamientos | Título del brief v2 7.4. La segunda y tercera oración son del documento. **No se muestra** hasta `site.presupuestoBloque.validated = true`. Sin cifras. |
+| "En esta página" | Política de privacidad, índice lateral | Etiqueta accesible. |
+
+## Ambiguos o recortados (sin cambios)
+- Eventos reales: las historias no llevan título propio ni pie de foto. Los datos (invitados, época del año, sector) solo se muestran con `aprobado: true` en `src/content/reales.ts`.
