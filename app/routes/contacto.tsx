@@ -7,6 +7,7 @@ import * as c from "@/content/contacto";
 import { seguimos } from "@/content/home";
 import { track } from "@/lib/analytics";
 import { preloadHero } from "@/lib/lcp";
+import { directionsUrl } from "@/lib/maps";
 import { crumbs, localBusinessLd, pageMeta } from "@/lib/seo";
 
 export const links = preloadHero("contacto.hero");
@@ -15,7 +16,6 @@ export function meta() {
   return pageMeta(c.meta, [localBusinessLd(), crumbs("Contacto", c.meta.path)]);
 }
 
-const mapQuery = encodeURIComponent(`${site.street}, ${site.locality}, Buenos Aires, Argentina`);
 
 export default function Contacto() {
   const { hero, visita, form, llegar } = c;
@@ -85,7 +85,7 @@ export default function Contacto() {
             <p className="mt-4">
               <a
                 className="link"
-                href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`}
+                href={directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("click_como_llegar", { origen: "contacto" })}

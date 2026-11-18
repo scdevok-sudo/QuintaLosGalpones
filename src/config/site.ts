@@ -29,7 +29,12 @@ export const site = {
   whatsapp: { value: "5491152498834", display: "11 5249-8834", validated: false } as Datum<string> & { display: string },
   email: { value: "", validated: false } as Datum<string>,
   mapsUrl: { value: "", validated: false } as Datum<string>,
-  coordinates: { value: null as null | { lat: number; lng: number }, validated: false },
+  /**
+   * APROXIMADAS: centro de la calle Quintino Bocayuva según OpenStreetMap (OSM no tiene el número 655).
+   * Verificar en Google Maps y recién entonces validated: true. Con false: el pin del mapa estático usa este
+   * punto, pero los enlaces y el iframe de Google siguen usando la dirección en texto.
+   */
+  coordinates: { value: { lat: -34.4168017, lng: -58.7164303 } as null | { lat: number; lng: number }, validated: false },
   /** Revisión legal de la política de privacidad. Mientras sea false, la página muestra el aviso de borrador. */
   privacyReviewed: { value: false, validated: false } as Datum<boolean>,
   /** Bloque "Cómo se arma tu presupuesto" en Casamientos. Se muestra solo con validated: true (lo aprueba el cliente). */

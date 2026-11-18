@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "react-router dev",
+    "map:build": "node scripts/map-build.mjs",
     "build": "react-router build && node scripts/postbuild.mjs",
     "preview": "node scripts/serve-dist.mjs",
     "typecheck": "react-router typegen && tsc --noEmit",

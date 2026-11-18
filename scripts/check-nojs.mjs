@@ -47,5 +47,12 @@ for (const [name, sel] of [["Contacto, WhatsApp", "section.dia a.btn-primary"], 
 }
 ok(await p.locator("#formulario").count() === 1 && await p.locator("#visita").count() === 1, "Contacto tiene #formulario y #visita");
 ok((await p.locator("#formulario").innerText()).includes("WhatsApp"), "sin JS el formulario ofrece WhatsApp");
+// 6. Mapa estático: imagen y los dos enlaces de Google Maps funcionan sin JS
+for (const route of ["/", "/contacto"]) {
+  await p.goto(base + route);
+  ok(await p.locator(".map img").isVisible(), `${route}: el mapa estático se ve sin JS`);
+  ok(/google\.com\/maps\/search\/\?api=1&query=/.test((await p.locator(".map a.btn").getAttribute("href")) || ""), `${route}: "Ver el mapa" es un enlace a Google Maps`);
+  ok(/google\.com\/maps\/dir\/\?api=1&destination=/.test((await p.locator("a.link", { hasText: "Cómo llegar" }).first().getAttribute("href")) || ""), `${route}: "Cómo llegar" arma la ruta`);
+}
 await b.close();
 process.exit(bad ? 1 : 0);

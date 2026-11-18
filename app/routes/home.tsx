@@ -11,6 +11,7 @@ import { site } from "@/config/site";
 import * as home from "@/content/home";
 import { track } from "@/lib/analytics";
 import { preloadHero } from "@/lib/lcp";
+import { directionsUrl } from "@/lib/maps";
 import { localBusinessLd, pageMeta } from "@/lib/seo";
 
 export const links = preloadHero("hero.principal");
@@ -19,7 +20,6 @@ export function meta() {
   return pageMeta(home.meta, [localBusinessLd()]);
 }
 
-const mapQuery = encodeURIComponent(`${site.street}, ${site.locality}, Buenos Aires, Argentina`);
 
 export default function Home() {
   const { hero, lugar, casamientos, empresas, lluvia, testimonios, seguimos, visita } = home;
@@ -196,7 +196,7 @@ export default function Home() {
           <p className="mt-4">
             <a
               className="link"
-              href={`https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`}
+              href={directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => track("click_como_llegar", { origen: "inicio" })}
