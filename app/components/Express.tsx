@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { env } from "@/config/site";
+import { RANGOS, TIPOS, buildPayload, enviarConsulta, esBot } from "@/config/consulta";
 import { form } from "@/content/contacto";
 import { track } from "@/lib/analytics";
 import { type ExpressChoice, whatsappExpressLink, whatsappLink } from "@/lib/whatsapp";
@@ -15,18 +15,6 @@ declare global {
 export const useExpress = () => useContext(ExpressContext);
 
 type Step = "datos" | "salida" | "contacto" | "ok" | "error";
-
-const TIPOS = [
-  { v: "casamiento", l: "Casamiento" },
-  { v: "empresa", l: "Empresa" },
-  { v: "otro", l: "Otro" },
-] as const;
-const RANGOS = [
-  { v: "", l: "Todavía no sé" },
-  { v: "hasta-100", l: "Hasta 100" },
-  { v: "100-200", l: "De 100 a 200" },
-  { v: "mas-200", l: "Más de 200" },
-] as const;
 
 /**
  * Consulta express: panel NO modal con la Popover API nativa.
@@ -135,27 +123,16 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
       return;
     }
     // Antispam sin captcha: honeypot y tiempo mínimo.
-    const bot = String(fd.get("sitio_web") || "") !== "" || Date.now() - openedAt.current < 2500;
-    if (bot) {
+    const ms = Date.now() - openedAt.current;
+    if (esBot({ sitio_web: String(fd.get("sitio_web") || "") }, ms)) {
       setStep("ok");
       return;
     }
     setSending(true);
-    try {
-      if (!env.formEndpoint) throw new Error("sin endpoint");
-      const res = await fetch(env.formEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ origen: "express", ...choice, invitados, nombre, correo, whatsapp }),
-      });
-      if (!res.ok) throw new Error(String(res.status));
-      track("express_envio", { tipo: choice.tipo });
-      setStep("ok");
-    } catch {
-      setStep("error");
-    } finally {
-      setSending(false);
-    }
+    const ok = await enviarConsulta(buildPayload("express", { fecha: choice.fecha, invitados, nombre, correo, whatsapp }, choice.tipo, ms));
+    setSending(false);
+    if (ok) track("express_envio", { tipo: choice.tipo });
+    setStep(ok ? "ok" : "error");
   }
 
   return (
@@ -211,7 +188,7 @@ export function ExpressProvider({ children }: { children: React.ReactNode }) {
                       {TIPOS.map((t) => (
                         <label key={t.v} className="choice choice-sm">
                           <input type="radio" name="tipo" value={t.v} checked={choice.tipo === t.v} onChange={() => setChoice({ ...choice, tipo: t.v })} />
-                          {t.l}
+                          {t.corto}
                         </label>
                       ))}
                     </div>

@@ -41,6 +41,7 @@ export const campos = {
   fecha: "Fecha estimada",
   fechaAyuda: "Si todavía no la tenés, dejalo vacío.",
   invitados: "Cantidad aproximada de personas",
+  ambiente: "Ambiente que imaginás",
   mensaje: "Mensaje",
   noJs: "El formulario necesita JavaScript. Mientras tanto, escribinos por WhatsApp y te respondemos por ahí.",
 };
