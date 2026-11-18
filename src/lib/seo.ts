@@ -1,15 +1,20 @@
 import { env, site } from "@/config/site";
 import type { Meta } from "@/content/types";
+import manifest from "@/data/photos.manifest.json";
 
 export const absoluteUrl = (path: string) =>
   `${env.siteUrl.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
 
 type Descriptor = Record<string, unknown>;
 
+/** Imagen Open Graph (JPEG 1200×630) generada por photos:build. Si no hay, queda la genérica. */
+const ogEntry = (manifest as { seccion?: string; nombre?: string; jpeg?: { width: number } }[]).find((m) => m.seccion === "og");
+const OG_PATH = ogEntry?.nombre && ogEntry.jpeg ? `/photos/${ogEntry.nombre}-w${ogEntry.jpeg.width}.jpg` : "/og-default.jpg";
+
 /** Meta tags estándar de una ruta: título, descripción, canonical, Open Graph y Twitter. */
 export function pageMeta(meta: Meta, extra: Descriptor[] = []): Descriptor[] {
   const url = absoluteUrl(meta.path);
-  const image = absoluteUrl("/og-default.jpg");
+  const image = absoluteUrl(OG_PATH);
   return [
     { title: meta.title },
     { name: "description", content: meta.description },
@@ -37,7 +42,7 @@ export function localBusinessLd(): Descriptor {
     "@id": `${absoluteUrl("/")}#negocio`,
     name: site.name,
     url: absoluteUrl("/"),
-    image: absoluteUrl("/og-default.jpg"),
+    image: absoluteUrl(OG_PATH),
     description: "Quinta para casamientos y eventos de empresa en Benavídez, provincia de Buenos Aires.",
     address: {
       "@type": "PostalAddress",

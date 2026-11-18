@@ -272,12 +272,34 @@
       aspect-ratio: var(--ar-d);
     }
   }
+  .ph {
+    background-size: cover;
+    background-position: center;
+  }
+  /* Hero en contenedor con ancho máximo: las fotos de 1320 px no se agrandan a sangre. Con VITE_HERO_BLEED=true
+     (originales de 2000 px o más) el marco se libera y la foto usa la proporción a sangre del slot. */
+  .hero-frame {
+    max-width: 76rem;
+    margin-inline: auto;
+  }
+  [data-hero-bleed] .hero-frame {
+    max-width: none;
+    padding-inline: 0;
+  }
+  @media (min-width: 768px) {
+    [data-hero-bleed] .ph.ph-bleedable {
+      aspect-ratio: var(--ar-b);
+    }
+  }
   .ph-fill {
     position: absolute;
     inset: 0;
     aspect-ratio: auto;
   }
-  .ph > img {
+  .ph picture {
+    display: contents;
+  }
+  .ph img {
     display: block;
     width: 100%;
     height: 100%;

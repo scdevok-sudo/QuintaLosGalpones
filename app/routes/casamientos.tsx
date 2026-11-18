@@ -30,7 +30,7 @@ export default function Casamientos() {
             </div>
           </div>
         </div>
-        <div className="wrap mt-10 md:mt-14">
+        <div className="wrap hero-frame mt-10 md:mt-14">
           <Photo slot="casamientos.hero" priority className="vt-casamientos" />
         </div>
       </section>

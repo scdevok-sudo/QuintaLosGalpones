@@ -26,7 +26,7 @@ const noscriptCss =
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" suppressHydrationWarning>
+    <html lang="es-AR" suppressHydrationWarning {...(import.meta.env.VITE_HERO_BLEED === "true" ? { "data-hero-bleed": "" } : {})}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
