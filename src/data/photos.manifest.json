@@ -1,0 +1,2014 @@
+[
+ {
+  "id": "F001",
+  "original": "05E8455F-6F87-4DAC-BFD6-2751F2F03D16.png",
+  "nombre": "espacios-cubierto-galpon-armado-atardecer-01",
+  "seccion": "espacios-cubierto",
+  "ranuras": [],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1024,
+   "h": 1535
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1024,
+   "h": 768
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1024
+  ],
+  "jpeg": {
+   "width": 1024,
+   "height": 768
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIEBQP/xAAkEAACAgEEAgEFAAAAAAAAAAABAgARAwQSIUExURRhgaGx4f/EABcBAAMBAAAAAAAAAAAAAAAAAAABBAL/xAAZEQADAQEBAAAAAAAAAAAAAAAAAQIRUTH/2gAMAwEAAhEDEQA/AM3Ywxoz7ShJ8Cv7JahdMqBcShG7VW4N+vUjj0+pUed4ADjaaoH9V6k/j4MgDrnLWbrwL+8jSWFTqt0rsqFaVwGF33xEtHQqgLIuRtxokcj8GIsXRu64XtOxGNiCQRhTkGZutAQjaAtnqIijw2zkGZMqbSRz0frERBgf/9k=",
+  "alt": "Interior del galpón con mesas largas servidas, velas y un arreglo de pampa, abierto al parque",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 55,
+  "pesoAvif1440": 105748,
+  "nota": "Misma toma que F056 pero pulida: posible versión retocada con IA"
+ },
+ {
+  "id": "F002",
+  "original": "16bc0bfd-4f38-43cd-83b2-5c89dd4f5c13.jpg",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1034,
+   "h": 1280
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Duplicado de F055"
+ },
+ {
+  "id": "F003",
+  "original": "37ad736c-c58c-49cb-bc3a-8ebf80e8bddf.jpg",
+  "nombre": "recorrido-2-parque-palmera-atardecer-01",
+  "seccion": "recorrido-2",
+  "ranuras": [],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.45
+  },
+  "dimensionesOriginal": {
+   "w": 972,
+   "h": 1280
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 972,
+   "h": 729
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   972
+  ],
+  "jpeg": {
+   "width": 972,
+   "height": 729
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAQFAQIDB//EACMQAAIDAAICAAcAAAAAAAAAAAECAAMRBCESQQUGFDEzYYH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABkRAQEAAwEAAAAAAAAAAAAAAAABAhExIf/aAAwDAQACEQMRAD8As6eIR8NP0uF/AmtnAOn1smUVrZSCXraxcV/A6A3sTzmu6ypQq221DCAAxzv+zmjBQfCxxp04SNkfVtrz5t5FycpuItiikAeQUjd/fuJRWOjsWtZnZh92buI5QsSLPxEepheq+usByIkpw2vJUFBoEREePAy6/9k=",
+  "alt": "Parque al atardecer con una palmera, guirnaldas de luces y gente a lo lejos",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 60844,
+  "nota": "Sin EXIF, nombre UUID"
+ },
+ {
+  "id": "F004",
+  "original": "3805E638-23E3-4615-B7A2-5DC18F2CFDD8.png",
+  "nombre": "casamientos-galeria-mesa-larga-velas-noche-01",
+  "seccion": "casamientos-galeria",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.6
+  },
+  "dimensionesOriginal": {
+   "w": 945,
+   "h": 1664
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 945,
+   "h": 709
+  },
+  "anchosGenerados": [
+   640,
+   945
+  ],
+  "jpeg": {
+   "width": 945,
+   "height": 709
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAUDBP/EACYQAAIBAwMEAQUAAAAAAAAAAAECAAMREgQhMQUTFFFBIjJxgYL/xAAXAQADAQAAAAAAAAAAAAAAAAAAAQIE/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAERMVH/2gAMAwEAAhEDEQA/AJXiuWYZBGUnc8NMTQdHxqVKdwMgQ223x+Z2L0uu31aqrgL8fdb1vNO1odKjZY1Kg4ubiZZDRETEu4UIpexN7D4iVKb1NVguHaoW3ZBjmPVojgjbqRPjuLm1zt/MmaMlupJck3VOf1EQ6D1F/UKuR2HPqIiUsKen/9k=",
+  "alt": "Mesa larga con velas y flores blancas vista de cerca, de noche",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 55,
+  "pesoAvif1440": 70164,
+  "nota": "Sin EXIF, nombre UUID"
+ },
+ {
+  "id": "F005",
+  "original": "38620F37-8205-4437-885D-EA696FFB5A85.png",
+  "nombre": "espacios-parque-livings-arbol-noche-01",
+  "seccion": "espacios-parque",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.6
+  },
+  "dimensionesOriginal": {
+   "w": 1086,
+   "h": 1448
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1086,
+   "h": 815
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1086
+  ],
+  "jpeg": {
+   "width": 1086,
+   "height": 815
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDAgb/xAAkEAABBAIBAgcAAAAAAAAAAAABAAIDEQQSMRMhFCIjQVFhcf/EABgBAAIDAAAAAAAAAAAAAAAAAAEEAAID/8QAHBEAAgICAwAAAAAAAAAAAAAAAAECESExQVFh/9oADAMBAAIRAxEAPwDzfUY2iTzXZctkbIdbH4rJcSDw7Xl+PGSNi0vFke1UsxM2/Tjc0VXmdsa+OEtxgZp2TF4e2r4FUipfLAzHqJrdmnttYI+0RXgGuzONrQLDQDfNKiEDQmhewCIpIMSLOFZUwHYC0RFeOjOWz//Z",
+  "alt": "Livings con almohadones blancos y velas bajo un árbol cubierto de luces, de noche",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 55,
+  "pesoAvif1440": 119124,
+  "nota": "Sin EXIF, nombre UUID; par de F012"
+ },
+ {
+  "id": "F006",
+  "original": "5119907c-8e3c-4253-aecd-567acd5776fc.jpg",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 740,
+   "h": 1280
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Igual a F018 (hash 0), peor resolución"
+ },
+ {
+  "id": "F007",
+  "original": "53FD6658-A400-45D5-8C25-F2C5476A0207.png",
+  "nombre": "casamientos-hero-pareja-cesped-atardecer-01",
+  "seccion": "casamientos-hero",
+  "ranuras": [],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.45,
+   "y": 0.55
+  },
+  "dimensionesOriginal": {
+   "w": 941,
+   "h": 1672
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 941,
+   "h": 706
+  },
+  "anchosGenerados": [
+   640,
+   941
+  ],
+  "jpeg": {
+   "width": 941,
+   "height": 706
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIDBQT/xAAmEAACAQQCAAUFAAAAAAAAAAABAgADBBEhEjEGEyJBUTJhYoGR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgME/8QAGREBAAMBAQAAAAAAAAAAAAAAAAERMUEC/9oADAMBAAIRAxEAPwDGNFcg0yEb57H6lSXFxSrcgGYg9nefaSVzT9AR+S5OG9l+ZZbhbujc1SSVQKR+O9n7dzPSi12yoXQZm3gZJiQphnpr5bNxHTaz/Yk6nhajbgOmXAY8cZO5teHqVMUr1AihSV9IGvpiJWOi47oAUnUAYx1ERB4wn//Z",
+  "alt": "Pareja de novios abrazada en el césped, con guirnaldas de luces entre los árboles",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 55,
+  "pesoAvif1440": 68472,
+  "nota": "Sin EXIF, UUID; casi idéntica a F013; posible generada. No usar sin confirmar Verificar que no haya menores."
+ },
+ {
+  "id": "F008",
+  "original": "7677FBD4-AEF2-4520-A4D3-933AA46763F1.png",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1124,
+   "h": 1399
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Misma escena que F002/F055"
+ },
+ {
+  "id": "F009",
+  "original": "7A3CB813-2F05-41D2-A79E-9A3182065C5E.png",
+  "nombre": "espacios-cubierto-galpon-bolas-espejo-noche-01",
+  "seccion": "espacios-cubierto",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.55
+  },
+  "dimensionesOriginal": {
+   "w": 935,
+   "h": 1681
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 935,
+   "h": 701
+  },
+  "anchosGenerados": [
+   640,
+   935
+  ],
+  "jpeg": {
+   "width": 935,
+   "height": 701
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIDBQH/xAAkEAACAQMDBAMBAAAAAAAAAAABAgADERIhIjEEQWHBBRNRcv/EABcBAAMBAAAAAAAAAAAAAAAAAAECBAD/xAAaEQACAwEBAAAAAAAAAAAAAAAAARIxQQIR/9oADAMBAAIRAxEAPwDFqqLkEc6jJO3iRp0lVNwwH9epaarF9yKCRaxPuUdXVZQSFxYc66GSeOiyXNk1CFscwyix0WxuO37aJWj1HsPrAqEXG29xEIska1FVdGzAbnkXmcwB6ioDwFUWiIEZ2c+MY5dRqdtFreIiIdYmH//Z",
+  "alt": "Techo del galpón con bolas espejadas y luces, y mesas redondas servidas abajo",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 55,
+  "pesoAvif1440": 73107,
+  "nota": "Sin EXIF, UUID; baja resolución"
+ },
+ {
+  "id": "F010",
+  "original": "97890C8B-3CB8-473A-B8ED-F78086E04564.png",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 851,
+   "h": 1849
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Rostros, baja resolución"
+ },
+ {
+  "id": "F011",
+  "original": "99DE625B-AD76-44C8-A244-82AFE9CE4BC8.png",
+  "nombre": "espacios-cubierto-galpon-nave-noche-01",
+  "seccion": "espacios-cubierto",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.6
+  },
+  "dimensionesOriginal": {
+   "w": 941,
+   "h": 1672
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 941,
+   "h": 706
+  },
+  "anchosGenerados": [
+   640,
+   941
+  ],
+  "jpeg": {
+   "width": 941,
+   "height": 706
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMEBf/EACcQAAIBBAECBQUAAAAAAAAAAAECAAMEESExEiITFCNBQmFxweHw/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIEAP/EABsRAQEAAgMBAAAAAAAAAAAAAAEAAjEDEUEy/9oADAMBAAIRAxEAPwDgisq+nWTXJcDWJQKGXrUrxgH3+klb0FquvjMyIfiDzNXlqdVqot16VpjHJ7m/hJcjqsxVosFUZqPsbG+IlES2uh0uxoMdOrbX9RAB7FXyyYzUXM6VmSKNXfJ/BiI/J8yYbsN9237Y1kDOPsIiJjUb/9k=",
+  "alt": "Nave del galpón con dos hileras de mesas largas servidas bajo el techo de madera con luces",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 55,
+  "pesoAvif1440": 78774,
+  "nota": "Sin EXIF, UUID"
+ },
+ {
+  "id": "F012",
+  "original": "CE4E8F14-41D1-446A-A45B-94919031E098.png",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1086,
+   "h": 1448
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "ninguna",
+  "nota": "Casi duplicada de F005"
+ },
+ {
+  "id": "F013",
+  "original": "E4B1F96B-5609-4FFF-85C0-794C1D985935.png",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 941,
+   "h": 1672
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Casi duplicada de F007"
+ },
+ {
+  "id": "F014",
+  "original": "IMG_0024.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2253
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Captura con interfaz y nombre de cuenta, música de terceros"
+ },
+ {
+  "id": "F015",
+  "original": "IMG_0540.PNG",
+  "nombre": "mapa-fachada-cabana-parque-atardecer-01",
+  "seccion": "mapa-fachada",
+  "ranuras": [
+   "contacto.entrada"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1769
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAEEBQMG/8QAJBAAAQQBAwMFAAAAAAAAAAAAAQACAxEEBRJBEyEjMUNRkbH/xAAYAQACAwAAAAAAAAAAAAAAAAAAAgEDBP/EABkRAQEBAAMAAAAAAAAAAAAAAAEAAhEhUf/aAAwDAQACEQMRAD8A89hyluQxwIAFH6W7rOcJnxzMl3PIBoABoB/VlYuM+ZhmbsAFbhXc/C7y4m4CSS37fbaKB4CrdcdTAFai1Po6fLDZ6zyOb5RUm6eZIfK/ZZ7ANshFDs9lS0qAAoUpfwiLMxQfUoiIi//Z",
+  "alt": "Construcción de madera con techo de chapa entre árboles, con invitados y músicos sobre el césped",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 50,
+  "pesoAvif1440": 106051,
+  "nota": "Única vista de la construcción; con gente en primer plano Verificar que no haya menores."
+ },
+ {
+  "id": "F016",
+  "original": "IMG_0578.PNG",
+  "nombre": "recorrido-4-fogata-invitados-noche-01",
+  "seccion": "recorrido-4",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1044
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1314,
+   "h": 986
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1314
+  ],
+  "jpeg": {
+   "width": 1314,
+   "height": 986
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAIDBQQG/8QAIhAAAgICAgICAwAAAAAAAAAAAQIAAwQREiEFMUFRYZHw/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgQD/8QAHBEAAwABBQAAAAAAAAAAAAAAAAECMRESMkFR/9oADAMBAAIRAxEAPwDza4xNfTLpuhyH2ZY3jiuPYxVTw1vifv1OPlZZx5sN6ABHx3ubmA9K+BzkssUX3sCoP4/jJnquymUmYlePSzEOWXreyeok63YM6O6qtgALEE6AiJt+h2ojR7lzMwyV0T+4iGsmsYGX6iIijAb5H//Z",
+  "alt": "Fogata encendida en el parque de noche, con muchos invitados alrededor y guirnaldas de luces",
+  "estado": "provisoria-rostros",
+  "pendientes": [
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 55,
+  "pesoAvif1440": 112996,
+  "nota": "Escena de fogata valiosa; pedir permiso o versión sin rostros Verificar que no haya menores."
+ },
+ {
+  "id": "F017",
+  "original": "IMG_0585.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2868
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Marcos negros, posible menor"
+ },
+ {
+  "id": "F018",
+  "original": "IMG_1759.PNG",
+  "nombre": "casamientos-galeria-mesa-larga-invitados-tarde-01",
+  "seccion": "casamientos-galeria",
+  "ranuras": [],
+  "momento": "tarde",
+  "focal": {
+   "x": 0.5,
+   "y": 0.72
+  },
+  "dimensionesOriginal": {
+   "w": 1170,
+   "h": 2024
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1170,
+   "h": 878
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1170
+  ],
+  "jpeg": {
+   "width": 1170,
+   "height": 878
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAUEA//EACUQAAIBBAEDBAMAAAAAAAAAAAECAwAEERIhBRNRFCIxQTJxsf/EABcBAQADAAAAAAAAAAAAAAAAAAMAAQL/xAAbEQEBAAMAAwAAAAAAAAAAAAABAAIRMRIhQf/aAAwDAQACEQMRAD8Aj3VtMLicmCUhmARtMg/H39Ug7sLMqKTocZwwqpD0S4hZnt7oMoH4MeSf5WK6i6nEDJaNK6SE8Zyc+TQa+E7p9paoZZp9ZCuxUHYIvyPHNKmvddXjeNbjGWPtDxg7H90qeIVOI8KlYu+2Nmx4zViMDtNwODxSlI8snbtMo9KwwOG4pSlFjI3/2Q==",
+  "alt": "Mesa larga servida bajo un árbol, con invitados sentados y velas encendidas",
+  "estado": "provisoria-rostros",
+  "pendientes": [
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 55,
+  "pesoAvif1440": 79719,
+  "nota": "Misma que F006 Verificar que no haya menores."
+ },
+ {
+  "id": "F019",
+  "original": "IMG_1782.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1170,
+   "h": 1152
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Rostros, ruido"
+ },
+ {
+  "id": "F020",
+  "original": "IMG_4483.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2349
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Se ven menores (un bebé en brazos y un niño entre los invitados) y hay una mancha de retoque en el borde derecho"
+ },
+ {
+  "id": "F021",
+  "original": "IMG_5174.JPG",
+  "nombre": "casamientos-galeria-barra-larga-atardecer-01",
+  "seccion": "casamientos-galeria",
+  "ranuras": [],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.4,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1920,
+   "h": 1278
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1704,
+   "h": 1278
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1440,
+   1704
+  ],
+  "jpeg": {
+   "width": 1440,
+   "height": 1080
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQDBQb/xAAnEAACAQMDBAAHAAAAAAAAAAABAgMABBEFEiETMUFhBiIkMlGB0f/EABcBAAMBAAAAAAAAAAAAAAAAAAABAgP/xAAbEQADAAIDAAAAAAAAAAAAAAAAAQIDMRMyUf/aAAwDAQACEQMRAD8Aqs/iG0aANOWjYdxtJH6rWfXrBo45llkbYfsQEZzxzXm7JWkI2QgtuHduAP7VkJMF8bREKN02ZTw3Pv1S5r8BY5LtQ1aG4gaK3jkk3r5+WlSfUBGM0sXW7qmN20e6VFZLbLWOUci3Zg4wxHB810oeJJWHDYxnzSlJdhrRsoA0i5kwN4Iw3kc/mlKUM0nR/9k=",
+  "alt": "Barra larga con copas y botellas, con invitados conversando al atardecer en el parque",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 55,
+  "pesoAvif1440": 118630,
+  "nota": "Par de F025 Verificar que no haya menores."
+ },
+ {
+  "id": "F022",
+  "original": "IMG_5256.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 909,
+   "h": 1915
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "sin-rostro",
+  "nota": "Sobresaturada, baja resolución"
+ },
+ {
+  "id": "F023",
+  "original": "IMG_5257.PNG",
+  "nombre": "recorrido-4-fogata-siluetas-atardecer-01",
+  "seccion": "recorrido-4",
+  "ranuras": [],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.72
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2162
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQEAAwAAAAAAAAAAAAAAAAQCAwUG/8QAIxAAAQQBBAEFAAAAAAAAAAAAAgABAxEEEyExcRIUI0Fh8f/EABcBAQEBAQAAAAAAAAAAAAAAAAEEAgP/xAAYEQEBAQEBAAAAAAAAAAAAAAABAAIDEf/aAAwDAQACEQMRAD8A8rHkRgVb30rByAjg1Kuyp3q9qUOnGT25PfS5GZtPTYqH5++1Poy1eOiXZZs2I/pwhchl8PdEm4L8pFBkZLSyERCL3w9U7NVUiDPhLsWnFaflEW24Fh0RExf/2Q==",
+  "alt": "Fogata en el parque al atardecer, con invitados a contraluz y árboles al fondo",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 108761,
+  "nota": "Color muy forzado"
+ },
+ {
+  "id": "F024",
+  "original": "IMG_5920.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 2868,
+   "h": 1320
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Captura de video"
+ },
+ {
+  "id": "F025",
+  "original": "IMG_6599.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 879
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Par de F021, rostros"
+ },
+ {
+  "id": "F026",
+  "original": "IMG_6637.PNG",
+  "nombre": "espacios-parque-rincon-cartel-noche-01",
+  "seccion": "espacios-parque",
+  "ranuras": [
+   "espacios.llegada"
+  ],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1678
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAECAwQG/8QAHhAAAgIDAQADAAAAAAAAAAAAAAECEQMSITETM4H/xAAWAQEBAQAAAAAAAAAAAAAAAAABAgT/xAAZEQEAAwEBAAAAAAAAAAAAAAAAAQIxURH/2gAMAwEAAhEDEQA/AOXjtLGqVRT4rLQScYpp8ZWeSMU9VVMyRqOHb5IcrifTPLREeqPr75QIc9YxbApa+RvUnL9KAL4epz+L8AA1xFtf/9k=",
+  "alt": "Rincón del parque de noche con livings y almohadones bajo luces colgantes; al fondo, un cartel luminoso",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 45,
+  "pesoAvif1440": 112648,
+  "nota": "Reconocible de esta quinta AVIF a calidad 45 para entrar en 120 KB."
+ },
+ {
+  "id": "F027",
+  "original": "IMG_6675.PNG",
+  "nombre": "espacios-parque-banco-flores-atardecer-01",
+  "seccion": "espacios-parque",
+  "ranuras": [
+   "espacios.hero"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.4
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1755
+  },
+  "recorte": {
+   "ratio": [
+    3,
+    2
+   ],
+   "w": 1320,
+   "h": 880
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 880
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAMBAgX/xAAjEAACAgEEAQUBAAAAAAAAAAABAgMRABITISIEMUFRccHw/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAYEQEAAwEAAAAAAAAAAAAAAAABAAIRMf/aAAwDAQACEQMRAD8Ay3KsqLRDaiGUexHGRNNflhmHbUpLNxR/hiU8pI59t4TICLsGqx27BpG29ckaWPYDnn6yQElO6bFShXUvEdsdtTC+13x+YZdPHlECyykBWGkN816UcMWtV5Csh2f/2Q==",
+  "alt": "Banco de carpintero con flores blancas y velas, la pileta a un lado y el galpón iluminado al fondo",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 55,
+  "pesoAvif1440": 108884,
+  "nota": "Específica del lugar, sin gente"
+ },
+ {
+  "id": "F028",
+  "original": "IMG_6813.PNG",
+  "nombre": "cierre-noche-guirnalda-mesas-noche-01",
+  "seccion": "cierre-noche",
+  "ranuras": [
+   "home.casamientos"
+  ],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.55
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1961
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAECBAUD/8QAJBAAAgEDAwQDAQAAAAAAAAAAAQIAAxEhBBITBSIxURRBYfH/xAAYAQADAQEAAAAAAAAAAAAAAAABAwQAAv/EABoRAQEAAgMAAAAAAAAAAAAAAAABAjEhMkL/2gAMAwEAAhEDEQA/AOJRC8VNb4Azc+JGwgbS3buBBPqRSam1O4pKMZJJ8y/x+ZCy0yFtayZkWqr5UbtBBbO3Fx+xNC6CmtM8zEAfW6/8iGWNccnv1BFOk0wKgj1aaQqrp2CgAWGAPyInE6menJ6gx5lW5t6iIjZoK//Z",
+  "alt": "Mesa larga con arreglos florales bajo cortinas de luces que cuelgan de un árbol, de noche",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 50,
+  "pesoAvif1440": 119429,
+  "nota": "Imagen fuerte de la noche"
+ },
+ {
+  "id": "F029",
+  "original": "IMG_6821.PNG",
+  "nombre": "espacios-cubierto-galpon-fiesta-noche-01",
+  "seccion": "espacios-cubierto",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.55
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1745
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAEDBAIG/8QAJRAAAgIBAgQHAAAAAAAAAAAAAQIAESEEEgMFIjEUUVJhcZGh/8QAFwEBAQEBAAAAAAAAAAAAAAAAAwECBP/EABoRAAIDAQEAAAAAAAAAAAAAAAABAgMxQVH/2gAMAwEAAhEDEQA/APNgqMMc3YNYMnZ1FlYg17WZnClkNo1E2pCmpw+4ZIIPqPnAUTpcjRxVsqASWr8iQ3AZdGdQuOrZk/GIlS8I21qLuG7OFDMWAFCz2lesJ8NVmtwNREOPDctZPMMcs0YHbYDX3ERFrwKzT//Z",
+  "alt": "Interior del galpón de noche con el techo de madera cubierto de luces y gente en livings y mesas",
+  "estado": "provisoria-rostros",
+  "pendientes": [
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 50,
+  "pesoAvif1440": 104026,
+  "nota": "Ráfaga con F030/F031 Verificar que no haya menores."
+ },
+ {
+  "id": "F030",
+  "original": "IMG_6823.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1755
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Luces de color poco coherentes; duplicada de F031"
+ },
+ {
+  "id": "F031",
+  "original": "IMG_6824.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1770
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Duplicada de F030"
+ },
+ {
+  "id": "F032",
+  "original": "IMG_6831.PNG",
+  "nombre": "espacios-parque-mesas-pileta-atardecer-01",
+  "seccion": "espacios-parque",
+  "ranuras": [
+   "home.empresas",
+   "espacios.parque"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.62
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1493
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIEBgX/xAAmEAABBAAEBQUAAAAAAAAAAAABAAIDEQQSIjEhI0FRYQUTQnGx/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAMBAv/EABwRAAEEAwEAAAAAAAAAAAAAAAABAhExEiFBUf/aAAwDAQACEQMRAD8AzLMPCHD3JXHa9NqbYYi+i4vhB4lraJHjyo5QOtK76cYgecHll/AgbqWQTZXOGidHULJ3S2AHZrB78K7fiLtSjAjLO2R7Wtrl1d1vd90Xc+oIM90Kix7mvcA4jSdiiKXA2y1hSTgI7N6zv9hERa6yjaP/2Q==",
+  "alt": "Mesas altas y una mesa servida sobre el césped, junto a la pileta, con invitados al fondo",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 109029,
+  "nota": "Parque con montaje"
+ },
+ {
+  "id": "F033",
+  "original": "IMG_7131.PNG",
+  "nombre": "recorrido-1-parque-guirnaldas-tarde-01",
+  "seccion": "recorrido-1",
+  "ranuras": [
+   "story.llegada"
+  ],
+  "momento": "tarde",
+  "focal": {
+   "x": 0.5,
+   "y": 0.62
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2327
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    5
+   ],
+   "w": 1320,
+   "h": 1650
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 1650
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAeABgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAMBBAYF/8QAJhAAAgIBAwMDBQAAAAAAAAAAAQIAAxESITEEQVEFBhMiMmFx4f/EABcBAQEBAQAAAAAAAAAAAAAAAAACAQP/xAAZEQEBAQADAAAAAAAAAAAAAAAAARESITH/2gAMAwEAAhEDEQA/AMhWmQTnIHO80ntlLE6tdDq9RGSCd9vxM3ShLDHnjzOjVY9BLV5XbBK7bznb2Geu2WXdbYWt+RNR0lTkY/XaEo2sp1M+pnPH9hLjML6W9KrPqTWOCI0BrhZpZxls4J7RNdeQSO0sonx1h1PJwRItzwRoaolqy2Sm/fLQjz9qt5hHIf/Z",
+  "alt": "Parque entre árboles con guirnaldas de luces y un grupo de invitados a lo lejos, al caer la tarde",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 45,
+  "pesoAvif1440": 115584,
+  "nota": "Luz de transición AVIF a calidad 45 para entrar en 120 KB."
+ },
+ {
+  "id": "F034",
+  "original": "IMG_7132.PNG",
+  "nombre": "cierre-noche-mesa-cartel-noche-01",
+  "seccion": "cierre-noche",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.55
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2868
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGgABAAMAAwAAAAAAAAAAAAAAAAEDBAIFBv/EACQQAQABAwMDBQEAAAAAAAAAAAECAAMRBBIhBTJBEyJRYYEx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwEE/8QAGhEAAwEBAQEAAAAAAAAAAAAAAAExAhESIf/aAAwDAQACEQMRAD8A8xpkjGUoyiTjHJkOak1t6Md6wdznsivx+VEtIzt2/S79vMXjFXWOjXJ2577kYuPDkH4fus/c1jr1Ec/WvavR78WsEkTYDgP7n9pWM6deje2XGIAyJZyLilXmVCfXTuOnRjLSXliKRwZPuruzQ29ntyK4480pWfVHzDDdVRVXb5pSlMgmf//Z",
+  "alt": "Mesa larga con velas y platos, y al fondo una barra con un cartel luminoso y hombres de espaldas",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 72835,
+  "nota": "Cartel con tipografía irregular: verificar si es real"
+ },
+ {
+  "id": "F035",
+  "original": "IMG_7151.PNG",
+  "nombre": "casamientos-galeria-parque-guirnaldas-atardecer-01",
+  "seccion": "casamientos-galeria",
+  "ranuras": [
+   "lluvia.sol",
+   "casamientos.parque",
+   "contacto.hero"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 939
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1194,
+   "h": 896
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1194
+  ],
+  "jpeg": {
+   "width": 1194,
+   "height": 896
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAMFAQIEBv/EACQQAAIBAwMDBQAAAAAAAAAAAAECAAMEERIiMQUhQRMVUWFx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAaEQEBAQADAQAAAAAAAAAAAAABABESIjFB/9oADAMBAAIRAxEAPwDHROp2Nvb+ncu+pm2gJkAfsl95t3eoaltppqNuGBZjmeSSjuxrP0QJLRR6avqIJKFQc8E+ZLmnjPr9rS6uqVwWZMdxx8CJWBiE3Ek+QTEmqu7MTLnUnHM2BPfuYiKjROTnkxEREi//2Q==",
+  "alt": "Césped con guirnaldas de luces al atardecer y invitados conversando a lo lejos",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 122787,
+  "nota": "Sirve para OG y hero"
+ },
+ {
+  "id": "F036",
+  "original": "IMG_7155.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1773
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Aparece un menor"
+ },
+ {
+  "id": "F037",
+  "original": "IMG_7158.PNG",
+  "nombre": "espacios-cubierto-galpon-mesa-larga-noche-01",
+  "seccion": "espacios-cubierto",
+  "ranuras": [
+   "lluvia.cubierto",
+   "espacios.cubierto"
+  ],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.6
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1756
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAIEBQEG/8QAIxAAAgEEAgAHAAAAAAAAAAAAAQIAAwQRIRIxIjI0QVGB8P/EABYBAQEBAAAAAAAAAAAAAAAAAAMCBP/EABgRAQEBAQEAAAAAAAAAAAAAAAEAAjER/9oADAMBAAIRAxEAPwDyJYttR5iSTLL2jJaK7OcjZXHX7ElY25qup45GeK7HcvMjNTdHUeBuBAI3M+teNozmx6i9FmbiRuJNgabNTf2MSxpS0aAAs1x8Cdpb73sxEF7KWfferP1ERGORPb//2Q==",
+  "alt": "Mesa larga con platos, velas y flores bajo el techo de madera del galpón, con luces cálidas",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 102554,
+  "nota": "Armado cubierto real"
+ },
+ {
+  "id": "F038",
+  "original": "IMG_7159.PNG",
+  "nombre": "espacios-cubierto-galpon-mesa-invitados-noche-01",
+  "seccion": "espacios-cubierto",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 984
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1312,
+   "h": 984
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1312
+  ],
+  "jpeg": {
+   "width": 1312,
+   "height": 984
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAQBAgMG/8QAJxAAAQQABQEJAAAAAAAAAAAAAQACAxEEEiExQQUTFCJCYXOhsdH/xAAXAQEBAQEAAAAAAAAAAAAAAAABBAAC/8QAGhEBAQACAwAAAAAAAAAAAAAAAQACMRFBUf/aAAwDAQACEQMRAD8A82J48o1cLHmFrLpWCiDmWgjmxMmQX6NHH4r2YGLDxgEsdM/QF2wHJ1UyYlWZZUecuHgDi0cm6tFTLhopWtfCezfoS3YXyiRPI5azAtaOlvcAA7PvWq5dSALGWLpor5RFx3LpueDA7hF7h+giItBq/9k=",
+  "alt": "Mesa larga con velas y arreglos de flores blancas dentro del galpón, con invitados al fondo",
+  "estado": "provisoria-rostros",
+  "pendientes": [
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 50,
+  "pesoAvif1440": 120520,
+  "nota": "Armado cubierto Verificar que no haya menores."
+ },
+ {
+  "id": "F039",
+  "original": "IMG_7188.PNG",
+  "nombre": "cierre-noche-arbol-luces-pareja-noche-01",
+  "seccion": "cierre-noche",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.65
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2036
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQFAQP/xAAmEAACAQMCBAcAAAAAAAAAAAABAgADESEEEhMxQWEFFCJRcYGx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQMEAv/EABsRAAIDAAMAAAAAAAAAAAAAAAABAjFBAxES/9oADAMBAAIRAxEAPwDC44WnlGX09T9TOqEpVboR7y5U1GuolwpIRblmOO/7IatM+ZNJbOQbXGQZPBJFEi2pVRBTDgghbjN+kTq+HVGsKoK8QA9vmJnuCth8yw8S7bQu47edr4lmgVRsIUAnmbc4iHGHUaOsJNA3Jw5EREVx0MnZ/9k=",
+  "alt": "Mesa bajo un árbol con luces colgantes, con una pareja sentada en primer plano",
+  "estado": "provisoria-rostros",
+  "pendientes": [
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 55,
+  "pesoAvif1440": 68789,
+  "nota": "Rostros en primer plano Verificar que no haya menores."
+ },
+ {
+  "id": "F040",
+  "original": "IMG_7208.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1644
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Rostros en primer plano"
+ },
+ {
+  "id": "F041",
+  "original": "IMG_7210.PNG",
+  "nombre": "casamientos-galeria-mesa-velas-noche-01",
+  "seccion": "casamientos-galeria",
+  "ranuras": [
+   "hero.secundaria"
+  ],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.6
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2322
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMEBv/EACIQAAICAgEDBQAAAAAAAAAAAAECABEDEjEEQVETFCEyYf/EABYBAQEBAAAAAAAAAAAAAAAAAAIDBP/EABkRAAMBAQEAAAAAAAAAAAAAAAABETFRQf/aAAwDAQACEQMRAD8A57Dix+krFjseR4mtm9q19KCrBQf26mXZRsQDV/A5kMoL/bZfFdpml002YUzhsjbNgDHzdGJlbZQScrsB2vmJRLgG+mhyRjsGjcpfERB6Mh1YAqgIiI0Ten//2Q==",
+  "alt": "Detalle de una mesa de madera con copas, platos y velas encendidas",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "ninguna",
+  "calidadAvif": 55,
+  "pesoAvif1440": 81001,
+  "nota": "Detalle limpio"
+ },
+ {
+  "id": "F042",
+  "original": "IMG_7211.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1904
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Rostros"
+ },
+ {
+  "id": "F043",
+  "original": "IMG_7216.PNG",
+  "nombre": "inicio-hero-parque-guirnaldas-atardecer-01",
+  "seccion": "inicio-hero",
+  "ranuras": [
+   "hero.principal"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.55,
+   "y": 0.52
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1762
+  },
+  "recorte": {
+   "ratio": [
+    3,
+    2
+   ],
+   "w": 1320,
+   "h": 880
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 880
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFBv/EACQQAAIBAwMDBQAAAAAAAAAAAAECAwAEEQUTITFBcRIUIjJh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAgP/xAAYEQEBAQEBAAAAAAAAAAAAAAABABEDIf/aAAwDAQACEQMRAD8Ao3Oq6dJBMYZlLRg4IHJ8DvWHupJ3lZjO7seMgnkUhLCMn0kD8Wl3S7AgKuMAkr080NZYWh0S+91Bs3BxJGPuzD5c0VC25HfKGMjuUXpRVDshjB5C+X//2Q==",
+  "alt": "Parque de la quinta al atardecer, con guirnaldas de luces sobre el césped y un cielo despejado",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 101499,
+  "nota": "Mejor candidata de hero"
+ },
+ {
+  "id": "F044",
+  "original": "IMG_7235.PNG",
+  "nombre": "recorrido-4-fogata-noche-01",
+  "seccion": "recorrido-4",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 851
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1134,
+   "h": 851
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1134
+  ],
+  "jpeg": {
+   "width": 1134,
+   "height": 851
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAMEAQb/xAAiEAACAQQBBAMAAAAAAAAAAAABAgADBBEhEhMxQVEiYXH/xAAVAQEBAAAAAAAAAAAAAAAAAAACA//EABcRAQEBAQAAAAAAAAAAAAAAAAARAQL/2gAMAwEAAhEDEQA/APLs1oSow+MfJsdvyUS6t0VlSlx9E+T9iYFPJhrXmaqlDFmlQbZ2IKjuBJ2K5lSe5dgRkYPobiSqE9TQAGh2iKjHElgTxzncRD0XKTRERYGv/9k=",
+  "alt": "Fogata encendida en el parque de noche, con invitados alrededor y guirnaldas de luces",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 73838,
+  "nota": "Sólo como alternativa"
+ },
+ {
+  "id": "F045",
+  "original": "IMG_7237.PNG",
+  "nombre": "espacios-cubierto-galpon-mesa-velas-noche-01",
+  "seccion": "espacios-cubierto",
+  "ranuras": [
+   "casamientos.lluvia"
+  ],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.6
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1978
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAECAwQFBv/EACQQAAEEAgECBwAAAAAAAAAAAAEAAgMRBCESMWEFExQjQkNy/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgME/8QAGhEBAQADAQEAAAAAAAAAAAAAAQACETESQf/aAAwDAQACEQMRAD8A89h4/qI/daTI7XIjXFWb4cHM5AN43VXZvstzCDQHSCOo2jYOjvWlOJwe2VkbC5xuux6rG5u3VsMDRch7PKkIA2DrkKKLo5GMZdCPi4fK7RUMh7HynLJFuRoPRRifZ+yiKLUPlTIc4TABxquloiJkXt//2Q==",
+  "alt": "Mesa servida con velas y flores en el galpón, con livings y gente al fondo",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 100450,
+  "nota": "Armado cubierto"
+ },
+ {
+  "id": "F046",
+  "original": "IMG_7280.PNG",
+  "nombre": "recorrido-2-palmera-guirnaldas-atardecer-01",
+  "seccion": "recorrido-2",
+  "ranuras": [
+   "story.ceremonia"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.38
+  },
+  "dimensionesOriginal": {
+   "w": 1312,
+   "h": 2140
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    5
+   ],
+   "w": 1312,
+   "h": 1640
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1312
+  ],
+  "jpeg": {
+   "width": 1312,
+   "height": 1640
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAeABgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQBAgMG/8QAJBAAAgICAgEDBQAAAAAAAAAAAQIDEQAhBBJRBRNxFCIxMkH/xAAXAQADAQAAAAAAAAAAAAAAAAAAAQME/8QAFxEBAQEBAAAAAAAAAAAAAAAAABEBEv/aAAwDAQACEQMRAD8AdCxJE0sslIgsk5aOOOUABwVbat5yZuKH4rx9g6Vs9qIzDi8n09D9EJQZI9Be1b/u/OVqcNOrxSLH1FjwLvDF+Zyoofb9yVU7fqVa8MfWCOVE8xhdex+7VnFgjsxOrHz83leapgZVB3dishGZZp7NkKfz5zLmXKsZWRwDbqF8WcMyPO7IF6kBaqq1himnMf/Z",
+  "alt": "Palmera alta y guirnaldas de luces encendidas bajo un cielo con nubes",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 84928,
+  "nota": "Dos personas de espaldas en el borde inferior en la proporción mobile. Recortar para dejar sólo cielo y luces"
+ },
+ {
+  "id": "F047",
+  "original": "IMG_7284.PNG",
+  "nombre": "casamientos-galeria-barra-madera-noche-01",
+  "seccion": "casamientos-galeria",
+  "ranuras": [
+   "casamientos.servicios"
+  ],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.55
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1971
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1309,
+   "h": 982
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1309
+  ],
+  "jpeg": {
+   "width": 1309,
+   "height": 982
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAEDBAIG/8QAIhAAAQMDAwUAAAAAAAAAAAAAAQACEQMSIQQTMSIyQVFh/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwEA/8QAGBEBAQEBAQAAAAAAAAAAAAAAAAFRERL/2gAMAwEAAhEDEQA/APLN1ANI1DaCPAEKYBbIp4PBGVjDOMKym5zSbSROMFH5wndWamAerJHxEeC8nem/27lFZUrhvaoIFyIqzbQJe995uii6JzCIiKEr/9k=",
+  "alt": "Barra de madera con copas colgadas y velas, y una hielera con botellas, bajo guirnaldas de luces de noche",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 93065,
+  "nota": "Servicios"
+ },
+ {
+  "id": "F048",
+  "original": "IMG_7592.PNG",
+  "nombre": "recorrido-4-mesa-galpon-atardecer-01",
+  "seccion": "recorrido-4",
+  "ranuras": [
+   "story.noche"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.45
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1960
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    5
+   ],
+   "w": 1320,
+   "h": 1650
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 1650
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAeABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMFAQT/xAAnEAACAQIGAgAHAAAAAAAAAAABAgMAEQQFEiExUSJBEyRhgdHh8P/EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/EABcRAQEBAQAAAAAAAAAAAAAAAAABESH/2gAMAwEAAhEDEQA/AIMaJLCkvwygFrqByQbfbumnLVeJnSVVCkDy+p5qbFipdt2J61HenNJOQqNrLPawLc1jjWUuSLRJu688g3ooEgsQykPew3H9aimjsyvDxNiGLICqLtfvusbDxYqRxGpMqbkWIv8Aun5WnypbUQXY326rSk0GORBICsg1X92qVU3Qo9Xt7tuKKpZjh10NiENnUeQPDD80Uupx/9k=",
+  "alt": "Mesa larga con centros de flores blancas y velas, con el galpón de madera iluminado al fondo",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 35,
+  "pesoAvif1440": 109179,
+  "nota": "Muestra el frente del galpón AVIF a calidad 35 para entrar en 120 KB."
+ },
+ {
+  "id": "F049",
+  "original": "IMG_8519.PNG",
+  "nombre": "recorrido-3-livings-arbol-luces-noche-01",
+  "seccion": "recorrido-3",
+  "ranuras": [
+   "story.fiesta"
+  ],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.55
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2037
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    5
+   ],
+   "w": 1320,
+   "h": 1650
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 1650
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAeABgDASIAAhEBAxEB/8QAGQABAQEAAwAAAAAAAAAAAAAAAwACAQQG/8QAJhAAAgIBBAECBwAAAAAAAAAAAQIDEQAEEiExURORFCIjQWFxcv/EABgBAQADAQAAAAAAAAAAAAAAAAIAAQME/8QAGBEBAQEBAQAAAAAAAAAAAAAAAAECIVH/2gAMAwEAAhEDEQA/APNxKeL4sZpKc1dD7nMKrbVBI64rxnCfLGBRo9nOZqV05sc9UBlhq9mqJH6/GWRbsw/EQwu7RblcUJK84cpkgIOz6YHG8CusObUT6o0fTj/haPviQ741LyLHOL6lBJ98dg8G+nKMCjpIpXcKPV+csaMNq2opDEoriNKPdd5YdWSlM+P/2Q==",
+  "alt": "Livings con almohadones blancos y velas bajo un árbol cubierto de luces colgantes, de noche",
+  "estado": "provisoria-rostros",
+  "pendientes": [
+   "rostros",
+   "resolucion"
+  ],
+  "personas": "rostros-sin-confirmar",
+  "calidadAvif": 40,
+  "pesoAvif1440": 103984,
+  "nota": "Confirmar rostros Verificar que no haya menores. AVIF a calidad 40 para entrar en 120 KB."
+ },
+ {
+  "id": "F050",
+  "original": "IMG_8920.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2868
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Captura de video"
+ },
+ {
+  "id": "F051",
+  "original": "IMG_8960.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 2306,
+   "h": 4080
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Procesado en exceso"
+ },
+ {
+  "id": "F052",
+  "original": "IMG_9689.PNG",
+  "nombre": "cierre-noche-barra-cartel-noche-01",
+  "seccion": "cierre-noche",
+  "ranuras": [],
+  "momento": "noche",
+  "focal": {
+   "x": 0.5,
+   "y": 0.4
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1974
+  },
+  "recorte": {
+   "ratio": [
+    4,
+    3
+   ],
+   "w": 1320,
+   "h": 990
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1320
+  ],
+  "jpeg": {
+   "width": 1320,
+   "height": 990
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAEDBAIG/8QAJxAAAgEDAgMJAAAAAAAAAAAAAQIAAxEhEkEEMaETIzJRU2FxgdH/xAAWAQEBAQAAAAAAAAAAAAAAAAACBAH/xAAaEQEBAAIDAAAAAAAAAAAAAAAAAQIRITFB/9oADAMBAAIRAxEAPwDzzYq1AwyoAHSUMO5bUrXIFsbzRTDOWRALnJJ8oPD12Rj2QuADhx+yWcKpjtnALFiRsOfxEkPqb36cojGx0gF0xvIcAK5HqEREz050rTw/UREQP//Z",
+  "alt": "Barra de madera con un cartel luminoso, rodeada de cortinas de luces, con invitados de espaldas",
+  "estado": "provisoria-procedencia",
+  "pendientes": [
+   "procedencia",
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": 55,
+  "pesoAvif1440": 103583,
+  "nota": "Reconocible"
+ },
+ {
+  "id": "F053",
+  "original": "IMG_9754.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2868
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "sin-rostro",
+  "nota": "Captura de video"
+ },
+ {
+  "id": "F054",
+  "original": "IMG_9799.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2868
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Captura de video"
+ },
+ {
+  "id": "F055",
+  "original": "IMG_9809.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 1643
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Duplicada de F002"
+ },
+ {
+  "id": "F056",
+  "original": "IMG_9954.PNG",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 2868
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "ninguna",
+  "nota": "Pedir original; F001 es otra versión"
+ },
+ {
+  "id": "F057",
+  "original": "IMG_9974.HEIC",
+  "nombre": "casamientos-hero-pasillo-flores-atardecer-01",
+  "seccion": "casamientos-hero",
+  "ranuras": [
+   "casamientos.hero",
+   "espacios.ceremonia"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.58
+  },
+  "dimensionesOriginal": {
+   "w": 4284,
+   "h": 5712
+  },
+  "recorte": {
+   "ratio": [
+    3,
+    2
+   ],
+   "w": 4284,
+   "h": 2856
+  },
+  "anchosGenerados": [
+   640,
+   960,
+   1440,
+   2000
+  ],
+  "jpeg": {
+   "width": 1440,
+   "height": 960
+  },
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFBv/EACEQAAIBAwQDAQAAAAAAAAAAAAECAwARIQQiMVESE4Gx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARUf/aAAwDAQACEQMRAD8AzMOrlOn9IJ9YvYBe7X/KVZGG4IxA5waqwiGEgxoHccEYFPzctknPVFQjtGkfdgP5A+JDd0VbhEchMcyK1tysTkfaK3eFbf/Z",
+  "alt": "Pasillo de flores blancas sobre el césped, preparado para una ceremonia al aire libre, con los invitados al fondo",
+  "estado": "ok",
+  "pendientes": [],
+  "personas": "sin-rostro",
+  "calidadAvif": 50,
+  "pesoAvif1440": 192638,
+  "nota": "Único original en alta resolución, sin rostros nítidos"
+ },
+ {
+  "id": "F058",
+  "original": "IMG_9978.HEIC",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 4284,
+   "h": 5712
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "sin-rostro",
+  "nota": "Duplicada de F057"
+ },
+ {
+  "id": "F059",
+  "original": "d404fae6-7bc9-4ba8-89d3-693d93cc062f.jpg",
+  "nombre": null,
+  "ranuras": [],
+  "momento": null,
+  "focal": null,
+  "dimensionesOriginal": {
+   "w": 1070,
+   "h": 1600
+  },
+  "anchosGenerados": [],
+  "lqip": null,
+  "alt": "",
+  "estado": "bloqueada",
+  "pendientes": [],
+  "personas": "rostros-sin-confirmar",
+  "nota": "Misma escena que F046, peor resolución"
+ },
+ {
+  "id": "F035",
+  "original": "IMG_7151.PNG",
+  "nombre": "og-parque-guirnaldas-atardecer-01",
+  "seccion": "og",
+  "ranuras": [
+   "og.default"
+  ],
+  "momento": "atardecer",
+  "focal": {
+   "x": 0.5,
+   "y": 0.5
+  },
+  "dimensionesOriginal": {
+   "w": 1320,
+   "h": 939
+  },
+  "recorte": {
+   "ratio": [
+    1200,
+    630
+   ],
+   "w": 1320,
+   "h": 693
+  },
+  "anchosGenerados": [
+   1200
+  ],
+  "jpeg": {
+   "width": 1200,
+   "height": 630
+  },
+  "lqip": null,
+  "alt": "Césped con guirnaldas de luces al atardecer y invitados conversando a lo lejos",
+  "estado": "provisoria-resolucion",
+  "pendientes": [
+   "resolucion"
+  ],
+  "personas": "sin-rostro",
+  "calidadAvif": null,
+  "pesoAvif1440": null,
+  "nota": "Open Graph, JPEG."
+ }
+]

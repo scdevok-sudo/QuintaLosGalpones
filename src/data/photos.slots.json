@@ -1,0 +1,241 @@
+{
+ "hero.principal": {
+  "foto": "F043",
+  "desktop": [
+   5,
+   4
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "hero.secundaria": {
+  "foto": "F041",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "story.llegada": {
+  "foto": "F033",
+  "desktop": [
+   3,
+   2
+  ],
+  "mobile": [
+   4,
+   5
+  ]
+ },
+ "story.ceremonia": {
+  "foto": "F046",
+  "desktop": [
+   3,
+   2
+  ],
+  "mobile": [
+   4,
+   5
+  ]
+ },
+ "story.fiesta": {
+  "foto": "F049",
+  "desktop": [
+   3,
+   2
+  ],
+  "mobile": [
+   4,
+   5
+  ]
+ },
+ "story.noche": {
+  "foto": "F048",
+  "desktop": [
+   3,
+   2
+  ],
+  "mobile": [
+   4,
+   5
+  ]
+ },
+ "lluvia.sol": {
+  "foto": "F035",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "lluvia.cubierto": {
+  "foto": "F037",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "home.casamientos": {
+  "foto": "F028",
+  "desktop": [
+   5,
+   4
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "home.empresas": {
+  "foto": "F032",
+  "desktop": [
+   16,
+   10
+  ],
+  "mobile": [
+   3,
+   2
+  ]
+ },
+ "casamientos.hero": {
+  "foto": "F057",
+  "desktop": [
+   16,
+   9
+  ],
+  "mobile": [
+   3,
+   2
+  ],
+  "bleed": [
+   21,
+   9
+  ]
+ },
+ "casamientos.parque": {
+  "foto": "F035",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "casamientos.servicios": {
+  "foto": "F047",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "casamientos.lluvia": {
+  "foto": "F045",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "espacios.hero": {
+  "foto": "F027",
+  "desktop": [
+   16,
+   9
+  ],
+  "mobile": [
+   3,
+   2
+  ],
+  "bleed": [
+   21,
+   9
+  ]
+ },
+ "espacios.parque": {
+  "foto": "F032",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "espacios.cubierto": {
+  "foto": "F037",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "espacios.ceremonia": {
+  "foto": "F057",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "espacios.llegada": {
+  "foto": "F026",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "contacto.hero": {
+  "foto": "F035",
+  "desktop": [
+   3,
+   2
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ },
+ "contacto.entrada": {
+  "foto": "F015",
+  "desktop": [
+   4,
+   3
+  ],
+  "mobile": [
+   4,
+   3
+  ]
+ }
+}
