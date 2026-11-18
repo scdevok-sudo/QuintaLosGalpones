@@ -49,7 +49,6 @@ function cropBox(fullW, fullH, [a, b], { x, y }, trim = [0, 0, 0, 0]) {
 
 const enc = {
   avif: (s, q) => s.avif({ quality: q, effort: 4 }),
-  webp: (s, q) => s.webp({ quality: q, effort: 4 }),
   jpg: (s, q) => s.jpeg({ quality: q, progressive: true, mozjpeg: true }),
 };
 
@@ -60,6 +59,15 @@ const nameFor = (f) => {
   counters.set(base, n);
   return `${base}-${String(n).padStart(2, "0")}`;
 };
+
+/** Motivos por los que una foto sigue provisoria. La resolucion se mide sobre el recorte que se publica. */
+function pendientesDe(f, box) {
+  const pend = [];
+  if (f.dudas?.procedencia && !f.confirmado?.procedencia) pend.push("procedencia");
+  if (f.dudas?.rostros && !f.confirmado?.rostros) pend.push("rostros");
+  if (Math.max(box.width, box.height) < 2000) pend.push("resolucion");
+  return pend;
+}
 
 const manifest = [];
 for (const f of cfg.fotos) {
@@ -74,6 +82,21 @@ for (const f of cfg.fotos) {
   }
   const nombre = nameFor(f);
   if (only.length && !only.includes(f.id)) continue;
+  // Fotos de reserva (sin ranura): no se generan salvo que se pidan por ID (`photos:build -- F046`).
+  const tieneRanura = Object.values(cfg.slots).some((s) => s.foto === f.id);
+  if (!only.length && !tieneRanura) {
+    const m = await sharp(join(cfg.fuente, f.original), { failOn: "none" }).metadata();
+    const box = cropBox(m.width, m.height, f.ratio, f.focal, f.trim);
+    const pend = pendientesDe(f, box);
+    manifest.push({
+      id: f.id, original: f.original, nombre, seccion: f.seccion, ranuras: [], momento: f.momento, focal: f.focal, generada: false,
+      dimensionesOriginal: { w: m.width, h: m.height }, recorte: { ratio: f.ratio, w: box.width, h: box.height },
+      anchosGenerados: [], lqip: null, alt: f.alt, estado: pend.length ? `provisoria-${pend[0]}` : "ok", pendientes: pend,
+      personas: f.personas, nota: `Reserva: sin ranura, no se genera. ${f.nota}`.trim(),
+    });
+    console.log(`${f.id} ${nombre} reserva (sin generar)`);
+    continue;
+  }
   const src = await load(f);
   const box = cropBox(src.w, src.h, f.ratio, f.focal, f.trim);
   const master = await sharp(src.buf).extract(box).png({ compressionLevel: 1 }).toBuffer();
@@ -94,25 +117,19 @@ for (const f of cfg.fotos) {
   for (const w of widths) {
     const img = () => sharp(master).resize(w, h(w), { kernel: "lanczos3" });
     const avif = await enc.avif(img(), q).toBuffer();
-    const webp = await enc.webp(img(), 78).toBuffer();
     writeFileSync(join(OUT, `${nombre}-w${w}.avif`), avif);
-    writeFileSync(join(OUT, `${nombre}-w${w}.webp`), webp);
-    sizes[w] = { avif: avif.length, webp: webp.length };
+    sizes[w] = { avif: avif.length };
   }
   const jpg = await enc.jpg(sharp(master).resize(wRef, h(wRef), { kernel: "lanczos3" }), 80).toBuffer();
   writeFileSync(join(OUT, `${nombre}-w${wRef}.jpg`), jpg);
   const lqipBuf = await sharp(master).resize(24).jpeg({ quality: 45 }).toBuffer();
   const orig = { w: src.w, h: src.h };
-  const pend = [];
-  if (f.dudas?.procedencia && !f.confirmado?.procedencia) pend.push("procedencia");
-  if (f.dudas?.rostros && !f.confirmado?.rostros) pend.push("rostros");
-  // Resolucion utilizable: lado largo del recorte que se publica (no del original completo).
-  if (Math.max(box.width, box.height) < 2000) pend.push("resolucion");
+  const pend = pendientesDe(f, box);
   const nota = [f.nota, q < 50 ? `AVIF a calidad ${q} para entrar en ${budget} KB.` : ""].filter(Boolean).join(" ");
   manifest.push({
     id: f.id, original: f.original, nombre, seccion: f.seccion, ranuras: Object.keys(cfg.slots).filter((s) => cfg.slots[s].foto === f.id), momento: f.momento, focal: f.focal,
     dimensionesOriginal: orig, recorte: { ratio: f.ratio, w: box.width, h: box.height },
-    anchosGenerados: widths, jpeg: { width: wRef, height: h(wRef) }, lqip: `data:image/jpeg;base64,${lqipBuf.toString("base64")}`,
+    generada: true, anchosGenerados: widths, jpeg: { width: wRef, height: h(wRef) }, lqip: `data:image/jpeg;base64,${lqipBuf.toString("base64")}`,
     alt: f.alt, estado: pend.length ? `provisoria-${pend[0]}` : "ok", pendientes: pend, personas: f.personas,
     calidadAvif: q, pesoAvif1440: sizes[wRef].avif, nota,
   });

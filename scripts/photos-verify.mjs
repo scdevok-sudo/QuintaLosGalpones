@@ -33,10 +33,10 @@ for (const m of manifest) {
 const files = existsSync(OUT) ? readdirSync(OUT) : [];
 const expected = new Set();
 for (const m of manifest) {
-  if (m.estado === "bloqueada") continue;
+  if (m.estado === "bloqueada" || m.generada === false) continue;
   if (!m.alt && !m.decorativa) err(`${m.id}: falta alt`);
   if (!m.jpeg?.width || !m.jpeg?.height) err(`${m.id}: faltan width/height`);
-  const exts = m.seccion === "og" ? [] : ["avif", "webp"];
+  const exts = m.seccion === "og" ? [] : ["avif"];
   const list = [...exts.flatMap((e) => m.anchosGenerados.map((w) => `${m.nombre}-w${w}.${e}`)), `${m.nombre}-w${m.jpeg?.width}.jpg`];
   for (const f of list) {
     expected.add(f);
@@ -75,6 +75,7 @@ for (const r of refs) {
   if (!c) { warns.push(`Ranura "${r}": sin foto nueva, usa la provisoria del sitio actual`); continue; }
   const m = manifest.find((x) => x.id === c.foto && x.seccion !== "og");
   if (!m) err(`Ranura "${r}": la foto ${c.foto} no esta en el manifiesto`);
+  else if (m.generada === false) err(`Ranura "${r}": la foto ${c.foto} es de reserva y no esta generada: correr npm run photos:build`);
   else if (m.estado === "bloqueada") err(`Ranura "${r}": usa la foto ${c.foto}, que esta bloqueada`);
 }
 for (const k of Object.keys(slotMap)) if (!defined.has(k)) warns.push(`photos.config.json define la ranura "${k}", que no existe en photos.ts`);

@@ -25,7 +25,7 @@ const manifest = manifestJson as unknown as ManifestEntry[];
 const slotMap = slotMapJson as unknown as Record<string, SlotCfg>;
 
 /** Fuentes responsivas de una foto procesada (photos:build). */
-export type Sources = { avif: string; webp: string };
+export type Sources = { avif: string };
 
 export type Slot = {
   /** Ruta pública de la imagen. */
@@ -103,7 +103,7 @@ const use = (name: string, legacy: Slot): Slot => {
     approved: false,
     eventType: legacy.eventType,
     pending: legacy.pending,
-    sources: { avif: set("avif"), webp: set("webp") },
+    sources: { avif: set("avif") },
     lqip: e.lqip ?? undefined,
     estado: e.estado,
     bleed: c.bleed,

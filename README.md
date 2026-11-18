@@ -78,34 +78,56 @@ esperan a la hidratación (`<Photo later>`).
 ## Fotos
 
 Las fotos del sitio salen de `photos.config.json` (qué foto va en qué ranura, recorte, punto focal, `alt`, permisos) y se
-procesan con `npm run photos:build`. El resultado es `public/photos/` (AVIF, WebP y JPEG, sin EXIF ni GPS) y
-`src/data/photos.manifest.json`. Los originales no se commitean (`imagenes/` está en `.gitignore`).
+procesan con `npm run photos:build`. Por cada foto con ranura se generan AVIF a 640, 960 y hasta 1440 o 2000 px (nunca más
+que el original) y **un solo JPEG de respaldo** a 1440 px (o al ancho del recorte si es menor), todo sin EXIF ni GPS. No se
+genera WebP. El resultado va a `public/photos/` y `src/data/photos.manifest.json`. Los originales no se commitean
+(`imagenes/` está en `.gitignore`).
+
+Las fotos de **reserva** (están en `photos.config.json` pero ninguna ranura las usa) **no se generan**: aparecen en el
+manifiesto con `generada: false` y se hacen cuando hacen falta, con `npm run photos:build -- F046`.
 
 | Comando | Qué hace |
 |---|---|
-| `npm run photos:build` | Procesa todas las fotos y regenera `public/photos/`, el manifiesto y `photos.slots.json` (unos 4 minutos). Con IDs (`npm run photos:build -- F046`) rehace solo esas fotos y no toca el resto |
-| `npm run photos:verify` | Falla si hay nombres fuera de patrón, metadatos, fotos agrandadas, `alt` o medidas faltantes, fotos fuera de presupuesto o una ranura con foto bloqueada |
+| `npm run photos:build` | Procesa las fotos que tienen ranura y regenera `public/photos/`, el manifiesto y `photos.slots.json` (unos 2 minutos). No hacer commit mientras corre: borra la carpeta y la vuelve a escribir |
+| `npm run photos:build -- F046 F052` | Rehace solo esas fotos (aunque no tengan ranura) y deja el resto como está |
+| `npm run photos:verify` | Falla si hay nombres fuera de patrón, metadatos, fotos agrandadas, `alt` o medidas faltantes, fotos fuera de presupuesto, una ranura con foto bloqueada o con una foto de reserva sin generar |
 | `npm run check:launch` | Lista lo pendiente. Las fotos `provisoria-*` salen como "Pendiente de confirmación del cliente"; solo falla si una foto `bloqueada` está en uso |
 
-### Cuando lleguen los originales del cliente
+### Agregar o cambiar una foto
 
-Reemplazar una foto es copiar el archivo y correr el build:
+**Cambiar el archivo de una foto** (por ejemplo, cuando llega el original en mejor resolución):
 
 1. Copiá el original **con el mismo nombre de archivo** que figura en `original` dentro de `photos.config.json`
    (por ejemplo `IMG_7216.PNG`) en la carpeta que indica `fuente` (hoy `imagenes/Para Diego-1-001/Para Diego/`).
    Si el archivo nuevo tiene otro nombre, cambiá `original` en `photos.config.json` y dejá el resto igual.
-   Formatos admitidos: JPG, PNG, WebP, AVIF y HEIC (los HEIC se convierten con `pillow-heif`, ya instalado).
-2. `npm run photos:build`.
-3. `npm run photos:verify` y `npm run check:launch`.
+   Formatos admitidos: JPG, PNG, WebP, AVIF y HEIC (los HEIC se convierten con `pillow-heif`).
+2. `npm run photos:build -- F0xx` (el ID de esa foto), o `npm run photos:build` para todas.
+3. `npm run photos:verify` y `npm run check:launch`, y mirá la foto en el navegador (`?slots=1` en dev muestra el nombre de la ranura).
 
-El estado se recalcula solo: si el lado largo del recorte llega a 2000 px, la foto deja de estar en
-`provisoria-resolucion`. Después de reemplazar:
+**Poner una foto en otra ranura:** en `slots` de `photos.config.json`, cambiá `foto` por el ID que querés (por ejemplo
+`"espacios.llegada": { "foto": "F052", ... }`). `desktop` y `mobile` son las proporciones del contenedor; `focal`
+(`[x, y]` en %) mueve el encuadre dentro del recorte. Si esa foto era de reserva, generala:
+`npm run photos:build -- F052`. Con `npm run photos:build` a secas también se genera, porque ahora tiene ranura.
 
-- El **punto focal** (`focal`, de 0 a 1) y el **recorte** (`ratio`) se mantienen. Si el encuadre nuevo es distinto,
-  ajustalos en `photos.config.json` y mirá el resultado en `docs/fotos/contactos/` (`python` + `docs/fotos/PROCESADO.md`).
-- `procedencia` y `rostros`: cuando el cliente confirme la autoría o los permisos, poné
-  `"confirmado": { "procedencia": true, "rostros": true }` en esa foto. Sin eso quedan como pendientes.
-- Fotos nuevas que no estaban: agregá la entrada en `fotos` y asignala a una ranura en `slots`.
+**Agregar una foto nueva:** copiá el archivo a la carpeta `fuente`, sumá una entrada en `fotos` de
+`photos.config.json` y asignala a una ranura en `slots`. Los campos que llevan las demás entradas:
+
+| Campo | Para qué |
+|---|---|
+| `id` | `F0xx`, único. Solo se usa en la configuración; no aparece en los nombres de archivo |
+| `original` | Nombre del archivo en la carpeta `fuente` |
+| `procesar` | `true`; con `false` queda `bloqueada` y hay que escribir `motivo` |
+| `seccion`, `sujeto`, `momento` | Forman el nombre: `{seccion}-{sujeto}-{momento}-{nn}`. Secciones válidas: `inicio-hero`, `recorrido-1` a `recorrido-4`, `casamientos-hero`, `casamientos-galeria`, `espacios-parque`, `espacios-galpon`, `espacios-cubierto`, `lluvia`, `mapa-fachada`, `og`, `cierre-noche`, `empresas`, `eventos-reales`. Momentos: `dia`, `tarde`, `atardecer`, `noche`, `interior` |
+| `ratio` | Proporción del recorte maestro, la más alta que pida alguna ranura (ej. `[4, 3]`, `[4, 5]`) |
+| `focal` | `{ "x": 0 a 1, "y": 0 a 1 }` sobre la foto original: el recorte se centra ahí |
+| `trim` | Opcional: `[arriba, derecha, abajo, izquierda]` en px para sacar bordes negros |
+| `alt` | Lo que se ve, sin adjetivos de marketing ni datos inventados |
+| `personas` | `ninguna`, `sin-rostro`, `rostros-con-permiso` o `rostros-sin-confirmar` |
+| `dudas` / `confirmado` | `{ "procedencia": bool, "rostros": bool }`: lo que hay que confirmar con el cliente y lo ya confirmado |
+
+El estado se recalcula solo en cada build: si el lado largo del recorte llega a 2000 px, la foto deja de estar en
+`provisoria-resolucion`. Cuando el cliente confirme la autoría o los permisos, poné
+`"confirmado": { "procedencia": true, "rostros": true }` en esa foto; sin eso quedan como pendientes.
 
 ### Hero a sangre
 

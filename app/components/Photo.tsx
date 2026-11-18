@@ -62,7 +62,6 @@ export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, d
       ) : (
         <picture>
           {s.sources && <source type="image/avif" srcSet={s.sources.avif} sizes={sz} />}
-          {s.sources && <source type="image/webp" srcSet={s.sources.webp} sizes={sz} />}
           <img
             src={s.src}
             alt={alt ?? s.alt}

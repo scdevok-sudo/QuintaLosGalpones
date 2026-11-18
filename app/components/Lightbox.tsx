@@ -56,7 +56,6 @@ export function Lightbox({ items, index, onIndex }: Props) {
       {slot && (
         <picture>
           {slot.sources && <source type="image/avif" srcSet={slot.sources.avif} sizes="100vw" />}
-          {slot.sources && <source type="image/webp" srcSet={slot.sources.webp} sizes="100vw" />}
           <img src={slot.src} alt={slot.alt} width={slot.width} height={slot.height} draggable={false} />
         </picture>
       )}
