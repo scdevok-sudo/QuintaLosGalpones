@@ -13,10 +13,7 @@ export const env = {
   previewPending: (import.meta.env.VITE_PREVIEW_PENDING as string | undefined) === "true",
 };
 
-/**
- * La página /contacto/ todavía no existe. Mientras sea false, los CTA que apuntan a ella usan la consulta
- * express (#consulta) o WhatsApp, que funcionan sin JS. Pasar a true cuando se publique Contacto.
- */
+/** Contacto ya existe. Si se desactiva, los CTA a /contacto usan la consulta express (#consulta) o WhatsApp. */
 export const contactoReady = true;
 
 export const site = {

@@ -48,6 +48,17 @@ try {
   const srcs = new Set([...(html + noscript).matchAll(/<img[^>]*\ssrc="([^"]+)"/g)].map((m) => m[1]));
   if (srcs.size < 12) pend.push(`Inicio usa ${srcs.size} fotos distintas; la meta es de 12 a 20 reales sin repetir (depende de la Fase 2).`);
 } catch {}
+// Páginas del menú que no existen en dist/ y enlaces internos rotos (hace falta `npm run build` antes).
+try {
+  const { findBrokenLinks } = await import("./check-links.mjs");
+  const { pages, broken } = findBrokenLinks();
+  const nav = [...read("src/content/common.ts").matchAll(/to: "(\/[a-z-]*)"/g)].map((m) => m[1]);
+  const faltan = [...new Set(nav)].filter((p) => !pages.includes(p));
+  if (faltan.length) pend.push(`Páginas del menú que todavía no existen: ${faltan.join(", ")}.`);
+  if (broken.length) pend.push(`Enlaces internos rotos (${broken.length}): ${broken.slice(0, 6).join("; ")}${broken.length > 6 ? "…" : ""}`);
+} catch {
+  pend.push("No se pudo revisar enlaces: correr npm run build antes de check:launch.");
+}
 pend.push("Logo reconstruido a partir de una captura de baja resolución: pedir vectorial original al cliente.");
 pend.push("Política de privacidad en borrador sin validación legal.");
 console.log("Pendientes para lanzar:\n" + pend.map((p) => "  - " + p).join("\n"));
