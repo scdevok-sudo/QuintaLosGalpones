@@ -6,6 +6,7 @@ import { createServer } from "node:http";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
 import { gzipSync } from "node:zlib";
+import { oldQuery, redirects } from "./redirects.mjs";
 
 const dist = join(process.cwd(), process.env.DIST_DIR || "dist");
 const port = Number(process.env.PORT || 4173);
@@ -15,6 +16,19 @@ const isFile = (p) => existsSync(p) && statSync(p).isFile();
 createServer((req, res) => {
   const url = new URL(req.url, "http://x");
   const path = decodeURIComponent(url.pathname);
+
+  // Mapa de redirecciones del WordPress anterior (scripts/redirects.mjs).
+  const rule = redirects.find((r) => r.from.test(path));
+  if (rule) {
+    res.writeHead(rule.status, rule.to ? { location: rule.to } : {});
+    res.end(rule.to ? "" : "Gone");
+    return;
+  }
+  if (path === "/" && oldQuery.test(url.search)) {
+    res.writeHead(301, { location: "/" });
+    res.end();
+    return;
+  }
 
   if (path.length > 1 && path.endsWith("/")) {
     res.writeHead(301, { location: path.replace(/\/+$/, "") + url.search });

@@ -12,6 +12,7 @@
     "check:links": "node scripts/check-links.mjs",
     "check:launch": "node scripts/check-launch.mjs",
     "photos:build": "node scripts/photos-build.mjs",
+    "og:build": "node scripts/og-build.mjs",
     "photos:verify": "node scripts/photos-verify.mjs",
     "check:tells": "node scripts/check-tells.mjs",
     "test:tells": "node scripts/test-tells.mjs",

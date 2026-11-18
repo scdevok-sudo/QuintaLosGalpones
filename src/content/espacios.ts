@@ -2,6 +2,7 @@ import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
   path: "/espacios",
+  og: "espacios",
   title: "Parque y espacios para eventos en Benavídez | Los Galpones",
   description:
     "Recorré el parque de 6.000 m², el espacio cubierto y el sector para ceremonias de Quinta Los Galpones. Conocé las opciones de armado.",

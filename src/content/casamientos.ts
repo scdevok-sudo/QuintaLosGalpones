@@ -2,6 +2,7 @@ import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
   path: "/casamientos",
+  og: "casamientos",
   title: "Casamientos en Benavídez | Quinta Los Galpones",
   description:
     "Ceremonia, parque, espacio cubierto y propuestas para tu casamiento en Benavídez. Consultá por el armado, los servicios y el plan de lluvia.",
@@ -25,6 +26,11 @@ export const sections = {
   servicios: {
     h2: "Una propuesta con los servicios claros",
     body: "Hay opciones de servicio integral, catering exclusivo, mobiliario y equipamiento propio de sonido e iluminación. Al pedir presupuesto vas a recibir el detalle de lo incluido, las opciones disponibles y los adicionales. Así podés comparar propuestas con el mismo alcance.",
+  },
+  /** Texto nuestro armado con frases del documento. Sin cifras. Ver COPY-CAMBIOS.md. */
+  presupuesto: {
+    h2: "Cómo se arma tu presupuesto",
+    body: "Depende de la fecha, de la cantidad de invitados y de los servicios que elijas. Al pedir presupuesto vas a recibir el detalle de lo incluido, las opciones disponibles y los adicionales. Así podés comparar propuestas con el mismo alcance.",
   },
   lluvia: {
     id: "lluvia",

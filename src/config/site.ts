@@ -32,6 +32,8 @@ export const site = {
   coordinates: { value: null as null | { lat: number; lng: number }, validated: false },
   /** Revisión legal de la política de privacidad. Mientras sea false, la página muestra el aviso de borrador. */
   privacyReviewed: { value: false, validated: false } as Datum<boolean>,
+  /** Bloque "Cómo se arma tu presupuesto" en Casamientos. Se muestra solo con validated: true (lo aprueba el cliente). */
+  presupuestoBloque: { value: true, validated: false } as Datum<boolean>,
   analyticsId: { value: env.gaId, validated: Boolean(env.gaId) } as Datum<string>,
 };
 

@@ -31,7 +31,7 @@ for (const [id, slots] of inUse) {
 if (/approved: false/.test(read("src/content/home.ts"))) pend.push("Testimonios sin autorización de nombre e imagen (approved: false).");
 if (!/reviews: Review\[\] = \[[^\]]*\w/.test(read("src/content/reviews.ts"))) pend.push("Sin reseñas de Google cargadas.");
 const site = read("src/config/site.ts");
-for (const [k, label] of [["whatsapp", "WhatsApp (titular y enlace)"], ["email", "Correo con dominio propio"], ["mapsUrl", "Enlace al perfil de Google Maps"], ["coordinates", "Coordenadas"]]) {
+for (const [k, label] of [["whatsapp", "WhatsApp (titular y enlace)"], ["email", "Correo con dominio propio"], ["mapsUrl", "Enlace al perfil de Google Maps"], ["coordinates", "Coordenadas"], ["presupuestoBloque", "Bloque \"Cómo se arma tu presupuesto\" de Casamientos (no se muestra hasta aprobarlo)"], ["privacyReviewed", "Revisión legal de la política de privacidad"]]) {
   const m = site.match(new RegExp(`${k}:[^\n]*validated: (true|false)`));
   if (!m || m[1] === "false") pend.push(`Dato sin validar: ${label}.`);
 }
@@ -60,7 +60,8 @@ try {
   pend.push("No se pudo revisar enlaces: correr npm run build antes de check:launch.");
 }
 pend.push("Logo reconstruido a partir de una captura de baja resolución: pedir vectorial original al cliente.");
-pend.push("Política de privacidad en borrador sin validación legal.");
+if (/rangosValidated = false/.test(read("src/config/consulta.ts"))) pend.push("Rangos de invitados del formulario sin confirmar con el cliente (src/config/consulta.ts).");
+if (/realesVisible = true/.test(read("src/content/reales.ts")) && legacy.some((n) => n.startsWith("reales."))) pend.push("Eventos reales está visible (realesVisible) y sus fotos son provisorias sin aprobación de quienes aparecen (approved: false). Para ocultarla: realesVisible = false en src/content/reales.ts.");
 console.log("Pendientes para lanzar:\n" + pend.map((p) => "  - " + p).join("\n"));
 const pc = Object.entries(porMotivo).filter(([, v]) => v.length);
 if (pc.length) {

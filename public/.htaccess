@@ -2,6 +2,16 @@
 # (con "Auto Load from .htaccess" activo). Si preferís el vhost de OpenLiteSpeed, ver README.md.
 RewriteEngine On
 
+# 0) Redirecciones desde el WordPress anterior. Misma lista que scripts/redirects.mjs: si cambia una, cambiar la otra.
+RewriteRule ^hello-world/?$ / [R=301,L]
+RewriteRule ^(comments/)?feed/?$ / [R=301,L]
+RewriteRule ^wp-sitemap[^/]*\.xml$ / [R=301,L]
+RewriteRule ^(category|author|tag)(/|$) / [R=301,L]
+RewriteRule ^(wp-admin|wp-login\.php|wp-content|wp-includes|wp-json|xmlrpc\.php)(/|$) - [G,L]
+# Consultas viejas de WordPress en la portada (?p=12, ?page_id=3, ?s=...): 301 a "/" sin la query.
+RewriteCond %{QUERY_STRING} ^(p|page_id|cat|s|feed)=
+RewriteRule ^$ /? [R=301,L]
+
 # 1) /ruta/ -> 301 -> /ruta. La portada "/" no se toca.
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 

@@ -26,6 +26,12 @@ for (const r of rutas) {
   const conSlash = [...html.matchAll(/<a [^>]*href="(\/[a-z][^"#?]*\/)(?:[#?"][^"]*)?"/g)].map((m) => m[1]);
   ok(conSlash.length === 0, `${r}: sin enlaces internos con barra final ${conSlash.join(", ")}`);
 }
+// Redirecciones desde el WordPress anterior (scripts/redirects.mjs)
+for (const [from, status, to] of [["/hello-world/", 301, "/"], ["/feed/", 301, "/"], ["/wp-sitemap.xml", 301, "/"], ["/category/novedades/", 301, "/"], ["/wp-login.php", 410, null], ["/wp-content/uploads/a.jpg", 410, null], ["/?p=1", 301, "/"]]) {
+  const r = await get(from);
+  const loc = r.headers.get("location");
+  ok(r.status === status && (to === null || (loc && new URL(loc, base).pathname === to)), `${from} -> ${r.status}${loc ? " " + loc : ""}`);
+}
 const nf = await get("/no-existe");
 ok(nf.status === 404, `/no-existe responde ${nf.status}`);
 const css = (readFileSync("dist/index.html", "utf8").match(/href="(\/assets\/[^"]+\.css)"/) || [])[1];

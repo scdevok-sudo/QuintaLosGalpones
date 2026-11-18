@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
 import type { LinksFunction } from "react-router";
 import "@fontsource-variable/bricolage-grotesque/opsz.css";
@@ -10,6 +11,7 @@ import { Header } from "~/components/Header";
 import { ExpressBar, ExpressProvider } from "~/components/Express";
 import { MotionLayer } from "~/components/MotionLayer";
 import { env } from "@/config/site";
+import { startAnalytics } from "@/lib/analytics";
 
 export const links: LinksFunction = () => [
   { rel: "icon", href: "/logo-circle.png", type: "image/png" },
@@ -56,6 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useEffect(() => startAnalytics(), []);
   return (
     <ExpressProvider>
       <Header />

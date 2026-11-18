@@ -1,6 +1,7 @@
 import { Button } from "~/components/Button";
 import { Cierre } from "~/components/Cierre";
 import { Photo } from "~/components/Photo";
+import { site } from "@/config/site";
 import * as c from "@/content/casamientos";
 import { preloadHero } from "@/lib/lcp";
 import { crumbs, localBusinessLd, pageMeta } from "@/lib/seo";
@@ -13,7 +14,7 @@ export function meta() {
 
 export default function Casamientos() {
   const { hero, sections } = c;
-  const { ceremonia, parque, servicios, lluvia, propuesta } = sections;
+  const { ceremonia, parque, servicios, presupuesto, lluvia, propuesta } = sections;
 
   return (
     <>
@@ -75,6 +76,18 @@ export default function Casamientos() {
           </div>
         </div>
       </section>
+
+      {/* 4b. CÓMO SE ARMA TU PRESUPUESTO: solo con validated en site.ts (aprobación del cliente) */}
+      {site.presupuestoBloque.validated && (
+        <section className="cv dia pb-16 md:pb-24" aria-labelledby="presupuesto-titulo">
+          <div className="wrap grid gap-6 lg:grid-cols-12 lg:gap-16">
+            <h2 id="presupuesto-titulo" className="text-h3 lg:col-span-5">
+              {presupuesto.h2}
+            </h2>
+            <p className="measure lg:col-span-6 lg:col-start-7">{presupuesto.body}</p>
+          </div>
+        </section>
+      )}
 
       {/* 5. LLUVIA: noche, con su CTA propio */}
       <section id={lluvia.id} className="cv noche-2 py-16 md:py-24" aria-labelledby="lluvia-titulo">

@@ -14,7 +14,8 @@ const OG_PATH = ogEntry?.nombre && ogEntry.jpeg ? `/photos/${ogEntry.nombre}-w${
 /** Meta tags estándar de una ruta: título, descripción, canonical, Open Graph y Twitter. */
 export function pageMeta(meta: Meta, extra: Descriptor[] = []): Descriptor[] {
   const url = absoluteUrl(meta.path);
-  const image = absoluteUrl(OG_PATH);
+  // Páginas principales: su propia imagen (npm run og:build). El resto usa la genérica.
+  const image = absoluteUrl(meta.og ? `/og/${meta.og}.jpg` : OG_PATH);
   return [
     { title: meta.title },
     { name: "description", content: meta.description },

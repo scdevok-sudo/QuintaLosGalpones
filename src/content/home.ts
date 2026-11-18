@@ -2,6 +2,7 @@ import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
   path: "/",
+  og: "inicio",
   title: "Quinta Los Galpones | Casamientos y eventos en Benavídez",
   // Errata corregida: "6.000 m², y propuestas" -> "6.000 m² y propuestas".
   description:

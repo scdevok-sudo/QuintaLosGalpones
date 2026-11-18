@@ -110,7 +110,7 @@ for (const f of cfg.fotos) {
   if (Math.max(box.width, box.height) < 2000) pend.push("resolucion");
   const nota = [f.nota, q < 50 ? `AVIF a calidad ${q} para entrar en ${budget} KB.` : ""].filter(Boolean).join(" ");
   manifest.push({
-    id: f.id, original: f.original, nombre, seccion: f.seccion, ranuras: f.ranuras, momento: f.momento, focal: f.focal,
+    id: f.id, original: f.original, nombre, seccion: f.seccion, ranuras: Object.keys(cfg.slots).filter((s) => cfg.slots[s].foto === f.id), momento: f.momento, focal: f.focal,
     dimensionesOriginal: orig, recorte: { ratio: f.ratio, w: box.width, h: box.height },
     anchosGenerados: widths, jpeg: { width: wRef, height: h(wRef) }, lqip: `data:image/jpeg;base64,${lqipBuf.toString("base64")}`,
     alt: f.alt, estado: pend.length ? `provisoria-${pend[0]}` : "ok", pendientes: pend, personas: f.personas,
