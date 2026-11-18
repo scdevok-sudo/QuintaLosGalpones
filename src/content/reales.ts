@@ -1,3 +1,4 @@
+import type { SlotName } from "./photos";
 import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
@@ -6,6 +7,9 @@ export const meta: Meta = {
   description:
     "Mirá casamientos y encuentros realizados en Los Galpones. Recorré el parque, las ceremonias y los distintos armados del espacio cubierto.",
 };
+
+/** Controla si Eventos reales aparece en el menú. Queda en true en preview; check:launch lista las fotos sin aprobar. */
+export const realesVisible = true;
 
 export const hero = {
   h1: "Así se viven los eventos en Los Galpones",
@@ -46,5 +50,34 @@ export const categories: RealesCategory[] = [
     visible: true,
   },
 ];
+
+/**
+ * Historias de la galería: cada una agrupa fotos de un mismo evento. No llevan título propio (el título es el de
+ * la categoría). `datos` (invitados, época del año, sector) solo se muestra con `aprobado: true`: son datos que el
+ * cliente tiene que confirmar. Sin datos aprobados, la historia muestra las fotos sin ningún pie.
+ */
+export type Historia = {
+  id: string;
+  categoria: RealesCategory["id"];
+  slots: SlotName[];
+  datos?: { invitados?: string; epoca?: string; sector?: string; aprobado: boolean };
+};
+
+export const historias: Historia[] = [
+  { id: "casamiento-a", categoria: "casamientos", slots: ["reales.1", "reales.2", "reales.3"] },
+  { id: "casamiento-b", categoria: "casamientos", slots: ["reales.4", "reales.5", "reales.6"] },
+  { id: "casamiento-c", categoria: "casamientos", slots: ["reales.7", "reales.8"] },
+  { id: "clima-a", categoria: "clima", slots: ["reales.9"] },
+];
+
+/** Microcopy de la galería (ver COPY-CAMBIOS.md). */
+export const ui = {
+  filtro: "Tipo de evento",
+  todos: "Todos",
+  verFoto: "Ver foto",
+  anterior: "Foto anterior",
+  siguiente: "Foto siguiente",
+  cerrar: "Cerrar",
+};
 
 export const cta: Cta = { label: "Consultar por un evento como este", to: "/contacto#formulario" };

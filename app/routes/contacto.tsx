@@ -7,12 +7,12 @@ import * as c from "@/content/contacto";
 import { seguimos } from "@/content/home";
 import { track } from "@/lib/analytics";
 import { preloadHero } from "@/lib/lcp";
-import { localBusinessLd, pageMeta } from "@/lib/seo";
+import { crumbs, localBusinessLd, pageMeta } from "@/lib/seo";
 
 export const links = preloadHero("contacto.hero");
 
 export function meta() {
-  return pageMeta(c.meta, [localBusinessLd()]);
+  return pageMeta(c.meta, [localBusinessLd(), crumbs("Contacto", c.meta.path)]);
 }
 
 const mapQuery = encodeURIComponent(`${site.street}, ${site.locality}, Buenos Aires, Argentina`);

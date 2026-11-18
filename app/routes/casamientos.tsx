@@ -3,12 +3,12 @@ import { Cierre } from "~/components/Cierre";
 import { Photo } from "~/components/Photo";
 import * as c from "@/content/casamientos";
 import { preloadHero } from "@/lib/lcp";
-import { localBusinessLd, pageMeta } from "@/lib/seo";
+import { crumbs, localBusinessLd, pageMeta } from "@/lib/seo";
 
 export const links = preloadHero("casamientos.hero");
 
 export function meta() {
-  return pageMeta(c.meta, [localBusinessLd()]);
+  return pageMeta(c.meta, [localBusinessLd(), crumbs("Casamientos", c.meta.path)]);
 }
 
 export default function Casamientos() {

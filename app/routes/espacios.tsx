@@ -3,12 +3,12 @@ import { Cierre } from "~/components/Cierre";
 import { Photo } from "~/components/Photo";
 import * as c from "@/content/espacios";
 import { preloadHero } from "@/lib/lcp";
-import { localBusinessLd, pageMeta } from "@/lib/seo";
+import { crumbs, localBusinessLd, pageMeta } from "@/lib/seo";
 
 export const links = preloadHero("espacios.hero");
 
 export function meta() {
-  return pageMeta(c.meta, [localBusinessLd()]);
+  return pageMeta(c.meta, [localBusinessLd(), crumbs("Espacios", c.meta.path)]);
 }
 
 export default function Espacios() {

@@ -76,3 +76,26 @@ export function breadcrumbLd(items: { name: string; path: string }[]): Descripto
     },
   };
 }
+
+/** FAQPage con las preguntas tal cual están publicadas en la página. */
+export function faqLd(items: { q: string; a: string }[]): Descriptor {
+  return {
+    "script:ld+json": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: items.map((it) => ({
+        "@type": "Question",
+        name: it.q,
+        acceptedAnswer: { "@type": "Answer", text: it.a },
+      })),
+    },
+  };
+}
+
+/** Migas de pan de una página interna: Inicio y la propia página. */
+export function crumbs(name: string, path: string): Descriptor {
+  return breadcrumbLd([
+    { name: "Inicio", path: "/" },
+    { name, path },
+  ]);
+}

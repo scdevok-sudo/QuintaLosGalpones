@@ -1215,3 +1215,99 @@ button.link {
 textarea.input {
   resize: vertical;
 }
+
+/* Preguntas frecuentes: <details> nativo, sin tarjetas. La jerarquía la da la tipografía. */
+.faq {
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+.faq details {
+  border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+.faq summary {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 3.5rem;
+  padding: 1.1rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: var(--text-h3);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: "";
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.35rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.2rem) rotate(45deg);
+  transition: transform 200ms var(--ease-out);
+}
+.faq details[open] summary::after {
+  transform: translateY(0.1rem) rotate(225deg);
+}
+.faq summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.faq .faq-a {
+  max-width: 62ch;
+  padding: 0 0 1.5rem;
+}
+@media (hover: hover) and (pointer: fine) {
+  .faq summary:hover {
+    color: var(--color-madera);
+  }
+  .noche .faq summary:hover {
+    color: var(--color-lamparita);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq summary::after {
+    transition: none;
+  }
+}
+
+/* Eventos reales: galería por historias y lightbox */
+.reales-historia { margin-top: 3rem; }
+.reales-datos { margin-bottom: 1rem; }
+.reales-grid { display: grid; gap: 0.75rem; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 48rem) {
+  .reales-grid { grid-template-columns: repeat(6, 1fr); align-items: start; }
+  .reales-grid > li { grid-column: span 2; }
+  .reales-grid > .reales-grande { grid-column: span 4; }
+}
+.reales-foto { display: block; width: 100%; padding: 0; border: 0; background: none; color: inherit; cursor: zoom-in; }
+.reales-foto:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.lightbox {
+  width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 0; border: 0;
+  background: var(--color-noche); color: var(--color-tarde); overflow: hidden;
+}
+.lightbox[open] { display: grid; place-items: center; }
+@media (prefers-reduced-motion: no-preference) { .lightbox[open] { animation: lightbox-in 200ms var(--ease-drawer) both; } }
+@keyframes lightbox-in { from { opacity: 0; } }
+.lightbox picture, .lightbox img { display: block; max-width: 100vw; max-height: 100dvh; object-fit: contain; touch-action: pan-y; user-select: none; }
+.lightbox-btn {
+  position: absolute; display: grid; place-items: center; min-width: 3rem; min-height: 3rem; padding: 0 1rem;
+  border: 1px solid color-mix(in srgb, var(--color-tarde) 45%, transparent); border-radius: 8px;
+  background: var(--color-noche); color: var(--color-tarde); cursor: pointer; font: inherit;
+  transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out);
+}
+.lightbox-btn:active { transform: scale(0.97); }
+.lightbox-btn:focus-visible { outline: 3px solid var(--color-lamparita); outline-offset: 2px; }
+.lightbox-close { top: max(1rem, env(safe-area-inset-top)); right: 1rem; }
+.lightbox-prev, .lightbox-next { top: 50%; translate: 0 -50%; }
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+.lightbox-arrow { width: 0.7rem; height: 0.7rem; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
+.lightbox-arrow-prev { transform: rotate(-135deg); }
+@media (hover: hover) and (pointer: fine) { .lightbox-btn:hover { background: var(--color-madera); } }

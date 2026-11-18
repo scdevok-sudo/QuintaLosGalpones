@@ -1,4 +1,4 @@
-import type { Meta } from "./types";
+import type { Cta, Meta } from "./types";
 
 export const meta: Meta = {
   path: "/preguntas-frecuentes",
@@ -52,3 +52,6 @@ export const items: { q: string; a: string }[] = [
     a: "Los baños fueron ampliados y renovados. Podés conocerlos durante la visita y ver fotografías actuales en esta página cuando estén disponibles.",
   },
 ];
+
+/** Botón de cierre. Texto del documento (botón del hero de Casamientos); ver COPY-CAMBIOS.md. */
+export const cta: Cta = { label: "Consultar por mi fecha", to: "/contacto#formulario" };
