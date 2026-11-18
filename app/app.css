@@ -1194,3 +1194,24 @@ button.link {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+
+/* Formulario de Contacto */
+.cf {
+  display: grid;
+  gap: 1.25rem;
+}
+.cf-2 {
+  display: grid;
+  gap: 1.25rem;
+}
+@media (min-width: 40rem) {
+  .cf-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.cf-ayuda {
+  font-size: 0.95rem;
+}
+textarea.input {
+  resize: vertical;
+}
