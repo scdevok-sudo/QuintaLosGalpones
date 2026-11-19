@@ -89,3 +89,30 @@ RewriteRule ^url-vieja/?$ /eventos-empresariales [R=301,L]
 - Abrir el sitio con `?` desde Instagram y WhatsApp para ver la vista previa (Open Graph).
 - Medir con PageSpeed Insights (móvil) Inicio, Casamientos y Contacto.
 - Si se activó GA4: verificar en tiempo real que llegan `click_whatsapp`, `express_abierto` y `contacto_envio`.
+
+## 9. Preview en Vercel (plan Hobby)
+Solo para mostrarle el sitio al cliente, con noindex. **No es producción**: el plan Hobby de Vercel es para uso personal y no comercial, y este sitio es de un negocio. La producción sigue siendo el VPS (secciones 1 a 8).
+
+**Qué hace Vercel.** `vercel.json` fija `framework: null` (sitio estático, sin funciones), `installCommand: npm ci`, `buildCommand: npm run build` y `outputDirectory: dist`. El build es `react-router build && node scripts/postbuild.mjs`: **no** corre `photos:build` ni usa los originales (están en `.gitignore`); trabaja con lo commiteado en `public/photos` y `src/data/*.json`. La salida está en `dist/` (no en `build/client`: `postbuild` aplana cada ruta a `<ruta>.html`, agrega `robots.txt` y, si corresponde, `sitemap.xml`). Probado clonando el repo en una carpeta limpia (`npm ci && npm run build`, sin `.env.local`): compila, 8 rutas prerenderizadas más `404.html`. `vercel.json` reemplaza al preset de la importación: no hace falta tocar nada en el panel.
+
+**Variables de entorno** (Project Settings, Environment Variables; se leen al construir, hay que redeployar para cambiarlas):
+
+| Variable | Valor en el preview |
+|---|---|
+| `VITE_SITE_URL` | la URL `https://<proyecto>.vercel.app`, sin barra final. Si falta, canonical, og:url, og:image y JSON-LD apuntan a `https://quintalosgalpones.com` |
+| `VITE_NOINDEX` | `true`: `<meta name="robots" content="noindex, nofollow">`, `robots.txt` con `Disallow: /` y sin `sitemap.xml` |
+| `VITE_FORM_ENDPOINT` | vacía: el formulario muestra "No pudimos enviar la consulta..." con el botón de WhatsApp |
+| `VITE_GA_ID` | vacía: no se carga `gtag.js` ni se pide nada a Google |
+| `VITE_PREVIEW_PENDING` | `true`: muestra el interruptor Sol/Lluvia con la foto provisoria |
+
+**Qué cambiar para pasar a producción en el VPS** (en el entorno donde se construye, no en Vercel): `VITE_SITE_URL` con el dominio real; `VITE_NOINDEX=false`; quitar `VITE_PREVIEW_PENDING`; `VITE_FORM_ENDPOINT` con el Apps Script desplegado; `VITE_GA_ID` si se usa GA4; y resolver lo que lista `npm run check:launch`. `vercel.json` no se usa en el VPS; allí rigen `public/.htaccess` o el vhost (secciones 5 y 6), que no se tocaron.
+
+**Compartir el link**: la imagen de vista previa (`/og/*.jpg`, 1200x630) lleva el logo abajo a la izquierda; se regenera con `npm run og:build`. WhatsApp y otras redes la guardan en caché: si se cambia, usar el depurador de la red o agregar `?v=2` al link.
+
+**Diferencias con el VPS (conviene saberlas)**
+- `/ruta/` redirige a `/ruta` con 308 (Vercel), no 301 como `.htaccess`. `check:routes` espera 301: contra Vercel esas líneas marcarán MAL aunque funcione.
+- Los artefactos de WordPress `wp-admin`, `wp-login.php`, `wp-content`, `wp-includes`, `wp-json` y `xmlrpc.php` devuelven el 404 propio, no 410 (Vercel no permite 410 en `vercel.json`).
+- No se replica la regla de `.htaccess` para consultas viejas de WordPress en la portada (`/?p=12`): no hay forma segura de quitar la query sin riesgo de bucle de redirección y no aporta en un preview.
+- `vercel.json` agrega `X-Robots-Tag: noindex, nofollow` a todo (también a las fotos, para que no entren a Google Imágenes) y caché inmutable de un año en `/assets/*` y `/photos/*`. Los nombres de `/photos/*` no llevan hash: si `photos:build` regenera una foto con el mismo nombre y distinto contenido, los navegadores que ya la tienen no la vuelven a pedir hasta que pase el año. Para el preview alcanza con un cambio de nombre o `?v=`; para producción conviene versionar los nombres.
+
+**Qué NO valida este preview**: las reglas de `public/.htaccess` (rewrites, 301, `ErrorDocument`), el vhost de OpenLiteSpeed (sección 5), la compresión y el caché reales del VPS ni los redirects del WordPress viejo tal como los resuelve ese servidor. Esas pruebas se hacen en el VPS con `BASE_URL=https://dominio npm run check:routes`.
