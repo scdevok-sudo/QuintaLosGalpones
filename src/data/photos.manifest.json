@@ -412,6 +412,32 @@
    "y1": 0.72
   },
   "mobile": {},
+  "art": {
+   "contacto.entrada|desktop": {
+    "nombre": "mapa-fachada-cabana-parque-atardecer-01-desk-contacto-entrada",
+    "slot": "contacto.entrada",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 77,
+     "width": 1320,
+     "height": 1650
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -422,7 +448,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAMFAgQG/8QAIhAAAQQBBAIDAAAAAAAAAAAAAQACAxEEBRIhURMxQUKR/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAIDBP/EABkRAQEAAwEAAAAAAAAAAAAAAAEAAhIhUf/aAAwDAQACEQMRAD8A57Dkc3IY4H1R498K71jOE745Y5S6QgHpoBCrcXFfMwy20AVuaW8nr8U8mJYEjwZHN+gFA9LJzDlQBTx6l4dPkgBPleRZB+LtFqt07fDUz3NJNhoaCQibntKVlQAFI5EXNLG+SiIkv//Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAMFAgQG/8QAIhAAAgMAAQMFAQAAAAAAAAAAAQIAAxEEBRMhEjFBUWFC/8QAGAEAAgMAAAAAAAAAAAAAAAAAAAECAwT/xAAYEQEBAAMAAAAAAAAAAAAAAAABAAISIf/aAAwDAQACEQMRAD8A5ziWMt6MD7Yf3xLrq3NFz12paWcgH6UAyt43Ge5DbqjM1c8mT2cTQLHBsZf4zAfqVuQcpAFPX1HtcCykb3XI0g/sTVXgeurLWZSToUKDkRbkkrHAAMhoiZ5WPzERCL//2Q==",
   "alt": "Construcción de madera con techo de chapa entre árboles, con invitados y músicos sobre el césped",
   "estado": "provisoria-procedencia",
   "pendientes": [
@@ -432,7 +458,37 @@
   ],
   "personas": "rostros-sin-confirmar",
   "calidadAvif": 50,
-  "pesoAvif1440": 106401,
+  "pesoAvif1440": 112914,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 0.9,
+    "reduccionRuido": 0,
+    "exposicionEV": -0.25,
+    "balanceColor": [
+     1.04,
+     1,
+     1.0166
+    ],
+    "clase": "dia",
+    "cambioMedio": 6.16
+   },
+   "nivelB": {
+    "elegible": false,
+    "estado": "no-elegible",
+    "aplicado": false,
+    "motivo": "hay rostros"
+   },
+   "originalIntacto": true
+  },
   "nota": "Única vista de la construcción; con gente en primer plano Verificar que no haya menores."
  },
  {
@@ -758,6 +814,55 @@
    "y1": 0.86
   },
   "mobile": {},
+  "art": {
+   "espacios.hero|desktop": {
+    "nombre": "espacios-parque-banco-flores-atardecer-01-desk-espacios-hero",
+    "slot": "espacios.hero",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 105,
+     "width": 1320,
+     "height": 1650
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   },
+   "espacios.hero|wide": {
+    "nombre": "espacios-parque-banco-flores-atardecer-01-wide-espacios-hero",
+    "slot": "espacios.hero",
+    "bp": "wide",
+    "layout": "split",
+    "ratio": [
+     3,
+     4
+    ],
+    "box": {
+     "left": 2,
+     "top": 0,
+     "width": 1316,
+     "height": 1755
+    },
+    "widths": [
+     640,
+     960,
+     1316
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1316
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -768,7 +873,7 @@
    "width": 1320,
    "height": 880
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQCAwX/xAAhEAACAQQCAgMAAAAAAAAAAAABAgMAERITBDEhYRRBQv/EABUBAQEAAAAAAAAAAAAAAAAAAAME/8QAGREAAwEBAQAAAAAAAAAAAAAAAAERAiFB/9oADAMBAAIRAxEAPwDETlLHPrMAlBW/fVW74MRg2BBIxY3IHnzepLE3ydsLhZFUgX6PqkIYDPHKwc7Fe2B/QNTRUpjSHU40q8dZZWAVhiCfu3Xuil14jm293ZR4xDXopcpToWr4f//Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgX/xAAiEAACAQMEAgMAAAAAAAAAAAABAgMAERIEEyExFEEyUWH/xAAVAQEBAAAAAAAAAAAAAAAAAAADBP/EABkRAAMBAQEAAAAAAAAAAAAAAAABEQIhQf/aAAwDAQACEQMRAD8A4SalY58DAJAVv31TN+HEYNgQSMWNzbnmtLE3kbsThZFUgX6P5UMMJmjlYOdxW+B9g1NFSiNIsXTyLAskpAVhiCff1RSF0rG2+7kDjENeimylOhavh//Z",
   "alt": "Banco de carpintero con flores blancas y velas, la pileta a un lado y el galpón iluminado al fondo",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -776,7 +881,37 @@
   ],
   "personas": "ninguna",
   "calidadAvif": 55,
-  "pesoAvif1440": 100146,
+  "pesoAvif1440": 105302,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 1.17,
+    "reduccionRuido": 0,
+    "exposicionEV": -0.23,
+    "balanceColor": [
+     0.96,
+     1,
+     1.04
+    ],
+    "clase": "dia",
+    "cambioMedio": 5.35
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Específica del lugar, sin gente"
  },
  {
@@ -813,6 +948,8 @@
    "y1": 0.93
   },
   "mobile": {},
+  "art": {},
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -823,7 +960,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAMEBf/EACUQAAICAgEDAwUAAAAAAAAAAAECAAMRIQQSMUETFCJCYXGCsf/EABcBAAMBAAAAAAAAAAAAAAAAAAACBAP/xAAZEQEAAwEBAAAAAAAAAAAAAAAAAQISEVH/2gAMAwEAAhEDEQA/AOHX6bJo2NrexgQ9ZZcq7quO7bz95vs43Fatael6+nZKAZaTblUcRGqXZ8DuZF3xbmEF4Nli5ssIx5IAiQ5PNsclRrP0qf6YjxWxZypexWj4kjXj8iZUJ9s5zvqXcRAyFfb9oiJsnf/Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAMBAgQF/8QAJBAAAgEEAQMFAQAAAAAAAAAAAQIAAwQRITESQYETFEJRccH/xAAXAQADAQAAAAAAAAAAAAAAAAACAwQB/8QAGBEBAAMBAAAAAAAAAAAAAAAAAAECEnH/2gAMAwEAAhEDEQA/APBp+mU0ah1vYwJh6ZZcq7KuOW35nc9vasi0ul6fTslAMmaNdUbVGprs/XJkfFmYQWyeouajkY7kARIXF5UcleM/FT/YhxWwZyrXYrR0SNdv0TlQn2znO+pYiYJGnx5iIjiH/9k=",
   "alt": "Mesa larga con arreglos florales bajo cortinas de luces que cuelgan de un árbol, de noche",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -831,7 +968,37 @@
   ],
   "personas": "ninguna",
   "calidadAvif": 55,
-  "pesoAvif1440": 119199,
+  "pesoAvif1440": 122839,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 1.16,
+    "reduccionRuido": 0,
+    "exposicionEV": -0.25,
+    "balanceColor": [
+     1,
+     1,
+     1.04
+    ],
+    "clase": "noche",
+    "cambioMedio": 5.2
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Imagen fuerte de la noche"
  },
  {
@@ -869,7 +1036,7 @@
   },
   "mobile": {
    "story.fiesta": {
-    "nombre": "espacios-cubierto-galpon-fiesta-noche-01-mob-------------",
+    "nombre": "espacios-cubierto-galpon-fiesta-noche-01-mob-story-fiesta",
     "ratio": [
      4,
      5
@@ -890,6 +1057,32 @@
     "calidadAvif": 45
    }
   },
+  "art": {
+   "story.fiesta|desktop": {
+    "nombre": "espacios-cubierto-galpon-fiesta-noche-01-desk-story-fiesta",
+    "slot": "story.fiesta",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 95,
+     "width": 1320,
+     "height": 1650
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -900,7 +1093,7 @@
    "width": 1320,
    "height": 660
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAMABgDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQDBv/EACQQAAICAQMCBwAAAAAAAAAAAAECAxEABBIhBTETIkFRcaHw/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQME/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAERAv/aAAwDAQACEQMRAD8A5cyNRZSODR9PrB1NXwNtc+5GUyaOOPTwSAuWlTcbbJp4EXT+IL3bwO+QUNDoeQ0HkHkogC+5xm01L0RWCi3k5P74xjmMNVH/2Q==",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAMABgDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQBAwb/xAAkEAABBAIBAgcAAAAAAAAAAAABAAIDEQQSIQUxEyJBUXGh8P/EABYBAQEBAAAAAAAAAAAAAAAAAAEDBP/EABcRAAMBAAAAAAAAAAAAAAAAAAABEQL/2gAMAwEAAhEDEQA/AMsZHUXNI4NH0+lJyavga1z7kJiTDjjx4JAXl0rNjZS88DG4/iC9tgO6goaHQfIaD5B5KIAvuUK6am9Fa4NGz5OT++EJzGGqj//Z",
   "alt": "Interior del galpón de noche con el techo de madera cubierto de luces y gente en livings y mesas",
   "estado": "provisoria-rostros",
   "pendientes": [
@@ -909,7 +1102,37 @@
   ],
   "personas": "rostros-sin-confirmar",
   "calidadAvif": 55,
-  "pesoAvif1440": 81543,
+  "pesoAvif1440": 87741,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 1.11,
+    "reduccionRuido": 0,
+    "exposicionEV": 0.004,
+    "balanceColor": [
+     0.96,
+     1,
+     0.96
+    ],
+    "clase": "noche",
+    "cambioMedio": 0.5
+   },
+   "nivelB": {
+    "elegible": false,
+    "estado": "no-elegible",
+    "aplicado": false,
+    "motivo": "hay rostros"
+   },
+   "originalIntacto": true
+  },
   "nota": "Ráfaga con F030/F031 Verificar que no haya menores."
  },
  {
@@ -985,6 +1208,32 @@
    "y1": 0.93
   },
   "mobile": {},
+  "art": {
+   "espacios.parque|desktop": {
+    "nombre": "espacios-parque-mesas-pileta-atardecer-01-desk-espacios-parque",
+    "slot": "espacios.parque",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     9,
+     10
+    ],
+    "box": {
+     "left": 0,
+     "top": 26,
+     "width": 1320,
+     "height": 1467
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -995,7 +1244,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMEBQIG/8QAJxAAAgICAAUCBwAAAAAAAAAAAQIAAwQREiEiMXEFYRMjMjNBUYH/xAAWAQEBAQAAAAAAAAAAAAAAAAADAAH/xAAbEQACAgMBAAAAAAAAAAAAAAAAAQISESExQf/aAAwDAQACEQMRAD8A83WuOjD5bMBrnx95JVWj2ca1MyA8kc737HnIiF7nUuen3V1Elq0sAP0ue3vBsyWzg44sr+EmPShOtOdggDn+/wCRNWzNw2RchaetSAOBtDY8eYiWfpuDBP2T5ldvz4iIaMRPUxGJj6JHW8REp9Ejw//Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMEBgIF/8QAJxAAAgICAQMBCQAAAAAAAAAAAQIAAwQRMRIhI3EFEzIzQVFhcoH/xAAWAQEBAQAAAAAAAAAAAAAAAAADAAH/xAAbEQACAgMBAAAAAAAAAAAAAAAAAQIREiExQf/aAAwDAQACEQMRAD8Azta46MPGzAa2evmS1Vo9hdKmdAeyOd778HvISF5Opd9m3V1MS1ddig/C54/OoOTJbODjLZV7pMalCdac7DADv9/5E9azOwnRMlaPIpAHQ2l2ONa9YiZP2jaM+fkn1lZvr+sRDRiLFTEYeNokeR+IiJT6JHh//9k=",
   "alt": "Mesas altas y una mesa servida sobre el césped, junto a la pileta, con invitados al fondo",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -1003,7 +1252,37 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 106627,
+  "pesoAvif1440": 121672,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 1.11,
+    "reduccionRuido": 0,
+    "exposicionEV": 0.25,
+    "balanceColor": [
+     1,
+     1,
+     1.04
+    ],
+    "clase": "dia",
+    "cambioMedio": 5.59
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Parque con montaje"
  },
  {
@@ -1041,7 +1320,7 @@
   },
   "mobile": {
    "story.llegada": {
-    "nombre": "recorrido-1-parque-guirnaldas-tarde-01-mob--------------",
+    "nombre": "recorrido-1-parque-guirnaldas-tarde-01-mob-story-llegada",
     "ratio": [
      4,
      5
@@ -1059,9 +1338,35 @@
      960,
      1320
     ],
-    "calidadAvif": 45
+    "calidadAvif": 40
    }
   },
+  "art": {
+   "story.llegada|desktop": {
+    "nombre": "recorrido-1-parque-guirnaldas-tarde-01-desk-story-llegada",
+    "slot": "story.llegada",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 677,
+     "width": 1320,
+     "height": 1650
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1072,7 +1377,7 @@
    "width": 1320,
    "height": 660
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAMABgDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAgb/xAAjEAACAgEDAwUAAAAAAAAAAAABAgARAwQSITFBURMiI2GB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQAC/8QAGBEBAQADAAAAAAAAAAAAAAAAAQARIUH/2gAMAwEAAhEDEQA/AOW0eL1cgHH1fc+IzJkC7/je1ar7SJLL9TLNIAwcHpxMOnNcsn3EjLvRSoYVzYhHsitwfFfkIiRf/9k=",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAMABgDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQCAwb/xAAhEAACAgEEAgMAAAAAAAAAAAABAgARAwQSITFBURMjgf/EABYBAQEBAAAAAAAAAAAAAAAAAAEAA//EABcRAQEBAQAAAAAAAAAAAAAAAAEAESH/2gAMAwEAAhEDEQA/AMvocXy5AOBfV+T6l2TKF3/W9q22/EQx2X7Md0YDBweuDM0x2t5RNMSMpdFKhhXNiEYbGrAg+q/IREi//9k=",
   "alt": "Parque entre árboles con guirnaldas de luces y un grupo de invitados a lo lejos, al caer la tarde",
   "estado": "provisoria-rostros",
   "pendientes": [
@@ -1081,7 +1386,37 @@
   ],
   "personas": "rostros-sin-confirmar",
   "calidadAvif": 55,
-  "pesoAvif1440": 61461,
+  "pesoAvif1440": 69082,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 0.89,
+    "reduccionRuido": 0,
+    "exposicionEV": 0.25,
+    "balanceColor": [
+     1.04,
+     1,
+     0.96
+    ],
+    "clase": "dia",
+    "cambioMedio": 3.64
+   },
+   "nivelB": {
+    "elegible": false,
+    "estado": "no-elegible",
+    "aplicado": false,
+    "motivo": "hay rostros"
+   },
+   "originalIntacto": true
+  },
   "nota": "Luz de transición Con el encuadre mobile se reconocen rostros; verificar permisos y menores."
  },
  {
@@ -1155,6 +1490,8 @@
    "y1": 0.72
   },
   "mobile": {},
+  "art": {},
+  "maxWidth": 1194,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1165,15 +1502,45 @@
    "width": 1194,
    "height": 896
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMEBQIG/8QAJBAAAgICAgIABwAAAAAAAAAAAQIAEQMEEiEFMRMjMkFRYXH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAwH/xAAbEQEBAAIDAQAAAAAAAAAAAAABABEhAhIxQf/aAAwDAQACEQMRAD8Aq+D8jp6nxDsM/AjoBOVmaOTzGs21wXBeAXeQsLPX2E8cuIcvrNH9XJsCNizq7nmqtdE3Yku6eM9fbZ297Dsv8sVXpT3ExkLItO5J/vRiT5KuczEDVXQmvc7BN+zERNGjcn8mIiItL//Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAMFAgQG/8QAJBAAAgICAQMEAwAAAAAAAAAAAQIAEQMEEgUhMRMiMlFBcZH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAwH/xAAbEQEBAAMAAwAAAAAAAAAAAAABAAIRIRIxQf/aAAwDAQACEQMRAD8Ah6D1LS0/UOyz8CPaoTlZlll61rNt8FwXgF3lLCz2/AnFLhHL5kqfoXJ9dGxZ1dzzVWuibsSXmnpnz7XW5v4Np7xDjV0h7/2JSoWRadyzfvsYksnJd7nigctbGTXmZgm/JiImjRuT9mIiItL/2Q==",
   "alt": "Césped con guirnaldas de luces al atardecer y invitados conversando a lo lejos",
   "estado": "provisoria-resolucion",
   "pendientes": [
    "resolucion"
   ],
   "personas": "sin-rostro",
-  "calidadAvif": 55,
-  "pesoAvif1440": 121863,
+  "calidadAvif": 50,
+  "pesoAvif1440": 122805,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 2.27,
+    "reduccionRuido": 1.27,
+    "exposicionEV": 0.25,
+    "balanceColor": [
+     0.96,
+     1,
+     1
+    ],
+    "clase": "dia",
+    "cambioMedio": 5.2
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Sirve para OG y hero"
  },
  {
@@ -1230,6 +1597,55 @@
    "y1": 0.97
   },
   "mobile": {},
+  "art": {
+   "casamientos.lluvia|desktop#1": {
+    "nombre": "espacios-cubierto-galpon-mesa-larga-noche-01-desk-casamientos-lluvia-1",
+    "slot": "casamientos.lluvia",
+    "bp": "desktop",
+    "layout": "mosaico",
+    "ratio": [
+     3,
+     4
+    ],
+    "box": {
+     "left": 2,
+     "top": 0,
+     "width": 1317,
+     "height": 1756
+    },
+    "widths": [
+     640,
+     960,
+     1317
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1317
+   },
+   "espacios.cubierto|desktop": {
+    "nombre": "espacios-cubierto-galpon-mesa-larga-noche-01-desk-casamientos-lluvia-1",
+    "slot": "espacios.cubierto",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     3,
+     4
+    ],
+    "box": {
+     "left": 2,
+     "top": 0,
+     "width": 1317,
+     "height": 1756
+    },
+    "widths": [
+     640,
+     960,
+     1317
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1317
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1240,7 +1656,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQEAAwAAAAAAAAAAAAAAAAUCAwQG/8QAKBAAAgEDAgILAAAAAAAAAAAAAQIAAxEhBEEScQUTFCIjMVFzgbGy/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwQC/8QAGhEAAwADAQAAAAAAAAAAAAAAAAECETEyIf/aAAwDAQACEQMRAD8A8nSpNVZV8z9SlVojsgRNsi2czOgoqqhyOJr3YA5t6TmBW7qEK8bcQBJBA5/MmqvSmZwiUe8oKkhhiJrVDqtSwUWBzyibRhlDRkqKhUkEoQbbidjpjb20/MRBfYy5I2pHhUzubxEShaAez//Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAQFAQIDBv/EACgQAAIBAwICCwAAAAAAAAAAAAECAAMRIQRBEnEFExQiIzFRc4Gxsv/EABYBAQEBAAAAAAAAAAAAAAAAAAMEAv/EABoRAAMAAwEAAAAAAAAAAAAAAAABAhExMiH/2gAMAwEAAhEDEQA/APJ0qTVWVfM/UsqtEdjCJtkWzmY0FFVUORxNe7AHNvSdgVvUUIV424hckEDn8yWq9KpnCKo95QVJDDETbVDqtSwUWBzyiIjDJ+iJUOVJF0INtxJPTO3tp+YiA+xVyUuqHhUzubxEShaBez//2Q==",
   "alt": "Mesa larga con platos, velas y flores bajo el techo de madera del galpón, con luces cálidas",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -1248,7 +1664,37 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 95399,
+  "pesoAvif1440": 104223,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 1.11,
+    "reduccionRuido": 0,
+    "exposicionEV": 0.047,
+    "balanceColor": [
+     1.0285,
+     1,
+     0.9742
+    ],
+    "clase": "noche",
+    "cambioMedio": 1.06
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Armado cubierto real"
  },
  {
@@ -1374,6 +1820,8 @@
    "y1": 0.9
   },
   "mobile": {},
+  "art": {},
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1384,7 +1832,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAIBAwQF/8QAJhAAAQMDAwIHAAAAAAAAAAAAAQACEQMEIRITMSJRIzI0QWFxgv/EABYBAQEBAAAAAAAAAAAAAAAAAAIEA//EABgRAQEAAwAAAAAAAAAAAAAAAAABAhEx/9oADAMBAAIRAxEAPwDwWF7G7RJ6SQJU3N1qJ8PUIAIBPZQ7U2mSZg8xym2CJaTHwVPqKdtLq1F+DReT3KLFwHNGT5veETkZ2uhuaWcqXYqCMfSIiabr0/6CIiWPAy6//9k=",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAIBAwQG/8QAJRAAAgEEAAQHAAAAAAAAAAAAAAECAwQRIRITIjEyM0FRYYGC/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgME/8QAGBEBAQADAAAAAAAAAAAAAAAAAAECETH/2gAMAwEAAhEDEQA/APPwc4R5bb6W0sk3N1xN9HEsJNJ/BMsxptvOH3wY5aazFv6Zn1GnbVKtRnp0ZN+7BNwnFbfi9QUkTtdC3T3smWqixoABpufI/QAHjwMuv//Z",
   "alt": "Detalle de una mesa de madera con copas, platos y velas encendidas",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -1392,7 +1840,37 @@
   ],
   "personas": "ninguna",
   "calidadAvif": 55,
-  "pesoAvif1440": 62973,
+  "pesoAvif1440": 64315,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 0.73,
+    "reduccionRuido": 0,
+    "exposicionEV": -0.25,
+    "balanceColor": [
+     1.0375,
+     1,
+     1
+    ],
+    "clase": "noche",
+    "cambioMedio": 3.49
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Detalle limpio"
  },
  {
@@ -1448,6 +1926,8 @@
    "y1": 0.82
   },
   "mobile": {},
+  "art": {},
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1458,7 +1938,7 @@
    "width": 1320,
    "height": 880
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBf/EACQQAAICAgECBwEAAAAAAAAAAAECAxEAIQQTYQUGEhQVUXGR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgED/8QAGhEAAgMBAQAAAAAAAAAAAAAAAAECESESE//aAAwDAQACEQMRAD8AyG8wc9opVlnL9Qb0bH59ZmzOrvbupvZ0dZQQoQUJo9m3irxipsSEkG17ZjaGU4HiHxsr9Jkf1CiCpwxYy3uUSRbs0HGq/mGL0ccsqh1p/9k=",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFA//EACQQAAICAgECBwEAAAAAAAAAAAECAxEAIQQTYQUGEhQVQXGR/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQID/8QAGxEAAgEFAAAAAAAAAAAAAAAAAAESAgMRIUH/2gAMAwEAAhEDEQA/AJLeYOe0Uqyzl+oN6Nj8P1k2Z1d7d1N7OjrHEKEFCaPZt4q8YqbEhJBte2Y5RZrwPEPjZX6TI/qFEFThiRlvcoki3ZoONV/MMXcj0VRLZ//Z",
   "alt": "Parque de la quinta al atardecer, con guirnaldas de luces sobre el césped y un cielo despejado",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -1466,7 +1946,37 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 113130,
+  "pesoAvif1440": 124270,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 1.08,
+    "reduccionRuido": 0,
+    "exposicionEV": 0,
+    "balanceColor": [
+     1.04,
+     1,
+     0.96
+    ],
+    "clase": "dia",
+    "cambioMedio": 0.59
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Mejor candidata de hero"
  },
  {
@@ -1537,6 +2047,32 @@
    "y1": 0.92
   },
   "mobile": {},
+  "art": {
+   "casamientos.lluvia|desktop": {
+    "nombre": "espacios-cubierto-galpon-mesa-velas-noche-01-desk-casamientos-lluvia",
+    "slot": "casamientos.lluvia",
+    "bp": "desktop",
+    "layout": "mosaico",
+    "ratio": [
+     3,
+     4
+    ],
+    "box": {
+     "left": 0,
+     "top": 218,
+     "width": 1320,
+     "height": 1760
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1547,7 +2083,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIEBQP/xAAkEAACAgECBQUAAAAAAAAAAAABAgADEQQhBRIxMkEiQnGhsf/EABgBAAIDAAAAAAAAAAAAAAAAAAIEAAED/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQACMSH/2gAMAwEAAhEDEQA/AMbh2nKqEIJAyxBE6U1LZUzGs86nuznbMlpOpClrLzsjD2n4jSsWNi2seUkg46mJKqs6B4WfqtO6OWIJBPdjB+ol9krZuT1vt2gZ2iaGoHNX0hIUEHBz1EsDzEQHrGco1ki+/fwv7ERLpf/Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIDBAX/xAAjEAEAAgIBBAEFAAAAAAAAAAABAAIDESEEEjJBMQUicaGx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIEA//EABgRAQEBAQEAAAAAAAAAAAAAAAEAAjEh/9oADAMBAAIRAxEAPwDh/T8DWpRFDdkSWYsVcmO1nG91Xy3vjcl0vyg2vmeK2PT+I6ayuSuVe1Ude5GqrWAeWDqcF6XbIovlrT+om61aWt2fffjxDfETQ1I5qOlUqI6d/MvPcREes5yhjUzZufR/YiIYX//Z",
   "alt": "Mesa servida con velas y flores en el galpón, con livings y gente al fondo",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -1555,7 +2091,37 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 98922,
+  "pesoAvif1440": 101193,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 0.88,
+    "reduccionRuido": 0,
+    "exposicionEV": -0.25,
+    "balanceColor": [
+     0.96,
+     1,
+     1.04
+    ],
+    "clase": "noche",
+    "cambioMedio": 6.23
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Armado cubierto"
  },
  {
@@ -1627,6 +2193,32 @@
    "y1": 0.75
   },
   "mobile": {},
+  "art": {
+   "casamientos.servicios|desktop": {
+    "nombre": "casamientos-galeria-barra-madera-noche-01-desk-casamientos-servicios",
+    "slot": "casamientos.servicios",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 305,
+     "width": 1309,
+     "height": 1636
+    },
+    "widths": [
+     640,
+     960,
+     1309
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1309
+   }
+  },
+  "maxWidth": 1309,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1637,7 +2229,7 @@
    "width": 1309,
    "height": 982
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAECAwQG/8QAIRAAAgIBAwUBAAAAAAAAAAAAAQIAEQMSITEEIkFRYYH/xAAXAQADAQAAAAAAAAAAAAAAAAAAAQID/8QAGREBAQEAAwAAAAAAAAAAAAAAAAFBAhFR/9oADAMBAAIRAxEAPwDyi9VeIszAsPFAX+S696koikVe3I9zkCHb5LKSDzUzvGY079a9V2mmB1Dw0SWxstrlU6iL3iEpWKpxIIGqIjDXAzacp1GxjNb/AERESNXj/9k=",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAIDAQQG/8QAIhAAAgEDBAIDAAAAAAAAAAAAAQIAAxESBCEiQTEyUWGB/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAEDAv/EABkRAQEAAwEAAAAAAAAAAAAAAAEAAhFBUf/aAAwDAQACEQMRAD8A5VdXeiWdgWHVgL/ksXmhKIpFr8fI+ZpLTOxHUmpIJ3tJOJyoPtdq+DYuDkOmiGpMt1qqciCd4jE1LId0afrMEDKIjiu07NjVORuKRsb/AGIiJjtTl//Z",
   "alt": "Barra de madera con copas colgadas y velas, y una hielera con botellas, bajo guirnaldas de luces de noche",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -1645,7 +2237,37 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 93685,
+  "pesoAvif1440": 105640,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 0.8,
+    "reduccionRuido": 0,
+    "exposicionEV": 0.25,
+    "balanceColor": [
+     1.04,
+     1,
+     0.96
+    ],
+    "clase": "noche",
+    "cambioMedio": 2.75
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Servicios"
  },
  {
@@ -1683,7 +2305,7 @@
   },
   "mobile": {
    "story.noche": {
-    "nombre": "recorrido-4-mesa-galpon-atardecer-01-mob------------",
+    "nombre": "recorrido-4-mesa-galpon-atardecer-01-mob-story-noche",
     "ratio": [
      4,
      5
@@ -1701,9 +2323,35 @@
      960,
      1320
     ],
-    "calidadAvif": 40
+    "calidadAvif": 35
    }
   },
+  "art": {
+   "story.noche|desktop": {
+    "nombre": "recorrido-4-mesa-galpon-atardecer-01-desk-story-noche",
+    "slot": "story.noche",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 310,
+     "width": 1320,
+     "height": 1650
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1714,7 +2362,7 @@
    "width": 1320,
    "height": 660
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAMABgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQCAwUG/8QAJBAAAgEDAwMFAAAAAAAAAAAAAQIRAAMEEiExBRNBImFxobH/xAAXAQADAQAAAAAAAAAAAAAAAAAAAQID/8QAFhEBAQEAAAAAAAAAAAAAAAAAABEB/9oADAMBAAIRAxEAPwDm8DB71/QzxpWTt9VPIxnDC4hXShAgrx8+1MdJ3W+3kR+VZioiX2cKJdtJB4is1soWzO5gzMDg0U1l2ltZdyyo9AEgHxRSomv/2Q==",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAMABgDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAQCAwUG/8QAIxAAAgEEAAYDAAAAAAAAAAAAAQIRAAMEEgUTISIxYUGhsf/EABcBAAMBAAAAAAAAAAAAAAAAAAABAgP/xAAXEQEBAQEAAAAAAAAAAAAAAAAAEQFB/9oADAMBAAIRAxEAPwDneHYHPyNGeNVlun1U8jGcMLiFdUIEFR2+j6png/VMhvBEflWYltEyHcKJdtSD1EGs1skWzsJOpmYHg0U1mWks5lyyo7AJAPxRSom8f//Z",
   "alt": "Mesa larga con centros de flores blancas y velas, con el galpón de madera iluminado al fondo",
   "estado": "provisoria-procedencia",
   "pendientes": [
@@ -1723,7 +2371,37 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 74719,
+  "pesoAvif1440": 83386,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 1.1,
+    "reduccionRuido": 0,
+    "exposicionEV": 0.25,
+    "balanceColor": [
+     0.96,
+     1,
+     1.0022
+    ],
+    "clase": "dia",
+    "cambioMedio": 4.15
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Muestra el frente del galpón"
  },
  {
@@ -1833,6 +2511,32 @@
    "y1": 0.85
   },
   "mobile": {},
+  "art": {
+   "espacios.llegada|desktop": {
+    "nombre": "cierre-noche-barra-cartel-noche-01-desk-espacios-llegada",
+    "slot": "espacios.llegada",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     3,
+     4
+    ],
+    "box": {
+     "left": 0,
+     "top": 214,
+     "width": 1320,
+     "height": 1760
+    },
+    "widths": [
+     640,
+     960,
+     1320
+    ],
+    "calidadAvif": 55,
+    "maxWidth": 1320
+   }
+  },
+  "maxWidth": 1320,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -1843,7 +2547,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAMBAgQG/8QAIhAAAgICAQMFAAAAAAAAAAAAAQIAEQMhMQQSQTNRcXKB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQIE/8QAGBEAAwEBAAAAAAAAAAAAAAAAAAECMRL/2gAMAwEAAhEDEQA/APPY7clFKqOSSRuDgdle2wWADpxOd+pUMirjUUdkeZhWLYs5JujY3xcz8tGpUsNg3c3G/f8AIkEzFVA7Q16s+IlOSOiresv2EojEM9E7MRB4M6QPK/EREoD/2Q==",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAMBAgQG/8QAIRAAAgICAgEFAAAAAAAAAAAAAQIAEQMhEjFBBDNRcoH/xAAWAQEBAQAAAAAAAAAAAAAAAAABAgT/xAAZEQADAQEBAAAAAAAAAAAAAAAAAQIxERL/2gAMAwEAAhEDEQA/APPY7clFKqOySRuDgd1e2wWADpxOd/UqGRVxqKOyPMwrFsWck3Rsb6uZ/LRqVLDYNybrfz+RIJmIUDiGvVnxEpyR0q3vL9hKIxDPROzEQeDOkD2sREoD/9k=",
   "alt": "Barra de madera con un cartel luminoso, rodeada de cortinas de luces, con invitados de espaldas",
   "estado": "provisoria-procedencia",
   "pendientes": [
@@ -1852,7 +2556,37 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 93940,
+  "pesoAvif1440": 99070,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 0.63,
+    "reduccionRuido": 0,
+    "exposicionEV": 0,
+    "balanceColor": [
+     0.96,
+     1,
+     1.04
+    ],
+    "clase": "noche",
+    "cambioMedio": 0.53
+   },
+   "nivelB": {
+    "elegible": true,
+    "estado": "pendiente-de-herramienta",
+    "aplicado": false,
+    "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
+   },
+   "originalIntacto": true
+  },
   "nota": "Reconocible"
  },
  {
@@ -1968,7 +2702,7 @@
   },
   "mobile": {
    "story.ceremonia": {
-    "nombre": "casamientos-hero-pasillo-flores-atardecer-01-mob----------------",
+    "nombre": "casamientos-hero-pasillo-flores-atardecer-01-mob-story-ceremonia",
     "ratio": [
      4,
      5
@@ -1986,9 +2720,84 @@
      960,
      1440
     ],
-    "calidadAvif": 40
+    "calidadAvif": 35
    }
   },
+  "art": {
+   "story.ceremonia|desktop": {
+    "nombre": "casamientos-hero-pasillo-flores-atardecer-01-desk-story-ceremonia",
+    "slot": "story.ceremonia",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 357,
+     "width": 4284,
+     "height": 5355
+    },
+    "widths": [
+     640,
+     960,
+     1440,
+     2000
+    ],
+    "calidadAvif": 55,
+    "maxWidth": null
+   },
+   "casamientos.hero|desktop": {
+    "nombre": "casamientos-hero-pasillo-flores-atardecer-01-desk-casamientos-hero",
+    "slot": "casamientos.hero",
+    "bp": "desktop",
+    "layout": "cover",
+    "ratio": [
+     16,
+     9
+    ],
+    "box": {
+     "left": 0,
+     "top": 2394,
+     "width": 4284,
+     "height": 2410
+    },
+    "widths": [
+     640,
+     960,
+     1440,
+     2000
+    ],
+    "calidadAvif": 55,
+    "maxWidth": null
+   },
+   "espacios.ceremonia|desktop": {
+    "nombre": "casamientos-hero-pasillo-flores-atardecer-01-desk-story-ceremonia",
+    "slot": "espacios.ceremonia",
+    "bp": "desktop",
+    "layout": "split",
+    "ratio": [
+     4,
+     5
+    ],
+    "box": {
+     "left": 0,
+     "top": 357,
+     "width": 4284,
+     "height": 5355
+    },
+    "widths": [
+     640,
+     960,
+     1440,
+     2000
+    ],
+    "calidadAvif": 55,
+    "maxWidth": null
+   }
+  },
+  "maxWidth": null,
   "generada": true,
   "anchosGenerados": [
    640,
@@ -2000,14 +2809,44 @@
    "width": 1440,
    "height": 960
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFBv/EACEQAAIBAwQDAQAAAAAAAAAAAAECAwARIQQiMVESE4Gx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAgAB/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARUf/aAAwDAQACEQMRAD8AzMOrlOn9IJ9YvYBe7X/KVZGG4IxA5waqwiGEgxoHccEYFPzctknPVFQjtGkfdgP5A+JDd0VbhEchMcyK1tysTkfaK3eFbf/Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAAQABgDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFBv/EACIQAAIBBAIBBQAAAAAAAAAAAAECAwARITESE1EEImGB8f/EABUBAQEAAAAAAAAAAAAAAAAAAAAC/8QAFhEBAQEAAAAAAAAAAAAAAAAAAAER/9oADAMBAAIRAxEAPwDLw+qlMHUCesXsAvn8pQ7DIRrDeKqRCGEgxoHcaOhT7uWyT8VNsidR3f3YD8geJDeaKswhJLpKitbKsdj7oppr/9k=",
   "alt": "Pasillo de flores blancas sobre el césped, preparado para una ceremonia al aire libre, con los invitados al fondo",
   "estado": "ok",
   "pendientes": [],
   "personas": "sin-rostro",
-  "calidadAvif": 50,
-  "pesoAvif1440": 192638,
-  "nota": "Único original en alta resolución, sin rostros nítidos"
+  "calidadAvif": 45,
+  "pesoAvif1440": 171383,
+  "proceso": {
+   "nivelA": {
+    "aplicado": true,
+    "enfoque": {
+     "sigma": 0.7,
+     "m1": 0.4,
+     "m2": 1,
+     "x1": 2,
+     "y2": 10,
+     "y3": 20
+    },
+    "ruidoEstimado": 0.65,
+    "reduccionRuido": 0,
+    "exposicionEV": -0.25,
+    "balanceColor": [
+     1.04,
+     1,
+     0.96
+    ],
+    "clase": "dia",
+    "cambioMedio": 5.68
+   },
+   "nivelB": {
+    "elegible": false,
+    "estado": "no-elegible",
+    "aplicado": false,
+    "motivo": "ya tiene resolución suficiente"
+   },
+   "originalIntacto": true
+  },
+  "nota": "Único original en alta resolución, sin rostros nítidos AVIF a calidad 45 para entrar en 200 KB."
  },
  {
   "id": "F058",

@@ -330,6 +330,66 @@
     pointer-events: none;
   }
 
+  /* Dirección de arte de escritorio (photos.config.json: desktop / wide). Desde 1024 px una foto puede tener recorte propio:
+       cover  llena el contenedor, con tope de ancho (no se agranda más de 1:1 en pantallas de 1x) y centrada;
+       split  vertical a la altura de la ventana (--split-h) junto al texto, centrada sobre la superficie;
+       mosaico  2 o 3 verticales juntas (la primera es la foto de la ranura; las demás solo existen desde 1024 px).
+     Por debajo de 1024 px nada cambia: la foto de la ranura con su recorte base o mobile. */
+  .ph-cell {
+    display: contents;
+  }
+  .ph-cell-x {
+    display: none;
+  }
+  @media (min-width: 64rem) {
+    .ph[data-cap] {
+      max-width: var(--mw-d);
+      margin-inline: auto;
+    }
+    .ph[data-art] {
+      aspect-ratio: var(--ar-x);
+    }
+    .ph[data-art] img {
+      object-position: 50% 50%;
+    }
+    .ph[data-layout="split"] {
+      --split-h: 80vh;
+      width: min(100%, var(--mw-d, 100%), calc(var(--split-h) * var(--ar-n)));
+      margin-inline: auto;
+    }
+    .ph[data-layout="mosaico"] {
+      display: grid;
+      grid-template-columns: repeat(var(--cells, 2), minmax(0, 1fr));
+      gap: 0.75rem;
+      align-items: start;
+      aspect-ratio: auto;
+      background: none !important; /* el marcador de baja calidad es inline: sin esto asoma entre las fotos */
+    }
+    .ph[data-layout="mosaico"] .ph-cell,
+    .ph[data-layout="mosaico"] .ph-cell-x {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: var(--mw-c, none);
+      margin-inline: auto;
+      aspect-ratio: var(--car, var(--ar-x));
+      background: var(--color-eucalipto);
+    }
+    /* El segundo recuadro baja un poco: se lee como un conjunto, no como una grilla. */
+    .ph[data-layout="mosaico"] > :nth-child(even) {
+      margin-top: 2.5rem;
+    }
+  }
+  @media (min-width: 100rem) {
+    .ph[data-wide] {
+      aspect-ratio: var(--ar-w);
+    }
+    .ph[data-layout="split"][data-wide] {
+      width: min(100%, var(--mw-d, 100%), calc(var(--split-h) * var(--ar-wn)));
+    }
+  }
+
   /* Máscara de galpón: frontón a dos aguas. Máximo 3 por página y nunca dos en la misma pantalla.
      --roof-k (0 a 1) permite "levantar" el techo: de plano a pico. */
   .mask-galpon {
@@ -502,6 +562,46 @@
 .story-panel.is-noche {
   background: var(--color-noche);
   color: var(--color-tarde);
+}
+/* Escritorio (1024 px o más): cada escena es un split. Superficie del tema, texto a un lado y la vertical a la altura de la escena al otro. */
+@media (min-width: 64rem) {
+  .story-scene[data-layout="split"] {
+    --gx: max(2.5rem, calc((100% - 80rem) / 2 + 2.5rem));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2.5rem var(--gx);
+  }
+  .story-scene[data-layout="split"][data-tema="dia"] {
+    background: var(--color-tarde);
+    color: var(--color-tinta);
+  }
+  .story-scene[data-layout="split"][data-tema="noche"] {
+    background: var(--color-noche);
+    color: var(--color-tarde);
+  }
+  .story-scene[data-layout="split"] .story-photo {
+    order: 2;
+    flex: none;
+    height: min(78vh, 46rem);
+    aspect-ratio: var(--split-ar);
+  }
+  .story-scene[data-layout="split"] .story-panel,
+  .story-scene[data-layout="split"] .story-panel.is-dia,
+  .story-scene[data-layout="split"] .story-panel.is-noche {
+    background: transparent;
+    padding: 0;
+    width: min(30rem, 100%);
+  }
+  .story-scene[data-layout="split"] .story-photo .ph {
+    position: absolute;
+    inset: 0;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    aspect-ratio: auto;
+  }
 }
 .story-band,
 .story-glow,
@@ -756,6 +856,24 @@
     }
     .story-glow {
       transform: translate3d(0, calc((var(--hora, 0) - 0.5) * -16%), 0);
+    }
+    /* Escritorio con dirección de arte (split): la foto vertical ocupa el alto de la escena, no se amplía ni se mueve
+       (el parallax la agrandaría más allá de su resolución) y el texto va sobre la superficie del tema. */
+    .story-scene[data-layout="split"] {
+      align-items: stretch;
+      padding-block: 1.25rem;
+    }
+    .story-scene[data-layout="split"] .story-photo {
+      position: relative;
+      inset: auto;
+      height: 100%;
+    }
+    .story-scene[data-layout="split"] .story-photo .ph {
+      transform: none;
+    }
+    .story-scene[data-layout="split"] .story-panel {
+      position: static;
+      align-self: center;
     }
   }
   /* Mobile y tablet: banda de una sola fila (reloj + pestañas), guirnalda superpuesta a la foto, y el texto debajo

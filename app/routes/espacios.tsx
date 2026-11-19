@@ -17,18 +17,16 @@ export default function Espacios() {
 
   return (
     <>
-      {/* 1. CABECERA: el H1 arriba, la foto a todo el ancho y la bajada debajo */}
+      {/* 1. CABECERA: H1 y bajada a un lado, y la foto vertical (split) al otro; en pantallas chicas, H1, foto y bajada */}
       <section className="dia pt-10 pb-16 md:pt-16 md:pb-24" aria-labelledby="espacios-titulo">
-        <div className="wrap">
-          <h1 id="espacios-titulo" className="max-w-4xl">
+        <div className="wrap grid gap-8 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-8">
+          <h1 id="espacios-titulo" className="max-w-4xl lg:col-span-7 lg:row-start-1 lg:self-end">
             {hero.h1}
           </h1>
-        </div>
-        <div className="wrap hero-frame mt-10 md:mt-14">
-          <Photo slot="espacios.hero" priority />
-        </div>
-        <div className="wrap mt-8 grid lg:grid-cols-12">
-          <p className="lead measure lg:col-span-7 lg:col-start-6">{hero.body}</p>
+          <div className="hero-frame w-full lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1">
+            <Photo slot="espacios.hero" priority />
+          </div>
+          <p className="lead measure lg:col-span-6 lg:row-start-2 lg:self-start">{hero.body}</p>
         </div>
       </section>
 
@@ -52,7 +50,7 @@ export default function Espacios() {
             <h2 id="cubierto-titulo">{cubierto.h2}</h2>
             <p className="measure mt-6">{cubierto.body}</p>
           </div>
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-5 lg:col-start-8">
             <Photo later slot="espacios.cubierto" mask />
           </div>
         </div>

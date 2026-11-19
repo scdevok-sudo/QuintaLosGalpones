@@ -4,7 +4,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
-import { VIEWPORTS, aspectAt, missing, subjectPx, usesMobile, visibleWindow } from "./lib/photos-crop.mjs";
+import { DESKTOP_VIEWPORTS, VIEWPORTS, artAt, aspectAt, missing, mosaicMembers, subjectPx, usesMobile, visibleWindow } from "./lib/photos-crop.mjs";
 
 const cfg = JSON.parse(readFileSync("photos.config.json", "utf8"));
 const manifest = JSON.parse(readFileSync("src/data/photos.manifest.json", "utf8"));
@@ -73,6 +73,27 @@ for (const m of manifest) {
     if (kb > 120) err(`${m.id} ${slot}: AVIF mobile a ${ref} px pesa ${Math.round(kb)} KB (presupuesto 120 KB)`);
   }
 }
+// 2c. Variantes de escritorio (desktop / wide): archivos, sin metadatos, sin agrandar, tope de ancho, peso.
+for (const m of manifest) {
+  for (const [key, v] of Object.entries(m.art ?? {})) {
+    const hero = v.slot.endsWith(".hero");
+    for (const w of v.widths) {
+      const f = `${v.nombre}-w${w}.avif`;
+      expected.add(f);
+      if (!existsSync(join(OUT, f))) { err(`${m.id} ${key}: falta ${f}`); continue; }
+      const meta = await sharp(join(OUT, f)).metadata();
+      if (meta.exif || meta.icc || meta.xmp || meta.iptc) err(`${f}: tiene metadatos`);
+      if (meta.width !== w) err(`${f}: el ancho real (${meta.width}) no coincide con el nombre`);
+      if (w > v.box.width) err(`${f}: mas ancho que su recorte (${v.box.width}): se agrando`);
+    }
+    if (v.box.width < 2000 && (v.maxWidth ?? 0) > v.box.width) err(`${m.id} ${key}: el ancho maximo (${v.maxWidth}) agranda el recorte de ${v.box.width} px mas de 1:1`);
+    if (v.box.width < 2000 && !v.maxWidth) err(`${m.id} ${key}: falta el tope de ancho renderizado (recorte de ${v.box.width} px, menos de 2000)`);
+    const ref = Math.max(...v.widths.filter((w) => w <= (hero ? 1440 : 960)));
+    const budget = hero ? 200 : v.box.width >= 2000 ? 230 : 150;
+    const kb = statSync(join(OUT, `${v.nombre}-w${ref}.avif`)).size / 1024;
+    if (kb > budget) err(`${m.id} ${key}: AVIF de escritorio a ${ref} px pesa ${Math.round(kb)} KB (presupuesto ${budget} KB)`);
+  }
+}
 for (const f of files) if (!expected.has(f)) warns.push(`Archivo huerfano en ${OUT}: ${f}`);
 
 // 3. Ranuras
@@ -98,7 +119,10 @@ for (const r of refs) {
 }
 for (const k of Object.keys(slotMap)) if (!defined.has(k)) warns.push(`photos.config.json define la ranura "${k}", que no existe en photos.ts`);
 
-// 4. El sujeto de cada foto entra entero en lo que se ve de cada ranura, en cada breakpoint (misma regla que photos:build).
+// 4. El sujeto de cada foto entra entero en lo que se ve de cada ranura, en cada breakpoint, incluidos 1280, 1440 y 1920 px de
+//    escritorio (misma regla que photos:build). Un recorte propio de escritorio se muestra entero.
+const wideDistinto = (sl) => Boolean(sl.wideCrop) && JSON.stringify([sl.wideCrop.aspect, sl.wideCrop.focal, sl.wideCrop.fotos]) !== JSON.stringify([sl.desktopCrop?.aspect, sl.desktopCrop?.focal, sl.desktopCrop?.fotos]);
+const porTamano = Object.fromEntries(DESKTOP_VIEWPORTS.map((v) => [v, 0]));
 for (const [name, slot] of Object.entries(slotMap)) {
   const m = manifest.find((x) => x.id === slot.foto && x.seccion !== "og");
   if (!m || m.generada === false) continue;
@@ -107,18 +131,49 @@ for (const [name, slot] of Object.entries(slotMap)) {
   const base = { left: m.recorte.left, top: m.recorte.top, width: m.recorte.w, height: m.recorte.h };
   for (const vw of VIEWPORTS) {
     const mob = usesMobile(slot, vw);
+    const art = artAt(slot, vw);
     const mv = mob ? m.mobile?.[name] : null;
     if (mob && !mv) { err(`Ranura "${name}": tiene recorte mobile y el manifiesto no (correr photos:build)`); continue; }
-    const crop = mob ? mv.box : base;
-    const pos = mob ? [0.5, 0.5] : (slot.focal ?? [50, 50]).map((v) => v / 100);
+    const av = art ? m.art?.[art.key === "wide" && wideDistinto(slot) ? `${name}|wide` : `${name}|desktop`] : null;
+    if (art && !av) { err(`Ranura "${name}": tiene recorte de escritorio (${art.key}) y el manifiesto no (correr photos:build)`); continue; }
+    const crop = mob ? mv.box : av ? av.box : base;
+    const pos = mob || av ? [0.5, 0.5] : (slot.focal ?? [50, 50]).map((v) => v / 100);
     const sub = (mob && slot.mobileSubject) || slot.subject || m.subject;
-    const miss = missing(visibleWindow(crop, aspectAt(slot, vw), pos, vw >= 1024 ? slot.zoom ?? 1 : 1), subjectPx(sub, W, H));
-    if (miss.length) err(`Ranura "${name}" a ${vw} px: el recorte ${mob ? "mobile" : "base"} corta el sujeto (le falta ${miss.join(", ")})`);
+    const zoom = vw >= 1024 && (!av || av.layout === "cover") ? slot.zoom ?? 1 : 1;
+    const miss = missing(visibleWindow(crop, aspectAt(slot, vw), pos, zoom), subjectPx(sub, W, H));
+    const que = mob ? "mobile" : av ? `${av.layout} ${art.key}` : "base";
+    if (miss.length) err(`Ranura "${name}" a ${vw} px: el recorte ${que} corta el sujeto (le falta ${miss.join(", ")})`);
+    else if (porTamano[vw] !== undefined) porTamano[vw]++;
+    // Mosaico: cada foto del conjunto con su propio sujeto.
+    if (art?.layout === "mosaico" && DESKTOP_VIEWPORTS.includes(vw)) {
+      for (const mem of mosaicMembers(slot, art).filter((x) => x.i)) {
+        const me = manifest.find((x) => x.id === mem.foto && x.seccion !== "og");
+        const mav = me?.art?.[`${name}|${art.key === "wide" && wideDistinto(slot) ? "wide" : "desktop"}#${mem.i}`];
+        if (!me || !mav) { err(`Ranura "${name}": falta la foto ${mem.foto} del mosaico en el manifiesto (correr photos:build)`); continue; }
+        const mm = missing(visibleWindow(mav.box, mem.aspect[0] / mem.aspect[1], [0.5, 0.5], 1), subjectPx(me.subject, me.dimensionesOriginal.w, me.dimensionesOriginal.h));
+        if (mm.length) err(`Ranura "${name}" a ${vw} px: el mosaico corta el sujeto de ${mem.foto} (le falta ${mm.join(", ")})`);
+      }
+    }
   }
+}
+
+// 5. Mejora técnica: cada foto procesada registra su proceso; el Nivel A no cambia el contenido; el Nivel B solo con aprobación y sin rostros.
+for (const m of manifest) {
+  if (m.estado === "bloqueada" || m.generada === false || m.seccion === "og") continue;
+  const p = m.proceso;
+  if (!p?.nivelA || !p?.nivelB) { err(`${m.id}: falta "proceso" (Nivel A / Nivel B) en el manifiesto (correr photos:build)`); continue; }
+  if (p.originalIntacto !== true) err(`${m.id}: el proceso no confirma que el original quedó intacto`);
+  if (p.nivelA.aplicado && (p.nivelA.cambioMedio ?? 99) > (cfg.mejora?.nivelA?.cambioMax ?? 8)) err(`${m.id}: la mejora de Nivel A cambió la foto demasiado (diferencia media ${p.nivelA.cambioMedio})`);
+  const aprobada = cfg.fotos.find((x) => x.id === m.id)?.mejora?.nivelB === "aplicar";
+  if (p.nivelB.aplicado && !aprobada) err(`${m.id}: tiene Nivel B aplicado sin aprobación en photos.config.json`);
+  if (p.nivelB.aplicado && !["ninguna", "sin-rostro"].includes(m.personas)) err(`${m.id}: Nivel B aplicado en una foto con rostros (${m.personas})`);
 }
 
 const n = manifest.filter((m) => m.estado !== "bloqueada").length;
 console.log(`photos:verify: ${n} fotos procesadas, ${manifest.length - n} bloqueadas, ${refs.size} ranuras usadas por paginas.`);
+console.log(`  sujeto entero comprobado en escritorio: ${DESKTOP_VIEWPORTS.map((v) => `${v} px (${porTamano[v]} ranuras)`).join(", ")}`);
+const conA = manifest.filter((m) => m.proceso?.nivelA?.aplicado).length;
+console.log(`  mejora: Nivel A en ${conA} fotos; Nivel B aplicado en ${manifest.filter((m) => m.proceso?.nivelB?.aplicado).length} (elegibles: ${manifest.filter((m) => m.proceso?.nivelB?.elegible).length}, pendiente de aprobacion)`);
 for (const w of warns) console.log("  aviso: " + w);
 if (errors.length) {
   console.error("\nERRORES:\n" + errors.map((e) => "  - " + e).join("\n"));

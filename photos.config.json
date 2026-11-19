@@ -1,7 +1,30 @@
 {
- "_nota": "Fuente de verdad de photos:build. Para reemplazar un original: copiarlo con el MISMO nombre de archivo en la carpeta fuente y correr npm run photos:build.",
+ "_nota": "Fuente de verdad de photos:build. Para reemplazar un original: copiarlo con el MISMO nombre de archivo en la carpeta fuente y correr npm run photos:build. Cada ranura admite mobile, desktop (de 1024 px) y wide (de 1600 px, hereda de desktop): una relacion [a, b] (recorte base) o un objeto { aspect, focal, maxWidth, layout, base }. En desktop, base es la relacion del contenedor entre 768 y 1023 px, donde rige el recorte base (por defecto 4:3). layout: cover (llena el contenedor), split (vertical a la altura del contenedor junto al texto) o mosaico (2 o 3 verticales juntas: `fotos` suma las otras, cada una con aspect y focal). En mobile maxWidth es el ancho de ventana hasta el que rige el recorte; en desktop y wide es el ancho renderizado maximo en px (por defecto, el ancho del recorte si es menor que 2000: nunca se agranda mas de 1:1 en pantallas de 1x). Cada foto puede llevar mejora: { nivelA: false } para excluirla del Nivel A, o { nivelB: \"aplicar\" } cuando se aprueba el agrandado con IA (Nivel B).",
  "fuente": "imagenes/Para Diego-1-001/Para Diego",
  "salida": "public/photos",
+ "mejora": {
+  "nivelA": {
+   "sigmaMin": 1.4,
+   "hMax": 3,
+   "evMax": 0.25,
+   "wbMax": 0.04,
+   "cambioMax": 8,
+   "sharpen": {
+    "sigma": 0.7,
+    "m1": 0.4,
+    "m2": 1,
+    "x1": 2,
+    "y2": 10,
+    "y3": 20
+   }
+  },
+  "nivelB": {
+   "herramienta": "realesrgan-ncnn-vulkan",
+   "escala": 2,
+   "soloSinRostros": true,
+   "estado": "pendiente-de-aprobacion"
+  }
+ },
  "og": {
   "foto": "F035",
   "seccion": "og",
@@ -37,10 +60,17 @@
   },
   "story.llegada": {
    "foto": "F033",
-   "desktop": [
-    2,
-    1
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.7
+    }
+   },
    "mobile": {
     "aspect": [
      4,
@@ -52,25 +82,26 @@
     },
     "maxWidth": 1023
    },
-   "focal": [
-    50,
-    50
-   ],
-   "zoom": 1.12,
    "vistas": {
     "360": 0.98,
     "390": 0.83,
     "412": 0.76,
-    "768": 1.03,
-    "1280": 1.97
+    "768": 1.03
    }
   },
   "story.ceremonia": {
    "foto": "F057",
-   "desktop": [
-    2,
-    1
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.6
+    }
+   },
    "mobile": {
     "aspect": [
      4,
@@ -82,17 +113,11 @@
     },
     "maxWidth": 1023
    },
-   "focal": [
-    50,
-    70
-   ],
-   "zoom": 1.12,
    "vistas": {
     "360": 0.98,
     "390": 0.83,
     "412": 0.76,
-    "768": 1.03,
-    "1280": 1.97
+    "768": 1.03
    },
    "subject": {
     "x0": 0.06,
@@ -103,10 +128,17 @@
   },
   "story.fiesta": {
    "foto": "F029",
-   "desktop": [
-    2,
-    1
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.6
+    }
+   },
    "mobile": {
     "aspect": [
      4,
@@ -118,17 +150,11 @@
     },
     "maxWidth": 1023
    },
-   "focal": [
-    50,
-    50
-   ],
-   "zoom": 1.12,
    "vistas": {
     "360": 0.98,
     "390": 0.83,
     "412": 0.76,
-    "768": 1.03,
-    "1280": 1.97
+    "768": 1.03
    },
    "mobileSubject": {
     "x0": 0.08,
@@ -139,10 +165,17 @@
   },
   "story.noche": {
    "foto": "F048",
-   "desktop": [
-    2,
-    1
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.58
+    }
+   },
    "mobile": {
     "aspect": [
      4,
@@ -154,17 +187,11 @@
     },
     "maxWidth": 1023
    },
-   "focal": [
-    50,
-    50
-   ],
-   "zoom": 1.12,
    "vistas": {
     "360": 0.98,
     "390": 0.83,
     "412": 0.76,
-    "768": 1.03,
-    "1280": 1.97
+    "768": 1.03
    },
    "subject": {
     "x0": 0.1,
@@ -225,10 +252,21 @@
   },
   "casamientos.hero": {
    "foto": "F057",
-   "desktop": [
-    16,
-    9
-   ],
+   "desktop": {
+    "layout": "cover",
+    "aspect": [
+     16,
+     9
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.63
+    },
+    "base": [
+     16,
+     9
+    ]
+   },
    "mobile": [
     3,
     2
@@ -255,10 +293,17 @@
   },
   "casamientos.servicios": {
    "foto": "F047",
-   "desktop": [
-    4,
-    3
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.57
+    }
+   },
    "mobile": [
     4,
     3
@@ -266,10 +311,30 @@
   },
   "casamientos.lluvia": {
    "foto": "F045",
-   "desktop": [
-    4,
-    3
-   ],
+   "desktop": {
+    "layout": "mosaico",
+    "aspect": [
+     3,
+     4
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.7
+    },
+    "fotos": [
+     {
+      "foto": "F037",
+      "aspect": [
+       3,
+       4
+      ],
+      "focal": {
+       "x": 0.5,
+       "y": 0.7
+      }
+     }
+    ]
+   },
    "mobile": [
     4,
     3
@@ -277,25 +342,49 @@
   },
   "espacios.hero": {
    "foto": "F027",
-   "desktop": [
-    16,
-    9
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.62
+    },
+    "base": [
+     16,
+     9
+    ]
+   },
    "mobile": [
     3,
     2
    ],
-   "bleed": [
-    21,
-    9
-   ]
+   "wide": {
+    "aspect": [
+     3,
+     4
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.62
+    }
+   }
   },
   "espacios.parque": {
    "foto": "F032",
-   "desktop": [
-    4,
-    3
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     9,
+     10
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.67
+    }
+   },
    "mobile": [
     4,
     3
@@ -303,10 +392,17 @@
   },
   "espacios.cubierto": {
    "foto": "F037",
-   "desktop": [
-    4,
-    3
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     3,
+     4
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.73
+    }
+   },
    "mobile": [
     4,
     3
@@ -314,10 +410,17 @@
   },
   "espacios.ceremonia": {
    "foto": "F057",
-   "desktop": [
-    4,
-    3
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.62
+    }
+   },
    "mobile": [
     4,
     3
@@ -325,10 +428,17 @@
   },
   "espacios.llegada": {
    "foto": "F052",
-   "desktop": [
-    4,
-    3
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     3,
+     4
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.64
+    }
+   },
    "mobile": [
     4,
     3
@@ -347,10 +457,17 @@
   },
   "contacto.entrada": {
    "foto": "F015",
-   "desktop": [
-    4,
-    3
-   ],
+   "desktop": {
+    "layout": "split",
+    "aspect": [
+     4,
+     5
+    ],
+    "focal": {
+     "x": 0.57,
+     "y": 0.51
+    }
+   },
    "mobile": [
     4,
     3

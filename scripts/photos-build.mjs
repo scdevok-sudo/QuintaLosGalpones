@@ -1,11 +1,13 @@
 // photos:build: procesa las fotos de photos.config.json y escribe public/photos/ y src/data/photos.manifest.json.
-// Solo recorta, redimensiona, convierte y comprime. No retoca, no agranda, no publica metadatos.
+// Recorta, redimensiona, convierte y comprime, y aplica la mejora técnica de Nivel A (ruido leve, enfoque suave, exposición y
+// color consistentes; scripts/enhance.py). No quita ni agrega nada, no agranda, no publica metadatos y no toca los originales.
+// Dirección de arte por breakpoint: mobile, desktop y wide (relación, foco, ancho máximo y layout cover | split | mosaico).
 // Reemplazar un original: copiarlo con el mismo nombre en la carpeta `fuente` y correr `npm run photos:build`.
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
-import { VIEWPORTS, aspectAt, cropBox, missing, normSlot, subjectPx, usesMobile, visibleWindow } from "./lib/photos-crop.mjs";
+import { DESKTOP_VIEWPORTS, VIEWPORTS, artAt, aspectAt, cropBox, missing, mosaicMembers, normSlot, subjectPx, usesMobile, visibleWindow } from "./lib/photos-crop.mjs";
 
 const cfg = JSON.parse(readFileSync("photos.config.json", "utf8"));
 const OUT = cfg.salida;
@@ -34,6 +36,104 @@ async function load(f) {
   const m = await sharp(buf).metadata();
   return { buf, w: m.width, h: m.height };
 }
+
+const A = { sigmaMin: 1.4, hMax: 3, evMax: 0.25, wbMax: 0.04, cambioMax: 8, sharpen: { sigma: 0.7, m1: 0.4, m2: 1, x1: 2, y2: 10, y3: 20 }, ...(cfg.mejora?.nivelA ?? {}) };
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const py = (...args) => JSON.parse(execFileSync("python", ["-I", "scripts/enhance.py", ...args], { encoding: "utf8", maxBuffer: 1 << 24 }));
+const claseDe = (f) => (["noche", "interior"].includes(f.momento) ? "noche" : "dia");
+const mediana = (a) => [...a].sort((x, y) => x - y)[Math.floor(a.length / 2)];
+
+/** Estadísticas de cada foto con ranura (ruido, luma mediana, razones de color) y el objetivo de cada clase (mediana del grupo). */
+const stats = new Map();
+const objetivos = {};
+async function analizar() {
+  const ids = new Set(
+    [...Object.values(cfg.slots).flatMap((sl) => [sl.foto, ...(sl.desktop?.fotos ?? []).map((m) => m.foto)]), cfg.og?.foto].filter(Boolean),
+  );
+  for (const f of cfg.fotos.filter((x) => x.procesar && ids.has(x.id))) {
+    const src = await load(f);
+    const file = join(WORK, `${f.id}.src.png`);
+    writeFileSync(file, src.buf);
+    stats.set(f.id, py("analyze", file));
+  }
+  for (const clase of ["dia", "noche"]) {
+    const g = cfg.fotos.filter((x) => stats.has(x.id) && claseDe(x) === clase).map((x) => stats.get(x.id));
+    if (g.length) objetivos[clase] = { luma: mediana(g.map((x) => x.lumaMediana)), rg: mediana(g.map((x) => x.rg)), bg: mediana(g.map((x) => x.bg)) };
+  }
+}
+
+/** Nivel A sobre el original completo: devuelve el PNG mejorado, su escala respecto del original y lo aplicado. */
+async function mejorar(f, src) {
+  const st = stats.get(f.id);
+  const off = f.mejora?.nivelA === false;
+  const proceso = { nivelA: { aplicado: !off, enfoque: !off ? A.sharpen : null }, nivelB: { estado: "no-generado", aplicado: false }, originalIntacto: true };
+  if (!st || off) return { buf: src.buf, w: src.w, h: src.h, scale: 1, proceso };
+  const ob = objetivos[claseDe(f)];
+  const ev = +clamp(0.5 * Math.log2(ob.luma / st.lumaMediana), -A.evMax, A.evMax).toFixed(3);
+  const g = (t, v) => +clamp(Math.sqrt(t / v), 1 - A.wbMax, 1 + A.wbMax).toFixed(4);
+  const wb = [g(ob.rg, st.rg), 1, g(ob.bg, st.bg)];
+  const h = st.sigma > A.sigmaMin ? +clamp(st.sigma - 1, 0.8, A.hMax).toFixed(2) : 0;
+  Object.assign(proceso.nivelA, { ruidoEstimado: st.sigma, reduccionRuido: h, exposicionEV: ev, balanceColor: wb, clase: claseDe(f) });
+  const nada = !h && Math.abs(ev) < 0.01 && wb.every((v) => Math.abs(v - 1) < 0.002) && src.w <= 2000;
+  if (nada) return { buf: src.buf, w: src.w, h: src.h, scale: 1, proceso };
+  const inF = join(WORK, `${f.id}.src.png`);
+  const outF = join(WORK, `${f.id}.enh.png`);
+  writeFileSync(inF, src.buf);
+  const r = py("apply", inF, outF, `h=${h}`, `ev=${ev}`, `wb=${wb.join(",")}`, "maxw=2000");
+  return { buf: readFileSync(outF), w: r.ancho, h: r.alto, scale: r.escala, proceso };
+}
+
+/** Recorte (caja en píxeles del original) sobre la fuente mejorada, que puede venir achicada a 2000 px de ancho. */
+const extractEnh = (enh, box) => {
+  const k = enh.scale;
+  const left = Math.min(Math.round(box.left * k), enh.w - 1);
+  const top = Math.min(Math.round(box.top * k), enh.h - 1);
+  return { left, top, width: Math.min(Math.round(box.width * k), enh.w - left), height: Math.min(Math.round(box.height * k), enh.h - top) };
+};
+
+/** Cuánto cambió la mejora respecto del original (diferencia media absoluta 0..255, a 320 px): barrera contra retoques que alteren contenido. */
+async function cambioMedio(srcBuf, enh, box) {
+  const a = await sharp(srcBuf).extract(box).resize(320).removeAlpha().raw().toBuffer();
+  const b = await sharp(enh.buf).extract(extractEnh(enh, box)).resize(320, Math.round((320 * box.height) / box.width)).removeAlpha().raw().toBuffer();
+  const n = Math.min(a.length, b.length);
+  let t = 0;
+  for (let i = 0; i < n; i++) t += Math.abs(a[i] - b[i]);
+  return +(t / n).toFixed(2);
+}
+
+/**
+ * Genera las variantes AVIF de un recorte: baja la calidad hasta entrar en el presupuesto (no la resolución) y nunca agranda.
+ * Achica y recién ahí enfoca suave, a la medida final de cada ancho.
+ */
+async function variante(enh, box, nombre, anchos, presupuestoKB, refMax) {
+  const master = await sharp(enh.buf).extract(extractEnh(enh, box)).png({ compressionLevel: 1 }).toBuffer();
+  const h = (w) => Math.round((w * box.height) / box.width);
+  const img = (w) => {
+    const r = sharp(master).resize(w, h(w), { kernel: "lanczos3" });
+    return enh.proceso.nivelA.aplicado ? r.sharpen(A.sharpen) : r;
+  };
+  const ref = Math.max(...anchos.filter((w) => w <= refMax));
+  let q = 55;
+  for (;;) {
+    const sz = (await enc.avif(img(ref), q).toBuffer()).length;
+    if (sz <= presupuestoKB * 1024 || q <= 30) break;
+    q -= 5;
+  }
+  const pesos = {};
+  for (const w of anchos) {
+    const b = await enc.avif(img(w), q).toBuffer();
+    writeFileSync(join(OUT, `${nombre}-w${w}.avif`), b);
+    pesos[w] = b.length;
+  }
+  return { q, ref, pesos };
+}
+
+/** Anchos a generar para un recorte: los de la lista que entran, más el ancho del recorte si es menor que 2000 (nunca agranda). */
+const anchosPara = (lista, bw) => {
+  const w = lista.filter((x) => x <= bw);
+  if (bw < 2000 && !w.includes(bw)) w.push(bw);
+  return w;
+};
 
 const enc = {
   avif: (s, q) => s.avif({ quality: q, effort: 4 }),
@@ -64,27 +164,69 @@ function checkSubjectBase(f, box, W, H) {
   if (m.length) errores.push(`${f.id}: el recorte base ${f.ratio.join(":")} corta el sujeto (le falta: ${m.join(", ")})`);
 }
 
+/** Recortes propios de escritorio (desktop / wide) de una foto: los de sus ranuras y los que le toca como parte de un mosaico. */
+function artsDe(f) {
+  const out = [];
+  for (const [name, slot] of Object.entries(slotsNorm)) {
+    for (const bp of ["desktop", "wide"]) {
+      const art = bp === "desktop" ? slot.desktopCrop : cfg.slots[name].wide ? slot.wideCrop : null;
+      if (!art) continue;
+      // Wide igual que desktop: se reutiliza el recorte de desktop.
+      if (bp === "wide" && JSON.stringify([art.aspect, art.focal, art.fotos]) === JSON.stringify([slot.desktopCrop?.aspect, slot.desktopCrop?.focal, slot.desktopCrop?.fotos])) continue;
+      const miembros = art.layout === "mosaico" ? mosaicMembers(slot, art) : [{ foto: slot.foto, aspect: art.aspect, focal: art.focal, i: 0 }];
+      for (const m of miembros) if (m.foto === f.id) out.push({ key: `${name}|${bp}${m.i ? "#" + m.i : ""}`, slot: name, bp, art, m });
+    }
+  }
+  return out;
+}
+const usadaPorMosaico = (id) => Object.values(slotsNorm).some((sl) => [sl.desktopCrop, sl.wideCrop].some((a) => a?.layout === "mosaico" && (a.fotos ?? []).some((m) => m.foto === id)));
+const wideDistinto = (name) => {
+  const sl = slotsNorm[name];
+  return Boolean(sl.wideCrop) && JSON.stringify([sl.wideCrop.aspect, sl.wideCrop.focal, sl.wideCrop.fotos]) !== JSON.stringify([sl.desktopCrop?.aspect, sl.desktopCrop?.focal, sl.desktopCrop?.fotos]);
+};
+/** Clave del recorte de escritorio que se muestra en una ranura a un ancho de ventana (wide reutiliza desktop si es igual). */
+const artKey = (name, art) => (art.key === "wide" && wideDistinto(name) ? `${name}|wide` : `${name}|desktop`);
+
+/** El recorte propio de escritorio tiene que contener el sujeto entero a 1280, 1440 y 1920 px (se muestra entero). */
+function checkArt(f, a, box, W, H) {
+  const slot = slotsNorm[a.slot];
+  const sub = (!a.m.i && slot.subject) || f.subject;
+  if (!sub) return errores.push(`${f.id}: falta "subject"`);
+  const vws = DESKTOP_VIEWPORTS.filter((vw) => {
+    const k = artAt(slot, vw);
+    return k && artKey(a.slot, k) === `${a.slot}|${a.bp}`;
+  });
+  const m = missing({ x0: box.left, y0: box.top, x1: box.left + box.width, y1: box.top + box.height }, subjectPx(sub, W, H));
+  if (m.length) errores.push(`${a.slot} (${f.id}) a ${vws.join("/")} px, recorte ${a.bp} ${a.art.layout} ${a.m.aspect.join(":")}: le falta ${m.join(", ")}`);
+  if (a.art.maxWidth && box.width < 2000 && a.art.maxWidth > box.width) errores.push(`${a.slot} (${f.id}): maxWidth ${a.art.maxWidth} px agranda el recorte de ${box.width} px (más de 1:1)`);
+}
+
 /** Lo que se ve de la foto en cada ranura y cada breakpoint de revisión debe contener el sujeto entero. */
-function checkSlots(f, baseBox, mobBoxes, W, H) {
+function checkSlots(f, baseBox, mobBoxes, artBoxes, W, H) {
   for (const [name, slot] of Object.entries(slotsNorm)) {
     if (slot.foto !== f.id) continue;
     const fallos = new Map();
     for (const vw of VIEWPORTS) {
       const mob = usesMobile(slot, vw);
-      const crop = mob ? mobBoxes[name] : baseBox;
-      const pos = mob ? [0.5, 0.5] : (slot.focal ?? [50, 50]).map((v) => v / 100);
+      const art = artAt(slot, vw);
+      const crop = mob ? mobBoxes[name] : art ? artBoxes[artKey(name, art)] : baseBox;
+      // Un recorte propio (mobile o de escritorio) se muestra entero; el base se encuadra con el foco de la ranura.
+      const own = mob || art;
+      const pos = own ? [0.5, 0.5] : (slot.focal ?? [50, 50]).map((v) => v / 100);
       const sub = (mob && slot.mobileSubject) || slot.subject || f.subject;
-      const zoom = vw >= 1024 ? slot.zoom ?? 1 : 1;
+      const zoom = vw >= 1024 && (!art || art.layout === "cover") ? slot.zoom ?? 1 : 1;
       const win = visibleWindow(crop, aspectAt(slot, vw), pos, zoom);
       const m = missing(win, subjectPx(sub, W, H));
       if (m.length) {
-        const k = `${mob ? "recorte mobile" : "recorte base"}: le falta ${m.join(", ")}`;
+        const k = `${mob ? "recorte mobile" : art ? `recorte ${art.key} ${art.layout}` : "recorte base"}: le falta ${m.join(", ")}`;
         fallos.set(k, [...(fallos.get(k) ?? []), vw]);
       }
     }
     for (const [k, vws] of fallos) errores.push(`${name} (${f.id}) a ${vws.join("/")} px, ${k}`);
   }
 }
+
+await analizar();
 
 const manifest = [];
 for (const f of cfg.fotos) {
@@ -100,7 +242,7 @@ for (const f of cfg.fotos) {
   const nombre = nameFor(f);
   if (only.length && !only.includes(f.id)) continue;
   // Fotos de reserva (sin ranura): no se generan salvo que se pidan por ID (`photos:build -- F046`).
-  const tieneRanura = Object.values(cfg.slots).some((s) => s.foto === f.id);
+  const tieneRanura = Object.values(cfg.slots).some((s) => s.foto === f.id) || usadaPorMosaico(f.id);
   if (!only.length && !tieneRanura) {
     const m = await sharp(join(cfg.fuente, f.original), { failOn: "none" }).metadata();
     const box = cropBox(m.width, m.height, f.ratio, f.focal, f.trim);
@@ -116,66 +258,70 @@ for (const f of cfg.fotos) {
     continue;
   }
   const src = await load(f);
+  const enh = await mejorar(f, src);
   const box = cropBox(src.w, src.h, f.ratio, f.focal, f.trim);
   const mobBoxes = {};
   for (const [name, slot] of Object.entries(slotsNorm)) if (slot.foto === f.id && slot.mobileCrop) mobBoxes[name] = cropBox(src.w, src.h, slot.mobileCrop.aspect, slot.mobileCrop.focal, f.trim);
+  const arts = artsDe(f);
+  const artBoxes = {};
+  for (const a of arts) artBoxes[a.key] = cropBox(src.w, src.h, a.m.aspect, a.m.focal, f.trim);
   checkSubjectBase(f, box, src.w, src.h);
-  checkSlots(f, box, mobBoxes, src.w, src.h);
-  const master = await sharp(src.buf).extract(box).png({ compressionLevel: 1 }).toBuffer();
-  const widths = WIDTHS.filter((w) => w <= box.width);
-  if (box.width < 2000 && !widths.includes(box.width)) widths.push(box.width);
+  for (const a of arts) checkArt(f, a, artBoxes[a.key], src.w, src.h);
+  checkSlots(f, box, mobBoxes, artBoxes, src.w, src.h);
+  // El texto de ranura que usa la foto como base (sin recorte propio de escritorio) conserva el recorte base.
+  const cambio = await cambioMedio(src.buf, enh, box);
+  if (cambio > A.cambioMax) errores.push(`${f.id}: la mejora cambió la foto demasiado (diferencia media ${cambio} de 255, máximo ${A.cambioMax})`);
+  enh.proceso.nivelA.cambioMedio = cambio;
+  const widths = anchosPara(WIDTHS, box.width);
   const wRef = Math.max(...widths.filter((w) => w <= 1440));
   const budget = HERO_SECTIONS.has(f.seccion) ? 200 : 120;
   const h = (w) => Math.round((w * box.height) / box.width);
-  // Primero baja la calidad; la resolucion no se toca.
-  let q = 55;
-  let size;
-  for (;;) {
-    size = (await enc.avif(sharp(master).resize(wRef, h(wRef)), q).toBuffer()).length;
-    if (size <= budget * 1024 || q <= 30) break;
-    q -= 5;
-  }
-  const sizes = {};
-  for (const w of widths) {
-    const img = () => sharp(master).resize(w, h(w), { kernel: "lanczos3" });
-    const avif = await enc.avif(img(), q).toBuffer();
-    writeFileSync(join(OUT, `${nombre}-w${w}.avif`), avif);
-    sizes[w] = { avif: avif.length };
-  }
-  const jpg = await enc.jpg(sharp(master).resize(wRef, h(wRef), { kernel: "lanczos3" }), 80).toBuffer();
+  const base = await variante(enh, box, nombre, widths, budget, 1440);
+  const q = base.q;
+  const sizes = Object.fromEntries(Object.entries(base.pesos).map(([w, n]) => [w, { avif: n }]));
+  const master = await sharp(enh.buf).extract(extractEnh(enh, box)).png({ compressionLevel: 1 }).toBuffer();
+  const jpg = await enc.jpg(sharp(master).resize(wRef, h(wRef), { kernel: "lanczos3" }).sharpen(enh.proceso.nivelA.aplicado ? A.sharpen : 0.0001), 80).toBuffer();
   writeFileSync(join(OUT, `${nombre}-w${wRef}.jpg`), jpg);
   // Variantes mobile (dirección de arte): recorte propio por ranura, solo AVIF.
   const mobile = {};
   for (const [name, mb] of Object.entries(mobBoxes)) {
     const mc = slotsNorm[name].mobileCrop;
-    const mm = await sharp(src.buf).extract(mb).png({ compressionLevel: 1 }).toBuffer();
-    const mw = WIDTHS_MOBILE.filter((w) => w <= mb.width);
-    if (!mw.includes(mb.width) && mb.width < 2000 && mb.width > (mw.at(-1) ?? 0)) mw.push(mb.width);
-    const ref = Math.max(...mw.filter((w) => w <= 960));
-    const mh = (w) => Math.round((w * mb.height) / mb.width);
-    let mq = 55;
-    for (;;) {
-      const sz = (await enc.avif(sharp(mm).resize(ref, mh(ref)), mq).toBuffer()).length;
-      if (sz <= 90 * 1024 || mq <= 30) break;
-      mq -= 5;
-    }
-    const mname = `${nombre}-mob-${name.replace(/./g, "-")}`;
-    for (const w of mw) writeFileSync(join(OUT, `${mname}-w${w}.avif`), await enc.avif(sharp(mm).resize(w, mh(w), { kernel: "lanczos3" }), mq).toBuffer());
-    mobile[name] = { nombre: mname, ratio: mc.aspect, maxWidth: mc.maxWidth, box: mb, widths: mw, calidadAvif: mq };
-    console.log(`   mobile ${name} ${mc.aspect.join(":")} ${mw.join("/")} q${mq}`);
+    const mw = anchosPara(WIDTHS_MOBILE, mb.width);
+    const mname = `${nombre}-mob-${name.replace(/\W+/g, "-")}`;
+    const v = await variante(enh, mb, mname, mw, 90, 960);
+    mobile[name] = { nombre: mname, ratio: mc.aspect, maxWidth: mc.maxWidth, box: mb, widths: mw, calidadAvif: v.q };
+    console.log(`   mobile ${name} ${mc.aspect.join(":")} ${mw.join("/")} q${v.q}`);
+  }
+  // Variantes de escritorio (desktop y wide): recorte, relación y layout propios por ranura; solo AVIF.
+  const art = {};
+  const hechas = new Map(); // recortes idénticos entre ranuras comparten archivos
+  for (const a of arts) {
+    const ab = artBoxes[a.key];
+    const aw = anchosPara(WIDTHS, ab.width);
+    const hero = a.slot.endsWith(".hero");
+    const idem = hechas.get(JSON.stringify([ab, hero]));
+    const aname = idem?.nombre ?? `${nombre}-${a.bp === "desktop" ? "desk" : "wide"}-${a.slot.replace(/\W+/g, "-")}${a.m.i ? `-${a.m.i}` : ""}`;
+    const v = idem ?? { ...(await variante(enh, ab, aname, aw, hero ? 200 : ab.width >= 2000 ? 230 : 150, hero ? 1440 : 960)), nombre: aname };
+    hechas.set(JSON.stringify([ab, hero]), v);
+    const tope = ab.width < 2000 ? Math.min(a.art.maxWidth ?? Infinity, ab.width) : a.art.maxWidth ?? null;
+    art[a.key] = { nombre: aname, slot: a.slot, bp: a.bp, layout: a.art.layout, ratio: a.m.aspect, box: ab, widths: aw, calidadAvif: v.q, maxWidth: tope };
+    console.log(`   ${a.bp} ${a.slot}${a.m.i ? "#" + a.m.i : ""} ${a.art.layout} ${a.m.aspect.join(":")} ${aw.join("/")} q${v.q} tope ${tope ?? "-"}${idem ? " (comparte archivos)" : ""}`);
   }
   const lqipBuf = await sharp(master).resize(24).jpeg({ quality: 45 }).toBuffer();
   const orig = { w: src.w, h: src.h };
   const pend = pendientesDe(f, box);
   const nota = [f.nota, q < 50 ? `AVIF a calidad ${q} para entrar en ${budget} KB.` : ""].filter(Boolean).join(" ");
+  const elegibleB = ["ninguna", "sin-rostro"].includes(f.personas) && Math.max(box.width, box.height) < 2000;
+  enh.proceso.nivelB = { elegible: elegibleB, estado: elegibleB ? "pendiente-de-herramienta" : "no-elegible", aplicado: false, motivo: elegibleB ? "sin rostros en primer plano y resolución menor a 2000 px" : f.personas === "rostros-sin-confirmar" ? "hay rostros" : "ya tiene resolución suficiente" };
   manifest.push({
     id: f.id, original: f.original, nombre, seccion: f.seccion, ranuras: Object.keys(cfg.slots).filter((s) => cfg.slots[s].foto === f.id), momento: f.momento, focal: f.focal,
-    dimensionesOriginal: orig, recorte: { ratio: f.ratio, w: box.width, h: box.height, left: box.left, top: box.top }, subject: f.subject, mobile,
+    dimensionesOriginal: orig, recorte: { ratio: f.ratio, w: box.width, h: box.height, left: box.left, top: box.top }, subject: f.subject, mobile, art,
+    maxWidth: box.width < 2000 ? box.width : null,
     generada: true, anchosGenerados: widths, jpeg: { width: wRef, height: h(wRef) }, lqip: `data:image/jpeg;base64,${lqipBuf.toString("base64")}`,
     alt: f.alt, estado: pend.length ? `provisoria-${pend[0]}` : "ok", pendientes: pend, personas: f.personas,
-    calidadAvif: q, pesoAvif1440: sizes[wRef].avif, nota,
+    calidadAvif: q, pesoAvif1440: sizes[wRef].avif, proceso: enh.proceso, nota,
   });
-  console.log(`${f.id} ${nombre} ${widths.join("/")} avif@${wRef}=${Math.round(sizes[wRef].avif / 1024)}KB q${q} ${pend.length ? "provisoria-" + pend.join("+") : "ok"}`);
+  console.log(`${f.id} ${nombre} ${widths.join("/")} avif@${wRef}=${Math.round(sizes[wRef].avif / 1024)}KB q${q} ${pend.length ? "provisoria-" + pend.join("+") : "ok"}  A: ruido ${enh.proceso.nivelA.reduccionRuido ?? "-"} EV ${enh.proceso.nivelA.exposicionEV ?? "-"} cambio ${cambio}`);
 }
 
 // Open Graph: JPEG 1200x630, sin texto superpuesto.
@@ -185,7 +331,8 @@ if (cfg.og && !only.length) {
   const box = cropBox(src.w, src.h, [1200, 630], cfg.og.focal, f.trim);
   const nombre = `${cfg.og.seccion}-${cfg.og.sujeto}-${cfg.og.momento}-01`;
   const ow = Math.min(1200, box.width);
-  const jpg = await sharp(src.buf).extract(box).resize(ow, Math.round((ow * 630) / 1200), { kernel: "lanczos3" })
+  const enhOg = await mejorar(f, src);
+  const jpg = await sharp(enhOg.buf).extract(extractEnh(enhOg, box)).resize(ow, Math.round((ow * 630) / 1200), { kernel: "lanczos3" })
     .jpeg({ quality: 82, progressive: true, mozjpeg: true }).toBuffer();
   const meta = await sharp(jpg).metadata();
   writeFileSync(join(OUT, `${nombre}-w${meta.width}.jpg`), jpg);

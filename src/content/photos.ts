@@ -19,11 +19,26 @@ type ManifestEntry = {
   personas: string;
   anchosGenerados: number[];
   jpeg?: { width: number; height: number };
+  maxWidth?: number | null;
   mobile?: Record<string, { nombre: string; widths: number[]; maxWidth: number }>;
+  art?: Record<string, { nombre: string; layout: Layout; ratio: [number, number]; widths: number[]; maxWidth: number | null }>;
 };
-type SlotCfg = { foto: string; desktop: [number, number]; mobile: [number, number]; bleed?: [number, number]; focal?: [number, number]; mobileCrop?: { maxWidth: number } };
+type ArtCfg = { layout: Layout; aspect: [number, number]; fotos?: { foto: string; aspect: [number, number] }[] };
+type SlotCfg = {
+  foto: string;
+  desktop: [number, number];
+  mobile: [number, number];
+  bleed?: [number, number];
+  focal?: [number, number];
+  mobileCrop?: { maxWidth: number };
+  desktopCrop?: ArtCfg;
+  wideCrop?: ArtCfg;
+};
 const manifest = manifestJson as unknown as ManifestEntry[];
 const slotMap = slotMapJson as unknown as Record<string, SlotCfg>;
+
+/** Layout de escritorio: cover llena el contenedor, split pone la vertical a la altura del contenedor, mosaico junta 2 o 3. */
+export type Layout = "cover" | "split" | "mosaico";
 
 /** Fuentes responsivas de una foto procesada (photos:build). */
 export type Sources = { avif: string };
@@ -55,6 +70,21 @@ export type Slot = {
   bleed?: [number, number];
   /** Dirección de arte: recorte propio para pantallas angostas (photos:build). Hasta `maxWidth` px se usa esta fuente. */
   mobile?: { avif: string; maxWidth: number };
+  /**
+   * Dirección de arte de escritorio (de 1024 px): recorte propio con su relación y su layout. `desktop` rige de 1024 a 1599 px y
+   * `wide` desde 1600 px (si no hay, hereda de desktop). `cells` lista las fotos del mosaico (la primera es la de la ranura).
+   * `maxWidth`: ancho renderizado máximo en px (nunca más de 1:1 en pantallas de 1x).
+   */
+  art?: {
+    layout: Layout;
+    ratio: [number, number];
+    desktop?: { avif: string };
+    wide?: { avif: string; ratio: [number, number] };
+    cells?: { avif: string; ratio: [number, number]; alt: string; maxWidth: number | null }[];
+    maxWidth: number | null;
+  };
+  /** Ancho renderizado máximo del recorte base (px): para fotos de menos de 2000 px, el ancho de la foto. */
+  maxWidth?: number | null;
   /** La foto provisoria no muestra lo que el slot necesita (ej. armado cubierto con lluvia real). */
   pending?: boolean;
 };
@@ -80,6 +110,7 @@ const make = (r: Raw): Slot => ({
   width: r.w,
   height: r.h,
   temp: true,
+  maxWidth: r.w,
   approved: r.approved ?? false,
   eventType: r.eventType,
   pending: r.pending,
@@ -96,6 +127,30 @@ const use = (name: string, legacy: Slot): Slot => {
   const base = `/photos/${e.nombre}`;
   const mv = c.mobileCrop ? e.mobile?.[name] : undefined;
   const set = (ext: string) => e.anchosGenerados.map((w) => `${base}-w${w}.${ext} ${w}w`).join(", ");
+  const artSet = (a: { nombre: string; widths: number[] }) => a.widths.map((w) => `/photos/${a.nombre}-w${w}.avif ${w}w`).join(", ");
+  const ad = c.desktopCrop ? e.art?.[`${name}|desktop`] : undefined;
+  const aw = c.desktopCrop && c.wideCrop ? e.art?.[`${name}|wide`] : undefined;
+  let art: Slot["art"];
+  if (ad && c.desktopCrop) {
+    const cells =
+      ad.layout === "mosaico"
+        ? [{ avif: artSet(ad), ratio: ad.ratio, alt: e.alt, maxWidth: ad.maxWidth }].concat(
+            (c.desktopCrop.fotos ?? []).flatMap((m, i) => {
+              const me = manifest.find((x) => x.id === m.foto && x.seccion !== "og");
+              const ma = me?.art?.[`${name}|desktop#${i + 1}`];
+              return ma && me ? [{ avif: artSet(ma), ratio: ma.ratio, alt: me.alt, maxWidth: ma.maxWidth }] : [];
+            }),
+          )
+        : undefined;
+    art = {
+      layout: ad.layout,
+      ratio: ad.ratio,
+      desktop: { avif: artSet(ad) },
+      wide: aw ? { avif: artSet(aw), ratio: aw.ratio } : undefined,
+      cells: cells && cells.length > 1 ? cells : undefined,
+      maxWidth: ad.maxWidth,
+    };
+  }
   return {
     src: `${base}-w${e.jpeg.width}.jpg`,
     alt: e.alt,
@@ -108,6 +163,8 @@ const use = (name: string, legacy: Slot): Slot => {
     eventType: legacy.eventType,
     pending: legacy.pending,
     sources: { avif: set("avif") },
+    art,
+    maxWidth: e.maxWidth ?? null,
     mobile: mv ? { avif: mv.widths.map((w) => `/photos/${mv.nombre}-w${w}.avif ${w}w`).join(", "), maxWidth: mv.maxWidth } : undefined,
     lqip: e.lqip ?? undefined,
     estado: e.estado,

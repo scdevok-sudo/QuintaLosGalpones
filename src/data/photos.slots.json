@@ -24,24 +24,18 @@
  "story.llegada": {
   "foto": "F033",
   "desktop": [
-   2,
-   1
+   4,
+   3
   ],
   "mobile": [
    4,
    5
   ],
-  "focal": [
-   50,
-   50
-  ],
-  "zoom": 1.12,
   "vistas": {
    "360": 0.98,
    "390": 0.83,
    "412": 0.76,
-   "768": 1.03,
-   "1280": 1.97
+   "768": 1.03
   },
   "mobileCrop": {
    "aspect": [
@@ -53,29 +47,34 @@
     "y": 0.7
    },
    "maxWidth": 1023
+  },
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.7
+   }
   }
  },
  "story.ceremonia": {
   "foto": "F057",
   "desktop": [
-   2,
-   1
+   4,
+   3
   ],
   "mobile": [
    4,
    5
   ],
-  "focal": [
-   50,
-   70
-  ],
-  "zoom": 1.12,
   "vistas": {
    "360": 0.98,
    "390": 0.83,
    "412": 0.76,
-   "768": 1.03,
-   "1280": 1.97
+   "768": 1.03
   },
   "subject": {
    "x0": 0.06,
@@ -93,29 +92,34 @@
     "y": 0.6
    },
    "maxWidth": 1023
+  },
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   }
   }
  },
  "story.fiesta": {
   "foto": "F029",
   "desktop": [
-   2,
-   1
+   4,
+   3
   ],
   "mobile": [
    4,
    5
   ],
-  "focal": [
-   50,
-   50
-  ],
-  "zoom": 1.12,
   "vistas": {
    "360": 0.98,
    "390": 0.83,
    "412": 0.76,
-   "768": 1.03,
-   "1280": 1.97
+   "768": 1.03
   },
   "mobileSubject": {
    "x0": 0.08,
@@ -133,29 +137,34 @@
     "y": 0.6
    },
    "maxWidth": 1023
+  },
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.6
+   }
   }
  },
  "story.noche": {
   "foto": "F048",
   "desktop": [
-   2,
-   1
+   4,
+   3
   ],
   "mobile": [
    4,
    5
   ],
-  "focal": [
-   50,
-   50
-  ],
-  "zoom": 1.12,
   "vistas": {
    "360": 0.98,
    "390": 0.83,
    "412": 0.76,
-   "768": 1.03,
-   "1280": 1.97
+   "768": 1.03
   },
   "subject": {
    "x0": 0.1,
@@ -179,6 +188,17 @@
     "y": 0.55
    },
    "maxWidth": 1023
+  },
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.58
+   }
   }
  },
  "lluvia.sol": {
@@ -242,7 +262,18 @@
   "focal": [
    50,
    80
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "cover",
+   "aspect": [
+    16,
+    9
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.63
+   }
+  }
  },
  "casamientos.parque": {
   "foto": "F035",
@@ -264,7 +295,18 @@
   "mobile": [
    4,
    3
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.57
+   }
+  }
  },
  "casamientos.lluvia": {
   "foto": "F045",
@@ -275,7 +317,31 @@
   "mobile": [
    4,
    3
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "mosaico",
+   "aspect": [
+    3,
+    4
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.7
+   },
+   "fotos": [
+    {
+     "foto": "F037",
+     "aspect": [
+      3,
+      4
+     ],
+     "focal": {
+      "x": 0.5,
+      "y": 0.7
+     }
+    }
+   ]
+  }
  },
  "espacios.hero": {
   "foto": "F027",
@@ -287,10 +353,38 @@
    3,
    2
   ],
-  "bleed": [
-   21,
-   9
-  ]
+  "wide": {
+   "aspect": [
+    3,
+    4
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.62
+   }
+  },
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.62
+   }
+  },
+  "wideCrop": {
+   "layout": "split",
+   "aspect": [
+    3,
+    4
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.62
+   }
+  }
  },
  "espacios.parque": {
   "foto": "F032",
@@ -301,7 +395,18 @@
   "mobile": [
    4,
    3
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    9,
+    10
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.67
+   }
+  }
  },
  "espacios.cubierto": {
   "foto": "F037",
@@ -312,7 +417,18 @@
   "mobile": [
    4,
    3
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    3,
+    4
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.73
+   }
+  }
  },
  "espacios.ceremonia": {
   "foto": "F057",
@@ -323,7 +439,18 @@
   "mobile": [
    4,
    3
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.62
+   }
+  }
  },
  "espacios.llegada": {
   "foto": "F052",
@@ -334,7 +461,18 @@
   "mobile": [
    4,
    3
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    3,
+    4
+   ],
+   "focal": {
+    "x": 0.5,
+    "y": 0.64
+   }
+  }
  },
  "contacto.hero": {
   "foto": "F035",
@@ -356,6 +494,17 @@
   "mobile": [
    4,
    3
-  ]
+  ],
+  "desktopCrop": {
+   "layout": "split",
+   "aspect": [
+    4,
+    5
+   ],
+   "focal": {
+    "x": 0.57,
+    "y": 0.51
+   }
+  }
  }
 }

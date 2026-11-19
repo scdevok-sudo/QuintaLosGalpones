@@ -2,7 +2,11 @@
 // Todas las cajas están en píxeles del original (ya rotado), salvo `subject`, que va en fracciones 0..1 del original.
 
 /** Breakpoints de revisión: ancho de ventana (px) y si el sitio los trata como "mobile" (variante propia). */
-export const VIEWPORTS = [360, 390, 412, 768, 1280];
+export const VIEWPORTS = [360, 390, 412, 768, 1280, 1440, 1920];
+/** Escritorio: de 1024 px en adelante; "wide" (pantallas anchas) desde 1600 px. Se revisan 1280, 1440 y 1920. */
+export const DESKTOP_MIN = 1024;
+export const WIDE_MIN = 1600;
+export const DESKTOP_VIEWPORTS = [1280, 1440, 1920];
 
 /**
  * Recorte de relación [a, b] centrado en `focal` (fracciones 0..1 del original completo). `trim` = [arriba, derecha,
@@ -51,16 +55,49 @@ export function missing(win, sub) {
 /** Variante que usa un viewport: la mobile si existe y el ancho entra en su `maxWidth`. */
 export const usesMobile = (slot, vw) => Boolean(slot.mobileCrop) && vw <= slot.mobileCrop.maxWidth;
 
+/**
+ * Recorte propio de escritorio ("desktop" o "wide") que corresponde a un viewport, o null si usa el recorte base.
+ * "wide" hereda de "desktop" si no se declara. Un recorte propio se muestra entero: el contenedor toma su relación.
+ */
+export function artAt(slot, vw) {
+  if (vw < DESKTOP_MIN || usesMobile(slot, vw)) return null;
+  if (vw >= WIDE_MIN && slot.wideCrop) return { key: "wide", ...slot.wideCrop };
+  if (slot.desktopCrop) return { key: "desktop", ...slot.desktopCrop };
+  return null;
+}
+
 /** Relación (ancho/alto) del contenedor de la foto en cada viewport. `vistas` del slot manda; si no, la declarada. */
 export function aspectAt(slot, vw) {
+  const art = artAt(slot, vw);
+  if (art) return art.aspect[0] / art.aspect[1];
   const v = slot.vistas?.[String(vw)];
   if (v) return v;
   const ar = vw >= 768 ? slot.desktop : Array.isArray(slot.mobile) ? slot.mobile : slot.mobile.aspect;
   return ar[0] / ar[1];
 }
 
-/** Ranura normalizada: `mobile` pasa a ser siempre la relación declarada y el recorte propio queda en `mobileCrop`. */
+/**
+ * Ranura normalizada. `mobile`, `desktop` y `wide` admiten una relación [a, b] (recorte base, como antes) o un objeto
+ * { aspect, focal, maxWidth, layout, fotos }. Con objeto, la relación declarada pasa a `mobile` / `desktop` y el recorte
+ * propio queda en `mobileCrop` / `desktopCrop` / `wideCrop`.
+ *   layout: "cover" (llena el contenedor), "split" (vertical a la altura del contenedor junto al texto) o
+ *           "mosaico" (2 o 3 verticales juntas; `fotos` lista las demás: { foto, aspect, focal }).
+ */
 export function normSlot(s) {
-  if (Array.isArray(s.mobile)) return { ...s };
-  return { ...s, mobile: s.mobile.aspect, mobileCrop: s.mobile };
+  const o = { ...s };
+  if (!Array.isArray(s.mobile)) Object.assign(o, { mobile: s.mobile.aspect, mobileCrop: s.mobile });
+  // `desktop.base` = relación del contenedor entre 768 y 1023 px, donde todavía rige el recorte base (por defecto 4:3).
+  if (!Array.isArray(s.desktop)) {
+    const { base, ...art } = s.desktop;
+    Object.assign(o, { desktop: base ?? [4, 3], desktopCrop: { layout: "cover", ...art } });
+  }
+  if (s.wide) o.wideCrop = { ...(o.desktopCrop ?? {}), ...s.wide };
+  if (o.wideCrop) o.wideCrop.layout ??= o.desktopCrop?.layout ?? "cover";
+  return o;
+}
+
+/** Miembros de un mosaico: la foto principal (con su recorte) y las demás que declara `fotos`. */
+export function mosaicMembers(slot, art) {
+  if (art.layout !== "mosaico") return [];
+  return [{ foto: slot.foto, aspect: art.aspect, focal: art.focal, i: 0 }, ...(art.fotos ?? []).map((m, i) => ({ ...m, i: i + 1 }))];
 }

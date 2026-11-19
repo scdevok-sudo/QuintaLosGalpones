@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "~/components/Button";
 import { BULBS, Garland } from "~/components/Garland";
 import { Photo } from "~/components/Photo";
+import { slots } from "@/content/photos";
 import { heading, scenes } from "@/content/story";
 
 /**
@@ -158,6 +159,9 @@ export function Story() {
                 className="story-scene"
                 data-state={i === scene ? "active" : i === prev ? "prev" : "off"}
                 data-run={ranRef.current ? "1" : undefined}
+                data-layout={slots[s.slot].art?.layout}
+                data-tema={s.tema}
+                style={slots[s.slot].art ? ({ "--split-ar": slots[s.slot].art!.ratio.join(" / ") } as React.CSSProperties) : undefined}
                 aria-label={s.nombre}
               >
                 <div className="story-photo">
