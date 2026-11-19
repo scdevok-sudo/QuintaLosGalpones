@@ -419,6 +419,7 @@
     "bp": "desktop",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      4,
      5
@@ -806,6 +807,7 @@
     "bp": "desktop",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      4,
      5
@@ -830,6 +832,7 @@
     "bp": "wide",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      3,
      4
@@ -1049,25 +1052,27 @@
     "nombre": "espacios-cubierto-galpon-fiesta-noche-01-desk-story-fiesta",
     "slot": "story.fiesta",
     "bp": "desktop",
-    "layout": "split",
-    "agrandado1920": 1.63,
+    "layout": "cover",
+    "agrandado1920": null,
+    "anchoFinal": 1920,
     "ratio": [
-     4,
-     5
+     16,
+     9
     ],
     "box": {
      "left": 0,
-     "top": 95,
+     "top": 632,
      "width": 1320,
-     "height": 1650
+     "height": 743
     },
     "widths": [
      640,
      960,
-     1320
+     1320,
+     1920
     ],
     "calidadAvif": 55,
-    "maxWidth": 1320
+    "maxWidth": null
    }
   },
   "maxWidth": 1320,
@@ -1203,6 +1208,7 @@
     "bp": "desktop",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      9,
      10
@@ -1335,25 +1341,27 @@
     "nombre": "recorrido-1-parque-guirnaldas-tarde-01-desk-story-llegada",
     "slot": "story.llegada",
     "bp": "desktop",
-    "layout": "split",
-    "agrandado1920": 1.63,
+    "layout": "cover",
+    "agrandado1920": null,
+    "anchoFinal": 1920,
     "ratio": [
-     4,
-     5
+     16,
+     9
     ],
     "box": {
      "left": 0,
-     "top": 677,
+     "top": 1257,
      "width": 1320,
-     "height": 1650
+     "height": 743
     },
     "widths": [
      640,
      960,
-     1320
+     1320,
+     1920
     ],
     "calidadAvif": 55,
-    "maxWidth": 1320
+    "maxWidth": null
    }
   },
   "maxWidth": 1320,
@@ -1594,6 +1602,7 @@
     "bp": "desktop",
     "layout": "mosaico",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      3,
      4
@@ -1618,6 +1627,7 @@
     "bp": "desktop",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      3,
      4
@@ -2046,6 +2056,7 @@
     "bp": "desktop",
     "layout": "mosaico",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      3,
      4
@@ -2177,6 +2188,7 @@
     "bp": "desktop",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      4,
      5
@@ -2309,25 +2321,27 @@
     "nombre": "recorrido-4-mesa-galpon-atardecer-01-desk-story-noche",
     "slot": "story.noche",
     "bp": "desktop",
-    "layout": "split",
-    "agrandado1920": 1.63,
+    "layout": "cover",
+    "agrandado1920": null,
+    "anchoFinal": 1920,
     "ratio": [
-     4,
-     5
+     16,
+     9
     ],
     "box": {
      "left": 0,
-     "top": 310,
+     "top": 756,
      "width": 1320,
-     "height": 1650
+     "height": 743
     },
     "widths": [
      640,
      960,
-     1320
+     1320,
+     1920
     ],
     "calidadAvif": 55,
-    "maxWidth": 1320
+    "maxWidth": null
    }
   },
   "maxWidth": 1320,
@@ -2497,6 +2511,7 @@
     "bp": "desktop",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      3,
      4
@@ -2709,16 +2724,17 @@
     "slot": "story.ceremonia",
     "bp": "desktop",
     "layout": "cover",
-    "agrandado1920": 0.5,
+    "agrandado1920": null,
+    "anchoFinal": 1920,
     "ratio": [
-     19,
-     10
+     16,
+     9
     ],
     "box": {
      "left": 0,
-     "top": 2300,
+     "top": 2222,
      "width": 4284,
-     "height": 2255
+     "height": 2410
     },
     "widths": [
      640,
@@ -2735,6 +2751,7 @@
     "bp": "desktop",
     "layout": "cover",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      16,
      9
@@ -2760,6 +2777,7 @@
     "bp": "desktop",
     "layout": "split",
     "agrandado1920": null,
+    "anchoFinal": null,
     "ratio": [
      4,
      5

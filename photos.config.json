@@ -1,5 +1,5 @@
 {
- "_nota": "Fuente de verdad de photos:build. Para reemplazar un original: copiarlo con el MISMO nombre de archivo en la carpeta fuente y correr npm run photos:build. Cada ranura admite mobile, desktop (de 1024 px) y wide (de 1600 px, hereda de desktop): una relacion [a, b] (recorte base) o un objeto { aspect, focal, maxWidth, layout, base }. En desktop, base es la relacion del contenedor entre 768 y 1023 px, donde rige el recorte base (por defecto 4:3). layout: cover (llena el contenedor), split (vertical a la altura del contenedor junto al texto) o mosaico (2 o 3 verticales juntas: `fotos` suma las otras, cada una con aspect y focal). En mobile maxWidth es el ancho de ventana hasta el que rige el recorte; en desktop y wide es el ancho renderizado maximo en px (por defecto, el ancho del recorte si es menor que 2000: nunca se agranda mas de 1:1 en pantallas de 1x). Cada foto puede llevar mejora: { nivelA: false } para excluirla del Nivel A, o { nivelB: \"aplicar\" } cuando se aprueba el agrandado con IA (Nivel B). layout \"auto\" (por defecto en desktop): photos:build calcula el agrandado a 1920 px (ancho renderizado, de photos:measure, contra el ancho del recorte publicado) y usa cover a pantalla completa si es de 1,35x o menos; si no, cae al layout alternativo (`fallback`: split o ambient) con `aspect`/`focal`, y `cover: { aspect, focal }` es el recorte a pantalla completa. Al reemplazar un original por uno mejor la ranura pasa sola a cover.",
+ "_nota": "Fuente de verdad de photos:build. Para reemplazar un original: copiarlo con el MISMO nombre de archivo en la carpeta fuente y correr npm run photos:build. Cada ranura admite mobile, desktop (de 1024 px) y wide (de 1600 px, hereda de desktop): una relacion [a, b] (recorte base) o un objeto { aspect, focal, maxWidth, layout, base }. En desktop, base es la relacion del contenedor entre 768 y 1023 px, donde rige el recorte base (por defecto 4:3). layout: cover (llena el contenedor), split (vertical a la altura del contenedor junto al texto) o mosaico (2 o 3 verticales juntas: `fotos` suma las otras, cada una con aspect y focal). En mobile maxWidth es el ancho de ventana hasta el que rige el recorte; en desktop y wide es el ancho renderizado maximo en px (por defecto, el ancho del recorte si es menor que 2000: nunca se agranda mas de 1:1 en pantallas de 1x). Cada foto puede llevar mejora: { nivelA: false } para excluirla del Nivel A, o { nivelB: \"aplicar\" } cuando se aprueba el agrandado con IA (Nivel B). layout \"auto\" (por defecto en desktop): photos:build calcula el agrandado a 1920 px (ancho renderizado, de photos:measure, contra el ancho del recorte publicado) y usa cover a pantalla completa si es de 1,35x o menos; si no, cae al layout alternativo (`fallback`: split o ambient) con `aspect`/`focal`, y `cover: { aspect, focal }` es el recorte a pantalla completa. Al reemplazar un original por uno mejor la ranura pasa sola a cover. En desktop, anchoFinal (px) genera tambien ese ancho aunque el recorte sea menor (ampliado con Lanczos y enfoque) y quita el tope de ancho: es para las escenas a pantalla completa del recorrido, forzadas a cover sin el limite de agrandado del layout auto.",
  "fuente": "imagenes/Para Diego-1-001/Para Diego",
  "salida": "public/photos",
  "mejora": {
@@ -61,26 +61,16 @@
   "story.llegada": {
    "foto": "F033",
    "desktop": {
-    "layout": "auto",
+    "layout": "cover",
     "aspect": [
-     4,
-     5
+     16,
+     9
     ],
     "focal": {
      "x": 0.5,
      "y": 0.7
     },
-    "fallback": "split",
-    "cover": {
-     "aspect": [
-      19,
-      10
-     ],
-     "focal": {
-      "x": 0.62,
-      "y": 0.7
-     }
-    }
+    "anchoFinal": 1920
    },
    "mobile": {
     "aspect": [
@@ -104,26 +94,16 @@
   "story.ceremonia": {
    "foto": "F057",
    "desktop": {
-    "layout": "auto",
+    "layout": "cover",
     "aspect": [
-     4,
-     5
+     16,
+     9
     ],
     "focal": {
      "x": 0.5,
      "y": 0.6
     },
-    "fallback": "split",
-    "cover": {
-     "aspect": [
-      19,
-      10
-     ],
-     "focal": {
-      "x": 0.5,
-      "y": 0.6
-     }
-    }
+    "anchoFinal": 1920
    },
    "mobile": {
     "aspect": [
@@ -153,26 +133,16 @@
   "story.fiesta": {
    "foto": "F029",
    "desktop": {
-    "layout": "auto",
+    "layout": "cover",
     "aspect": [
-     4,
-     5
+     16,
+     9
     ],
     "focal": {
      "x": 0.5,
-     "y": 0.6
+     "y": 0.575
     },
-    "fallback": "split",
-    "cover": {
-     "aspect": [
-      19,
-      10
-     ],
-     "focal": {
-      "x": 0.5,
-      "y": 0.58
-     }
-    }
+    "anchoFinal": 1920
    },
    "mobile": {
     "aspect": [
@@ -197,31 +167,27 @@
     "x1": 0.92,
     "y1": 0.8
    },
-   "zoom": 1.12
+   "zoom": 1.12,
+   "subject": {
+    "x0": 0.1,
+    "y0": 0.44,
+    "x1": 0.9,
+    "y1": 0.72
+   }
   },
   "story.noche": {
    "foto": "F048",
    "desktop": {
-    "layout": "auto",
+    "layout": "cover",
     "aspect": [
-     4,
-     5
+     16,
+     9
     ],
     "focal": {
      "x": 0.5,
-     "y": 0.58
+     "y": 0.575
     },
-    "fallback": "split",
-    "cover": {
-     "aspect": [
-      19,
-      10
-     ],
-     "focal": {
-      "x": 0.5,
-      "y": 0.58
-     }
-    }
+    "anchoFinal": 1920
    },
    "mobile": {
     "aspect": [

@@ -50,27 +50,21 @@
    "maxWidth": 1023
   },
   "desktopCrop": {
-   "layout": "split",
+   "layout": "cover",
    "aspect": [
-    4,
-    5
+    16,
+    9
    ],
    "focal": {
     "x": 0.5,
     "y": 0.7
    },
-   "fallback": "split",
-   "cover": {
-    "aspect": [
-     19,
-     10
-    ],
-    "focal": {
-     "x": 0.62,
-     "y": 0.7
-    }
-   },
-   "agrandado": 1.63
+   "anchoFinal": 1920,
+   "vistas": {
+    "1280": 1.966,
+    "1440": 1.917,
+    "1920": 2.062
+   }
   }
  },
  "story.ceremonia": {
@@ -110,30 +104,19 @@
   "desktopCrop": {
    "layout": "cover",
    "aspect": [
-    19,
-    10
+    16,
+    9
    ],
    "focal": {
     "x": 0.5,
     "y": 0.6
    },
-   "fallback": "split",
-   "cover": {
-    "aspect": [
-     19,
-     10
-    ],
-    "focal": {
-     "x": 0.5,
-     "y": 0.6
-    }
-   },
+   "anchoFinal": 1920,
    "vistas": {
     "1280": 1.966,
     "1440": 1.917,
     "1920": 2.062
-   },
-   "agrandado": 0.5
+   }
   }
  },
  "story.fiesta": {
@@ -159,6 +142,12 @@
    "y1": 0.8
   },
   "zoom": 1.12,
+  "subject": {
+   "x0": 0.1,
+   "y0": 0.44,
+   "x1": 0.9,
+   "y1": 0.72
+  },
   "mobileCrop": {
    "aspect": [
     4,
@@ -171,27 +160,21 @@
    "maxWidth": 1023
   },
   "desktopCrop": {
-   "layout": "split",
+   "layout": "cover",
    "aspect": [
-    4,
-    5
+    16,
+    9
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.6
+    "y": 0.575
    },
-   "fallback": "split",
-   "cover": {
-    "aspect": [
-     19,
-     10
-    ],
-    "focal": {
-     "x": 0.5,
-     "y": 0.58
-    }
-   },
-   "agrandado": 1.63
+   "anchoFinal": 1920,
+   "vistas": {
+    "1280": 1.966,
+    "1440": 1.917,
+    "1920": 2.062
+   }
   }
  },
  "story.noche": {
@@ -235,27 +218,21 @@
    "maxWidth": 1023
   },
   "desktopCrop": {
-   "layout": "split",
+   "layout": "cover",
    "aspect": [
-    4,
-    5
+    16,
+    9
    ],
    "focal": {
     "x": 0.5,
-    "y": 0.58
+    "y": 0.575
    },
-   "fallback": "split",
-   "cover": {
-    "aspect": [
-     19,
-     10
-    ],
-    "focal": {
-     "x": 0.5,
-     "y": 0.58
-    }
-   },
-   "agrandado": 1.63
+   "anchoFinal": 1920,
+   "vistas": {
+    "1280": 1.966,
+    "1440": 1.917,
+    "1920": 2.062
+   }
   }
  },
  "lluvia.sol": {

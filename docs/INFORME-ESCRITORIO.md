@@ -56,3 +56,17 @@ Los originales no se tocan y el manifiesto registra el proceso de cada foto (`pr
 - Elegir la variante del recorrido (cover, split o ambient) y aprobar el Nivel B foto por foto.
 - La mayoría de los originales siguen en 1320 px: el split los muestra a 1:1 o menos, pero para pantallas de alta densidad conviene pedir los originales de 2000 px o más.
 - Fiesta (F029) y Llegada (F033): rostros sin permiso confirmado.
+
+## 7. Recorrido a pantalla completa (cover forzado en las 4 escenas)
+Corrección de criterio: en escritorio las 4 escenas van a sangre con la tarjeta de texto abajo a la izquierda. `desktop` de las 4 ranuras `story.*` es `cover` 16:9 explícito, con `anchoFinal: 1920` (genera también el archivo de 1920 px, ampliado con Lanczos y enfoque, y quita el tope de ancho): el límite de 1,35x no rige para el recorrido. Mobile queda como estaba. El resto de las ranuras sigue en `auto` o en su layout explícito. El foco vertical del recorte está sobre el sujeto real.
+
+`npm run check:story` (nuevo) mide en el sitio, a 1920x1080 y 1280x720 y a lo largo del scroll (parallax incluido): contraste AA de la tarjeta (13,5 a 13,7:1 en las 4 escenas, mínimo 4,5:1), cuánto de la caja del sujeto tapa la tarjeta (tolerancia 15 %; la caja es generosa) y que el sujeto no salga de la escena. Resultado: OK. La tarjeta se probó del lado derecho (`PANEL=right`) y tapa más en todas, así que se quedó a la izquierda (`panel: "right"` en `story.ts` queda disponible). En ventanas bajas (hasta 800 px) la tarjeta es más compacta.
+
+| Escena | Agrandado necesario a 1920 | Nitidez percibida | ¿Sujeto completo? | Recomendación |
+|---|---|---|---|---|
+| Llegada (F033, 1320 px) | 1,63x | algo blanda: se nota en rostros y hojas a 1920; aceptable a 1280 | Sí (invitados). La guirnalda entra solo en parte: no cabe junto con la gente en un 16:9 de una foto vertical | **Reemplazar** por una horizontal de la llegada |
+| Ceremonia (F057, 4284 px) | 0,50x | muy nítida | Sí | Mantener (pedir otra toma para no repetir el hero de Casamientos) |
+| Fiesta (F029, 1320 px) | 1,63x | blanda, pero la oscuridad y las luces lo disimulan | Sí (gente y mesas). El techo con luces entra recortado | **Reemplazar** (además tiene rostros sin permiso confirmado) |
+| Noche (F048, 1320 px) | 1,63x | blanda en el mantel y las flores; el resto se disimula | Sí (mesa larga). El galpón del fondo queda fuera del 16:9 | **Reemplazar** por una horizontal que muestre la mesa con el galpón al fondo |
+
+Nivel A está aplicado a las 4. Nivel B: solo F048 es elegible (sin rostros) y su candidata 2x ya está generada y con recomendación "aplicar" (`docs/fotos/mejoras/nivel-b/F048.jpg`); no se aplicó. F033 y F029 tienen rostros y quedan excluidas; F057 ya supera los 2000 px. Con F048 en 2x el agrandado necesario baja de 1,63x a 0,82x. Capturas a 1920x1080 y 1280x720: `docs/fotos/escritorio/recorrido-1920-<escena>.jpg` y `recorrido-1280-<escena>.jpg`. Lighthouse de Inicio (mediana de 5): perf 94, a11y 100, LCP 2,19 s, CLS 0 (una corrida aislada dio 82; el TBT varía bastante entre corridas en esta máquina).

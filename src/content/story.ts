@@ -11,6 +11,8 @@ export type Scene = {
   id: "llegada" | "ceremonia" | "fiesta" | "noche";
   nombre: string;
   tema: "dia" | "noche";
+  /** Lado de escritorio de la tarjeta de texto sobre la foto: izquierda por defecto; derecha si taparía el sujeto (check:story). */
+  panel?: "left" | "right";
   slot: SlotName;
   texto: string;
   cta: Cta;

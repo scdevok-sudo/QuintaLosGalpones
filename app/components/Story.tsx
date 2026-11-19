@@ -161,6 +161,7 @@ export function Story() {
                 data-run={ranRef.current ? "1" : undefined}
                 data-layout={slots[s.slot].art?.layout}
                 data-tema={s.tema}
+                data-panel={s.panel}
                 style={slots[s.slot].art ? ({ "--split-ar": slots[s.slot].art!.ratio.join(" / ") } as React.CSSProperties) : undefined}
                 aria-label={s.nombre}
               >

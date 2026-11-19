@@ -6,10 +6,10 @@ Agrandado = ancho renderizado a 1920 px (medido con `npm run photos:measure`, po
 |---|---|---|---|---|---|
 | hero.principal | F043 | 1320 | 825 | 0.63x | cover (recorte base) |
 | hero.secundaria | F041 | 1320 | 825 | 0.63x | cover (recorte base) |
-| story.llegada | F033 | 1320 | 1920 x1.12 | 1.63x | split (auto) |
-| story.ceremonia | F057 | 4284 | 1920 x1.12 | 0.5x | cover (auto) |
-| story.fiesta | F029 | 1320 | 1920 x1.12 | 1.63x | split (auto) |
-| story.noche | F048 | 1320 | 1920 x1.12 | 1.63x | split (auto) |
+| story.llegada | F033 | 1320 | 1920 x1.12 | 1.63x | cover (explícito, sin límite de agrandado) |
+| story.ceremonia | F057 | 4284 | 1920 x1.12 | 0.5x | cover (explícito, sin límite de agrandado) |
+| story.fiesta | F029 | 1320 | 1920 x1.12 | 1.63x | cover (explícito, sin límite de agrandado) |
+| story.noche | F048 | 1320 | 1920 x1.12 | 1.63x | cover (explícito, sin límite de agrandado) |
 | lluvia.sol | F035 | 1194 | 677 | 0.57x | cover (recorte base) |
 | lluvia.cubierto | F037 | 1320 | 677 | 0.51x | cover (recorte base) |
 | home.casamientos | F028 | 1320 | 588 | 0.45x | cover (recorte base) |

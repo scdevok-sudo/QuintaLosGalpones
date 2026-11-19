@@ -263,7 +263,10 @@ for (const [name, slot] of Object.entries(slotsNorm)) {
       layout = `${art.layout} (auto${agr === null ? ", sin medición" : ""})`;
     }
     art.agrandado = agr;
-  } else if (art) layout = `${art.layout} (explícito)`;
+  } else if (art) {
+    layout = `${art.layout} (explícito${art.anchoFinal ? ", sin límite de agrandado" : ""})`;
+    if (art.layout === "cover" && ren?.pantallaCompleta) art.vistas = Object.fromEntries(DESKTOP_VIEWPORTS.map((vw) => [vw, +(RENDER[name][vw].w / RENDER[name][vw].h).toFixed(3)]));
+  }
   tabla.push({ name, foto: slot.foto, recorte: box.width, render: ren?.w ?? null, zoom: slot.zoom ?? 1, agr, layout });
 }
 {
@@ -344,14 +347,15 @@ for (const f of cfg.fotos) {
   for (const a of arts) {
     const ab = artBoxes[a.key];
     const aw = anchosPara(WIDTHS, ab.width);
+    if (a.art.anchoFinal && ab.width < a.art.anchoFinal) aw.push(a.art.anchoFinal); // ancho declarado: se amplía con Lanczos y enfoque
     const hero = a.slot.endsWith(".hero");
     const idem = hechas.get(JSON.stringify([ab, hero]));
     const aname = idem?.nombre ?? `${nombre}-${a.bp === "desktop" ? "desk" : "wide"}-${a.slot.replace(/\W+/g, "-")}${a.m.i ? `-${a.m.i}` : ""}`;
     const v = idem ?? { ...(await variante(enh, ab, aname, aw, hero ? 200 : ab.width >= 2000 ? 230 : 150, hero ? 1440 : 960)), nombre: aname };
     hechas.set(JSON.stringify([ab, hero]), v);
     const lim = a.art.agrandado != null && a.art.layout === "cover" ? Math.round(ab.width * AGR_MAX) : ab.width;
-    const tope = ab.width < 2000 ? Math.min(a.art.maxWidth ?? Infinity, lim) : a.art.maxWidth ?? null;
-    art[a.key] = { nombre: aname, slot: a.slot, bp: a.bp, layout: a.art.layout, agrandado1920: a.art.agrandado ?? null, ratio: a.m.aspect, box: ab, widths: aw, calidadAvif: v.q, maxWidth: tope };
+    const tope = a.art.anchoFinal ? null : ab.width < 2000 ? Math.min(a.art.maxWidth ?? Infinity, lim) : a.art.maxWidth ?? null;
+    art[a.key] = { nombre: aname, slot: a.slot, bp: a.bp, layout: a.art.layout, agrandado1920: a.art.agrandado ?? null, anchoFinal: a.art.anchoFinal ?? null, ratio: a.m.aspect, box: ab, widths: aw, calidadAvif: v.q, maxWidth: tope };
     console.log(`   ${a.bp} ${a.slot}${a.m.i ? "#" + a.m.i : ""} ${a.art.layout} ${a.m.aspect.join(":")} ${aw.join("/")} q${v.q} tope ${tope ?? "-"}${idem ? " (comparte archivos)" : ""}`);
   }
   const lqipBuf = await sharp(master).resize(24).jpeg({ quality: 45 }).toBuffer();
