@@ -875,6 +875,31 @@
       position: static;
       align-self: center;
     }
+    /* Ambient: la vertical nítida y centrada; los costados se rellenan con la misma foto desenfocada y tintada
+       (el marcador de baja calidad de la foto, ampliado y desenfocado). El texto vuelve a ser el panel sobre la foto. */
+    .story-scene[data-layout="ambient"] .story-photo .ph {
+      transform: none;
+      overflow: hidden;
+    }
+    .story-scene[data-layout="ambient"] .story-photo .ph::before {
+      content: "";
+      position: absolute;
+      inset: -8%;
+      background: inherit;
+      background-size: cover;
+      background-position: center;
+      filter: blur(40px) saturate(1.2) brightness(0.7);
+    }
+    .story-scene[data-layout="ambient"] .story-photo .ph img {
+      position: relative;
+      display: block;
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+      aspect-ratio: var(--ar-x);
+      margin-inline: auto;
+      box-shadow: 0 0 5rem rgb(0 0 0 / 0.45);
+    }
   }
   /* Mobile y tablet: banda de una sola fila (reloj + pestañas), guirnalda superpuesta a la foto, y el texto debajo
      de la foto en vez de encima: la foto ocupa todo el alto que sobra y el recorte mobile se calcula contra esa caja. */

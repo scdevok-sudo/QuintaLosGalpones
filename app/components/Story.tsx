@@ -165,7 +165,11 @@ export function Story() {
                 aria-label={s.nombre}
               >
                 <div className="story-photo">
-                  <Photo slot={s.slot} defer={!near} />
+                  <Photo
+                    slot={s.slot}
+                    defer={!near}
+                    sizes={slots[s.slot].art?.layout === "cover" ? "(min-width: 1024px) 115vw, 100vw" : undefined}
+                  />
                   {/* Luz: viven dentro de la foto, así nunca tiñen el panel de texto. */}
                   <div className="story-tint-gold" aria-hidden="true" />
                   <div className="story-tint-night" aria-hidden="true" />

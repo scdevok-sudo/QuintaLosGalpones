@@ -37,6 +37,7 @@
    "412": 0.76,
    "768": 1.03
   },
+  "zoom": 1.12,
   "mobileCrop": {
    "aspect": [
     4,
@@ -57,7 +58,19 @@
    "focal": {
     "x": 0.5,
     "y": 0.7
-   }
+   },
+   "fallback": "split",
+   "cover": {
+    "aspect": [
+     19,
+     10
+    ],
+    "focal": {
+     "x": 0.62,
+     "y": 0.7
+    }
+   },
+   "agrandado": 1.63
   }
  },
  "story.ceremonia": {
@@ -82,6 +95,7 @@
    "x1": 0.94,
    "y1": 0.74
   },
+  "zoom": 1.12,
   "mobileCrop": {
    "aspect": [
     4,
@@ -94,15 +108,32 @@
    "maxWidth": 1023
   },
   "desktopCrop": {
-   "layout": "split",
+   "layout": "cover",
    "aspect": [
-    4,
-    5
+    19,
+    10
    ],
    "focal": {
     "x": 0.5,
     "y": 0.6
-   }
+   },
+   "fallback": "split",
+   "cover": {
+    "aspect": [
+     19,
+     10
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.6
+    }
+   },
+   "vistas": {
+    "1280": 1.966,
+    "1440": 1.917,
+    "1920": 2.062
+   },
+   "agrandado": 0.5
   }
  },
  "story.fiesta": {
@@ -127,6 +158,7 @@
    "x1": 0.92,
    "y1": 0.8
   },
+  "zoom": 1.12,
   "mobileCrop": {
    "aspect": [
     4,
@@ -147,7 +179,19 @@
    "focal": {
     "x": 0.5,
     "y": 0.6
-   }
+   },
+   "fallback": "split",
+   "cover": {
+    "aspect": [
+     19,
+     10
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.58
+    }
+   },
+   "agrandado": 1.63
   }
  },
  "story.noche": {
@@ -178,6 +222,7 @@
    "x1": 0.9,
    "y1": 0.75
   },
+  "zoom": 1.12,
   "mobileCrop": {
    "aspect": [
     4,
@@ -198,7 +243,19 @@
    "focal": {
     "x": 0.5,
     "y": 0.58
-   }
+   },
+   "fallback": "split",
+   "cover": {
+    "aspect": [
+     19,
+     10
+    ],
+    "focal": {
+     "x": 0.5,
+     "y": 0.58
+    }
+   },
+   "agrandado": 1.63
   }
  },
  "lluvia.sol": {

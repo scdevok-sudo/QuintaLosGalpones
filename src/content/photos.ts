@@ -37,8 +37,8 @@ type SlotCfg = {
 const manifest = manifestJson as unknown as ManifestEntry[];
 const slotMap = slotMapJson as unknown as Record<string, SlotCfg>;
 
-/** Layout de escritorio: cover llena el contenedor, split pone la vertical a la altura del contenedor, mosaico junta 2 o 3. */
-export type Layout = "cover" | "split" | "mosaico";
+/** Layout de escritorio: cover llena el contenedor, split pone la vertical a la altura del contenedor, mosaico junta 2 o 3, ambient centra la vertical nítida sobre un fondo desenfocado de la misma foto. En la config también existe "auto": photos:build lo resuelve a cover o al layout alternativo según el agrandado a 1920 px. */
+export type Layout = "cover" | "split" | "mosaico" | "ambient";
 
 /** Fuentes responsivas de una foto procesada (photos:build). */
 export type Sources = { avif: string };

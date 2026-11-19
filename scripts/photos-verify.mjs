@@ -86,7 +86,8 @@ for (const m of manifest) {
       if (meta.width !== w) err(`${f}: el ancho real (${meta.width}) no coincide con el nombre`);
       if (w > v.box.width) err(`${f}: mas ancho que su recorte (${v.box.width}): se agrando`);
     }
-    if (v.box.width < 2000 && (v.maxWidth ?? 0) > v.box.width) err(`${m.id} ${key}: el ancho maximo (${v.maxWidth}) agranda el recorte de ${v.box.width} px mas de 1:1`);
+    const lim = v.agrandado1920 != null && v.layout === "cover" ? Math.round(v.box.width * (cfg.layoutAuto?.agrandadoMax ?? 1.35)) : v.box.width;
+    if (v.box.width < 2000 && (v.maxWidth ?? 0) > lim) err(`${m.id} ${key}: el ancho maximo (${v.maxWidth}) agranda el recorte de ${v.box.width} px mas de ${v.agrandado1920 != null && v.layout === "cover" ? "1,35:1 (cover automatico)" : "1:1"}`);
     if (v.box.width < 2000 && !v.maxWidth) err(`${m.id} ${key}: falta el tope de ancho renderizado (recorte de ${v.box.width} px, menos de 2000)`);
     const ref = Math.max(...v.widths.filter((w) => w <= (hero ? 1440 : 960)));
     const budget = hero ? 200 : v.box.width >= 2000 ? 230 : 150;

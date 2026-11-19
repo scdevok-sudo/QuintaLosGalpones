@@ -19,3 +19,7 @@ docs/fotos/contactos/
 
 # Grabaciones de QA (pesadas, se regeneran con npm run record)
 docs/qa/videos/
+
+# Nivel B (agrandado con IA): candidatas pesadas, se regeneran con npm run photos:upscale
+.photos-upscaled/
+.photos-upscaled-log.txt

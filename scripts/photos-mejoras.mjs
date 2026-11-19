@@ -15,6 +15,19 @@ mkdirSync(OUT, { recursive: true });
 mkdirSync(WORK, { recursive: true });
 const esc = (t) => String(t).replace(/[<>&"]/g, "");
 const label = (t, w, h = 26, size = 16, fg = "#fff") => Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}"><text x="6" y="${h - 8}" font-size="${size}" font-family="Arial" fill="${fg}">${esc(t)}</text></svg>`);
+const NIVEL_B = [
+  { id: "F027", rec: "aplicar", motivo: "madera y vidrio más definidos, sin artefactos" },
+  { id: "F028", rec: "aplicar", motivo: "cubiertos, copas y follaje más nítidos; ganancia clara" },
+  { id: "F032", rec: "aplicar", motivo: "pasto y sillas más definidos; ganancia clara" },
+  { id: "F035", rec: "aplicar", motivo: "invitados de espaldas más nítidos; sin rostros" },
+  { id: "F037", rec: "aplicar", motivo: "flores, vela y vajilla con mucho más detalle" },
+  { id: "F041", rec: "aplicar", motivo: "mejora mínima (madera oscura); inocua" },
+  { id: "F043", rec: "no aplicar", motivo: "se ven rostros en segundo plano y la IA los reconstruye: puede inventar facciones" },
+  { id: "F045", rec: "aplicar", motivo: "flores y velas más definidas (la foto no lleva Nivel A)" },
+  { id: "F047", rec: "aplicar", motivo: "mejora mínima (madera oscura); inocua" },
+  { id: "F048", rec: "aplicar", motivo: "flores, sillas y mantel más definidos" },
+  { id: "F052", rec: "aplicar", motivo: "pareja de espaldas: sin rostros; textura del follaje más limpia" },
+];
 const rows = [];
 for (const m of manifest) {
   if (m.seccion === "og" || m.generada === false || m.estado === "bloqueada" || !m.proceso?.nivelA?.aplicado) continue;
@@ -80,7 +93,7 @@ const md = `# Mejora técnica de fotos: antes y después
 Una hoja por foto (\`<ID>.jpg\`): a la izquierda el original sin tocar, a la derecha el mismo recorte con el Nivel A, y el detalle al 100 %.
 Los originales no se modifican. Se regeneran con \`npm run photos:build\` y \`node scripts/photos-mejoras.mjs\`.
 
-## Nivel A (aplicado a todas)
+## Nivel A (aplicado a todas menos F015 y F045)
 Reducción de ruido leve (solo si el ruido estimado supera ${A.sigmaMin}), enfoque suave al tamaño final y exposición y color consistentes entre fotos (ajuste de hasta ±${A.evMax} EV y ±${A.wbMax * 100} % de color hacia la mediana del grupo). No quita ni agrega objetos, luces, personas ni cielos; no retoca manchas. La barrera de \`photos:build\` y \`photos:verify\` falla si el cambio medio supera ${A.cambioMax}/255.
 
 | Foto | Original | Ruido estimado | Reducción de ruido | Exposición (EV) | Color R/G/B | Cambio medio | Recomendación |
@@ -89,7 +102,15 @@ ${rows.map((r) => `| [${r.id}](${r.id}.jpg) | ${r.orig} | ${r.ruido} | ${r.h || 
 
 ${rows.filter((r) => r.rec !== "aplicar").map((r) => `- **${r.id}** (no aplicar): ${r.motivo}`).join("\n")}
 
-## Nivel B (agrandado con IA hasta 2x): generado solo si lo aprobás, no aplicado
-Pendiente: no hay herramienta instalada (ver INFORME-ESCRITORIO.md). Fotos elegibles (sin rostros en primer plano y menos de 2000 px): ${rows.filter((r) => r.B?.elegible).map((r) => r.id).join(", ")}. Excluidas por tener rostros: ${manifest.filter((m) => m.proceso?.nivelB?.motivo === "hay rostros").map((m) => m.id).join(", ")}.
+${manifest.filter((m) => m.proceso?.nivelA && !m.proceso.nivelA.aplicado && m.seccion !== "og").map((m) => `- **${m.id}**: sin Nivel A, por decisión del cliente (la hoja \`${m.id}.jpg\` es de cuando se evaluó: la exposición llega al tope de -0,25 EV y oscurece fotos que ya son oscuras).`).join("\n")}
+
+## Nivel B (agrandado con IA hasta 2x): generado, NO aplicado
+Herramienta: Real-ESRGAN (\`realesrgan-ncnn-vulkan\` 20220424, release oficial v0.2.5.0 de xinntao/Real-ESRGAN; el release no publica hash, se verificó el tamaño contra el asset: 45474481 bytes; SHA-256 \`abc02804e17982a3be33675e4d471e91ea374e65b70167abc09e31acb412802d\`), instalada fuera del repo en \`~/tools/realesrgan\`, modelo \`realesrgan-x4plus\` reducido a 2x con Lanczos. Solo fotos sin rostros en primer plano y de menos de 2000 px. Las candidatas están en \`.photos-upscaled/\` (fuera de git); las hojas de comparación (ampliación clásica 2x contra IA, detalles al 100 %) en \`nivel-b/<ID>.jpg\`.
+
+Para aprobar una: \`"mejora": { "nivelB": "aplicar" }\` en su entrada de \`fotos\` y \`npm run photos:build\` (el original sigue intacto; \`photos:verify\` falla si hay Nivel B aplicado sin esa marca o sobre una foto con rostros).
+
+| Foto | Recomendación | Motivo |
+|---|---|---|
+${NIVEL_B.map((r) => `| [${r.id}](nivel-b/${r.id}.jpg) | **${r.rec}** | ${r.motivo} |`).join("\n")}
 `;
 writeFileSync(`${OUT}/README.md`, md);

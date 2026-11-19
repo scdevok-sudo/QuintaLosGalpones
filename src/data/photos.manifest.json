@@ -418,6 +418,7 @@
     "slot": "contacto.entrada",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      4,
      5
@@ -448,7 +449,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAMFAgQG/8QAIhAAAgMAAQMFAQAAAAAAAAAAAQIAAxEEBRMhEjFBUWFC/8QAGAEAAgMAAAAAAAAAAAAAAAAAAAECAwT/xAAYEQEBAAMAAAAAAAAAAAAAAAABAAISIf/aAAwDAQACEQMRAD8A5ziWMt6MD7Yf3xLrq3NFz12paWcgH6UAyt43Ge5DbqjM1c8mT2cTQLHBsZf4zAfqVuQcpAFPX1HtcCykb3XI0g/sTVXgeurLWZSToUKDkRbkkrHAAMhoiZ5WPzERCL//2Q==",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGQABAAIDAAAAAAAAAAAAAAAAAAMFAgQG/8QAIhAAAQQBBAIDAAAAAAAAAAAAAQACAxEEBRIhURMxQUKR/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAIDBP/EABkRAQEAAwEAAAAAAAAAAAAAAAEAAhIhUf/aAAwDAQACEQMRAD8A57Dkc3IY4H1R498K71jOE745Y5S6QgHpoBCrcXFfMwy20AVuaW8nr8U8mJYEjwZHN+gFA9LJzDlQBTx6l4dPkgBPleRZB+LtFqt07fDUz3NJNhoaCQibntKVlQAFI5EXNLG+SiIkv//Z",
   "alt": "Construcción de madera con techo de chapa entre árboles, con invitados y músicos sobre el césped",
   "estado": "provisoria-procedencia",
   "pendientes": [
@@ -458,28 +459,12 @@
   ],
   "personas": "rostros-sin-confirmar",
   "calidadAvif": 50,
-  "pesoAvif1440": 112914,
+  "pesoAvif1440": 106401,
   "proceso": {
    "nivelA": {
-    "aplicado": true,
-    "enfoque": {
-     "sigma": 0.7,
-     "m1": 0.4,
-     "m2": 1,
-     "x1": 2,
-     "y2": 10,
-     "y3": 20
-    },
-    "ruidoEstimado": 0.9,
-    "reduccionRuido": 0,
-    "exposicionEV": -0.25,
-    "balanceColor": [
-     1.04,
-     1,
-     1.0166
-    ],
-    "clase": "dia",
-    "cambioMedio": 6.16
+    "aplicado": false,
+    "enfoque": null,
+    "cambioMedio": 0
    },
    "nivelB": {
     "elegible": false,
@@ -820,6 +805,7 @@
     "slot": "espacios.hero",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      4,
      5
@@ -843,6 +829,7 @@
     "slot": "espacios.hero",
     "bp": "wide",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      3,
      4
@@ -906,7 +893,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -993,7 +980,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -1063,6 +1050,7 @@
     "slot": "story.fiesta",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": 1.63,
     "ratio": [
      4,
      5
@@ -1214,6 +1202,7 @@
     "slot": "espacios.parque",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      9,
      10
@@ -1277,7 +1266,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -1347,6 +1336,7 @@
     "slot": "story.llegada",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": 1.63,
     "ratio": [
      4,
      5
@@ -1535,7 +1525,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -1603,6 +1593,7 @@
     "slot": "casamientos.lluvia",
     "bp": "desktop",
     "layout": "mosaico",
+    "agrandado1920": null,
     "ratio": [
      3,
      4
@@ -1626,6 +1617,7 @@
     "slot": "espacios.cubierto",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      3,
      4
@@ -1689,7 +1681,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -1865,7 +1857,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -1971,7 +1963,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -2053,6 +2045,7 @@
     "slot": "casamientos.lluvia",
     "bp": "desktop",
     "layout": "mosaico",
+    "agrandado1920": null,
     "ratio": [
      3,
      4
@@ -2083,7 +2076,7 @@
    "width": 1320,
    "height": 990
   },
-  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIDBAX/xAAjEAEAAgIBBAEFAAAAAAAAAAABAAIDESEEEjJBMQUicaGx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAQIEA//EABgRAQEBAQEAAAAAAAAAAAAAAAEAAjEh/9oADAMBAAIRAxEAPwDh/T8DWpRFDdkSWYsVcmO1nG91Xy3vjcl0vyg2vmeK2PT+I6ayuSuVe1Ude5GqrWAeWDqcF6XbIovlrT+om61aWt2fffjxDfETQ1I5qOlUqI6d/MvPcREes5yhjUzZufR/YiIYX//Z",
+  "lqip": "data:image/jpeg;base64,/9j/2wBDABIMDRANCxIQDhAUExIVGywdGxgYGzYnKSAsQDlEQz85Pj1HUGZXR0thTT0+WXlaYWltcnNyRVV9hnxvhWZwcm7/2wBDARMUFBsXGzQdHTRuST5Jbm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm5ubm7/wAARCAASABgDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIEBQP/xAAkEAACAgECBQUAAAAAAAAAAAABAgADEQQhBRIxMkEiQnGhsf/EABgBAAIDAAAAAAAAAAAAAAAAAAIEAAED/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQACMSH/2gAMAwEAAhEDEQA/AMbh2nKqEIJAyxBE6U1LZUzGs86nuznbMlpOpClrLzsjD2n4jSsWNi2seUkg46mJKqs6B4WfqtO6OWIJBPdjB+ol9krZuT1vt2gZ2iaGoHNX0hIUEHBz1EsDzEQHrGco1ki+/fwv7ERLpf/Z",
   "alt": "Mesa servida con velas y flores en el galpón, con livings y gente al fondo",
   "estado": "provisoria-resolucion",
   "pendientes": [
@@ -2091,32 +2084,16 @@
   ],
   "personas": "sin-rostro",
   "calidadAvif": 55,
-  "pesoAvif1440": 101193,
+  "pesoAvif1440": 98922,
   "proceso": {
    "nivelA": {
-    "aplicado": true,
-    "enfoque": {
-     "sigma": 0.7,
-     "m1": 0.4,
-     "m2": 1,
-     "x1": 2,
-     "y2": 10,
-     "y3": 20
-    },
-    "ruidoEstimado": 0.88,
-    "reduccionRuido": 0,
-    "exposicionEV": -0.25,
-    "balanceColor": [
-     0.96,
-     1,
-     1.04
-    ],
-    "clase": "noche",
-    "cambioMedio": 6.23
+    "aplicado": false,
+    "enfoque": null,
+    "cambioMedio": 0
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -2199,6 +2176,7 @@
     "slot": "casamientos.servicios",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      4,
      5
@@ -2262,7 +2240,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -2332,6 +2310,7 @@
     "slot": "story.noche",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": 1.63,
     "ratio": [
      4,
      5
@@ -2396,7 +2375,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -2517,6 +2496,7 @@
     "slot": "espacios.llegada",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      3,
      4
@@ -2581,7 +2561,7 @@
    },
    "nivelB": {
     "elegible": true,
-    "estado": "pendiente-de-herramienta",
+    "estado": "generada-pendiente-de-aprobacion",
     "aplicado": false,
     "motivo": "sin rostros en primer plano y resolución menor a 2000 px"
    },
@@ -2728,16 +2708,17 @@
     "nombre": "casamientos-hero-pasillo-flores-atardecer-01-desk-story-ceremonia",
     "slot": "story.ceremonia",
     "bp": "desktop",
-    "layout": "split",
+    "layout": "cover",
+    "agrandado1920": 0.5,
     "ratio": [
-     4,
-     5
+     19,
+     10
     ],
     "box": {
      "left": 0,
-     "top": 357,
+     "top": 2300,
      "width": 4284,
-     "height": 5355
+     "height": 2255
     },
     "widths": [
      640,
@@ -2753,6 +2734,7 @@
     "slot": "casamientos.hero",
     "bp": "desktop",
     "layout": "cover",
+    "agrandado1920": null,
     "ratio": [
      16,
      9
@@ -2773,10 +2755,11 @@
     "maxWidth": null
    },
    "espacios.ceremonia|desktop": {
-    "nombre": "casamientos-hero-pasillo-flores-atardecer-01-desk-story-ceremonia",
+    "nombre": "casamientos-hero-pasillo-flores-atardecer-01-desk-espacios-ceremonia",
     "slot": "espacios.ceremonia",
     "bp": "desktop",
     "layout": "split",
+    "agrandado1920": null,
     "ratio": [
      4,
      5

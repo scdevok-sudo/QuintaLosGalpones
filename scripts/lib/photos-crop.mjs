@@ -69,7 +69,7 @@ export function artAt(slot, vw) {
 /** Relación (ancho/alto) del contenedor de la foto en cada viewport. `vistas` del slot manda; si no, la declarada. */
 export function aspectAt(slot, vw) {
   const art = artAt(slot, vw);
-  if (art) return art.aspect[0] / art.aspect[1];
+  if (art) return art.vistas?.[vw] ?? art.aspect[0] / art.aspect[1];
   const v = slot.vistas?.[String(vw)];
   if (v) return v;
   const ar = vw >= 768 ? slot.desktop : Array.isArray(slot.mobile) ? slot.mobile : slot.mobile.aspect;
@@ -80,8 +80,11 @@ export function aspectAt(slot, vw) {
  * Ranura normalizada. `mobile`, `desktop` y `wide` admiten una relación [a, b] (recorte base, como antes) o un objeto
  * { aspect, focal, maxWidth, layout, fotos }. Con objeto, la relación declarada pasa a `mobile` / `desktop` y el recorte
  * propio queda en `mobileCrop` / `desktopCrop` / `wideCrop`.
- *   layout: "cover" (llena el contenedor), "split" (vertical a la altura del contenedor junto al texto) o
+ *   layout: "auto" (por defecto: cover si el agrandado a 1920 px es de 1,35x o menos; si no, `fallback`: "split" o "ambient"),
+ *           "cover" (llena el contenedor), "split" (vertical a la altura del contenedor junto al texto),
+ *           "ambient" (vertical nítida centrada sobre un fondo desenfocado de la misma foto) o
  *           "mosaico" (2 o 3 verticales juntas; `fotos` lista las demás: { foto, aspect, focal }).
+ *   Con "auto", `aspect`/`focal` son del layout alternativo y `cover: { aspect, focal }` es el recorte a pantalla completa.
  */
 export function normSlot(s) {
   const o = { ...s };
@@ -89,7 +92,7 @@ export function normSlot(s) {
   // `desktop.base` = relación del contenedor entre 768 y 1023 px, donde todavía rige el recorte base (por defecto 4:3).
   if (!Array.isArray(s.desktop)) {
     const { base, ...art } = s.desktop;
-    Object.assign(o, { desktop: base ?? [4, 3], desktopCrop: { layout: "cover", ...art } });
+    Object.assign(o, { desktop: base ?? [4, 3], desktopCrop: { layout: "auto", ...art } });
   }
   if (s.wide) o.wideCrop = { ...(o.desktopCrop ?? {}), ...s.wide };
   if (o.wideCrop) o.wideCrop.layout ??= o.desktopCrop?.layout ?? "cover";

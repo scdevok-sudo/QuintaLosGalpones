@@ -89,6 +89,7 @@ export function Photo({ slot, fill, priority, className = "", alt, mask, zoom, d
   return (
     <div
       data-mv={s.mobile?.maxWidth}
+      data-slot={slot}
       data-layout={art?.layout}
       data-art={art ? "" : undefined}
       data-wide={art?.wide ? "" : undefined}

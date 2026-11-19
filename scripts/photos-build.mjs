@@ -27,7 +27,12 @@ mkdirSync(WORK, { recursive: true });
 async function load(f) {
   let file = join(cfg.fuente, f.original);
   if (!existsSync(file)) throw new Error(`No esta el original: ${file}`);
-  if (/\.hei[cf]$/i.test(file)) {
+  // Nivel B (agrandado con IA): solo con aprobación explícita en la config, y el original queda intacto.
+  if (f.mejora?.nivelB === "aplicar") {
+    const up = join(".photos-upscaled", `${f.id}-x2.png`);
+    if (!existsSync(up)) throw new Error(`${f.id}: tiene nivelB "aplicar" y falta ${up} (npm run photos:upscale ${f.id})`);
+    file = up;
+  } else if (/\.hei[cf]$/i.test(file)) {
     const mid = join(WORK, `${f.id}.png`);
     execFileSync("python", ["-I", "scripts/heic-to-png.py", file, mid]);
     file = mid;
@@ -45,6 +50,7 @@ const mediana = (a) => [...a].sort((x, y) => x - y)[Math.floor(a.length / 2)];
 
 /** Estadísticas de cada foto con ranura (ruido, luma mediana, razones de color) y el objetivo de cada clase (mediana del grupo). */
 const stats = new Map();
+const dims = new Map();
 const objetivos = {};
 async function analizar() {
   const ids = new Set(
@@ -55,6 +61,7 @@ async function analizar() {
     const file = join(WORK, `${f.id}.src.png`);
     writeFileSync(file, src.buf);
     stats.set(f.id, py("analyze", file));
+    dims.set(f.id, { w: src.w, h: src.h });
   }
   for (const clase of ["dia", "noche"]) {
     const g = cfg.fotos.filter((x) => stats.has(x.id) && claseDe(x) === clase).map((x) => stats.get(x.id));
@@ -198,7 +205,8 @@ function checkArt(f, a, box, W, H) {
   });
   const m = missing({ x0: box.left, y0: box.top, x1: box.left + box.width, y1: box.top + box.height }, subjectPx(sub, W, H));
   if (m.length) errores.push(`${a.slot} (${f.id}) a ${vws.join("/")} px, recorte ${a.bp} ${a.art.layout} ${a.m.aspect.join(":")}: le falta ${m.join(", ")}`);
-  if (a.art.maxWidth && box.width < 2000 && a.art.maxWidth > box.width) errores.push(`${a.slot} (${f.id}): maxWidth ${a.art.maxWidth} px agranda el recorte de ${box.width} px (más de 1:1)`);
+  const limite = a.art.agrandado != null && a.art.layout === "cover" ? Math.round(box.width * AGR_MAX) : box.width; // cover automático: hasta 1,35x
+  if (a.art.maxWidth && box.width < 2000 && a.art.maxWidth > limite) errores.push(`${a.slot} (${f.id}): maxWidth ${a.art.maxWidth} px agranda el recorte de ${box.width} px (más de 1:1)`);
 }
 
 /** Lo que se ve de la foto en cada ranura y cada breakpoint de revisión debe contener el sujeto entero. */
@@ -227,6 +235,44 @@ function checkSlots(f, baseBox, mobBoxes, artBoxes, W, H) {
 }
 
 await analizar();
+
+// ---- Layout "auto": agrandado necesario a 1920 px (ancho renderizado contra ancho del recorte publicado) ----
+// Si es de `agrandadoMax` (1,35x) o menos, la ranura va a cover a pantalla completa; si no, cae a su layout alternativo
+// (split por defecto). Con un original mejor la ranura pasa sola a cover. Mediciones: npm run photos:measure.
+const RENDER = existsSync("src/data/photos.render.json") ? JSON.parse(readFileSync("src/data/photos.render.json", "utf8")) : {};
+const AGR_MAX = cfg.layoutAuto?.agrandadoMax ?? 1.35;
+const tabla = [];
+for (const [name, slot] of Object.entries(slotsNorm)) {
+  const f = cfg.fotos.find((x) => x.id === slot.foto);
+  const d = dims.get(slot.foto);
+  if (!f || !d) continue;
+  const ren = RENDER[name]?.["1920"];
+  const art = slot.desktopCrop;
+  const cov = art ? (art.layout === "auto" ? art.cover ?? { aspect: art.aspect, focal: art.focal } : art) : null;
+  const box = art ? cropBox(d.w, d.h, cov.aspect, cov.focal, f.trim) : cropBox(d.w, d.h, f.ratio, f.focal, f.trim);
+  const agr = ren ? +((ren.w * (slot.zoom ?? 1)) / box.width).toFixed(2) : null;
+  let layout = art ? art.layout : "cover (recorte base)";
+  if (art?.layout === "auto") {
+    if (agr !== null && agr <= AGR_MAX) {
+      Object.assign(art, { layout: "cover", aspect: cov.aspect, focal: cov.focal });
+      if (box.width < 2000) art.maxWidth = Math.round(box.width * AGR_MAX);
+      if (ren?.pantallaCompleta) art.vistas = Object.fromEntries(DESKTOP_VIEWPORTS.map((vw) => [vw, +(RENDER[name][vw].w / RENDER[name][vw].h).toFixed(3)]));
+      layout = "cover (auto)";
+    } else {
+      art.layout = art.fallback ?? "split";
+      layout = `${art.layout} (auto${agr === null ? ", sin medición" : ""})`;
+    }
+    art.agrandado = agr;
+  } else if (art) layout = `${art.layout} (explícito)`;
+  tabla.push({ name, foto: slot.foto, recorte: box.width, render: ren?.w ?? null, zoom: slot.zoom ?? 1, agr, layout });
+}
+{
+  const l = ["| Ranura | Foto | Recorte px | Render 1920 px | Agrandado | Layout resultante |", "|---|---|---|---|---|---|"];
+  for (const r of tabla) l.push(`| ${r.name} | ${r.foto} | ${r.recorte} | ${r.render ?? "-"}${r.zoom > 1 ? ` x${r.zoom}` : ""} | ${r.agr === null ? "-" : r.agr + "x"} | ${r.layout} |`);
+  console.log("\nLayout auto (agrandado a 1920 px, máximo " + AGR_MAX + "x para pantalla completa):\n" + l.join("\n") + "\n");
+  mkdirSync("docs/fotos", { recursive: true });
+  writeFileSync("docs/fotos/layout-auto.md", `# Layout automático por ranura\n\nAgrandado = ancho renderizado a 1920 px (medido con \`npm run photos:measure\`, por el zoom del recorrido si lo hay) dividido por el ancho del recorte publicado a pantalla completa. Hasta ${AGR_MAX}x la ranura va a cover; si no, a su layout alternativo. "explícito" = el layout está fijado en photos.config.json.\n\n${l.join("\n")}\n`);
+}
 
 const manifest = [];
 for (const f of cfg.fotos) {
@@ -303,16 +349,24 @@ for (const f of cfg.fotos) {
     const aname = idem?.nombre ?? `${nombre}-${a.bp === "desktop" ? "desk" : "wide"}-${a.slot.replace(/\W+/g, "-")}${a.m.i ? `-${a.m.i}` : ""}`;
     const v = idem ?? { ...(await variante(enh, ab, aname, aw, hero ? 200 : ab.width >= 2000 ? 230 : 150, hero ? 1440 : 960)), nombre: aname };
     hechas.set(JSON.stringify([ab, hero]), v);
-    const tope = ab.width < 2000 ? Math.min(a.art.maxWidth ?? Infinity, ab.width) : a.art.maxWidth ?? null;
-    art[a.key] = { nombre: aname, slot: a.slot, bp: a.bp, layout: a.art.layout, ratio: a.m.aspect, box: ab, widths: aw, calidadAvif: v.q, maxWidth: tope };
+    const lim = a.art.agrandado != null && a.art.layout === "cover" ? Math.round(ab.width * AGR_MAX) : ab.width;
+    const tope = ab.width < 2000 ? Math.min(a.art.maxWidth ?? Infinity, lim) : a.art.maxWidth ?? null;
+    art[a.key] = { nombre: aname, slot: a.slot, bp: a.bp, layout: a.art.layout, agrandado1920: a.art.agrandado ?? null, ratio: a.m.aspect, box: ab, widths: aw, calidadAvif: v.q, maxWidth: tope };
     console.log(`   ${a.bp} ${a.slot}${a.m.i ? "#" + a.m.i : ""} ${a.art.layout} ${a.m.aspect.join(":")} ${aw.join("/")} q${v.q} tope ${tope ?? "-"}${idem ? " (comparte archivos)" : ""}`);
   }
   const lqipBuf = await sharp(master).resize(24).jpeg({ quality: 45 }).toBuffer();
   const orig = { w: src.w, h: src.h };
   const pend = pendientesDe(f, box);
   const nota = [f.nota, q < 50 ? `AVIF a calidad ${q} para entrar en ${budget} KB.` : ""].filter(Boolean).join(" ");
-  const elegibleB = ["ninguna", "sin-rostro"].includes(f.personas) && Math.max(box.width, box.height) < 2000;
-  enh.proceso.nivelB = { elegible: elegibleB, estado: elegibleB ? "pendiente-de-herramienta" : "no-elegible", aplicado: false, motivo: elegibleB ? "sin rostros en primer plano y resolución menor a 2000 px" : f.personas === "rostros-sin-confirmar" ? "hay rostros" : "ya tiene resolución suficiente" };
+  const aplicadoB = f.mejora?.nivelB === "aplicar";
+  const elegibleB = ["ninguna", "sin-rostro"].includes(f.personas) && (aplicadoB || Math.max(box.width, box.height) < 2000);
+  const hayB = existsSync(join(".photos-upscaled", `${f.id}-x2.png`));
+  enh.proceso.nivelB = {
+    elegible: elegibleB,
+    estado: aplicadoB ? "aplicado" : elegibleB ? (hayB ? "generada-pendiente-de-aprobacion" : "no-generada") : "no-elegible",
+    aplicado: aplicadoB,
+    motivo: elegibleB ? "sin rostros en primer plano y resolución menor a 2000 px" : f.personas === "rostros-sin-confirmar" ? "hay rostros" : "ya tiene resolución suficiente",
+  };
   manifest.push({
     id: f.id, original: f.original, nombre, seccion: f.seccion, ranuras: Object.keys(cfg.slots).filter((s) => cfg.slots[s].foto === f.id), momento: f.momento, focal: f.focal,
     dimensionesOriginal: orig, recorte: { ratio: f.ratio, w: box.width, h: box.height, left: box.left, top: box.top }, subject: f.subject, mobile, art,
