@@ -1,15 +1,13 @@
 import { env, site } from "@/config/site";
 import type { Meta } from "@/content/types";
-import manifest from "@/data/photos.manifest.json";
 
 export const absoluteUrl = (path: string) =>
   `${env.siteUrl.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
 
 type Descriptor = Record<string, unknown>;
 
-/** Imagen Open Graph (JPEG 1200×630) generada por photos:build. Si no hay, queda la genérica. */
-const ogEntry = (manifest as { seccion?: string; nombre?: string; jpeg?: { width: number } }[]).find((m) => m.seccion === "og");
-const OG_PATH = ogEntry?.nombre && ogEntry.jpeg ? `/photos/${ogEntry.nombre}-w${ogEntry.jpeg.width}.jpg` : "/og-default.jpg";
+/** Imagen Open Graph por defecto (JPEG 1200×630, foto con el logo): la genera npm run og:build en public/og. */
+const OG_PATH = "/og/default.jpg";
 
 /** Meta tags estándar de una ruta: título, descripción, canonical, Open Graph y Twitter. */
 export function pageMeta(meta: Meta, extra: Descriptor[] = []): Descriptor[] {
@@ -27,6 +25,10 @@ export function pageMeta(meta: Meta, extra: Descriptor[] = []): Descriptor[] {
     { property: "og:description", content: meta.description },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
+    { property: "og:image:type", content: "image/jpeg" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:alt", content: `${site.name}: logo sobre una foto del parque` },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: meta.title },
     { name: "twitter:description", content: meta.description },
